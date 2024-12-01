@@ -1,0 +1,28 @@
+<h2 mat-dialog-title class="confirm-appointment-message-dialog__title">Alerta</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="associateFormGroup" class="associate-searcher" >
+        <p [innerHTML]="messageAlert">
+           
+        </p>
+        <mat-form-field class="">
+            <mat-label>Diferencias</mat-label>
+            <textarea matInput formControlName="differences"  type="text"> </textarea>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <div class="confirm-appointment-message-dialog__actions">
+    <button    mat-flat-button color="primary" [mat-dialog-close]="false" >
+      Cancelar
+    </button>
+    <button 
+    mat-raised-button 
+    color="primary" 
+    class="confirm-appointment-message-dialog__action" 
+    (click)="submit()"
+    [disabled]="associateFormGroup.get('differences')?.invalid">Crear</button>
+    
+  </div>
+</div>

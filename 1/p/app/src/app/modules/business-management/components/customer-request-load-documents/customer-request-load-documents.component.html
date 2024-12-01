@@ -1,0 +1,33 @@
+<div class="container--modal">
+  
+  <div class="container--modal__title"> 
+      <h2><strong>Solicitud: {{nbr}} </strong></h2>
+  </div>
+
+  <div class="container--modal__content">
+
+    <div class="main-panel">
+        <app-customer-management-form
+          [receivedForm] = "filledForm"
+          [receivedDepartment] = "receivedDepartment"
+          [receivedCity] = "receivedCity">
+        </app-customer-management-form>
+    </div>
+
+    <div class="secondary-panel">
+      <ng-container *ngIf="nbr != '' && documentsTypes.length">
+        <app-upload-file #hijo 
+          [module]="routeData.documentation_module" 
+          [formValid]="onSubmit.bind(this)"
+          [validateForm]="validateForm.bind(this)"
+          [nbr]="nbr"
+          [tab]="tab"
+          [documentsTypes]="documentsTypes">
+        </app-upload-file>
+      </ng-container>
+    </div>
+
+  </div>
+
+</div>
+  

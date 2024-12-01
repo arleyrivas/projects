@@ -1,0 +1,43 @@
+<h1 mat-dialog-title class="header">
+    <mat-icon>phone_android</mat-icon>
+    <span>Ingresa la clave dinámica</span>
+</h1>
+
+<div mat-dialog-content>
+    <div class="insert-code" *ngIf="data.type === 'standard'">
+      <p>{{ data.destination }}</p>
+      <mat-form-field class="key-input">
+          <input matInput type="text" [formControl]="codeFormControl">
+      </mat-form-field>
+
+      <div *ngIf="codeFormControl.errors?.['minlength']" class="error-message">
+        El valor ingresado no es un número de mínimo 6 dígitos
+      </div>
+    </div>
+
+    <div class="message" *ngIf="data.type === 'information'">
+      <span>La clave dinámica es correcta.</span>
+    </div>
+
+    <div class="error-message" *ngIf="data.type === 'error'">
+      <span>{{ data.error }}</span>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+  <div class="actions">
+    <div class="standard-actions" *ngIf="data.type === 'standard'">
+      <button mat-button [mat-dialog-close]="{ action: 'cancel', data: null }">Cancelar</button>
+      <button mat-raised-button color="primary" class="accept-button" [mat-dialog-close]="{ action: 'generate', data: null }" cdkFocusInitial>Solicitar nueva clave</button>
+      <button mat-raised-button color="primary" class="accept-button" [mat-dialog-close]="{ action: 'validate', data: getCodeFormControl }" cdkFocusInitial [disabled]="codeFormControl.invalid">Validar</button>
+    </div>
+
+    <div class="information-actions" *ngIf="data.type === 'information'">
+      <button mat-raised-button color="primary" class="accept-button" [mat-dialog-close]="{ action: 'success', data: null }" cdkFocusInitial>OK</button>
+    </div>
+
+    <div class="error-actions" *ngIf="data.type === 'error'">
+      <button mat-button [mat-dialog-close]="{ action: 'error', data: null }">Cancelar</button>
+    </div>
+  </div>
+</div>

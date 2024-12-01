@@ -1,0 +1,110 @@
+h1 {
+    padding: 1rem;
+    margin: 0;
+    background-color: #92b976 !important;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.credit-notes__header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.credit-notes-check-icon {
+    width: 2rem;
+}
+
+.credit-notes__title-text {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.services-confirm__cancel-button {
+    color: #636e72 !important;
+}
+
+.service-order-confirm__field {
+    width: 100%;
+    background: #eee;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    overflow-wrap: anywhere;
+
+    display: block;
+}
+
+.service-order-confirm__selected-list-text {
+    margin-top: 0.5rem;
+}
+
+.service-order-confirm__textarea {
+    width: 100%;
+}
+
+.credit-notes__paragraph {
+    padding: 1rem;
+
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.credit-notes__paragraph-em {
+    font-weight: 500;
+}
+
+.credit-notes__selected-lists {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.credit-notes__selected-list {
+    width: 30rem;
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+}
+
+.credit-notes__selected-list-title {
+    margin: 0;
+    font-weight: 500;
+}
+
+.credit-notes__selected-list-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.credit-notes__invoices-nbr {
+    overflow-wrap: anywhere;
+}
+
+.credit-notes__arrow-icon {
+    width: 1.5rem;
+    margin-right: 1rem;
+}
+
+.credit-notes__arrow-icon_wrap {
+    width: 2rem;
+}
+
+.credit-notes__dialog-accept-button {
+    color: #ffffff !important;
+}
+
+.credit-notes__footer {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

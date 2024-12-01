@@ -1,0 +1,63 @@
+.value--field{
+    margin-bottom: 5px;
+}
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #fcf7dd;
+    text-align: center;
+}
+.modal-container {
+    padding: 20px;
+    max-width: auto;
+  }
+  
+  .description {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  mat-card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  mat-card-title {
+    color: #3f51b5;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  mat-list-item {
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  mat-list-item:last-child {
+    border-bottom: none;
+  }
+  
+  mat-icon {
+    margin-right: 10px;
+  }
+  
+  button {
+    margin-top: 20px;
+  }
+
+  .customer-message-agreement-dialog__title {
+    background-color: #92b976;
+    color: #ffffff;
+}
+
+.customer-message-agreement-dialog__actions {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.customer-message-agreement-dialog__action {
+    color: #ffffff !important;
+}

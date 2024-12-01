@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: 'Gilroy-Light';
+  src: url('assets/fonts/Gilroy-Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy-ExtraBold';
+  src: url('assets/fonts/Gilroy-ExtraBold.otf') format('opentype');
+}
+
+:root {
+    --primary-color: #92B975;
+    --primary-color-focused: #6ab04c;
+
+    --text-color-muted: #aeadb3;
+}
+
+html, body { height: 100%; }
+
+body { margin: 0; font-family: "Gilroy-Light"; }
+
+mat-label {
+  font-family: 'Gilroy-Light';
+}
+
+mat-form-field, input {
+  font-family: 'Gilroy-Light' !important;
+}
+
+h1, h2, h3, h4, p, span, button, label, mat-select, mat-option {
+  font-family: "Gilroy-Light" !important;
+}
+
+.mdc-tab, .box, .box2, .box3 {
+  font-family: "Gilroy-Light" !important;
+}
+
+/* MATERIAL CUSTOM STYLES */
+
+.table-cell__left {
+  text-align: left !important;
+}
+
+.table-cell__right {
+  text-align: right !important;
+}
+
+::ng-deep .mdc-tab__text-label {
+  flex-direction: column !important;
+}
+
+.custom-modal-new mat-dialog-container .mat-mdc-dialog-surface{
+  border-radius: 20px !important;
+}

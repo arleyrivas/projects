@@ -1,0 +1,334 @@
+<div class="info-pin-appointment-header" *ngIf="existenDatos && loadType !== 'asc'">
+    <h4 *ngIf="pin && !booking">
+        
+        <span class="title-info-pin" *ngIf="pin && !booking">PIN {{pin}} - RETIRO</span>  <br>
+        <span class="title-usuario-info-pin" *ngIf="hbl">HBL:  {{hbl}}</span> 
+
+       
+    </h4>
+    <h4 *ngIf="booking">
+      <span class="title-info-pin" *ngIf="booking">Booking {{booking}} - INGRESO</span><br>
+    </h4>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.96 15.65" width="15%" height="15%"><defs><style>.truck{fill:#ECECEC;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path id="s" class="truck" d="M18.98,10.59c-.97,0-1.82.51-2.31,1.27h-8.23c-.31-.49-.77-.87-1.32-1.09V0h17.82v11.86h-3.66c-.48-.76-1.34-1.27-2.31-1.27Z"/><path id="s-2" class="truck" d="M24.96,12.89c0,.11-.05.22-.14.3-.09.08-.21.12-.34.12h-2.77c0-.37-.07-.72-.21-1.04h3.45v.62Z"/><path id="s-3" class="truck" d="M16.26,13.32h-7.39c0-.37-.07-.72-.21-1.04h7.8c-.13.32-.21.67-.21,1.04Z"/><path id="s-4" class="truck" d="M0,7.27v4.92c0,.29.11.58.33.8.22.22.51.33.8.33h2.28c0-1.5,1.22-2.73,2.73-2.73.15,0,.3.01.45.04V2.84s-1.84,0-2.78.15c-.94.14-1.93.79-2.68,1.54S0,6.28,0,7.27ZM.79,7.19c0-.73.28-1.45.83-2.01.55-.55,1.28-1.03,1.97-1.13.69-.1,2.04-.11,2.04-.11v3.45c0,.09-.03.18-.09.26-.06.07-.14.12-.23.14l-4.04.81c-.11.02-.24,0-.33-.08-.1-.08-.15-.19-.15-.31v-1.01Z"/><path id="s-5" class="truck" d="M16.9,12.27c-.16.31-.25.67-.25,1.04,0,1.29,1.04,2.33,2.33,2.33,1.29,0,2.33-1.04,2.33-2.33,0-.38-.09-.73-.25-1.04-.04-.09-.09-.17-.15-.26-.04-.05-.07-.1-.11-.15-.43-.53-1.08-.88-1.82-.88s-1.39.34-1.82.88c-.04.05-.08.1-.11.15-.05.08-.11.17-.15.26ZM17.78,13.32c0-.45.24-.84.61-1.04.18-.1.38-.16.6-.16s.42.06.6.16c.36.21.61.6.61,1.04,0,.67-.54,1.21-1.21,1.21s-1.21-.54-1.21-1.21Z"/><path id="s-6" class="truck" d="M3.81,13.32c0,1.29,1.04,2.33,2.33,2.33,1.29,0,2.33-1.04,2.33-2.33,0-.48-.15-.93-.4-1.3-.23-.35-.56-.63-.94-.81-.17-.08-.35-.14-.54-.18-.15-.03-.3-.04-.45-.04-1.29,0-2.33,1.04-2.33,2.33ZM4.93,13.32c0-.67.54-1.21,1.21-1.21.16,0,.31.03.45.09.22.09.41.24.54.43.14.19.21.43.21.69,0,.67-.54,1.21-1.21,1.21s-1.21-.54-1.21-1.21Z"/><rect id="white_stripe" class="truck" x="7.13" y="1.02" width="17.82" height=".3"/></g></svg>
+    
+</div>
+<div class="info-pin-appointment-body"  *ngIf="existenDatos && loadType !== 'asc'">
+    <div class="filtro" >
+        <mat-form-field class="queries__filter">
+          <mat-label>Filtro</mat-label>
+          <mat-icon matPrefix class="queries__filter-icon">search</mat-icon>
+          <input matInput (keyup)="submit($event)" placeholder="Ingrese valor para filtrar" #input>
+        </mat-form-field>
+    </div>
+
+        <ng-container *ngIf="loadType === 'cs'">
+          <table  mat-table #invoicesTable [dataSource]="dataSource" multiTemplateDataRows>
+            <ng-container matColumnDef="agente">
+                <th mat-header-cell *matHeaderCellDef class="hidden-header">check</th>
+                <td mat-cell *matCellDef="let element" [ngStyle]="{'opacity': element.truck_visit_appt_nbr ? '0' : '1'}">
+                    <mat-checkbox [disabled]="!tienePlacaValida || element.truck_visit_appt_nbr || element.hasChargeableUnitEvents || element.hasDebt || !element.yard" 
+                    [checked]="checkboxStates[element.id + '_' + element.unitSequence]"
+                    (change)="onCheck($event.checked, element, false, element.id + '_' + element.unitSequence)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="unitSequence">
+                <th mat-header-cell *matHeaderCellDef class="hidden-header">unitSequence</th>
+                <td mat-cell *matCellDef="let element">{{ element.unitSequence }}</td>
+            </ng-container>
+            <ng-container matColumnDef="hbl">
+                <th mat-header-cell *matHeaderCellDef class="hidden-header">hbl</th>
+                <td mat-cell *matCellDef="let element">{{ element.hbl }}</td>
+            </ng-container>
+            <ng-container matColumnDef="cargoWeigth">
+                <th mat-header-cell *matHeaderCellDef class="hidden-header">cargo weight</th>
+                <td mat-cell *matCellDef="let element">{{ element.cargoWeigth }}</td>
+            </ng-container>
+            <ng-container matColumnDef="cargoQuantity">
+                <th mat-header-cell *matHeaderCellDef class="hidden-header">cargo quantity</th>
+                <td mat-cell *matCellDef="let element">{{ element.cargoQuantity }}</td>
+            </ng-container>
+           
+            <ng-container matColumnDef="consigneeName" >
+                <th mat-header-cell *matHeaderCellDef class="hidden-header">iconos</th>
+                <td mat-cell *matCellDef="let element">
+
+                    <div class="load__actions-wrapper">
+                        
+          
+                        <div
+                          *ngIf="!element.hasChargeableUnitEvents"
+                          [matTooltip]="getMessage('detached-load.hasChargeableUnitEvents')"
+                          matTooltipPosition="above"
+                        >
+                          <img class="load__container-icon" src="assets/icon/nube.svg">
+                        </div>
+          
+                        <div
+                        *ngIf="!element.hasDebt"
+                          [matTooltip]="getMessage('detached-load.hasDebt-false')"
+                          matTooltipPosition="above"
+                        >
+                          <img class="load__container-icon" src="assets/icon/nube.svg">
+                        </div>
+          
+                         
+          
+                          
+          
+                        <div
+                          *ngIf="element.hasChargeableUnitEvents"
+                          [matTooltip]="getMessage('modules.detached-load.storageDaysOwed')"
+                          matTooltipPosition="above"
+                        >
+                          <img class="load__container-icon" src="assets/icon/prohibido.svg">
+                        </div>
+          
+                          <div
+                            *ngIf="!element.yard"
+                            [matTooltip]="getMessage('modules.detached-load.yard')"
+                            matTooltipPosition="above"
+                          >
+                            <img class="load__container-icon" src="assets/icon/prohibido.svg">
+                          </div>
+          
+                          <div
+                              *ngIf="element.truck_visit_appt_nbr"
+                              [matTooltip]="getMessage('modules.detached-load.truck_visit_appt_nbr')"
+                              matTooltipPosition="above" (click) = "clickAppointment(element)"
+                          >
+                            <img class="load__container-icon" src="assets/icon/calendario.svg">
+                          </div>
+
+                          <div
+                              *ngIf="element.hasHoldConsignee && element.holdConsigneeActive"
+                              [matTooltip]="getMessage('modules.detached-load.holdConsigneeActive-true')"
+                              matTooltipPosition="above"
+                          >
+                            <img class="load__container-icon load__container-icon_lock" src="assets/icon/candado_abierto.svg">
+                          </div>
+          
+                          
+                    </div>
+                </td>
+            </ng-container>
+            
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'darker-background': row.truck_visit_appt_nbr}" ></tr>
+            
+          
+          </table>
+        </ng-container>
+        <div *ngIf="loadType === 'cc'" style="margin-top: 20px;">
+          
+          <table  mat-table #invoicesTable [dataSource]="dataSourceContainerized" multiTemplateDataRows>
+            <ng-container matColumnDef="shipperId">
+              <th mat-header-cell *matHeaderCellDef class="hidden-visible">check</th>
+              <td mat-cell *matCellDef="let element" [ngStyle]="{'opacity': element.hasTruckVisitAppointment ? '0' : '1'}">
+                  <mat-checkbox [disabled]="(!checkboxStates[element.unitNbr] && (element.hasTruckVisitAppointment || element.hasChargeableUnitEvents || element.hasDebt || !element.yard || element.hasHolds))" 
+                  [(ngModel)]="checkboxStates[element.unitNbr]"
+                  (change)="onCheckContainerized($event.checked, element, false, element.unitNbr)">
+                  </mat-checkbox>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="unitNbr">
+              <th mat-header-cell *matHeaderCellDef>Contenedor</th>
+              <td mat-cell *matCellDef="let element" class="centered-cell">{{ element.unitNbr }}</td>
+            </ng-container>
+            <ng-container matColumnDef="twenty">
+              <th mat-header-cell *matHeaderCellDef>Tipo</th>
+              <td mat-cell *matCellDef="let element" class="centered-cell">
+                <span *ngIf="element.twenty" class="badge">20"</span> 
+                <span *ngIf="!element.twenty" class="badge">40"</span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="siteAppointment">
+              <ng-container *ngIf="pin && !booking"><th mat-header-cell *matHeaderCellDef>Retirar en</th></ng-container>
+              <ng-container *ngIf="booking"><th mat-header-cell *matHeaderCellDef>Entregar en</th></ng-container>
+                <td mat-cell *matCellDef="let element" class="centered-cell">{{ element.siteAppointment }}</td>
+            </ng-container>
+            <ng-container matColumnDef="eroNbr" >
+              <th mat-header-cell *matHeaderCellDef class="hidden-header">iconos</th>
+              <td mat-cell *matCellDef="let element">
+
+                  <div class="load__actions-wrapper">
+                      
+        
+                      <div
+                        *ngIf="!element.hasChargeableUnitEvents"
+                        [matTooltip]="getMessage('detached-load.hasChargeableUnitEvents')"
+                        matTooltipPosition="above"
+                      >
+                        <img class="load__container-icon" src="assets/icon/nube.svg">
+                      </div>
+        
+                      <div
+                      *ngIf="!element.hasDebt"
+                        [matTooltip]="getMessage('detached-load.hasDebt-false')"
+                        matTooltipPosition="above"
+                      >
+                        <img class="load__container-icon" src="assets/icon/nube.svg">
+                      </div>
+        
+                      <div
+                        *ngIf="element.hasChargeableUnitEvents"
+                        [matTooltip]="getMessage('modules.detached-load.storageDaysOwed')"
+                        matTooltipPosition="above"
+                      >
+                        <img class="load__container-icon" src="assets/icon/prohibido.svg">
+                      </div>
+        
+                        <div
+                          *ngIf="!element.yard"
+                          [matTooltip]="getMessage('modules.detached-load.yard')"
+                          matTooltipPosition="above"
+                        >
+                          <img class="load__container-icon" src="assets/icon/prohibido.svg">
+                        </div>
+        
+                        <div
+                            *ngIf="element.hasTruckVisitAppointment"
+                            [matTooltip]="getMessage('modules.detached-load.truck_visit_appt_nbr')"
+                            matTooltipPosition="above" (click) = "clickAppointment(element)"
+                        >
+                          <img class="load__container-icon" src="assets/icon/calendario.svg">
+                        </div>
+                        <div
+                            *ngIf="element.holdConsigneeActive"
+                            [matTooltip]="getMessage('modules.detached-load.holdConsigneeActive-true')"
+                            matTooltipPosition="above"
+                        >
+                          <img class="load__container-icon load__container-icon_lock" src="assets/icon/candado_abierto.svg">
+                        </div>
+        
+                        
+                  </div>
+              </td>
+          </ng-container>
+           
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'darker-background': row.hasTruckVisitAppointment}" ></tr>
+          </table>
+        </div>
+
+        
+    
+</div>
+<div  *ngIf="existenDatos && loadType === 'asc' && bookingASC.length > 0 && !hidden">
+  <div class="info-pin-appointment-header-asc">
+    <h1><span class="title-info-pin" >Booking  {{dataBookingASC['booking']}} -- {{dataBookingASC['line']}} </span></h1>
+    <h3><span class="title-info-pin">Datos del booking</span></h3>
+  </div>
+  <div style="margin-bottom: 5rem;">
+    <ul class="load__container-list">
+      <li class="load__container-item" >
+        <span>Buque</span>
+        <span>{{dataBookingASC['carrierVisitName']}}</span>
+      </li>
+    
+      <li class="load__container-item" >
+        <span>Número de Visita</span>
+        <span>{{dataBookingASC['inVoyNbr']}}</span>
+      </li>
+    
+      <li class="load__container-item">
+        <span>Exportador</span>
+        <span>{{dataBookingASC['shipper']}}</span>
+      </li>
+  
+      <li class="load__container-item" >
+        <span>Cantidad Total</span>
+        <span>{{dataBookingASC['quantity']}}</span>
+      </li>
+    
+      <li class="load__container-item">
+        <span>Cantidad Disponible</span>
+        <span>{{dataBookingASC['quantityAvailable']}}</span>
+      </li>
+  
+      <li class="load__container-item" *ngFor="let value of dataBookingASC['isoCode']">
+        <span>ISO Code/Desc:</span>
+        <span  [matTooltip]="getMessageBooking(value.equipmentType)"
+        matTooltipPosition="above">{{value.description}} <mat-icon>info</mat-icon></span>
+      </li>
+    </ul>
+  </div>
+  
+</div>
+
+<ng-container *ngIf="bookingASC.length > 0  && !hidden">
+  <table mat-table [dataSource]="dataSourceBooking">
+    <!-- <ng-container matColumnDef="line">
+      <th mat-header-cell *matHeaderCellDef>
+       <span>Contenedores del Booking</span>
+      </th>
+      <td mat-cell *matCellDef="let element; let i = index;">{{ i + 1 }}</td>
+    </ng-container> -->
+  
+  
+    <ng-container matColumnDef="unitNbr">
+      <th mat-header-cell *matHeaderCellDef>
+        <span>Contenedores del Booking</span>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.unitNbr}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="twenty">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <span class="badge">{{ element.twenty ? "20''" : "40''" }}</span>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="equipmentType">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element"> {{element.equipmentType}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="forbidden" >
+      <th mat-header-cell *matHeaderCellDef class="hidden-header">iconos</th>
+      <td mat-cell *matCellDef="let element">
+
+          <div class="load__actions-wrapper">
+                <div
+                    *ngIf="element.forbidden"
+                    [matTooltip]="getMessage('modules.contenerized.load.trucking.company.forbidden')"
+                    matTooltipPosition="above"
+                  >
+                  <img class="load__container-icon" src="assets/icon/prohibido.svg">
+                </div>
+                <div
+                    *ngIf="element.hasTruckVisitAppointment !== null && element.hasTruckVisitAppointment && !element.forbidden"
+                    [matTooltip]="getMessage('modules.detached-load.truck_visit_appt_nbr')"
+                    matTooltipPosition="above" 
+                >
+                  <img class="load__container-icon" src="assets/icon/calendario.svg">
+                </div>
+                <div
+                    *ngIf="((element.hasTruckVisitAppointment !== null && !element.hasTruckVisitAppointment && !element.forbidden) || (!element.hasTruckVisitAppointment && !element.forbidden)) && isPermissionForDesassociate"
+                    [matTooltip]="getMessage('modules.contenerized.load.desassociate.container')"
+                    matTooltipPosition="above" 
+                    (click)="desassociateContainer(element.unitNbr, element.nbr)"
+                >
+                <svg class="desassociate_container" xmlns="http://www.w3.org/2000/svg" id="delete_unit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.99 26.54"><defs><style>.delete_unit-1{fill:#c0392b;stroke-width:0px;}</style></defs><g id="delete_unit_1-2"><path class="delete_unit-1" d="M16.18,26.54H7.37c-1.67,0-3.11-1.32-3.34-3.06L1.63,5.94c-.02-.14.02-.28.12-.39.09-.11.23-.17.37-.17h18.91c.14,0,.27.06.37.16s.14.24.12.38l-1.98,17.47c-.2,1.79-1.65,3.15-3.35,3.15ZM2.68,6.36l2.32,16.99c.17,1.26,1.19,2.21,2.37,2.21h8.82c1.21,0,2.23-.98,2.37-2.27l1.92-16.92H2.68Z"/><path class="delete_unit-1" d="M22.5,6.36H.49c-.27,0-.49-.22-.49-.49v-3.24c0-.27.22-.49.49-.49h22c.27,0,.49.22.49.49v3.24c0,.27-.22.49-.49.49ZM.99,5.38h21.01v-2.25H.99v2.25Z"/><path class="delete_unit-1" d="M14.17,3.13h-5.35c-.27,0-.49-.22-.49-.49V.49c0-.27.22-.49.49-.49h5.35c.27,0,.49.22.49.49v2.14c0,.27-.22.49-.49.49ZM9.31,2.14h4.36V.99h-4.36v1.15Z"/><rect class="delete_unit-1" x="7.35" y="21.3" width=".99" height="2.2" transform="translate(-2.68 1.13) rotate(-7.03)"/><rect class="delete_unit-1" x="6.43" y="8.58" width=".99" height="12.77" transform="translate(-1.78 .96) rotate(-7.03)"/><rect class="delete_unit-1" x="14.05" y="21.9" width="2.2" height=".99" transform="translate(-8.92 34.72) rotate(-83.04)"/><rect class="delete_unit-1" x="9.67" y="14.48" width="12.77" height=".99" transform="translate(-.75 29.09) rotate(-83.04)"/><rect class="delete_unit-1" x="11.04" y="8.63" width=".99" height="11.18" transform="translate(-.1 .08) rotate(-.39)"/><rect class="delete_unit-1" x="11.08" y="19.82" width=".99" height="3.67"/></g></svg>
+                </div>
+
+
+                
+          </div>
+      </td>
+  </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedBookingColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedBookingColumns;"
+      class="example-element-row"
+    ></tr>
+  </table>
+</ng-container>
+
+
+

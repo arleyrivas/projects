@@ -1,0 +1,157 @@
+<ng-container *ngIf="(documentalStore | async) as documentStore">
+    <ng-container *ngIf="documentStore.information">
+        <div class="document-information" (appAfterIf)="updateRejectedWarning()">
+          <div class="content">
+                <mat-card>
+                  <mat-card-content>
+                    <h2 class="title">{{ documentStore.information.nbr }}</h2>
+                    <div class="information">
+                      <ul class="user">
+                          <li *ngIf="documentStore.information.createdBy">
+                            <span class="informatiom-item" i18n="@@263e477590ec4a83c66a15b47462c9c2b93736d499b421e183a808c3ac222a17">
+                              documental.documentalController.UPLOAD_BY
+                            </span>
+                            {{ documentStore.information.createdBy }}
+                          </li>
+                          <li *ngIf="documentStore.information.companyId">
+                            <span class="informatiom-item" i18n="@@be064e88f8370859b7aec01d2e42cc14a9356dcfb85f4d1875b7596d8d885b8b">
+                              documental.views.detail.companyId.label
+                            </span>
+                            {{ documentStore.information.companyId }}
+                          </li>
+                          <li *ngIf="documentStore.information.companyName">
+                            <span class="informatiom-item" i18n="@@a1f4a6c72038dc3870e10cba92787480483d949d3b4fd52252048153a8ef0f43">
+                              documental.views.detail.companyName.label
+                            </span>
+                            {{ documentStore.information.companyName }}
+                          </li>
+                      </ul>
+                      <ul class="BL">
+                          <li *ngIf="documentStore.information.ownerId">
+                            <span class="informatiom-item" i18n="@@a1aeeb809ed5b27d43a78471e9fd0decd3736ea6c188414996a29a0821e6f8da">
+                              documental.views.detail.ownerId.label
+                            </span>
+                            {{ documentStore.information.ownerId }}
+                          </li>
+                          <li *ngIf="documentStore.information.owner">
+                            <span class="informatiom-item" i18n="@@b0e38ba0f3fb2d5722f19b7e55338d9ff7fb50375b3ddedc838ce5d033b42e96">
+                              documental.views.detail.owner.label
+                            </span>
+                            {{ documentStore.information.owner }}
+                          </li>
+                      </ul>
+                  </div>
+                  </mat-card-content>
+                </mat-card>
+
+                <mat-card>
+                  <mat-card-content>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col" i18n="@@cb8dadb98e6419b0ef165f809d44af37a886ad1dac33ac9f0d535d58f90edf5a">
+                            documental.views.detal.table-header.TITTLE
+                          </th>
+                          <th scope="col" i18n="@@503c24d6bbdf4b59cc968b0fbc74939a13fea6ba3a82efbf3c6a2c2c7809336a">
+                            documental.views.detal.table-header.ATTACHED
+                          </th>
+                          <th scope="col" i18n="@@ce566e30c180be1fcb07d62d72752ed9b61d69da59d37bf763052da8597cf897">
+                            documental.views.detal.table-header.DATE_CREATED
+                          </th>
+                          <th scope="col">
+                            Fecha de revisión
+                          </th>
+                          <th scope="col">
+                            <div class="state-icons">
+                              <svg id="Capa_2" class="approved approved__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.64 61.51"><defs></defs><g id="Capa_1-2"><path class="approved" d="m74.54,4.51c-3.5-3.79-6.66-6.35-10.45-2.86L25.34,37.37l-9.78-11.18c-3.39-3.88-6.82-1.67-10.7,1.72-3.88,3.39-6.75,6.69-3.36,10.58l10.1,11.55,8.24,9.43c2.22,2.54,6.1,2.75,8.58.46l9.21-8.49L76.74,15.38c3.79-3.5,1.29-7.08-2.2-10.87Z"/></g></svg>
+                              <svg id="Capa_2" class="rejected rejected__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72.98 69.05"><defs></defs><g id="Capa_1-2"><path class="rejected" d="m68.89,4.5c-3.49-3.78-6.65-6.33-10.43-2.85L1.93,53.76c-3.78,3.49-1.42,6.82,2.06,10.6h0c3.49,3.78,6.78,6.59,10.57,3.1L71.08,15.35c3.78-3.49,1.29-7.07-2.2-10.85Z"/><path class="rejected" d="m4.09,4.5C7.58.72,10.74-1.83,14.52,1.65l56.53,52.11c3.78,3.49,1.42,6.82-2.06,10.6h0c-3.49,3.78-6.78,6.59-10.57,3.1L1.89,15.35c-3.78-3.49-1.29-7.07,2.2-10.85Z"/></g></svg>
+                            </div>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <ng-container *ngFor="let document of documentStore.information.files">
+                              <tr *ngFor="let file of document.files">
+                                  <td>{{ document.fileName.name }}</td>
+                                  <td
+                                    *ngIf="!file.deleted"
+                                    class="fileName"
+                                    (click)="openFile(documentStore.information.id, file.id)"
+                                  >{{ file.fileName }}</td>
+                                  <td
+                                    *ngIf="file.deleted"
+                                    class="fileName"
+                                    class="deleted-file"
+                                    (click)="openFile(documentStore.information.id, file.id)"
+                                  >{{ file.fileName }}</td>
+                                  <td>{{ file.createdAt | dateFormat:'long' }}</td>
+                                  <td>
+                                    <ng-container *ngIf="file.approved">
+                                      <ng-container *ngIf="file.approvedAt">{{ file.approvedAt | dateFormat:'long' }}</ng-container>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="file.rejected">
+                                      <ng-container *ngIf="file.rejectedAt">{{ file.rejectedAt | dateFormat:'long' }}</ng-container>
+                                    </ng-container>
+                                  </td>
+                                  <td>
+                                      <div class="state-checkboxes" *ngIf="!file.deleted">
+                                        <mat-checkbox
+                                          [checked]="file.approved"
+                                          (change)="matCheckboxChange($event, document.id, file.id, true, 'Approved')"
+                                          color="primary">
+                                      </mat-checkbox>
+
+                                        <mat-checkbox
+                                          [checked]="file.rejected"
+                                          (change)="matCheckboxChange($event, document.id, file.id, false, 'Disapproved')"
+                                          color="primary">
+                                        </mat-checkbox>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </ng-container>
+                      </tbody>
+                  </table>
+                  </mat-card-content>
+                </mat-card>
+
+                <mat-card>
+                  <mat-card-content>
+                    <mat-tab-group class="tab-group">
+                      <mat-tab label="Comentarios">
+                          <app-documental-comment (clearEmmiter)="clearComment($event)"></app-documental-comment>
+                      </mat-tab>
+                      <mat-tab label="Historial">
+                          <app-documental-history></app-documental-history>
+                      </mat-tab>
+                  </mat-tab-group>
+                  </mat-card-content>
+                </mat-card>
+                <div class="actions">
+                    <button mat-raised-button (click)="closeInformation(documentStore.information)">
+                      <ng-container i18n="@@8f47e5190a03c1ca579888de0a7c5ecdce923262e3d0f54e58fc4161fa19b619">
+                        agent.views.agent-generate-pin-bl.CANCEL
+                      </ng-container>
+                    </button>
+                    <button
+                        [disabled]="notifyButtonState(documentStore.information.approved, documentStore.approved)"
+                        mat-raised-button
+                        color="primary"
+                        class="notify-button"
+                        (click)="notify(
+                            documentStore.information,
+                            documentStore.approved,
+                            documentStore.history,
+                            documentStore.requestTime,
+                            documentStore.rejectWarning
+                        )">
+                        <ng-container i18n="@@5bd471346db09380726268dcfa2ff7f06e7df09519ebf9a6b3fe2735b0e3117b">
+                          documental.documentalController.NOTIFICATE_AND_CONTINUE_OPERATING
+                        </ng-container>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

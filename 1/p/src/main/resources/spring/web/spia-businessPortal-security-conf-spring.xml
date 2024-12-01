@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+  		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+   		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<description>Configuración de seguridad</description>
+
+	<sec:http pattern="/api/user-token/**" security="none"/>
+	<sec:http pattern="/api/user-temp/**" security="none"/>
+	<sec:http pattern="/api/user-activate-token/**" security="none"/>
+	<sec:http pattern="/api/mobile-token/**" security="none"/>
+	<sec:http pattern="/api/payuresponse/**" security="none"/>
+	<sec:http pattern="/services/ping/**" security="none"/>
+	
+	<sec:http use-expressions="true" auto-config="false">
+		<sec:headers defaults-disabled="true">
+		    <sec:frame-options policy="SAMEORIGIN"/>
+		</sec:headers>
+		<sec:custom-filter ref="captchaFilter" before="FORM_LOGIN_FILTER" />
+		
+		<!-- <sec:csrf disabled="true"/> -->
+
+		<sec:custom-filter position="SWITCH_USER_FILTER" ref="switchUserProcessingFilter" />
+		
+		<sec:session-management	session-fixation-protection="newSession">
+			<sec:concurrency-control error-if-maximum-exceeded="true" max-sessions="1"/>
+		</sec:session-management>
+<!-- 		<sec:intercept-url pattern="/j_spring_security_switch_user" access="hasRole('M_EMP')"/> -->
+<!-- 		<sec:intercept-url pattern="*/app/**" access="isAuthenticated() and hasAnyRole('Admin','M_EMP','agente', 'transportador', 'ROLE_CUSTOMER_SERVICE','documental')" /> -->
+<!-- 		<sec:intercept-url pattern="/agent*" access="isAuthenticated() and hasAnyRole('Admin','M_EMP','agente', 'transportador', 'ROLE_CUSTOMER_SERVICE','documental')" /> -->
+<!-- 		<sec:intercept-url pattern="/truck*" access="isAuthenticated() and hasAnyRole('Admin','M_EMP','agente', 'transportador', 'ROLE_CUSTOMER_SERVICE','documental')" /> -->
+
+		<sec:intercept-url pattern="/j_spring_security_switch_user" access="permitAll"/>
+		<sec:intercept-url pattern="*/app/**" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/agent*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/truck*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/gestion-empresa*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/services/ping/*" access="permitAll" />
+		<sec:intercept-url pattern="/api/privilege/*" access="permitAll" />
+		<sec:intercept-url pattern="/js/**" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/user/activate/*" access="permitAll" />
+		<sec:intercept-url pattern="/api/user/confirm" access="permitAll" />
+<!-- 		<sec:intercept-url pattern="/api/payuresponse/**" access="permitAll" /> -->
+		<sec:intercept-url pattern="/log/*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/documental/*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/login" access="permitAll" />
+		<sec:intercept-url pattern="/accessDenied" access="permitAll" />
+		<sec:intercept-url pattern="/loginFailed" access="permitAll" />
+		<sec:intercept-url pattern="/privilegeRestricted" access="permitAll" />
+		<sec:intercept-url pattern="/privilegeSecondPassword" access="permitAll" />
+		<sec:intercept-url pattern="/css/**" access="permitAll" />
+		<sec:intercept-url pattern="/style/**" access="permitAll" />
+		<sec:intercept-url pattern="/pdf/**" access="permitAll" />
+		<sec:intercept-url pattern="/img/**" access="permitAll" />
+		<sec:intercept-url pattern="/public*" access="permitAll" />
+		<sec:intercept-url pattern="/libs/**" access="permitAll" />
+		<sec:intercept-url pattern="/fonts/**" access="permitAll" />
+		<!--<sec:intercept-url pattern="/api/user-token/**" access="permitAll" filters="none"/>
+		<sec:intercept-url pattern="/api/mobile-token/**" access="permitAll" />-->
+		
+<!-- 		<sec:intercept-url pattern="/handheld/**" access="hasAnyRole('Admin','ROLE_HANDHELD','M_EMP')" /> -->
+		<sec:intercept-url pattern="/handheld/**" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/*" access="permitAll" />
+		<sec:intercept-url pattern="/**" access="isAuthenticated()" />
+
+		<sec:form-login login-page="/login"
+			username-parameter="j_u"
+			password-parameter="j_p"
+			authentication-failure-url="/login?login_error=1"
+			authentication-success-handler-ref="authSuccessHandler"
+			authentication-failure-handler-ref="authFailureHandler"
+			login-processing-url="/login" />
+		<sec:access-denied-handler error-page="/accessDenied" />
+		<sec:logout logout-success-url="/" logout-url="/logout" delete-cookies="JSESSIONID"/>
+		<sec:csrf token-repository-ref="csrfTokenRepository"  />
+<!-- 		<sec:csrf disabled="true"/> -->
+	</sec:http>
+	
+
+	<bean id="csrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository">
+	    <property name="headerName" value="X-XSRF-TOKEN" />
+	</bean>
+
+	<bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- Default encoding -->
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- Set the maximum size allowed by the multipart request, the default 
+			is not limited -->
+		<property name="maxUploadSize" value="10485760000" />
+		<!-- Set a size, multipart request will be stored in memory when it is 
+			smaller than this size, larger than this memory will be saved to the hard 
+			disk -->
+		<property name="maxInMemorySize" value="40960" />
+    </bean>
+	
+	<bean id="captchaFilter" class="com.spia.businessportal.backend.security.CaptchaFilter"
+		p:postOnly="false">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="authenticationFailureHandler" ref="authFailureHandler" />
+		<property name="authenticationSuccessHandler" ref="authSuccessHandler" />
+		<property name="restTemplate" ref="commonRestTemplate" />
+	</bean>
+	
+	<bean id="switchUserProcessingFilter" class="com.spia.businessportal.backend.security.CustomSwitchUserFilter">
+		<property name="userDetailsService" ref="userDetailsService" />
+		<property name="switchUserUrl" value="/j_spring_security_switch_user" />
+		<property name="exitUserUrl" value="/j_spring_security_exit_user" />
+		<property name="targetUrl" value="/" />
+	</bean>
+
+	
+	<!-- Authentication providers -->
+
+<!-- 	<bean id="passwordEncoder" -->
+<!-- 		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"> -->
+<!-- 		<constructor-arg value="512" /> -->
+<!-- 	</bean>org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder -->
+	<!-- <bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg value="12" />
+	</bean> Ya no va -->
+
+	<!-- <bean id="saltSource" class="com.spia.businessportal.web.auth.UserSaltSource" /> ya no va -->
+
+	<!-- <bean id="dataBaseAuthenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService" />
+		<property name="passwordEncoder" ref="passwordEncoder" />
+		<property name="saltSource" ref="saltSource" />
+	</bean> ya no va-->
+
+<!-- 	<bean id="userDetailsService" class="com.spia.businessportal.backend.security.DataBaseAuthenticationDetailService"> -->
+	<bean id="userDetailsService" class="com.spia.businessportal.backend.security.SPIADomainAuthenticationDetailService">
+		<property name="userBO" ref="userBO" />
+	</bean>
+
+	<bean id="authSuccessHandler"
+		class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<!-- After login, return to the last visited page -->
+		<!-- <property name="useReferer" value="true" /> -->
+	</bean>
+
+	<bean id="authFailureHandler"
+		class="com.spia.businessportal.backend.security.UsernameStoringUrlAuthenticationFailureHandler"
+		p:defaultFailureUrl="/loginFailed" />
+
+	<bean id="jaasAuthProvider"
+		class="org.springframework.security.authentication.jaas.DefaultJaasAuthenticationProvider">
+		<property name="configuration">
+			<bean
+				class="org.springframework.security.authentication.jaas.memory.InMemoryConfiguration">
+				<constructor-arg>
+					<map>
+						<entry key="SPRINGSECURITY">
+							<array>
+								<bean class="javax.security.auth.login.AppConfigurationEntry">
+									<constructor-arg
+										value="com.spia.businessportal.web.auth.Login"/>
+									<constructor-arg>
+										<util:constant
+											static-field="javax.security.auth.login.AppConfigurationEntry$LoginModuleControlFlag.REQUIRED" />
+									</constructor-arg>
+									<constructor-arg>
+										<map></map>
+									</constructor-arg>
+								</bean>
+							</array>
+						</entry>
+					</map>
+				</constructor-arg>
+			</bean>
+		</property>
+		<property name="callbackHandlers">
+			<list>
+				<bean class="org.springframework.security.authentication.jaas.JaasNameCallbackHandler" />
+				<bean class="org.springframework.security.authentication.jaas.JaasPasswordCallbackHandler" />
+			</list>
+		</property>
+		<property name="authorityGranters">
+			<list>
+				<bean
+					class="com.spia.businessportal.backend.security.RoleGranter" />
+			</list>
+		</property>
+		<!-- opcional -->
+		<property name="loginExceptionResolver">
+				<bean
+					class="com.spia.businessportal.backend.security.LoginExceptionResolver" />
+		</property>
+		
+		
+	</bean>
+
+	<sec:authentication-manager alias="authenticationManager" erase-credentials="false">
+<!-- 		<sec:authentication-provider ref="dataBaseAuthenticationProvider" /> -->
+		<sec:authentication-provider ref="jaasAuthProvider" />
+	</sec:authentication-manager>
+
+	<bean id="commonRestTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean id="loginService" class="com.spia.businessportal.service.impl.LoginServiceImpl">
+		<property name="urlServicioLogin" value="${spia.route.login.gateway.url}" />
+		<property name="ipValidated" value="${ip.validated}" />
+		<property name="ipAddress" value="${ip.address}" />
+	</bean>
+	<bean id="loginInterceptor" class="com.spia.businessportal.web.auth.Login">
+		<property name="loginService" ref="loginService" />
+	</bean>
+	
+</beans>

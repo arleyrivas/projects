@@ -1,0 +1,172 @@
+<div class="service-orders__search">
+  <div class="title-card">
+    <h2 class="card-title">
+      Orden de servicio
+    </h2>
+
+    <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+  </div>
+
+  <div class="service-orders__option">
+    <span class="service-orders__option-text">Tipo de Servicio</span>
+
+    <mat-form-field>
+        <mat-label>Seleccione Tipo de Servicio</mat-label>
+
+        <mat-select [formControl]="serviceTypesFormControl">
+            <mat-option *ngFor="let serviceType of serviceTypes" [value]="serviceType">
+                {{ serviceType.service }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </div>
+
+  <app-search
+      inputPlaceholder="Ingrese BL, HBL o Booking"
+      indication="Ingrese BL, HBL o Booking y luego presione Buscar"
+      [hasCleanButton]="!!searchedCriteria"
+      (submitSearch)="search($event)"
+      (cleanEmmiter)="clean()"
+      (cleanFormControlEmmiter)="cleanSearchFormControl($event)"
+  ></app-search>
+
+  <ng-container *ngIf="serviceTypeInfo.length">
+    <ng-container *ngIf="searchedCriteria">
+      <div class="load__result">
+        <div class="load__body">
+          <div class="load__result-header">
+            <h4 class="load__result-title">
+              {{ getServiceCriteriaTitle(serviceTypeInfo[0].Type_service) }} - {{ searchedCriteria }}
+            </h4>
+          </div>
+
+          <ul class="load__container-list">
+            <ng-container *ngIf="serviceTypeInfo[0].Type_service.includes('BL') || serviceTypeInfo[0].Type_service.includes('HB')">
+              <li class="load__container-item">
+                <span class="load__container-item-title">Línea: </span>
+                <span>{{ serviceTypeInfo[0].line }}</span>
+              </li>
+            </ng-container>
+
+            <li class="load__container-item">
+              <span class="load__container-item-title">Buque: </span>
+              <span>{{ serviceTypeInfo[0].vesselName }}</span>
+            </li>
+
+            <ng-container *ngIf="serviceTypeInfo[0].Type_service.includes('BL') || serviceTypeInfo[0].Type_service.includes('HB')">
+              <li class="load__container-item">
+                <span class="load__container-item-title">Número de Viaje: </span>
+                <span>{{ serviceTypeInfo[0].carrierVisit }}</span>
+              </li>
+            </ng-container>
+
+            <ng-container *ngIf="serviceTypeInfo[0].Type_service.includes('BK')">
+              <li class="load__container-item">
+                <span class="load__container-item-title">Número de Visita: </span>
+                <span>{{ serviceTypeInfo[0].carrierVisit }}</span>
+              </li>
+            </ng-container>
+
+            <ng-container *ngIf="serviceTypeInfo[0].Type_service.includes('BL') || serviceTypeInfo[0].Type_service.includes('HB')">
+              <ng-container *ngIf="serviceTypeInfo[0].consigneeId || serviceTypeInfo[0].consigneeName">
+                <li class="load__container-item">
+                  <span class="load__container-item-title">Cliente: </span>
+                  <span>{{ serviceTypeInfo[0].consigneeId }} -- {{ serviceTypeInfo[0].consigneeName }}</span>
+                </li>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="serviceTypeInfo[0].Type_service.includes('BK')">
+              <ng-container *ngIf="serviceTypeInfo[0].shipperId || serviceTypeInfo[0].shipperName">
+                <li class="load__container-item">
+                  <span class="load__container-item-title">Cliente: </span>
+                  <span>{{ serviceTypeInfo[0].shipperId }} -- {{ serviceTypeInfo[0].shipperName }}</span>
+                </li>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="serviceTypeInfo[0].Type_service.includes('BL') || serviceTypeInfo[0].Type_service.includes('BK')">
+              <li class="load__container-item">
+                <span class="load__container-item-title">Contenedores Activos: </span>
+                <span>{{ getUnitServiceState(serviceTypeInfo, 1) }}</span>
+              </li>
+
+              <li class="load__container-item">
+                <span class="load__container-item-title">Contenedores Inactivos: </span>
+                <span>{{ getUnitServiceState(serviceTypeInfo, 0) }}</span>
+              </li>
+            </ng-container>
+
+            <ng-container *ngIf="serviceTypeInfo[0].Type_service.includes('BL')">
+              <li class="load__container-item">
+                <span class="load__container-item-title">Contenedores pendientes de liberación línea: </span>
+                <span>{{ getUnitServiceState(serviceTypeInfo, 2) }}</span>
+              </li>
+            </ng-container>
+
+            <ng-container *ngIf="serviceTypeInfo[0].Type_service.includes('HB')">
+              <li class="load__container-item">
+                <span class="load__container-item-title">Peso: </span>
+                <span>{{ serviceTypeInfo[0].weight_hbl }}</span>
+              </li>
+
+              <li class="load__container-item">
+                <span class="load__container-item-title">Cantidad: </span>
+                <span>{{ serviceTypeInfo[0].quantity_hbl }}</span>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+
+        <ng-container *ngIf="serviceTypeInfo[0].Type_service.includes('BL') || serviceTypeInfo[0].Type_service.includes('BK')">
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="selected">
+              <th mat-header-cell *matHeaderCellDef>Lista de Contenedores</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-checkbox color="primary" [formControl]="element.checkboxFormControl" (change)="containerMatCheckboxChange($event, element, element.selectFormControl)"></mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="idContainer">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element"> {{ element.unitNbr }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="inches">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <span class="badge">{{ element.twenty ? "20''" : "40''" }}</span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="emptyDestination">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <ng-container *ngIf="getServiceTypesFormControlValue.service">
+                  <ng-container *ngIf="getServiceTypesFormControlValue.service === 'DESCONSOLIDADO' || getServiceTypesFormControlValue.service === 'VACIADO'">
+                    <mat-form-field class="service-orders__void-destination">
+                      <mat-label>Destino Vacío</mat-label>
+
+                      <mat-select [formControl]="element.selectFormControl" (valueChange)="serviceTypeVoidDestinationChange($event, element)">
+                        <mat-option *ngFor="let serviceTypeVoidDestination of serviceTypeVoidDestinations" [value]="serviceTypeVoidDestination">
+                            {{ serviceTypeVoidDestination }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </ng-container>
+                </ng-container>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns;"
+              class="example-element-row"
+            ></tr>
+          </table>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

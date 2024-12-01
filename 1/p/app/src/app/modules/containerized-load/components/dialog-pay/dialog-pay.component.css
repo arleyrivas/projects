@@ -1,0 +1,27 @@
+.content{
+  padding: 0 !important;
+}
+.content-h{
+  color: white;
+  background: #92b975;
+  height: 30px;
+  padding: 0 20px;
+}
+.content-c{
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.content-b{
+  display: block;
+  padding: 0 10px;
+  padding-top: 10px;
+  float: right;
+}
+.color-w{
+  color: white !important;
+}
+.btn-v{
+  margin-left: 10px;
+  background: #92b975;
+}

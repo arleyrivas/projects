@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+
+    <class name="CustomerRequestNV" table="customer_request" dynamic-update="true">
+        <id name="id" type="long" column="gkey">
+            <generator class="native" />
+        </id>
+        <property name="requestId"       column="request_ID"     type="string" length="30"/>
+        <property name="customerId"      column="customer_ID"    type="string" length="30"/>
+        <property name="creatorId"       column="creator_ID"     type="string" length="30"/>
+        <property name="creatorUserId"   column="creator_userid" type="string" length="30"/>
+        <property name="createdAt"       column="created_at"     type="timestamp"/>
+        <property name="contactName"     column="contact_name"   type="string" length="100"/>
+        <property name="contactEmail"    column="contact_email"  type="string" length="60"/>
+        <property name="contactPhone"    column="contact_phone"  type="string" length="30"/>
+        <property name="requestStatus"   column="request_status" type="string" length="20"/>
+        <property name="requestInfo"     column="request_info"   type="string" length="1000"/>
+        <property name="infoStatus"      column="info_status"    type="string" length="30"/>
+        <property name="requestFlow"     column="request_flow"   type="string" length="7500"/>
+        <property name="finalizedAt"     column="finalized_at"   type="timestamp"/>
+        <property name="representedByAgent"   column="represented_by_agent"   type="integer"/>
+        <property name="requestType"     column="request_type"   type="string" length="10"/>
+    </class>
+</hibernate-mapping>

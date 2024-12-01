@@ -1,0 +1,51 @@
+
+<div clas="history-pins"  *ngIf="bookingASC.length > 0  && !hidden && isViewComponent">
+
+    <mat-form-field class="queries__filter">
+        <mat-label>Filtro</mat-label>
+        <mat-icon matPrefix class="queries__filter-icon">search</mat-icon>
+        <input matInput (keyup)="submit($event)" placeholder="Ingrese valor para filtrar" #input>
+    </mat-form-field>
+    <ng-container class="manage-history">
+        <table mat-table [dataSource]="dataSourceBooking" multiTemplateDataRows matSort>
+        
+            <ng-container matColumnDef="unitNbr">
+              <th mat-header-cell *matHeaderCellDef  mat-sort-header>UnitNbr</th>
+              <td mat-cell *matCellDef="let element"> {{element.unitNbr}} </td>
+            </ng-container>
+
+          
+          
+            <ng-container matColumnDef="twenty">
+              <th mat-header-cell *matHeaderCellDef> Tamaño</th>
+              <td mat-cell *matCellDef="let element">
+                <span class="badge">{{ element.twenty ? "20''" : "40''" }}</span>
+              </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="equipmentType">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>EquipmentType</th>
+              <td mat-cell *matCellDef="let element"> {{element.equipmentType}} </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="carrier">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element"> 
+                  <div #buttonElement (click)="deleteContainer(element.unitNbr, element.nbr)" class="generate-pin-display-item__delete_all">
+                      <svg class="delete-container-display-item__delete" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.99 26.54"><defs><style>.claseunicatrash{fill:#c0392b;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path class="claseunicatrash" d="M16.18,26.54H7.37c-1.67,0-3.11-1.32-3.34-3.06L1.63,5.94c-.02-.14.02-.28.12-.39.09-.11.23-.17.37-.17h18.91c.14,0,.27.06.37.16s.14.24.12.38l-1.98,17.47c-.2,1.79-1.65,3.15-3.35,3.15ZM2.68,6.36l2.32,16.99c.17,1.26,1.19,2.21,2.37,2.21h8.82c1.21,0,2.23-.98,2.37-2.27l1.92-16.92H2.68Z"/><path class="claseunicatrash" d="M22.5,6.36H.49c-.27,0-.49-.22-.49-.49v-3.24c0-.27.22-.49.49-.49h22c.27,0,.49.22.49.49v3.24c0,.27-.22.49-.49.49ZM.99,5.38h21.01v-2.25H.99v2.25Z"/><path class="claseunicatrash" d="M14.17,3.13h-5.35c-.27,0-.49-.22-.49-.49V.49c0-.27.22-.49.49-.49h5.35c.27,0,.49.22.49.49v2.14c0,.27-.22.49-.49.49ZM9.31,2.14h4.36V.99h-4.36v1.15Z"/><rect class="claseunicatrash" x="7.35" y="21.3" width=".99" height="2.2" transform="translate(-2.68 1.13) rotate(-7.03)"/><rect class="claseunicatrash" x="6.43" y="8.58" width=".99" height="12.77" transform="translate(-1.78 .96) rotate(-7.03)"/><rect class="claseunicatrash" x="14.05" y="21.9" width="2.2" height=".99" transform="translate(-8.92 34.72) rotate(-83.04)"/><rect class="claseunicatrash" x="9.67" y="14.48" width="12.77" height=".99" transform="translate(-.75 29.09) rotate(-83.04)"/><rect class="claseunicatrash" x="11.04" y="8.63" width=".99" height="11.18" transform="translate(-.1 .08) rotate(-.39)"/><rect class="claseunicatrash" x="11.08" y="19.82" width=".99" height="3.67"/></g></svg>
+                  </div>
+              </td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedBookingColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedBookingColumns;"
+              class="example-element-row"
+            ></tr>
+        </table>
+
+
+    </ng-container>
+    
+</div>

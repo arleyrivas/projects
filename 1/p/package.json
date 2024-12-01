@@ -1,0 +1,31 @@
+{
+  "name": "businessPortal",
+  "homepage": "localhost",
+  "author": {
+    "name": "Elvis Fontalvo by Assert Solutions",
+    "email": "efontalvo@assertsolutions.com"
+  },
+  "version": "0.5.15",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.6.1",
+    "grunt-autoprefixer": "^0.4.2",
+    "grunt-concurrent": "1.0.0",
+    "grunt-contrib-compass": "^0.8.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-connect": "^3.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^3.2.0",
+    "grunt-contrib-qunit": "^7.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-wiredep": "^3.0.1"
+  },
+  "dependencies": {
+    "@types/pdfmake": "^0.2.9",
+    "moment-timezone": "^0.5.43",
+    "pdfmake": "^0.2.10"
+  }
+}

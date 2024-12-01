@@ -1,0 +1,14 @@
+<div class="documental-search">
+    <div class="input-form">
+        <input [formControl]="search" class="search-field" type="text" placeholder="Buscar por BL, Booking ó Contenedor">
+<!--         <button class="search-field__action search-field__delete-button">
+            <mat-icon>delete</mat-icon>
+        </button> -->
+        <button class="search-field__action search-field__search-button" (click)="submit()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+    <p class="search__description" i18n="@@b539fc5b1b74e9f3a228c23d0de658cde189ed9adcd0790a5f84ef63800cdf66">
+      documental.views.documental-search.BLOCK_HELP_LABEL
+    </p>
+</div>

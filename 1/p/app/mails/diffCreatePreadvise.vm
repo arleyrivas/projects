@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<style type="text/css">
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	margin-top: 0px !important;
+	padding-top: 0px !important;
+}
+</style>
+
+
+<style type="text/css">
+a img {
+	color: #000001 !important;
+}
+
+.wysiwyg-text-align-right {
+	text-align: right;
+}
+
+.wysiwyg-text-align-center {
+	text-align: center;
+}
+
+.wysiwyg-text-align-left {
+	text-align: left;
+}
+
+.wysiwyg-text-align-justify {
+	text-align: justify;
+}
+
+h1, #email-441797 h1 {
+	text-shadow: none;
+	padding-top: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	color: #000000 !important;
+	font-weight: 400;
+	font-style: normal;
+	font-family: Arial;
+	font-size: 36px;
+	line-height: 44px;
+}
+
+h2, #email-441797 h2 {
+	text-shadow: none;
+	padding-top: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	color: #FFFCFC !important;
+	font-weight: 700;
+	font-style: normal;
+	font-family: Verdana;
+	font-size: 18px;
+	line-height: 30px;
+}
+
+h3, #email-441797 h3 {
+	text-shadow: none;
+	padding-top: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	color: #FAFBFF !important;
+	font-weight: 400;
+	font-style: normal;
+	font-family: Verdana;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+p, #email-441797 p {
+	text-shadow: none;
+	padding-top: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	color: #000001 !important;
+	font-style: normal;
+	font-family: Verdana;
+	font-size: 14px;
+	line-height: 15px;
+}
+
+a, #email-441797 a {
+	text-shadow: none;
+	padding-top: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	color: #1122CC !important;
+	text-decoration: underline;
+}
+
+.h1_color_span_wrapper {
+	color: #000000;
+}
+
+.h2_color_span_wrapper {
+	color: #FFFCFC;
+}
+
+.h3_color_span_wrapper {
+	color: #FAFBFF;
+}
+
+.p_color_span_wrapper {
+	color: #000001;
+}
+
+.a_color_span_wrapper {
+	color: #1122CC;
+}
+
+.mi-all {
+	display: block;
+}
+
+.mi-desktop {
+	display: block;
+}
+
+.mi-mobile {
+	display: none;
+	font-size: 0;
+	max-height: 0;
+	line-height: 0;
+	padding: 0;
+	float: left;
+	overflow: hidden;
+	mso-hide: all; /* hide elements in Outlook 2007-2013 */
+}
+</style>
+
+<style type="text/css">
+div, p, a, li, td {
+	-webkit-text-size-adjust: none;
+}
+
+@media only screen and (max-device-width: 480px) , screen and (max-width:
+		480px) , screen and (orientation: landscape) and (max-width: 630px) {
+	/* very important! all except 'all' and this current type get a display:none; */
+	.mi-desktop {
+		display: none !important;
+	}
+
+	/* then show the mobile one */
+	.mi-mobile {
+		display: block !important;
+		font-size: 12px !important;
+		max-height: none !important;
+		line-height: 1.5 !important;
+		float: none !important;
+		overflow: visible !important;
+	}
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body id="email-441797"
+	style="background: #FFFFFF; font-family: sans-serif; margin-top: 0px !important; padding-top: 0px !important"
+	bgcolor="#FFFFFF">
+	<table width="1" height="1" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td style="font-size: 0px; line-height: 0px"><img
+				src="http://t.inkbrush.com/p/cp/c1098c45527397ef/o.gif" width="1"
+				height="1" /></td>
+		</tr>
+	</table>
+	<table align="center" cellpadding="0" cellspacing="0" width="100%"
+		style="background: #FFFFFF; border: 0; border-collapse: collapse; border-spacing: 0; margin: 0px 0 0; padding: 0"
+		bgcolor="#FFFFFF">
+		<tr align="center"
+			style="border: 0; border-collapse: collapse; border-spacing: 0">
+			<td align="center" valign="top"
+				style="border: 0; border-collapse: collapse; border-spacing: 0">
+				<div class="mi-all" style="display: block">
+					<table width="620" class="mi-all" align="center" cellspacing="0"
+						cellpadding="0" border="0"
+						style="background: #FEFEFE; border: 0; border-collapse: collapse; border-spacing: 0; display: block; margin: 0; min-width: 620px; padding: 0"
+						bgcolor="#FEFEFE">
+						<tbody>
+							<tr align="left"
+								style="border: 0; border-collapse: collapse; border-spacing: 0">
+								<td>
+									<table cellspacing="0" cellpadding="0" border="0"
+										style="border: 0; border-collapse: collapse; border-spacing: 0; min-width: 620px">
+										<tbody>
+											<tr
+												style="border: 0; border-collapse: collapse; border-spacing: 0">
+												<td align="left" valign="top" style=""><img border="0"
+													src="https://www.puertoaguadulce.com/imagenes/images/image-832d87bd65c29783f6e9a11f27695a6e6fb28724.jpg"
+													style="border: 0; display: block; height: 99px; line-height: 0; max-height: 99px; max-width: 620px; min-height: 99px; min-width: 620px; width: 620px" />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr align="left"
+								style="border: 0; border-collapse: collapse; border-spacing: 0">
+								<td>
+									<table cellspacing="0" cellpadding="0" border="0"
+										style="border: 0; border-collapse: collapse; border-spacing: 0; min-width: 620px">
+										<tbody>
+											<tr
+												style="border: 0; border-collapse: collapse; border-spacing: 0">
+												<td width="620" align="left" valign="middle" height="545">
+													<table align="center" cellspacing="0" cellpadding="0"
+														border="0"
+														style="border: 0; border-collapse: collapse; border-spacing: 0; margin: 0; min-width: 620px; padding: 0">
+														<tbody>
+															<tr>
+																<td style="font-size: 1px; line-height: 1px" width="20"> 
+																</td>
+																<td>
+																	<!-- content start -->
+																	<h1
+																		style="color: #000000 !important; font-family: Arial; font-size: 36px; font-style: normal; font-weight: 400; line-height: 44px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-align: center; text-shadow: none"
+																		align="center">
+																		<span class="h1_color_span_wrapper"
+																			style="color: #000000"> Aguadulce
+																			en Línea </span>
+																	</h1>
+																																		<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-shadow: none">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">  </span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-shadow: none">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001"> Se registraron las siguientes diferencias al crear un preaviso: </span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-shadow: none">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">  </span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-shadow: none">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">  Unit Facility Visit: ${mail.attributes.get("container")} </span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-shadow: none">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">  </span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-shadow: none"
+																		align="justify">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">  ${mail.attributes.get("observaciones")}
+																		</span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-align: center; text-shadow: none"
+																		align="center">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">  </span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-align: left; text-shadow: none"
+																		align="left">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001"> </span>
+																	</p>
+
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-align: left; text-shadow: none"
+																		align="left">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">  </span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-align: left; text-shadow: none"
+																		align="left">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">  </span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-align: left; text-shadow: none"
+																		align="left">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">  </span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-align: left; text-shadow: none"
+																		align="left">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">Saludos. </span>
+																	</p>
+
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-align: left; text-shadow: none"
+																		align="left">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001">  </span>
+																	</p>
+																	<p
+																		style="color: #000001 !important; font-family: Verdana; font-size: 14px; font-style: normal; line-height: 15px; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-shadow: none"
+																		align="justify">
+																		<span class="p_color_span_wrapper"
+																			style="color: #000001"> SOCIEDAD PUERTO
+																			INDUSTRIAL AGUADULCE S.A. no será responsable por el
+																			uso indebido o pérdida de control del Nombre de
+																			Usuario y clave. Si el aviso relacionado con dicha
+																			perdida no se hizo dentro de las 24 horas siguientes
+																			a la ocurrencia de los hechos, o; hasta tanto no se
+																			produzca el bloqueo del acceso electrónico. <strong>Si
+																				no tiene conocimiento alguno sobre este mensaje no
+																				hacer caso omiso y comunicarse con nuestra línea de
+																				atención al cliente. </strong>
+																		</span>
+																	</p> <!-- content end -->
+																</td>
+																<td style="font-size: 1px; line-height: 1px" width="20"> 
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr align="left"
+								style="border: 0; border-collapse: collapse; border-spacing: 0">
+								<td>
+									<table cellspacing="0" cellpadding="0" border="0"
+										style="border: 0; border-collapse: collapse; border-spacing: 0; min-width: 620px">
+										<tbody>
+											<tr
+												style="border: 0; border-collapse: collapse; border-spacing: 0">
+												<td align="left" valign="top" style=""><a
+													href="https://www.puertoaguadulce.com" target="_blank"
+													style="border: none; color: #1122CC !important; display: block; font-size: 10px; line-height: 0; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; margin-bottom: 0; padding-bottom: 0; margin-left: 0; padding-left: 0; text-decoration: none; text-shadow: none"><img
+														border="0"
+														src="https://www.puertoaguadulce.com/imagenes/images/image-9d383b25ac5abe112f6e34af0a94d37d0f4734bd.jpg"
+														style="border: 0; color: #000001 !important; display: block; height: 52px; line-height: 0; max-height: 52px; max-width: 620px; min-height: 52px; min-width: 620px; width: 620px" />
+												</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+			</td>
+		</tr>
+	</table>
+
+
+
+	<div style="display: none; font: 15px courier; white-space: nowrap">
+		                                                           </div>
+</body>
+</html>

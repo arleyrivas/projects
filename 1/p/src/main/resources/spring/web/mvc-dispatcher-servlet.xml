@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                        http://www.springframework.org/schema/mvc     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+	<!-- load a config properties file at startup. Define database and page 
+		size -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:application.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- expose specific properties to application -->
+	<bean id="applicationProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="application.version">${application.version}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<context:component-scan
+		base-package="com.spia.businessportal.web.controller" />
+
+	<context:annotation-config />
+
+	<mvc:resources mapping="/public/**"
+		location="/WEB-INF/public/" />
+	<!--<mvc:resources mapping="/css/**" location="/WEB-INF/assets/css/" /> -->
+	<mvc:resources mapping="/style/**"
+		location="/WEB-INF/style/" />
+	<!--<mvc:resources mapping="/pdf/**" location="/WEB-INF/assets/pdf/" /> -->
+	<mvc:resources mapping="/pdf/**" location="/WEB-INF/pdf/" />
+	<!--<mvc:resources mapping="/img/**" location="/WEB-INF/assets/img/" /> -->
+	<mvc:resources mapping="/img/**" location="/WEB-INF/img/" />
+	<!--<mvc:resources mapping="/fonts/**" location="/WEB-INF/assets/fonts/" 
+		/> -->
+	<mvc:resources mapping="/fonts/**"
+		location="/WEB-INF/fonts/" />
+	<!--<mvc:resources mapping="/js/**" location="/WEB-INF/assets/js/" /> -->
+	<mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
+	<mvc:resources mapping="/libs/**"
+		location="/WEB-INF/public/js" />
+	<mvc:resources mapping="/app/**" location="/WEB-INF/app/" />
+	<mvc:resources mapping="/languages/**"
+		location="/WEB-INF/assets/languages/" />
+	<mvc:resources mapping="/handheld/**"
+		location="/WEB-INF/handheld/" />
+	<!-- <mvc:resources mapping="/**" location="/" /> -->
+
+	<!--bean id="viewResolverJasper" class="org.springframework.web.servlet.view.ResourceBundleViewResolver"> 
+		<property name="basename" value="i18n/views" /> </bean -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- Default encoding -->
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- Set the maximum size allowed by the multipart request, the default 
+			is not limited -->
+		<property name="maxUploadSize" value="10485760000" />
+		<!-- Set a size, multipart request will be stored in memory when it is 
+			smaller than this size, larger than this memory will be saved to the hard 
+			disk -->
+		<property name="maxInMemorySize" value="40960" />
+	</bean>
+
+	<bean id="viewResolverJsp"
+		class="com.spia.businessportal.web.viewResolver.SmartInternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean id="viewResolverHtml"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".html" />
+		<property name="order" value="2" />
+	</bean>
+
+	<!-- Configure to plugin JSON as request and response in method handler -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jsonMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Configure bean to convert JSON to POJO and vice versa -->
+	<bean id="jsonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+
+
+	<mvc:annotation-driven
+		enableMatrixVariables="true">
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes"
+					value="application/json" />
+				<property name="objectMapper">
+					<bean class="com.fasterxml.jackson.databind.ObjectMapper">
+						<property name="serializationInclusion" value="NON_NULL" />
+					</bean>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<mvc:interceptors>
+		<bean id="webContentInterceptor"
+			class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+			<property name="cacheSeconds" value="2100" />
+			<property name="useExpiresHeader" value="true" />
+			<property name="useCacheControlHeader" value="true" />
+			<property name="useCacheControlNoStore" value="true" />
+			<property name="cacheMappings">
+				<props>
+					<prop key="/api/**">0</prop>
+					<prop key="/*">0</prop>
+				</props>
+			</property>
+		</bean>
+	</mvc:interceptors>
+
+
+	<!-- Configures the @Controller programming model -->
+	<!-- <mvc:annotation-driven/> -->
+
+</beans>

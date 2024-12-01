@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+ 
+    <class name="Pin" table="pin_for_import" dynamic-update="true">
+        <id name="id" type="long" column="id">
+            <generator class="native" />
+        </id>
+        
+        <property name="hashValue" column="hash_value" type="string" not-null="true" length="50"/>
+        <property name="pinNbr" column="pin_nbr" type="string" not-null="true" length="6"/>
+        <property name="unitNbr" column="unit_nbr" type="string" not-null="false" length="11"/>
+        <property name="blNbr" column="bl_nbr" type="string" not-null="false" length="30"/>
+        <property name="bkgNbr" column="bkg_nbr" type="string" not-null="false" length="30"/>
+        <property name="edoNbr" column="edo_nbr" type="string" not-null="false" length="30"/>
+        <property name="eroNbr" column="ero_nbr" type="string" not-null="false" length="30"/>
+        <property name="isoType" column="iso_type" type="string" not-null="false" length="4"/>
+        <property name="truckingCompanyLDAP" column="trucking_company_ldap" type="string" not-null="false" length="20"/>
+        <property name="truckingCompanyNameLDAP" column="trucking_company_name_ldap" type="string" not-null="false" length="255"/>
+        <property name="createdByLDAP" column="created_by_ldap" type="string" not-null="false" length="20"/>
+        <property name="createdByCompanyLDAP" column="created_by_company_ldap" type="string" not-null="false" length="20"/>
+        <property name="createdAt" column="created_at" type="timestamp" not-null="true"/>
+        <property name="consignee" column="consignee" type="string"/>
+        <property name="active" column="is_active" type="boolean" not-null="true" />
+        <property name="deleted" column="is_deleted" type="boolean" not-null="true"  />
+        <property name="twenty" column="is_twenty" type="boolean" not-null="true" />
+        <property name="frghtKind" column="frght_kind" type="string" not-null="false" length="20"/>
+        <property name="isGroup" column="is_group" type="long" not-null="true"/>
+        <set name="pinBreakBulk" table="pin_break_bulk" cascade="all" inverse="true" lazy="false" fetch="select">
+        	<key>
+            	<column name="pin_id" not-null="true" />
+        	</key>
+        	<one-to-many class="PinBreakBulk" />
+    	</set>
+   	  	<set name="truckVisitBreakBulk" table="truck_visit_appointment_breakbulk" cascade="all" inverse="true" lazy="false" fetch="select">
+        	<key>
+            	<column name="pin_id" not-null="true" />
+        	</key>
+        	<one-to-many class="TruckVisitAppointmentBreakBulk" />
+    	</set>
+    	<set name="pinContainerized" table="pin_containerized" cascade="all" inverse="true" lazy="false" fetch="select">
+        	<key>
+            	<column name="pin_id" not-null="true" />
+        	</key>
+        	<one-to-many class="PinContainerized" />
+    	</set>
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,180 @@
+.actions {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.accept-button {
+    color: #ffffff !important;
+}
+
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid;
+    border-color: #ced4da;
+}
+
+.spaced-span {
+    margin-right: 30px; 
+}
+
+.svgs {
+    margin-right: 5px;
+}
+
+.sidenav-container {
+    display: flex;
+    height: 100%;
+    flex-direction: row; /* Asegurar que el sidenav y el contenido estén en la misma fila */
+    margin-top: 64px; /* Ajustar el contenido principal para la barra de herramientas */
+  }
+  
+  /* Sidenav */
+  .sidenav {
+    width: 0; /* Comienza colapsado */
+    max-width: 300px;
+    background: transparent; /* Fondo completamente transparente */
+    overflow: auto;
+    height: calc(100% - 64px);
+    transition: width 0.3s; /* Animación de transición */
+    backdrop-filter: blur(10px); /* Opcional: añadir un desenfoque de fondo */
+    position: fixed;
+    top: 64px; /* Asegurar que el sidenav comience desde la parte superior, debajo de la barra de herramientas */
+    right: 0;
+    z-index: 3; /* Asegurar que el sidenav esté sobre el contenido principal */
+  }
+  
+  .sidenav.open {
+    width: 300px; /* Ancho del sidenav cuando está abierto */
+  }
+  
+  /* Encabezado del sidenav */
+  .sidenav-header {
+    padding: 16px;
+    background: transparent; /* Fondo completamente transparente */
+    color: white;
+  }
+  
+  /* Notificaciones */
+  .notifications {
+    padding: 16px;
+  }
+  
+  /* Contenido principal */
+  .main-content {
+    flex: 1;
+    padding: 16px;
+    margin-left: 0;
+    transition: margin-right 0.3s;
+  }
+  
+  .main-content.sidenav-open {
+    margin-right: 300px; /* Ajustar el contenido principal cuando el sidenav está abierto */
+  }
+
+
+
+  .notification-dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 300px; /* Ancho del dialogo */
+    background-color: white; /* Color de fondo */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Sombra para el efecto visual */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    display: flex;
+    flex-direction: column;
+  }
+  
+ 
+ .dialog-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px;
+  }
+
+
+
+  .info{
+    border: 1px solid #636362; 
+    border-radius: 8px !important; 
+    padding: 10px;
+    margin-top: 5px;
+    position: relative;
+    overflow: hidden;
+
+    
+  }
+
+ 
+
+  .titulo-span{
+    color: #649F33;
+    margin-top: 30px;
+  }
+
+  .icon-closed{
+    position: relative;
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center; 
+    
+  }
+  .icon-closed svg{
+    cursor: pointer;
+  }
+
+
+  .info::before {
+   
+
+    content: '';
+    position: absolute;
+    top: -30px; /* Ajusta según sea necesario */
+    left: -70px; /* Ajusta según sea necesario */
+    width: 60px; /* Ajusta el tamaño según sea necesario */
+    height: 60px; /* Ajusta el tamaño según sea necesario */
+    background-color: green;
+    border-radius: 0 100% 0 0; /* Crea el efecto de rodaja */
+    transform: rotate(90deg); /* Ajusta la rotación */
+    transform-origin: bottom right;
+    
+  }
+
+  .info::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Ajusta según sea necesario */
+    right: -5px; /* Ajusta según sea necesario */
+    width: 60px; /* Ajusta el tamaño según sea necesario */
+    height: 100px; /* Ajusta el tamaño según sea necesario */
+    background-color: green;
+    border-radius: 100% 0 0 0; /* Crea el efecto de rodaja */
+    transform: rotate(2deg); /* Ajusta la rotación */
+    transform-origin: bottom right;
+}
+
+/* .info::after {
+    content: '';
+    position: absolute;
+    bottom: 70px; 
+    right: 70px; 
+    width: 60px; 
+    height: 60px; 
+    background-color: green;
+    border-radius: 100% 0 0 0;
+    transform: rotate(-180deg); 
+    transform-origin: bottom right;
+} */
+
+
+ 
+
+  
+ 
+  

@@ -1,0 +1,44 @@
+<div mat-dialog-title class="select-company-type-dialog__title">
+  <span class="select-company-type-dialog__header-text">
+      Empresas
+  </span>
+</div>
+
+<div mat-dialog-content class="select-company-type-dialog__content">
+  <h3 class="select-company-type-dialog__content-title">
+      Ingrese tipo de empresa para gestionar la información
+  </h3>
+
+  <mat-form-field class="select-company-type-dialog__input">
+      <mat-label>Tipos de Empresa</mat-label>
+
+      <mat-select [formControl]="companyTypeFormControl">
+          <mat-option *ngFor="let companyType of companyTypes" [value]="companyType">
+              {{ companyType.companyTypeName }}
+          </mat-option>
+      </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="select-company-type-dialog__input">
+    <mat-label>Empresa</mat-label>
+
+    <input matInput [formControl]="companyFormControl" [matAutocomplete]="companyAutocomplete" type="text" class="select-company-type-dialog__input">
+
+    <mat-autocomplete #companyAutocomplete="matAutocomplete">
+        <mat-option *ngFor="let company of (sharedStore | async)" [value]="company.companyName">
+            {{ company.companyName }}
+        </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions class="select-company-type-dialog__actions">
+  <a mat-flat-button href="/portal/logout" (click)="logout()" class="select-company-type-dialog__logout">
+      Logout
+  </a>
+
+  <button mat-raised-button color="primary" class="select-company-type-dialog__accept" (click)="submit()" [disabled]="companyTypeFormControl.invalid || companyFormControl.invalid">
+      Ok
+  </button>
+</div>

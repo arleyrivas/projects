@@ -1,0 +1,31 @@
+<h2 mat-dialog-title class="confirm-appointment-message-dialog__title">Alerta</h2>
+
+<mat-dialog-content>
+  <p>
+    <ng-container *ngFor="let validation of bookingDateValidationList">
+        <div *ngIf="validation.early">
+            {{messageText}}  {{validation.unitNbr}}. {{mesaageText2}}
+        </div>
+        <div *ngIf="validation.documentalValidation && !validation.early">
+            {{messageText3}} {{validation.unitNbr}}. {{messageText4}}
+        </div>
+    </ng-container>
+  </p>
+  
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <div class="confirm-appointment-message-dialog__actions">
+    <button    mat-flat-button color="primary" [mat-dialog-close]="false" >
+      Cerrar
+    </button>
+    <button 
+    mat-raised-button 
+    color="primary" 
+    class="confirm-appointment-message-dialog__action" 
+    (click)="submit()"
+    >Aceptar</button>
+    
+  </div>
+</div>
+

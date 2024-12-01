@@ -1,0 +1,146 @@
+<mat-card>
+    <mat-card-content>
+        <ng-container *ngIf="selectedContainers.length">
+          <div class="service-orders-create">
+            <h3 class="service-orders-create__container-title">Contenedores o HBL</h3>
+            <div class="service-orders-create__containers">
+                <ng-container *ngIf="BlAndBooking; else hbl">
+                    <ng-container *ngFor="let selectedContainer of selectedContainers">
+                        <div class="load__result-header">
+                            <h4 class="load__result-title">
+                                {{ selectedContainer.serviceTypeInfo.unitNbr }}
+                                <ng-container *ngIf="selectedContainer.voidDestination">({{ selectedContainer.voidDestination }})</ng-container>
+                            </h4>
+                        </div>
+                    </ng-container>
+                </ng-container>
+
+                <ng-template #hbl>
+                    <div class="load__result-header">
+                        <h4 class="load__result-title">
+                            {{ searchCriteria }} ({{ selectedContainers[0].serviceTypeInfo.quantity_hbl }} - {{ selectedContainers[0].serviceTypeInfo.weight_hbl }} Kg)
+                        </h4>
+                    </div>
+                </ng-template>
+            </div>
+
+            <form [formGroup]="createServiceOrderFormGroup" class="service-orders-create__create-form">
+                <ng-container *ngIf="selectedContainers[0].serviceTypeInfo.Type_service.includes('BL') || selectedContainers[0].serviceTypeInfo.Type_service.includes('HB')">
+                  <app-customer-searcher
+                    class="service-orders-create__customer-searcher"
+                    [controlDisabled]="!!selectedContainers[0].serviceTypeInfo.consigneeId"
+                    [searcher]="!selectedContainers[0].serviceTypeInfo.consigneeId"
+                    [data]="selectedContainers[0].serviceTypeInfo.consigneeId + '/' + selectedContainers[0].serviceTypeInfo.consigneeName"
+                    (customerControl)="onCustomerControlChange($event)"
+                  >
+                  </app-customer-searcher>
+                </ng-container>
+
+                <ng-container *ngIf="selectedContainers[0].serviceTypeInfo.Type_service.includes('BK')">
+                  <ng-container *ngIf="currentUser">
+                    <ng-container *ngIf="currentUser.empresa">
+                      <app-customer-searcher
+                        class="service-orders-create__customer-searcher"
+                        [controlDisabled]="!!selectedContainers[0].serviceTypeInfo.shipperId"
+                        [searcher]="!selectedContainers[0].serviceTypeInfo.shipperId"
+                        [agent]="currentUser.empresa.id"
+                        [data]="selectedContainers[0].serviceTypeInfo.shipperId + '/' + selectedContainers[0].serviceTypeInfo.shipperName"
+                      >
+                      </app-customer-searcher>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+
+                <div class="service-orders-create__input">
+                    <mat-form-field class="service-orders-create__autority">
+                        <mat-label>Autoridad</mat-label>
+
+                        <mat-select formControlName="autority">
+                            <mat-option *ngFor="let autorityType of autorityTypes" [value]="autorityType">{{ autorityType.authority_type }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="service-orders-create__input">
+                    <mat-form-field class="service-orders-create__inspectionType">
+                        <mat-label>Servicio o tipo de inspección</mat-label>
+
+                        <mat-select formControlName="inspectionType">
+                            <mat-option *ngFor="let inspectionType of inspectionTypes" [value]="inspectionType">{{ inspectionType.inspection_type }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="service-orders-create__designated">
+                    <ng-container *ngIf="getcreateServiceOrderInspectionTypeFormControl.value && getcreateServiceOrderAutorityFormControl.value">
+                        <ng-container *ngIf="getcreateServiceOrderInspectionTypeFormControl.value.event_types[0].requires_crew === 'SI'">
+                            <ng-container *ngIf="designatedOfficial.length < parseInt(getcreateServiceOrderAutorityFormControl.value.max_staff)">
+                                <div class="service-orders-create__input service-orders-create__input-designated-crew">
+                                    <app-search
+                                        class="service-orders-create__designated-crew"
+                                        inputPlaceholder="Funcionarios designados"
+                                        indication="Ingresa el número de cedula del funcionario"
+                                        [regex]="searchOfficialRegex"
+                                        [hasCleanButton]="true"
+                                        (submitSearch)="submitDesignatedCrew($event)"
+                                        (cleanEmmiter)="clean()"
+                                    ></app-search>
+                                </div>
+                            </ng-container>
+
+                            <table mat-table [dataSource]="dataSource" class="service-orders-create__crew-table" matSort>
+                                <ng-container matColumnDef="id">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cedula</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{ element.id }}
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{ element.name }}
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="comp_name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Empresa</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{ element.comp_name }}
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="action">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                                  <td mat-cell *matCellDef="let element">
+                                      <button mat-mini-fab color="primary" class="service-orders-create__delete-designated" (click)="deleteDesignated(element.id)">
+                                        <mat-icon>close</mat-icon>
+                                      </button>
+                                  </td>
+                              </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                        </ng-container>
+                    </ng-container>
+                </div>
+
+                <div class="service-orders-create__input service-orders-create__input-observation">
+                    <mat-form-field class="service-orders-create__observation">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea matInput formControlName="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+
+            <div class="service-orders-create__actions">
+                <button mat-flat-button class="service-orders-create__cancel" (click)="cancel()">Cancelar</button>
+                <button mat-raised-button color="primary" class="service-orders-create__create" (click)="create()" [disabled]="createServiceOrderFormGroup.invalid || !customerValid">Crear</button>
+                <!-- <button mat-raised-button color="primary" class="service-orders-create__create" (click)="create()"  [disabled]="!customerValid">Crear</button> -->
+
+              </div>
+        </div>
+        </ng-container>
+    </mat-card-content>
+</mat-card>

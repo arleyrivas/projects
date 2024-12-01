@@ -1,0 +1,14 @@
+<mat-form-field class="truck-searcher">
+    <mat-label>Buscar empresa de transporte</mat-label>
+
+    <input type="text"
+           matInput
+           [formControl]="truckSearcherFormControl"
+           [matAutocomplete]="auto" [value]="data" (input)="onInput($event)">
+           <mat-icon matPrefix svgIcon="truck_searcher"></mat-icon>
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let truck of (sharedStore | async)" [value]="truck.id + '/' + truck.name"  (onSelectionChange)="onTruckSelectd($event, truck)">
+        {{ truck.name }}
+    </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

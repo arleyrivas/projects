@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+                 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+
+	<bean id="securityEsbBO" scope="prototype" class="com.spia.businessportal.backend.bo.impl.SecurityEsbBOImpl">
+		<!--<property name="middlewareUrl" value="${esb.security.url}" />-->
+		
+		<property name="esbUserList" value="${esb.security.url.UserList}" />
+		<property name="esbPrivilegeList" value="${esb.security.url.PrivilegeList}" />
+		<property name="esbUserChangePassword" value="${esb.security.url.UserChangePassword}" />
+		<property name="esbUserValidate" value="${esb.security.url.UserValidate}" />
+		<property name="esbCompanyType" value="${esb.security.url.CompanyType}" />
+		<property name="esbCompanyTypeList" value="${esb.security.url.CompanyTypeList}" />
+		<property name="esbCompanyTypePrivilegeList" value="${esb.security.url.CompanyTypePrivilegeList}" />
+		<property name="esbCompanyTypeCompanyList" value="${esb.security.url.CompanyTypeCompanyList}" />
+		<property name="esbCompanyUserNotification" value="${esb.security.url.CompanyUserNotification}" />
+		<property name="esbUserInfo" value="${esb.security.url.UserInfo}" />
+		<property name="esbUserForgotPassword" value="${esb.security.url.UserForgotPassword}" />
+		<property name="esbUserChangeMobile" value="${esb.security.url.UserChangeMobile}" />
+		<property name="esbCompanyUserNotificationPin" value="${esb.security.url.CompanyUserNotificationPin}" />
+		<property name="esbRestrictionPrivilegesCompany" value="${esb.security.url.RestrictionPrivilegesCompany}" />
+		<property name="esbConfigPrivilegesCompany" value="${esb.security.url.ConfigPrivilegesCompany}" />
+		<property name="esbCreateRestrictionPrivilegesCompany" value="${esb.security.url.CreateRestrictionPrivilegesCompany}" />
+		<property name="esbUsuarioNotificationMobile" value="${esb.security.url.UsuarioNotificationMobile}" />
+		<property name="esbUsuarioMobileInfoUpdate" value="${esb.security.url.UsuarioMobileInfoUpdate}" />
+		<property name="esbNotificationByCompany" value="${esb.security.url.NotificationByCompany}" />
+		<property name="esbPrivilegesNotificationCompany" value="${esb.security.url.PrivilegesNotificationCompany}" />
+		<property name="esbPrivilegesNotificationCompanyUpdate" value="${esb.security.url.PrivilegesNotificationCompanyUpdate}" />
+		<property name="esbNotificationPrivilegesService" value="${esb.security.url.NotificationPrivilegesService}" />
+		<property name="esbPrivilegesDescription" value="${esb.security.url.PrivilegesDescription}" />
+		<property name="esbSecondPasswordGenerate" value="${esb.security.url.SecondPasswordGenerate}" />
+		<property name="esbPrivilegesSecondPasswordValidation" value="${esb.security.url.PrivilegesSecondPasswordValidation}" />
+		<property name="esbUsuarioExistsAdminCompany" value="${esb.security.url.UsuarioExistsAdminCompany}" />
+		<property name="esbAuditLogRegister" value="${esb.security.url.AuditLogRegister}" />
+		<property name="esbConfigIpRestrictionCompany" value="${esb.security.url.ConfigIpRestrictionCompany}" />
+		<property name="esbCompanyName" value="${esb.security.url.CompanyName}" />
+		<property name="esbPrivilegioTime" value="${esb.security.url.PrivilegioTime}" />
+
+		<property name="spiaAppUrl" value="${spiaApp.security.url}" />
+		<property name="path" value="default" />
+		<property name="urlService" value="${spia.route.send.email}" />
+		<property name="notificationEmails" value="${spia.notification.mails.sac}" />
+	</bean>
+	
+	<bean id="auditConfig" class="com.spia.businessportal.common.audit.AuditConfig" /> 
+	
+	<bean id="ldapProxyEsbBO" scope="prototype" class="com.spia.businessportal.backend.bo.impl.LdapProxyEsbBOImpl">
+		<property name="middlewareUrl" value="${esb.proxy.ldap.url}" />
+		<property name="path" value="default" />
+	</bean>
+
+	<bean id="requestFactory" class="org.springframework.http.client.SimpleClientHttpRequestFactory">
+		<property name="connectTimeout" value="40000" />
+		<property name="readTimeout" value="40000" />
+	</bean>
+
+	<bean id="securityRestTemplate" class="org.springframework.web.client.RestTemplate">
+		<!-- <constructor-arg> -->
+		<!-- <ref bean="requestFactory" /> -->
+		<!-- </constructor-arg> -->
+		<property name="interceptors">
+			<list>
+				<bean class="com.spia.businessportal.backend.security.AuthorizationHttpRequestInterceptor">
+					<property name="username" value="${spia-mdw.username}" />
+					<property name="password" value="${spia-mdw.password}" />
+				</bean>
+				<bean id="auditRestTemplateInterceptor" class="com.spia.businessportal.common.audit.AuditRestTemplateInterceptor">
+					<property name="sessionFactory" ref="sessionFactory" />
+					<property name="userBO" ref="userBO" />
+				</bean>
+			</list>
+		</property>
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="ldapProxyRestTemplate" class="org.springframework.web.client.RestTemplate">
+
+
+		<property name="interceptors">
+			<list>
+				<bean id="ldapProxyAuditRestTemplateInterceptor" class="com.spia.businessportal.common.audit.LdapProxyAuditRestTemplateInterceptor">
+					<property name="sessionFactory" ref="sessionFactory" />
+					<property name="userBO" ref="userBO" />
+				</bean>
+			</list>
+		</property>
+
+
+
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+
+</beans>

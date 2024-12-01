@@ -1,0 +1,19 @@
+<h2 mat-dialog-title class="confirm-appointment-message-dialog__title">Alerta</h2>
+
+<mat-dialog-content>
+  
+    <div [innerHTML]="getSafeHtml()" class="justify-text">
+       
+    </div>
+  
+  
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <div class="confirm-appointment-message-dialog__actions">
+    <button    mat-flat-button color="primary" [mat-dialog-close]="false" >
+      Cerrar
+    </button>
+    
+    
+  </div>

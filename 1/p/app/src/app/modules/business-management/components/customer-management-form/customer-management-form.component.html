@@ -1,0 +1,617 @@
+<div>
+
+  <div class="title-card">
+    <mat-card *ngIf="isAgent">
+      <mat-radio-group class="select__option" aria-label="Select an option" (change)="onSelectionChange($event)">
+
+        <mat-radio-button value="myCompany">Actualizar Datos de mi Empresa</mat-radio-button>
+
+        <mat-radio-button value="newClient">Registrar Cliente o Actualizar Datos de Cliente con Mandato Vencido</mat-radio-button>
+        <mat-form-field *ngIf="selectedOption == 'newClient'">
+          <mat-label>Ingresar NIT del cliente</mat-label>
+          <input matInput 
+                type="text"
+                placeholder="Ingresar NIT del cliente" 
+                (input)="onInput($event)" 
+                (keydown.enter)="onEnter($event)">
+        </mat-form-field>
+
+        <mat-radio-button value="activeClient" checked>Actualizar Datos de Cliente con Mandato Activo</mat-radio-button>
+        <ng-container *ngIf="userInfo.empresa && selectedOption == 'activeClient'">
+          <app-customer-searcher
+            class="service-orders-create__customer-searcher"
+            [controlDisabled]="false"
+            [searcher]="!consignee"
+            [agent]="userInfo.empresa.id"
+            [data]="fullConsignee"
+            (customerSelected)="onCustomerSelected($event)"
+            (cleanCustomer)="clean($event)">
+          </app-customer-searcher>
+        </ng-container> 
+
+      </mat-radio-group>
+    </mat-card>
+
+    <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: #c5c6c8;
+          }
+          .cls-2 {
+            fill: #7ba052;
+          }
+          .cls-3 {
+            fill: #4b8051;
+          }
+        </style>
+      </defs>
+      <g id="Capa_1-2">
+        <rect class="cls-2" width="31.37" height="0.91" />
+        <rect class="cls-3" x="26.13" width="28.61" height="0.91" />
+        <rect class="cls-1" x="54.74" width="28.61" height="0.91" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="my--form" *ngIf="showForm && reload" [ngClass]="{'my--form__margin': !isAgent}">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" autocomplete="off">
+      <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="section__form">
+              Información de la Empresa
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <!-- Tratamiento -->
+          <div class="my--form__two--columns">
+            <mat-form-field appearance="fill" class="business-management__input">
+
+              <mat-label>
+                <ng-container>
+                  Tratamiento
+                </ng-container>
+              </mat-label>
+
+              <mat-select id="tratamiento" formControlName="tratamiento">
+                <mat-option value="Empresa">Empresa</mat-option>
+                <mat-option value="Senor">Señor</mat-option>
+                <mat-option value="Senora">Señora</mat-option>
+              </mat-select>
+          
+
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('tratamiento')?.invalid && formulario.get('tratamiento')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['tratamiento']">
+                  <span class="form-text text-danger"
+                    *ngIf="hasFormError('tratamiento', validation.type) && invalidField('tratamiento') && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+
+              </mat-error>
+                <!-- Muestro mensaje cuando el valor ha cambiado -->
+              <mat-hint *ngIf="isFormModified('tratamiento')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('tratamiento') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+
+            <!-- Tipo Persona -->
+            <mat-form-field appearance="fill" class="business-management__input">
+
+              <mat-label>
+                <ng-container>
+                  Tipo Persona
+                </ng-container>
+              </mat-label>
+
+              <mat-select id="tipoPersona" formControlName="tipoPersona">
+                <mat-option value="J">Jurídica</mat-option>
+                <mat-option value="N">Natural</mat-option>
+              </mat-select>
+
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('tipoPersona')?.invalid && formulario.get('tipoPersona')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['tipoPersona']">
+                  <span class="form-text text-danger"
+                    *ngIf="hasFormError('tipoPersona', validation.type) && invalidField('tipoPersona') && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('tipoPersona')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('tipoPersona') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- NIT -->
+          <div>
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>
+                <ng-container>
+                  Nit
+                </ng-container>
+              </mat-label>
+              <input matInput type="number" id="nit" formControlName="nit" [ngClass]="{ 'edit-input': true }">
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('nit')?.invalid && formulario.get('nit')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['nit']">
+                  <span class="form-text text-danger"
+                    *ngIf="hasFormError('nit', validation.type) && invalidField('nit') && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('nit')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('nit') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- Razón Social -->
+          <div>
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>
+                <ng-container>
+                  Razón Social
+                </ng-container>
+              </mat-label>
+              <input matInput type="text" id="razonSocial" formControlName="razonSocial" [ngClass]="{'input-red': tipoPresentacion === '1'}">
+
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('razonSocial')?.invalid && formulario.get('razonSocial')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['razonSocial']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('razonSocial', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('razonSocial')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('razonSocial') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- Sigla o Identificador adicional -->
+          <div class="my--form__two--columns">
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>
+                <ng-container>
+                  Sigla o identificador adicional
+                </ng-container>
+              </mat-label>
+              <input matInput type="text" id="sigla" formControlName="sigla">
+
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('sigla')?.invalid && formulario.get('sigla')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['sigla']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('sigla', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('sigla')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('sigla') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+
+          <!-- Dirección -->
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>
+                <ng-container>
+                  Dirección
+                </ng-container>
+              </mat-label>
+              <input matInput type="text" id="direccion" formControlName="direccion">
+
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('direccion')?.invalid && formulario.get('direccion')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['direccion']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('direccion', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('direccion')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('direccion') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- Código del Distrito en el RUT -->
+          <div class="my--form__two--columns">
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>
+                <ng-container>
+                  Código del distrito en el RUT
+                </ng-container>
+              </mat-label>
+              <input matInput type="number" id="codigoDistrito" formControlName="codigoDistrito">
+
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('codigoDistrito')?.invalid && formulario.get('codigoDistrito')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['codigoDistrito']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('codigoDistrito', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('codigoDistrito')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('codigoDistrito') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+
+          <!-- País -->
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>
+                <ng-container>
+                  País
+                </ng-container>
+              </mat-label>
+              <input matInput type="text" id="pais" formControlName="pais" value="Colombia">
+            </mat-form-field>
+          </div>
+
+          <!-- Departamento -->
+          <div class="my--form__two--columns">
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Departamento</mat-label>
+              <mat-select id="departamento" formControlName="departamento">
+                <mat-option value="">Seleccione un departamento</mat-option>
+                <mat-option *ngFor="let dept of departaments" [value]="dept.depName">{{ dept.depName }}</mat-option>
+              </mat-select>
+
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('departamento')?.invalid && formulario.get('departamento')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['departamento']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('departamento', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('departamento')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('departamento') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+
+          <!-- Ciudad -->
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Ciudad</mat-label>
+              <mat-select id="ciudad" formControlName="ciudad">
+                <mat-option value="">Seleccione una ciudad</mat-option>
+                <mat-option *ngFor="let city of filteredCiudades" [value]="city.name">{{ city.name }}</mat-option>
+              </mat-select>
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('ciudad')?.invalid && formulario.get('ciudad')?.touched ">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['ciudad']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('ciudad', validation.type) && !receivedForm ">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('ciudad')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('ciudad') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- Teléfono Móvil para notificaciones -->
+          <div class="my--form__two--columns">
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Teléfono móvil para notificaciones</mat-label>
+              <input matInput type="number" id="telefonoMovil" formControlName="telefonoMovil">
+
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('telefonoMovil')?.invalid && formulario.get('telefonoMovil')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['telefonoMovil']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('telefonoMovil', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('telefonoMovil')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('telefonoMovil') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+
+              <!-- Correo Representante Legal -->
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Correo representante Legal</mat-label>
+              <input matInput type="email" id="correoRepresentante" formControlName="correoRepresentante">
+
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('correoRepresentante')?.invalid && formulario.get('correoRepresentante')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['correoRepresentante']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('correoRepresentante', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('correoRepresentante')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('correoRepresentante') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="section__form">
+              Información Factura Electrónica
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <!-- Correo Factura Electrónica 1 -->
+          <div>
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Correo factura electrónica 1</mat-label>
+              <input matInput type="email" id="correoFactura1" formControlName="correoFactura1">
+
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('correoFactura1')?.invalid && formulario.get('correoFactura1')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['correoFactura1']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('correoFactura1', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('correoFactura1')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('correoFactura1') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- Correo Factura Electrónica 2 -->
+          <div>
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Correo factura electrónica 2</mat-label>
+              <input matInput type="email" id="correoFactura2" formControlName="correoFactura2">
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('correoFactura2')?.invalid && formulario.get('correoFactura2')?.touched ">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['correoFactura2']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('correoFactura2', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('correoFactura2')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('correoFactura2') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="section__form">
+              Datos de Contacto Operativo
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <!-- Nombre contacto operativo -->
+          <div class="my--form__two--columns">
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Nombre contacto operativo</mat-label>
+              <input matInput type="text" id="nombreContactoOperativo" formControlName="nombreContactoOperativo">
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('nombreContactoOperativo')?.invalid && formulario.get('nombreContactoOperativo')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['nombreContactoOperativo']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('nombreContactoOperativo', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('nombreContactoOperativo')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('nombreContactoOperativo') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+
+          <!-- Teléfono Móvil de contacto operativo -->
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Teléfono móvil</mat-label>
+              <input matInput type="number" id="telefonoMovilContacto" formControlName="telefonoMovilContacto">
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('telefonoMovilContacto')?.invalid && formulario.get('telefonoMovilContacto')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['telefonoMovilContacto']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('telefonoMovilContacto', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('telefonoMovilContacto')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('telefonoMovilContacto') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- Correo Electrónico de contacto operativo -->
+          <div>
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Correo electrónico</mat-label>
+              <input matInput type="email" id="correoContacto" formControlName="correoContacto">
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('correoContacto')?.invalid && formulario.get('correoContacto')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['correoContacto']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('correoContacto', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('correoContacto')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('correoContacto') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="section__form">
+              Datos de Contacto Tesorería
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <!-- Nombre contacto tesorería -->
+          <div class="my--form__two--columns">
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Nombre contacto tesorería</mat-label>
+              <input matInput type="text" id="nombreContactoTesoreria" formControlName="nombreContactoTesoreria">
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('nombreContactoTesoreria')?.invalid && formulario.get('nombreContactoTesoreria')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['nombreContactoTesoreria']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('nombreContactoTesoreria', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('nombreContactoTesoreria')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('nombreContactoTesoreria') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+
+          <!-- Teléfono Móvil de contacto tesorería -->
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Teléfono móvil</mat-label>
+              <input matInput type="number" id="telefonoMovilTesoreria" formControlName="telefonoMovilTesoreria">
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('telefonoMovilTesoreria')?.invalid && formulario.get('telefonoMovilTesoreria')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['telefonoMovilTesoreria']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('telefonoMovilTesoreria', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('telefonoMovilTesoreria')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('telefonoMovilTesoreria') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+
+          <!-- Correo Electrónico de contacto tesorería 1 -->
+          <div>
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Correo electrónico 1</mat-label>
+              <input matInput type="email" id="correoTesoreria1" formControlName="correoTesoreria1">
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('correoTesoreria1')?.invalid && formulario.get('correoTesoreria1')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['correoTesoreria1']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('correoTesoreria1', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('correoTesoreria1')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('correoTesoreria1') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- Correo Electrónico de contacto tesorería 2 -->
+          <div>
+            <mat-form-field appearance="fill" class="business-management__input">
+              <mat-label>Correo electrónico 2</mat-label>
+              <input matInput type="email" id="correoTesoreria2" formControlName="correoTesoreria2">
+              <mat-error class="business-managemen-form__form-error"
+                *ngIf="formulario.get('correoTesoreria2')?.invalid && formulario.get('correoTesoreria2')?.touched">
+                <mat-icon>close</mat-icon>
+                <ng-container *ngFor="let validation of messageValidation['correoTesoreria2']">
+                  <span class="form-text text-danger" *ngIf="hasFormError('correoTesoreria2', validation.type) && !receivedForm">
+                    {{ validation.message }}
+                  </span>
+                </ng-container>
+              </mat-error>
+              <mat-hint *ngIf="isFormModified('correoTesoreria2')">
+                <span *ngIf="!receivedForm"> 
+                  {{ getMessageBeforeChange('correoTesoreria2') }} 
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+
+        </mat-expansion-panel>
+
+
+      </mat-accordion>
+    </form>
+  </div>
+  <ng-template #secondaryContent>
+    <div secondary-content *ngIf="((documentsTypes.length > 0) && reload && (customerRequestFlag == '0'))">
+      <app-upload-file #hijo 
+        [module]="routeData.documentation_module" 
+        [formValid]="onSubmit.bind(this)"
+        [validateForm]="validateForm.bind(this)"
+        [nbr]="nbr"
+        [ownerId]="ownerId"
+        [owner]="owner"
+        [tab]="tab"
+        [documentsTypes]="documentsTypes">
+      </app-upload-file>
+    </div>
+  </ng-template>
+
+</div>

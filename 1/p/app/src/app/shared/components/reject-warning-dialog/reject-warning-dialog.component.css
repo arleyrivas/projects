@@ -1,0 +1,13 @@
+.legal-notices-dialog__footer {
+    padding-top: 1rem;
+    padding: 1rem;
+    border-top: #eaeaea 1px solid;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.legal-notices-dialog__accept-button {
+    color: #fff !important;
+}

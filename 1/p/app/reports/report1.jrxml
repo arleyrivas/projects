@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="BLItem">
+		<queryString language="SQL">
+			<![CDATA[WITH BLItems AS
+(
+select ROW_NUMBER() OVER(ORDER BY crg_bl_item.gkey DESC) as row,crg_bl_item.gkey as bl, crg_bl_item.nbr as blNbr1, crg_bl_item.quantity AS blItemQuantity1,
+crg_bl_item.weight_total_kg AS blItemWeightTotal1
+from crg_lots inner join crg_bl_item ON crg_lots.blitem_ib_gkey = crg_bl_item.gkey
+INNER JOIN road_truck_transaction_crglots ON crg_lots.gkey = road_truck_transaction_crglots.cargo_lot_gkey
+INNER JOIN road_truck_transactions ON road_truck_transactions.gkey = road_truck_transaction_crglots.tran_gkey
+INNER JOIN road_truck_visit_details ON road_truck_visit_details.tvdtls_gkey = road_truck_transactions.truck_visit_gkey
+where crg_lots.Id like '10003492%' and road_truck_visit_details.truck_license_nbr in ('TBC769', 'VMT870','ZNK694')
+group by crg_bl_item.gkey, crg_bl_item.nbr, crg_bl_item.quantity, crg_bl_item.weight_total_kg
+)
+select distinct crg_lots.id crgLotId1,
+crg_lots.quantity AS crgLotQuantity1,
+crg_lots.weight_total_kg AS crgLotWeightTotal1,
+blNbr1 as blItemNbr1, row,
+blItemQuantity1,
+blItemWeightTotal1
+from  crg_lots
+inner JOIN BLItems ON crg_lots.blitem_ib_gkey = BLItems.bl
+where row = 1  and crg_lots.quantity != 0 and crg_lots.weight_total_kg != 0
+order by crg_lots.id asc]]>
+		</queryString>
+		<field name="crgLotId1" class="java.lang.String"/>
+		<field name="crgLotQuantity1" class="java.lang.Double"/>
+		<field name="crgLotWeightTotal1" class="java.lang.Double"/>
+		<field name="blItemNbr1" class="java.lang.String"/>
+		<field name="blItemQuantity1" class="java.lang.Double"/>
+		<field name="blItemWeightTotal1" class="java.lang.Double"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT
+road_truck_transactions.consignee AS consignee,--consignee
+road_truck_transactions.created AS fecha, --fecha
+road_truck_visit_details.driver_name AS driverName, --conductor
+road_truck_visit_details.driver_license_nbr AS driverLicense, --cédula
+ref_bizunit_scoped.name AS company --compañía
+FROM crg_lots
+INNER JOIN road_truck_transaction_crglots ON crg_lots.gkey = road_truck_transaction_crglots.cargo_lot_gkey
+INNER JOIN road_truck_transactions ON road_truck_transactions.gkey = road_truck_transaction_crglots.tran_gkey
+INNER JOIN road_truck_visit_details ON road_truck_visit_details.tvdtls_gkey = road_truck_transactions.truck_visit_gkey
+INNER JOIN road_trucking_companies ON road_trucking_companies.trkc_id = road_truck_visit_details.trkco_gkey
+INNER JOIN ref_bizunit_scoped ON ref_bizunit_scoped.gkey = road_truck_visit_details.trkco_gkey
+--INNER JOIN crg_bl_item ON crg_lots.blitem_ib_gkey = crg_bl_item.gkey
+INNER JOIN inv_unit AS unit ON goods_gkey = unit.goods
+INNER JOIN inv_unit_fcy_visit ON inv_unit_fcy_visit.unit_gkey =  unit.gkey
+where crg_lots.Id like '10003492%' and road_truck_visit_details.truck_license_nbr in ('TBC769', 'VMT870','ZNK694')]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,247 @@
+.billing {
+    background-color: #f4f4f4;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 0.5fr 1fr;
+    gap: 1rem;
+  }
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding: 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+  }
+
+  .header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .icon-title {
+    width: 1.5rem;
+  }
+
+  .title-card {
+    width: max-content;
+  }
+
+  .card-title {
+    font-family: "Gilroy-ExtraBold" !important;
+    color: #78909c;
+    margin: 0;
+  }
+
+  .primary-panel,
+  .secondary-panel {
+    padding: 0 1rem;
+    display: flex;
+    justify-content: left; 
+  }
+  
+
+  .billing__search {
+    list-style: none;
+  }
+
+  .billing__payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .billing__payment-button {
+    width: max-content;
+    color: #ffffff !important;
+  }
+
+  .billing__payment-button_unique {
+    width: 1.5rem;
+  }
+
+  .billing__payment-button_unique_disabled {
+    fill: #f2f2f2 !important;
+  }
+
+  .billing__payment-button_unique:first-child {
+    margin-right: 1rem;
+  }
+
+  .billing__field {
+    width: 20rem;
+  }
+
+  .billing__date-search {
+    margin-top: 2rem;
+  }
+
+  .billing__search-item {
+    font-weight: 300;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .billing__search-button-item {
+    width: 100%;
+    font-weight: 300;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .billing__criteria-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /*.billing__criteria-input-field {
+    width: 20rem;
+  }*/
+
+  .billing__criteria-caption {
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: #78909c;
+  }
+
+  .billing__criteria-caption_background {
+    background-color: #f4f4f4;
+  }
+
+  .billing__field-button {
+    width: 7rem;
+    height: 2rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    margin-left: 0.2rem;
+    background-color: #92B975;
+    color: #ffffff;
+    transition: background-color 0.2s;
+    font-size: 1rem;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .billing__field-button:disabled {
+    background-color: #999;
+  }
+
+  .billing__field-button-icon {
+    width: 2rem;
+  }
+
+  mat-radio-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .title {
+    padding-left: 1rem;
+    padding-top: 1rem;
+    color: #78909c;
+    font-weight: 300;
+  }
+
+  .icon-title {
+    width: 3rem;
+  }
+
+
+  ::ng-deep .mdc-data-table__row {
+      height: 40px !important;
+  }
+
+    ::ng-deep .mdc-tab__text-label {
+      flex-direction: column !important;
+    }
+
+    ::ng-deep .mdc-tab__text-label {
+      flex-direction: column !important;
+    }
+
+    ::ng-deep .mdc-data-table__header-cell {
+      text-align: center !important;
+      font-family: "Gilroy-ExtraBold";
+      color: #66bb6a;
+      font-size: 1rem;
+    }
+
+    ::ng-deep .mdc-data-table__row {
+      background-color: rgba(223, 230, 233, 0.1) !important;
+      border: transparent solid !important;
+      border-bottom: 0.25rem transparent solid !important;
+    }
+
+    ::ng-deep .mdc-data-table__row:hover {
+      background-color: rgba(123, 160, 82, 0.1) !important;
+    }
+
+    ::ng-deep .mdc-data-table__row td {
+      font-family: "Gilroy-Light";
+      color: #666666 !important;
+    }
+
+    ::ng-deep .mdc-data-table__row td:first-child {
+      border-top-left-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+    }
+
+    ::ng-deep .mdc-data-table__row td:last-child {
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+
+    .primary-panel__content{
+      display: flex;
+      flex-direction: column; /* Para que los elementos se dispongan en una columna */
+      width: 100%;
+    }
+
+   
+
+  .primary-panel__content mat-form-field {
+    width: 100%; /* Asegura que los mat-form-field ocupen todo el ancho disponible */
+  }
+
+  .is-invalid .mat-form-field-wrapper {
+    border-color: red;
+  }
+  
+  
+  
+  .service-history-form__form-error {
+    display: flex;
+    align-items: center;
+    margin-left: 10px; /* Ajusta el margen según sea necesario */
+    color: red;
+  }
+  
+  .mat-error {
+    color: red;
+    font-size: 0.875em;
+  }

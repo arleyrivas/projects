@@ -1,0 +1,32 @@
+ <mat-card>
+      <mat-card-content>
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start"> 
+          <ng-container>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <span>Orden de Servicio</span>
+              </ng-template>
+
+                <ng-template matTabContent>
+                    <app-service-order-create></app-service-order-create>
+                </ng-template>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <span>Documentación</span>
+              </ng-template>
+
+              <ng-template matTabContent>
+                <app-upload-file   #hijo
+                    [module]="routeData.documentation_module" 
+                    [formValid]="consigneeValid.bind(this)"
+                    [nbr]="nbr">
+                </app-upload-file>
+              </ng-template>
+            </mat-tab>
+
+          </ng-container>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card> 

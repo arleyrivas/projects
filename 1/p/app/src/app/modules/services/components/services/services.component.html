@@ -1,0 +1,75 @@
+<div class="containerized-load">
+    <div class="main-panel">
+        <mat-card>
+          <mat-card-content>
+            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="onTabChanged($event)">
+              <ng-container *permissions="[privileges.SERV]">
+                <mat-tab *permissions="[privileges.SERV_CRE_HBL]">
+                  <ng-template mat-tab-label>
+                    <svg id="services_icon_crear_hbl" class="services_tab-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.13 23.73"><defs><style>.addHbl{fill:#282828;fill-rule:evenodd;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path class="addHbl" d="M22.3,15.22l-2,2.67-1.05-1.05c-.74-.74-1.87.38-1.12,1.12l1.7,1.7c.34.34.91.3,1.2-.09l2.55-3.41c.63-.84-.64-1.8-1.27-.95Z"/><path class="addHbl" d="M25.43,13.08V4.63c0-2.55-2.07-4.63-4.63-4.63H4.63C2.07,0,0,2.07,0,4.63v18.31c0,.68.79,1.04,1.3.61l4.89-4.07h8.63c.86,2.47,3.22,4.26,5.98,4.26,3.49,0,6.33-2.84,6.33-6.33,0-1.67-.65-3.18-1.7-4.31h0ZM14.49,17.88H5.9c-.19,0-.37.07-.51.18l-3.8,3.17V4.63c0-1.67,1.36-3.04,3.04-3.04h16.18c1.67,0,3.04,1.36,3.04,3.04v7.22c-.9-.5-1.94-.78-3.04-.78-3.49,0-6.33,2.84-6.33,6.33,0,.16,0,.32.02.48h0ZM20.8,22.14c-2.61,0-4.74-2.13-4.74-4.74s2.13-4.74,4.74-4.74,4.74,2.13,4.74,4.74-2.13,4.74-4.74,4.74Z"/><path class="addHbl" d="M5.05,7.12h15.33c.44,0,.79-.36.79-.79s-.36-.8-.79-.8H5.05c-.44,0-.79.36-.79.8s.36.79.79.79Z"/><path class="addHbl" d="M15.27,8.94H5.05c-.44,0-.79.36-.79.79s.36.8.79.8h10.22c.44,0,.8-.36.8-.8s-.36-.79-.8-.79Z"/><path class="addHbl" d="M11.92,12.35h-6.87c-.44,0-.79.36-.79.79s.36.79.79.79h6.87c.44,0,.8-.36.8-.79s-.36-.79-.8-.79Z"/></g></svg>
+                    
+                    <span class="span_icon">Crear HBL</span>
+                  </ng-template>
+
+                    <ng-template matTabContent>
+                      <app-service-create-hbl></app-service-create-hbl>
+                    </ng-template>
+                </mat-tab>
+
+                <mat-tab *permissions="[privileges.ORD_SERV_BUS]">
+                  <ng-template mat-tab-label>
+                    <svg id="services_orden_service" class="services_tab-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.31 26.32"><defs><style>.serviceOrder{fill:#282828;fill-rule:evenodd;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path class="serviceOrder" d="M9.74,16.89c1.11-.85,1.82-2.18,1.82-3.68,0-2.55-2.08-4.63-4.63-4.63s-4.63,2.08-4.63,4.63c0,1.5.72,2.83,1.82,3.68-2.43,1.08-4.13,3.52-4.13,6.35v2.31c0,.43.34.77.77.77h12.33c.43,0,.77-.35.77-.77v-2.31c0-2.83-1.7-5.27-4.13-6.35h0ZM3.85,13.21c0-1.7,1.38-3.08,3.08-3.08s3.08,1.38,3.08,3.08-1.38,3.08-3.08,3.08-3.08-1.38-3.08-3.08h0ZM12.33,24.77H1.54v-1.54c0-2.98,2.42-5.4,5.4-5.4s5.4,2.42,5.4,5.4v1.54Z"/><path class="serviceOrder" d="M25.54,0h-12.33c-.43,0-.77.35-.77.77v9.25c0,.43.35.77.77.77h2.31v2.31c0,.31.19.59.48.71.29.12.62.05.84-.17l2.86-2.86h5.85c.43,0,.77-.35.77-.77V.77c0-.43-.34-.77-.77-.77h0ZM24.77,9.25h-5.4c-.2,0-.4.08-.54.23l-1.77,1.77v-1.22c0-.43-.35-.77-.77-.77h-2.31V1.54h10.79v7.71Z"/><path class="serviceOrder" d="M22.23,3.31c-.3-.3-.79-.3-1.09,0l-2.54,2.54-1-1c-.3-.3-.79-.3-1.09,0-.3.3-.3.79,0,1.09l1.54,1.54c.3.3.79.3,1.09,0l3.08-3.08c.3-.3.3-.79,0-1.09Z"/></g></svg>
+                    <span class="span_icon">Orden de servicio</span>
+                  </ng-template>
+
+                  <ng-template matTabContent>
+                    <app-service-orders></app-service-orders>
+                  </ng-template>
+                </mat-tab>
+
+                <mat-tab *permissions="[privileges.HIS_SERV]">
+                  <ng-template mat-tab-label>
+                    <svg id="services_orden_history" class="services_tab-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82.84 72.4"><defs><style>.serviceHistory{fill:none;stroke:#231f20;stroke-linecap:round;stroke-linejoin:round;stroke-width:.5px;}</style></defs><g id="Capa_1-2"><path class="serviceHistory" d="m72.68,45.17l3.02-34.52c.17-1.92-1.34-3.57-3.27-3.57h-22.31c-1.44,0-2.58-1.24-2.45-2.68l.13-1.49c.13-1.44-1.01-2.68-2.45-2.68h-22.82c-1.28,0-2.34.98-2.45,2.25l-.21,2.34c-.11,1.27-1.18,2.25-2.45,2.25h-.34c-1.7,0-3.12,1.3-3.27,3l-.17,1.93"/><line class="serviceHistory" x1="22.91" y1="3.67" x2="44.79" y2="3.67"/><line class="serviceHistory" x1="22.61" y1="7.09" x2="44.49" y2="7.09"/><path class="serviceHistory" d="m35.86,52.35H11.43c-1.11,0-2.09-.75-2.38-1.82L.34,17.98c-.42-1.56.76-3.1,2.38-3.1h13.01c1.49,0,2.79,1,3.17,2.43l.8,2.99c.29,1.08,1.26,1.82,2.38,1.82h38.81c1.49,0,2.79,1,3.17,2.43l.8,2.98"/><polyline class="serviceHistory" points="70.15 47.34 71.49 52.35 70.12 52.35"/><line class="serviceHistory" x1="32.8" y1="38.95" x2="28.52" y2="38.95"/><line class="serviceHistory" x1="27.39" y1="34.71" x2="33.56" y2="34.71"/><polyline class="serviceHistory" points="35.43 30.47 21.59 30.47 25 43.19 32.25 43.19"/><polyline class="serviceHistory" points="22.09 17.59 22.55 12.42 70.78 12.42 69.32 29.11"/><circle class="serviceHistory" cx="51.94" cy="41.5" r="16.64"/><circle class="serviceHistory" cx="51.94" cy="41.5" r="12.26"/><polyline class="serviceHistory" points="65.48 51.48 70.82 56.82 67.26 60.38 61.92 55.04"/><rect class="serviceHistory" x="70.33" y="56.39" width="8.1" height="15.1" transform="translate(-23.43 71.33) rotate(-45)"/><line class="serviceHistory" x1="77.01" y1="60.85" x2="71.52" y2="66.34"/><line class="serviceHistory" x1="74.46" y1="58.3" x2="68.96" y2="63.79"/></g></svg>
+                    <span class="span_icon">Historial Servicios</span>
+                  </ng-template>
+
+                  <ng-template matTabContent>
+                    <app-service-history></app-service-history>
+                  </ng-template>
+                </mat-tab>
+              </ng-container>
+            </mat-tab-group>
+          </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="secondary-panel">
+        <div class="secondary-panel__actions">
+            <ng-container *permissions="[privileges.SERV_CRE_HBL]">
+              <button
+              class="load__action load__action_lock"
+              [routerLink]="['/servicios/create-hbl']"
+              *ngIf="serviceCreateHBL && serviceCreateHBL.cantActive > 0"
+              >
+                  <svg id="services_icon_crear_hbl_button" class="button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.13 23.73"><defs><style>.addHbl{fill:#282828;fill-rule:evenodd;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path class="addHbl" d="M22.3,15.22l-2,2.67-1.05-1.05c-.74-.74-1.87.38-1.12,1.12l1.7,1.7c.34.34.91.3,1.2-.09l2.55-3.41c.63-.84-.64-1.8-1.27-.95Z"/><path class="addHbl" d="M25.43,13.08V4.63c0-2.55-2.07-4.63-4.63-4.63H4.63C2.07,0,0,2.07,0,4.63v18.31c0,.68.79,1.04,1.3.61l4.89-4.07h8.63c.86,2.47,3.22,4.26,5.98,4.26,3.49,0,6.33-2.84,6.33-6.33,0-1.67-.65-3.18-1.7-4.31h0ZM14.49,17.88H5.9c-.19,0-.37.07-.51.18l-3.8,3.17V4.63c0-1.67,1.36-3.04,3.04-3.04h16.18c1.67,0,3.04,1.36,3.04,3.04v7.22c-.9-.5-1.94-.78-3.04-.78-3.49,0-6.33,2.84-6.33,6.33,0,.16,0,.32.02.48h0ZM20.8,22.14c-2.61,0-4.74-2.13-4.74-4.74s2.13-4.74,4.74-4.74,4.74,2.13,4.74,4.74-2.13,4.74-4.74,4.74Z"/><path class="addHbl" d="M5.05,7.12h15.33c.44,0,.79-.36.79-.79s-.36-.8-.79-.8H5.05c-.44,0-.79.36-.79.8s.36.79.79.79Z"/><path class="addHbl" d="M15.27,8.94H5.05c-.44,0-.79.36-.79.79s.36.8.79.8h10.22c.44,0,.8-.36.8-.8s-.36-.79-.8-.79Z"/><path class="addHbl" d="M11.92,12.35h-6.87c-.44,0-.79.36-.79.79s.36.79.79.79h6.87c.44,0,.8-.36.8-.79s-.36-.79-.8-.79Z"/></g></svg>
+                    
+                  <div class="divider"></div>
+                  <span>Crear HBL</span>
+              </button>
+            </ng-container>
+
+            <!-- <ng-container *permissions="[privileges.SERV_DOC]">
+              <ng-container *ngIf="autorityTypes[0].requires_documentation === 'true'">
+                <button
+                  class="load__action load__action_lock"
+                  [routerLink]="['/services/create-hbl']"
+                >
+                  <mat-icon>insert_drive_file</mat-icon>
+                  <span>Documentación</span>
+                </button>
+              </ng-container>
+            </ng-container> -->
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

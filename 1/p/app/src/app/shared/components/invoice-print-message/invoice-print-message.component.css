@@ -1,0 +1,5 @@
+.invoice-print-messaage__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

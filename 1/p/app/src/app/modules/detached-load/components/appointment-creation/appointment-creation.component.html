@@ -1,0 +1,56 @@
+<div class="containerized-load" *ngIf="!isTransport">
+  <div class="main-panel">
+    <ng-container>
+      <mat-card class="card">
+        <div class="card-header">
+          <span class="text-titulo">Detalle de la cita</span>
+        </div>
+        <div class="card2">
+          <span class="span-icon"><mat-icon class="icon-dollar">calendar_today</mat-icon></span>
+          <div class="card-content">
+            <p class="textop">Día y hora de la cita: {{retrievedData.requested_time}}</p>
+          </div>
+          <div style="padding: 0 10px;">
+            <mat-list class="mat-lista">
+              <mat-list-item class="divisores"><div class="div-datos">Identificador: {{retrievedData.truck_visit_appt_nbr}}</div></mat-list-item>
+
+              <mat-list-item class="divisores"><div class="div-datos">Conductor: {{retrievedData.driver_license_nbr}} - {{retrievedData.driver_name}}</div></mat-list-item>
+
+              <mat-list-item class="divisores"><div class="div-datos">Placa: {{retrievedData.truck_license_nbr}}</div></mat-list-item>
+            </mat-list>
+          </div>
+
+          <div class="table">
+            <div class="row row-padding">
+              <div class="box">Nro.</div>
+              <div class="box2">HBL</div>
+              <div class="box3">Peso (t).</div>
+              <div class="box3">Unid</div>
+            </div>
+
+            <div class="row" *ngFor="let el of data; let i = index">
+              <div class="box">{{i + 1}}</div>
+              <div class="box2">{{el.blitem}}</div>
+              <div class="box3">{{ el.cargoWeigth }}</div>
+              <div class="box3">{{ el.qty }}</div>
+            </div>
+          </div>
+          <!--<div class="card-footer">
+            <button mat-button class="green-button">BOTONES</button>
+            <button mat-button class="green-button icon-button">
+
+              BOTONES
+            </button>
+          </div>-->
+        </div>
+      </mat-card>
+
+    </ng-container>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div *ngIf="showCard && isTransport">
+  <app-card-appointment [origen]="'carga-suelta'"></app-card-appointment>
+</div>

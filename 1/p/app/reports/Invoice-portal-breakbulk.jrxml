@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="38"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="barCodeStyle" fontName="Arial" fontSize="7"/>
+	<subDataset name="dataset1"/>
+	<subDataset name="items">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="itemAmount" class="java.lang.Double">
+			<fieldDescription><![CDATA[itemAmount]]></fieldDescription>
+		</field>
+		<field name="itemEventEntityId" class="java.lang.String">
+			<fieldDescription><![CDATA[itemEventEntityId]]></fieldDescription>
+		</field>
+		<field name="itemQuantityBilled" class="java.lang.Double">
+			<fieldDescription><![CDATA[itemQuantityBilled]]></fieldDescription>
+		</field>
+		<field name="itemQuantityUnit" class="java.lang.String">
+			<fieldDescription><![CDATA[itemQuantityUnit]]></fieldDescription>
+		</field>
+		<field name="itemRateBilled" class="java.lang.Double">
+			<fieldDescription><![CDATA[itemRateBilled]]></fieldDescription>
+		</field>
+		<field name="itemTariffDescription" class="java.lang.String">
+			<fieldDescription><![CDATA[itemTariffDescription]]></fieldDescription>
+		</field>
+		<field name="taxItem" class="java.lang.String">
+			<fieldDescription><![CDATA[taxItem]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SUPERPUERTOS" class="java.lang.String"/>
+	<parameter name="LogoFactura" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="invoiceContractCustomerAddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceContractCustomerAddress1]]></fieldDescription>
+	</field>
+	<field name="invoicePayeeCustomerName" class="java.lang.String">
+		<fieldDescription><![CDATA[invoicePayeeCustomerName]]></fieldDescription>
+	</field>
+	<field name="items" class="java.util.List">
+		<fieldDescription><![CDATA[items]]></fieldDescription>
+	</field>
+	<field name="invoiceInvEventBlNbr" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceInvEventBlNbr]]></fieldDescription>
+	</field>
+	<field name="totalBase16" class="java.lang.Double">
+		<fieldDescription><![CDATA[totalBase16]]></fieldDescription>
+	</field>
+	<field name="invoiceParmInvIbVisitId" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceParmInvIbVisitId]]></fieldDescription>
+	</field>
+	<field name="invoiceInvEventLineOperatorName" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceInvEventLineOperatorName]]></fieldDescription>
+	</field>
+	<field name="totalIva0" class="java.lang.Double">
+		<fieldDescription><![CDATA[totalIva0]]></fieldDescription>
+	</field>
+	<field name="invoiceContractCustomerTaxId" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceContractCustomerTaxId]]></fieldDescription>
+	</field>
+	<field name="invoiceInvEventIbCarrierName" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceInvEventIbCarrierName]]></fieldDescription>
+	</field>
+	<field name="invoiceTotalCharges" class="java.lang.Double">
+		<fieldDescription><![CDATA[invoiceTotalCharges]]></fieldDescription>
+	</field>
+	<field name="totalLetters" class="java.lang.String">
+		<fieldDescription><![CDATA[totalLetters]]></fieldDescription>
+	</field>
+	<field name="invoicePayeeCustomerTaxId" class="java.lang.String">
+		<fieldDescription><![CDATA[invoicePayeeCustomerTaxId]]></fieldDescription>
+	</field>
+	<field name="totalIva16" class="java.lang.Double">
+		<fieldDescription><![CDATA[totalIva16]]></fieldDescription>
+	</field>
+	<field name="invoiceTotalTaxes" class="java.lang.Double">
+		<fieldDescription><![CDATA[invoiceTotalTaxes]]></fieldDescription>
+	</field>
+	<field name="invoiceContractCustomerCity" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceContractCustomerCity]]></fieldDescription>
+	</field>
+	<field name="totalBase0" class="java.lang.Double">
+		<fieldDescription><![CDATA[totalBase0]]></fieldDescription>
+	</field>
+	<field name="invoiceCurrencyId" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceCurrencyId]]></fieldDescription>
+	</field>
+	<field name="invoiceInvEventUfvTimeIn" class="java.util.Date">
+		<fieldDescription><![CDATA[invoiceInvEventUfvTimeIn]]></fieldDescription>
+	</field>
+	<field name="invoiceInvEventCategory" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceInvEventCategory]]></fieldDescription>
+	</field>
+	<field name="totalIvaExcluido" class="java.lang.Double">
+		<fieldDescription><![CDATA[totalIvaExcluido]]></fieldDescription>
+	</field>
+	<field name="totalBase5" class="java.lang.Double">
+		<fieldDescription><![CDATA[totalBase5]]></fieldDescription>
+	</field>
+	<field name="invoiceContractCustomerTel" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceContractCustomerTel]]></fieldDescription>
+	</field>
+	<field name="barCode" class="java.lang.String">
+		<fieldDescription><![CDATA[barCode]]></fieldDescription>
+	</field>
+	<field name="invoiceFinalizedDate" class="java.util.Date">
+		<fieldDescription><![CDATA[invoiceFinalizedDate]]></fieldDescription>
+	</field>
+	<field name="invoicePayeeCustomerCity" class="java.lang.String">
+		<fieldDescription><![CDATA[invoicePayeeCustomerCity]]></fieldDescription>
+	</field>
+	<field name="invoiceTotalTotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[invoiceTotalTotal]]></fieldDescription>
+	</field>
+	<field name="invoiceContractCustomerName" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceContractCustomerName]]></fieldDescription>
+	</field>
+	<field name="invoiceInvEventBookingNbr" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceInvEventBookingNbr]]></fieldDescription>
+	</field>
+	<field name="invoiceFinalNbr" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceFinalNbr]]></fieldDescription>
+	</field>
+	<field name="invoiceDueDate" class="java.util.Date">
+		<fieldDescription><![CDATA[invoiceDueDate]]></fieldDescription>
+	</field>
+	<field name="invoiceInvEventIbVisitId" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceInvEventIbVisitId]]></fieldDescription>
+	</field>
+	<field name="totalBaseExcluido" class="java.lang.Double">
+		<fieldDescription><![CDATA[totalBaseExcluido]]></fieldDescription>
+	</field>
+	<field name="invoicePayeeCustomerTel" class="java.lang.String">
+		<fieldDescription><![CDATA[invoicePayeeCustomerTel]]></fieldDescription>
+	</field>
+	<field name="barCodeLabel" class="java.lang.String">
+		<fieldDescription><![CDATA[barCodeLabel]]></fieldDescription>
+	</field>
+	<field name="invoicePayeeCustomerAddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[invoicePayeeCustomerAddress1]]></fieldDescription>
+	</field>
+	<field name="invoiceParmInvObVisitId" class="java.lang.String">
+		<fieldDescription><![CDATA[invoiceParmInvObVisitId]]></fieldDescription>
+	</field>
+	<field name="totalIva5" class="java.lang.Double">
+		<fieldDescription><![CDATA[totalIva5]]></fieldDescription>
+	</field>
+	<field name="itemFechaLiquidacion" class="java.lang.String"/>
+	<field name="vesselName" class="java.lang.String"/>
+	<field name="trm" class="java.lang.Double"/>
+	<field name="numberEnabled" class="java.lang.String"/>
+	<field name="vesselVisitId" class="java.lang.String"/>
+	<field name="notes" class="java.lang.String"/>
+	<field name="formaPago1" class="java.lang.String"/>
+	<field name="formaPago2" class="java.lang.String"/>
+	<field name="formaPago3" class="java.lang.String"/>
+	<pageHeader>
+		<band height="188">
+			<staticText>
+				<reportElement x="0" y="87" width="272" height="10" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[ZF PE SOC PUERTO INDUSTRIAL AGUADULCE SA KM 21 700]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField" x="413" y="105" width="121" height="10" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceDueDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="107" width="204" height="10" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[PBX: (+57) (2) 3989330]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-18" x="413" y="95" width="121" height="10" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ Fecha de Vencimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" x="292" y="85" width="121" height="10" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ Factura de Venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="97" width="173" height="10" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[BUENAVENTURA - COLOMBIA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="413" y="85" width="121" height="10" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceFinalNbr}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-17" x="292" y="95" width="121" height="10" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ Fecha de Factura]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="textField" x="292" y="105" width="121" height="10" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceFinalizedDate}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement key="image-2" x="0" y="0" width="176" height="68"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<imageExpression><![CDATA[$P{LogoFactura}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="68" width="252" height="10" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SOCIEDAD PUERTO INDUSTRIAL AGUADULCE S.A.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="77" width="252" height="10" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[NIT - 835.000.149-8]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" x="337" y="147" width="197" height="24" forecolor="#000000"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="3" spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[BL o Conocimiento de Embarque: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="169" y="165" width="168" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="textField" x="200" y="118" width="137" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoicePayeeCustomerName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="368" y="127" width="166" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="1" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vesselName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="446" y="150" width="87" height="21" forecolor="#000000"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="1" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceParmInvObVisitId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="337" y="171" width="89" height="12" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+					<paragraph leftIndent="3" spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[TRM(Tasa de Cambio):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="0" y="146" width="168" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Dirección: ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="169" y="118" width="169" height="66" forecolor="#000000"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-2" x="337" y="137" width="40" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[No. Visita: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" x="337" y="127" width="197" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[Buque:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="169" y="146" width="168" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="33" y="174" width="135" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceContractCustomerCity}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="446" y="150" width="88" height="22" forecolor="#000000"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="1" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceParmInvIbVisitId}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="211" y="146" width="126" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoicePayeeCustomerAddress1}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="1" y="118" width="167" height="66" forecolor="#000000"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="376" y="137" width="156" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vesselVisitId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="169" y="174" width="168" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[Ciudad:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="33" y="118" width="135" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceContractCustomerName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="22" y="137" width="146" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceContractCustomerTaxId}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="203" y="174" width="134" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoicePayeeCustomerCity}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-2" x="169" y="117" width="168" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[Agente:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="41" y="146" width="127" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceContractCustomerAddress1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="368" y="118" width="166" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceInvEventLineOperatorName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="0" y="165" width="168" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="169" y="137" width="168" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[NIT:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="0" y="174" width="168" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Ciudad:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="211" y="165" width="126" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoicePayeeCustomerTel}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="426" y="171" width="105" height="12" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="1" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{trm}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="189" y="137" width="148" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoicePayeeCustomerTaxId}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="41" y="165" width="127" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceContractCustomerTel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-2" x="337" y="118" width="197" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[Línea:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="337" y="118" width="197" height="66" forecolor="#000000"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-2" x="0" y="118" width="168" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Cliente: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="0" y="137" width="168" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph firstLineIndent="2" leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[NIT: ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER}.intValue()==1]]></printWhenExpression>
+			<staticText>
+				<reportElement key="staticText-21" x="1" y="1" width="333" height="26" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-25" x="458" y="1" width="76" height="26" forecolor="#000000">
+					<printWhenExpression><![CDATA["COP".equals( $F{invoiceCurrencyId} )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[Total COP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-24" x="412" y="1" width="46" height="26" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[Tarifa USD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-22" x="334" y="1" width="35" height="26" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-22" x="369" y="1" width="43" height="26" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-25" x="458" y="1" width="76" height="26" forecolor="#000000">
+					<printWhenExpression><![CDATA["USD".equals( $F{invoiceCurrencyId} )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[Total USD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<componentElement>
+				<reportElement x="1" y="0" width="534" height="12" forecolor="#000000"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="items">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{items})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="12" width="534">
+						<textField isBlankWhenNull="true">
+							<reportElement key="" x="0" y="0" width="333" height="12" forecolor="#000000"/>
+							<box>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement verticalAlignment="Bottom">
+								<font fontName="Arial" size="7"/>
+								<paragraph leftIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{itemTariffDescription}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement key="textField-17" x="368" y="0" width="43" height="12" forecolor="#000000"/>
+							<box>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Arial" size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{taxItem}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement key="textField-19" x="457" y="0" width="76" height="12" forecolor="#000000"/>
+							<box>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Bottom">
+								<font fontName="Arial" size="7"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{itemAmount}]]></textFieldExpression>
+						</textField>
+						<textField pattern=" #,##0.00" isBlankWhenNull="true">
+							<reportElement key="textField" x="411" y="0" width="46" height="12" forecolor="#000000"/>
+							<box>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Bottom">
+								<font fontName="Arial" size="7"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{itemRateBilled}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement key="textField-17" x="333" y="0" width="35" height="12" forecolor="#000000"/>
+							<box>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Arial" size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{itemQuantityBilled}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="458" y="12" width="76" height="12"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="412" y="12" width="46" height="12"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="334" y="12" width="35" height="12"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="369" y="12" width="43" height="12"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="1" y="12" width="333" height="12"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{itemFechaLiquidacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="43">
+			<staticText>
+				<reportElement positionType="Float" x="333" y="6" width="179" height="14" forecolor="#3366FF"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[billing@puertoaguadulce.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="91" y="6" width="179" height="14" forecolor="#3366FF"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[servicliente@puertoaguadulce.com]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="-30" y="1" width="595" height="1" forecolor="#89AD88"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="274" y="6" width="57" height="14" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[Facturación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="2" y="6" width="107" height="14" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[Servicio al Cliente:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="250" y="26" width="68" height="14"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image vAlign="Bottom">
+				<reportElement positionType="Float" x="440" y="20" width="122" height="20"/>
+				<imageExpression><![CDATA[$P{SUPERPUERTOS}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="235" y="26" width="24" height="14"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="258">
+			<line>
+				<reportElement positionType="Float" x="-31" y="218" width="595" height="1" forecolor="#89AD88"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="276" y="223" width="57" height="14" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[Facturación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="1" y="223" width="107" height="14" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[Servicio al Cliente:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="248" y="243" width="68" height="14"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="332" y="223" width="179" height="14" forecolor="#3366FF"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[billing@puertoaguadulce.com]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="234" y="243" width="24" height="14"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+			<image vAlign="Bottom">
+				<reportElement positionType="Float" x="439" y="237" width="122" height="20"/>
+				<imageExpression><![CDATA[$P{SUPERPUERTOS}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement positionType="Float" x="90" y="223" width="179" height="14" forecolor="#3366FF"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[servicliente@puertoaguadulce.com]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="6" y="206" width="257" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{formaPago3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6" y="186" width="257" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{formaPago1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="6" y="178" width="100" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[FORMAS DE PAGO.]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="269" y="179" width="265" height="36" forecolor="#000000"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" mode="Transparent" x="0" y="179" width="263" height="36" forecolor="#000000"/>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="6" y="196" width="257" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{formaPago2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="277" y="180" width="50" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Recibida Por:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="Float" x="0" y="119" width="534" height="58"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="2" y="168" width="241" height="10"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="6"/>
+					<paragraph lineSpacing="Proportional" lineSpacingSize="1.3" leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Factura impresa por computador, Resolución de Facturación: "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="136" width="532" height="17"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[En cumplimiento del artículo 2 de la ley 1231 de 2008, si dentro de los 3 día hábiles siguientes a la recepción de la factura no se reclamare en   contra de su contenido, se considerará irrevocablemente aceptada.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="120" width="533" height="17"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+					<paragraph lineSpacing="Proportional" lineSpacingSize="1.3" leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Somos Grandes Contribuyentes Res. 000076 del1 de Diciembre de 2016. Régimen común Responsable de IVA. Autorretenedores de ICA resolución 08 de Agosto 30 de 2002. Código CIIU 5222. Somos Autorretenedores de Renta Res.005348 del 22 de Julio de 2016.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="152" width="532" height="17"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[La Presente Factura de Venta se asimila para todos sus efectos a una letra de cambio (Arts. 772, 773 y 774 del Código comercio). La Mora en el pago ocasionara interés sobre saldo a la tasa más alta permitida, sin perjuicios de las acciones ejecutivas pertinentes.]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="191" y="168" width="297" height="10"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numberEnabled}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="277" y="205" width="69" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Fecha de Recibido:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="277" y="193" width="50" height="10" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[CC No.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="98" width="534" height="19"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+					<paragraph firstLineIndent="5" spacingBefore="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Observaciones:" + $F{notes}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement positionType="Float" x="2" y="51" width="437" height="34"/>
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="0.7" textPosition="none">
+					<jr:codeExpression><![CDATA[$F{barCode}]]></jr:codeExpression>
+				</jr:Code128>
+			</componentElement>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="FixRelativeToBottom" x="11" y="86" width="438" height="14" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barCodeLabel}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" positionType="FixRelativeToBottom" x="0" y="34" width="534" height="16" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Valor en Letras: " + $F{totalLetters}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="292" y="21" width="111" height="10" forecolor="#000000">
+					<printWhenExpression><![CDATA["COP".equals( $F{invoiceCurrencyId} )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Total COP]]></text>
+			</staticText>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="403" y="1" width="131" height="10" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceTotalCharges}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="403" y="11" width="131" height="10" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceTotalTaxes}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" x="403" y="21" width="131" height="10" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoiceTotalTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="292" y="1" width="111" height="10" forecolor="#000000">
+					<printWhenExpression><![CDATA["USD".equals( $F{invoiceCurrencyId} )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Subtotal USD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="292" y="1" width="111" height="10" forecolor="#000000">
+					<printWhenExpression><![CDATA["COP".equals( $F{invoiceCurrencyId} )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Subtotal COP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="292" y="21" width="111" height="10" forecolor="#000000">
+					<printWhenExpression><![CDATA["USD".equals( $F{invoiceCurrencyId} )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Total USD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" x="292" y="11" width="111" height="10" forecolor="#000000"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

@@ -1,0 +1,49 @@
+.service-orders-resume {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+}
+
+.service-orders-resume__icon {
+    width: 10rem;
+    height: 10rem;
+    background-color: #eeeeee;
+}
+
+.service-orders-resume__information {
+    width: 100%;
+    padding: 1rem 2rem;
+}
+
+.service-orders-resume__title {
+    font-size: 1.25rem;
+    font-family: "Gilroy-Light";
+    color: #78909c;
+}
+
+.service-orders-resume__table {
+    width: 100%;
+}
+
+.service-orders-resume__table-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service-orders-resume__actions {
+    width: 100%;
+    padding: 1rem;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.service-orders-resume__action {
+    color: #ffffff !important;
+}
+
+.service-orders-resume__action:first-child {
+    margin-right: 1rem;
+}

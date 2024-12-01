@@ -1,0 +1,110 @@
+<div class="upload-container" *ngIf="(documentServe[0] && !documentServe[0].locked) || module == 'GEST_CLIE_NEW'">
+  <form name="uploadDoc"   id="uploadDocForm"  (ngSubmit)="uploadFiles()" enctype="multipart/form-data">
+    <div class="container-upload-file">
+      <mat-form-field class="mat-form-field ">
+        <mat-label>Documento</mat-label>
+        <mat-select appearance="fill" [required]="true" [formControl]="typeControl" name="typeControl" >
+          <mat-option *ngFor="let type of optionSelect" value="{{type.name}}" [ngClass]="{'optionSelect--obligatory': type.obligatorio === 'S'}">
+            {{type.name}}<span *ngIf="type.obligatorio === 'S'">*</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div id="alerta" [class]="alert.clase"  *ngIf="alert.showAlert" >
+      {{alert.message}}
+      </div>
+      <div class="drag-and-drop" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
+        <p>Arrastra y suelta archivos aquí</p>
+        <input type="file" #fileInput (change)="onFileSelected($event)" >
+      </div>
+    </div>
+    <div>
+      <div class="upload-container" *ngIf="module != 'GEST_CLIE_NEW'">
+        <button mat-raised-button color="primary"  class="upload-container__submit" type="submit" [disabled]="hasRejectFiles > 0">
+          Cargar Documentos
+        </button>
+      </div>
+      <div class="upload-container" *ngIf="module == 'GEST_CLIE_NEW' && (tab == 'GE_REG_ACT' || tab == 'GE_CON_SOL' )">
+        <button mat-flat-button (click)="cancel()" type="button" class="services-confirm__cancel-button">
+          Cancelar</button>
+        <button mat-raised-button color="primary"  class="upload-container__submit" type="submit" [disabled]="hasRejectFiles > 0">
+          {{bottonActionComponent}}
+        </button>
+      </div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="Icon">
+          <th mat-header-cell *matHeaderCellDef> :: </th>
+          <td mat-cell *matCellDef="let element"><mat-icon>{{ element.icon }}</mat-icon></td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="Documento">
+          <th mat-header-cell *matHeaderCellDef> Documento  </th>
+          <td mat-cell *matCellDef="let element"> 
+            <span matTooltip="{{ element.type }}" matTooltipPosition="above">
+              {{ element.type.split('.pdf')[0].slice(0, 15) }}...pdf
+            </span>
+          </td>
+          <!-- <td mat-cell *matCellDef="let element"> {{element.type.split('.pdf')[0].slice(0, 15) }}... </td> -->
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="Nombre">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> 
+            <!-- {{element.file.name.split('.pdf')[0].slice(0, 10) }}...pdf  -->
+            <span matTooltip="{{ element.file.name }}" matTooltipPosition="above">
+              {{ element.file.name.split('.pdf')[0].slice(0, 10) }}...pdf
+            </span>
+          </td>
+        </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Fecha">
+          <th mat-header-cell *matHeaderCellDef> Fecha de Cargue </th>
+          <td mat-cell *matCellDef="let element"> {{element.document.createdAt | date:'dd/MM/yyy HH:mm'}} </td>
+        </ng-container>
+      
+ 
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="CargadoPor">
+              <th mat-header-cell *matHeaderCellDef> Cargado Por </th>
+              <td mat-cell *matCellDef="let element"> {{element.document.createdBy}} </td>
+            </ng-container>
+                <!-- Symbol Column -->
+        <ng-container matColumnDef="Acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-mini-fab color="primary" type="button"   (click)="deleteFileLoad(element, dataSource.data.indexOf(element))" *ngIf="!element.document.approved" >        
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-mini-fab disabled type="button"  (click)="deleteFileLoad(element, dataSource.data.indexOf(element))" *ngIf="element.document.approved" >        
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+      
+    </div>
+  </form>
+</div>
+<div class="upload-container drag-and-drop" *ngIf="documentServe[0] &&  documentServe[0].locked">
+  <p i18n="@@9550731151441BAE3AAAB1A8048E57E006181F29F57349282CFE79F982DFD49D">module.documental.upload.file.locked.message </p>
+</div>
+<div class="upload-container">
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"  *ngFor="let revision of revisions; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+        {{i+1}}.  Observación: 
+        </mat-panel-title>
+        <mat-panel-description>  
+          {{revision.date  | dateFormat:'long' }}        
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>{{revision.note}}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+</div>

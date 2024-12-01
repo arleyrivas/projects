@@ -1,0 +1,62 @@
+{
+	"audit": [
+		{
+			"name": "service-query",
+			"app": false,
+			"route": true,
+			"service": [
+				{
+					"url": "services/querys",
+					"request": true,
+					"response": false
+				}
+			]
+		},
+		{
+			"name": "service-invoice",
+			"app": false,
+			"route": true,
+			"service": [
+				{
+					"url": "cxf/financial/invoice/electronic",
+					"request": true,
+					"response": false
+				}
+			]
+		},
+		{
+			"name": "service-notification",
+			"app": false,
+			"route": true,
+			"service": [
+				{
+					"url": "cxf/spia-transversal/security/notification/privileges/service",
+					"request": false,
+					"response": true
+				}
+			]
+		},
+		{
+			"name": "spia-mdw",
+			"app": true,
+			"route": false,
+			"service": [
+				{
+					"url": "/services/invoice/create",
+					"request": true,
+					"response": false
+				},
+				{
+					"url": "/services/invoice/createBbk",
+					"request": true,
+					"response": false
+				},
+				{
+					"url": "/services/invoice/payu-locked",
+					"request": true,
+					"response": false
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-content>
+    <div class="generate-pin">
+      <div class="title-card">
+          <h2 class="card-title">Generar PIN para el BL</h2>
+          <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+      </div>
+
+      <p class="generate-pin__caption">
+          <span class="generate-pin__caption-bold">
+              Para asignar PIN, seleccione la Empresa de transporte por cada contenedor
+          </span>
+          o "Asignación Múltiple" para asignar la misma Empresa a todos/algunos contenedores
+      </p>
+
+      <div class="generate-pin__units">
+          <div class="generate-pin__all-units">
+              <mat-checkbox #checkbox color="primary" class="generate-pin__checkbox" (change)="matChecboxMultipleChange($event, checkbox)" [disabled]="!truckValid"></mat-checkbox>
+
+              <span class="generate-pin__multiple">Asignación Múltiple</span>
+
+              <ng-container *ngIf="customerId">
+                <app-truck-searcher (truckSearch)="multipleTruckSearch($event)" (truckControl)="setTruckFormControl($event)" [consigneeId]="customerId"></app-truck-searcher>
+              </ng-container>
+          </div>
+
+          <ng-container *ngIf="customerId">
+            <app-generate-pin-truck-unit *ngFor="let unit of containersTruck" [unit]="unit" (changeUnit)="addUnit($event)" [consigneeId]="customerId"></app-generate-pin-truck-unit>
+          </ng-container>
+      </div>
+      <div class="generate-pin__actions">
+          <button mat-flat-button (click)="cancel()" class="generate-pin__cancel">Cancelar</button>
+
+          <ng-container *ngIf="truckFormControl">
+            <button
+            mat-raised-button
+            color="primary"
+            class="generate-pin__submit"
+            [appDoubleFactorAuthentication]="'CC_IMP_PIN'"
+            [appDoubleFactorAPIGateway]="userInfo"
+            [doubleFactorCallback]="submit.bind(this)"
+            [doubleFactorIncorrectCallback]="cancel.bind(this)"
+            [disabled]="invalid"
+            >
+              Generar Pin
+            </button>
+          </ng-container>
+      </div>
+  </div>
+  </mat-card-content>
+</mat-card>

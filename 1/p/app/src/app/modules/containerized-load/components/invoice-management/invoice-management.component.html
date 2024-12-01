@@ -1,0 +1,86 @@
+<mat-card>
+    <mat-card-content>
+        <div class="invoice">
+            <div class="header">
+                <svg id="Capa_2" class="header__icon" viewBox="0 0 81.9 81.75"><defs><style>.cls-1{fill:#666666;}.cls-2{fill:#666666;}.cls-3{fill:#fcfcfc;}</style></defs><g id="Capa_1-2"><rect class="cls-1" x="15.26" y="1.93" width="11.68" height="17.96"/><rect class="cls-1" x="56.27" y="1.93" width="10.18" height="17.43"/><rect class="cls-2" x="1.93" y="8.01" width="78.27" height="71.86"/><path class="cls-3" d="m81.9,9.94c0-1.07-.86-1.93-1.93-1.93h-13.32V1.93c0-1.07-.86-1.93-1.93-1.93h-9.75c-1.07,0-1.93.86-1.93,1.93v6.08h-24.16V1.93c0-1.07-.86-1.93-1.93-1.93h-9.75c-1.07,0-1.93.86-1.93,1.93v6.08H1.93C.87,8.01,0,8.88,0,9.94v69.88c0,1.07.86,1.93,1.93,1.93h78.04c1.07,0,1.93-.86,1.93-1.93V9.94Zm-25.01-6.08h5.89v12.16h-5.89V3.86Zm-37.77,0h5.89v12.16h-5.89V3.86ZM3.86,11.88h11.39v6.08c0,1.07.86,1.93,1.93,1.93h9.75c1.07,0,1.93-.86,1.93-1.93v-6.08h24.16v6.08c0,1.07.86,1.93,1.93,1.93h9.75c1.07,0,1.93-.86,1.93-1.93v-6.08h11.39v11.8H3.86v-11.8Zm74.17,66.02H3.86V27.54h74.17v50.36Z"/><path class="cls-3" d="m13.52,70.17h10.18c1.07,0,1.93-.86,1.93-1.93v-10.18c0-1.07-.86-1.93-1.93-1.93h-10.18c-1.07,0-1.93.86-1.93,1.93v10.18c0,1.07.86,1.93,1.93,1.93Zm1.93-10.18h6.32v6.32h-6.32v-6.32Z"/><path class="cls-3" d="m35.86,49.3h10.18c1.07,0,1.93-.86,1.93-1.93v-10.18c0-1.07-.86-1.93-1.93-1.93h-10.18c-1.07,0-1.93.86-1.93,1.93v10.18c0,1.07.86,1.93,1.93,1.93Zm1.93-10.18h6.32v6.32h-6.32v-6.32Z"/><path class="cls-3" d="m35.86,70.17h10.18c1.07,0,1.93-.86,1.93-1.93v-10.18c0-1.07-.86-1.93-1.93-1.93h-10.18c-1.07,0-1.93.86-1.93,1.93v10.18c0,1.07.86,1.93,1.93,1.93Zm1.93-10.18h6.32v6.32h-6.32v-6.32Z"/><path class="cls-3" d="m58.2,49.3h10.18c1.07,0,1.93-.86,1.93-1.93v-10.18c0-1.07-.86-1.93-1.93-1.93h-10.18c-1.07,0-1.93.86-1.93,1.93v10.18c0,1.07.86,1.93,1.93,1.93Zm1.93-10.18h6.32v6.32h-6.32v-6.32Z"/><path class="cls-3" d="m58.2,70.17h10.18c1.07,0,1.93-.86,1.93-1.93v-10.18c0-1.07-.86-1.93-1.93-1.93h-10.18c-1.07,0-1.93.86-1.93,1.93v10.18c0,1.07.86,1.93,1.93,1.93Zm1.93-10.18h6.32v6.32h-6.32v-6.32Z"/></g></svg>
+                <h2 class="header__title">Día y hora de la cita: {{ invoice.appointmentDate }} hs.</h2>
+            </div>
+
+            <ul class="list">
+                <li class="list-item">
+                    <span class="list__title">Identificador: </span>{{ invoice.truckVisitNbr }}
+                    <hr>
+                </li>
+                <li class="list-item list-item_double">
+                    <div class="list__title_first">
+                        <span class="list__title">Conductor: </span>{{ invoice.name }}
+                    </div>
+                    <div>
+                        <span class="list__title">Identificación: </span>{{ invoice.license }}
+                    </div>
+                </li>
+                <li class="list-item">
+                    <hr>
+                    <span class="list__title">Placa: </span>{{ invoice.truck }}
+                </li>
+            </ul>
+
+            <table class="footer">
+                <thead>
+                    <th>Nro.</th>
+                    <th>Contenedor</th>
+                    <th>Transacción</th>
+                </thead>
+                <tbody>
+                  <tr *ngIf="invoice.firstAppointmentImport">
+                    <td>{{invoice.firstAppointmentImport}}</td>
+                    <td>{{invoice.firstContainerImport}}</td>
+                    <td i18n="@@1a0d96c586749f9e35e9e0416ea53ac118a5fb8cb2a99b51266341f277253f1a">history.views.history-truck-list.IMPORT_LABEL</td>
+                  </tr>
+
+                  <tr *ngIf="invoice.secondAppointmentImport">
+                    <td>{{invoice.secondAppointmentImport}}</td>
+                    <td>{{invoice.secondContainerImport}}</td>
+                    <td i18n="@@1a0d96c586749f9e35e9e0416ea53ac118a5fb8cb2a99b51266341f277253f1a">history.views.history-truck-list.IMPORT_LABEL</td>
+                  </tr>
+
+                  <tr *ngIf="invoice.firstAppointmentExport">
+                    <td>{{invoice.firstAppointmentExport}}</td>
+                    <td>{{invoice.firstContainerExport}}</td>
+                    <td i18n="@@a861eac85c5b898a58ab4f83674a4a40a9c9a375aa36fce9dfd6506ce1604988">history.views.history-truck-list.EXPORT_LABEL</td>
+                  </tr>
+
+                  <tr *ngIf="invoice.secondAppointmentExport">
+                    <td>{{invoice.secondAppointmentExport}}</td>
+                    <td>{{invoice.secondContainerExport}}</td>
+                    <td i18n="@@a861eac85c5b898a58ab4f83674a4a40a9c9a375aa36fce9dfd6506ce1604988">history.views.history-truck-list.EXPORT_LABEL</td>
+                  </tr>
+
+                  <tr *ngIf="invoice.firstAppointmentEdo">
+                    <td>{{invoice.firstAppointmentEdo}}</td>
+                    <td>{{invoice.firstContainerEdo}}</td>
+                    <td i18n="@@a861eac85c5b898a58ab4f83674a4a40a9c9a375aa36fce9dfd6506ce1604988">history.views.history-truck-list.EDO_LABEL</td>
+                  </tr>
+
+                  <tr *ngIf="invoice.secondAppointmentEdo">
+                    <td>{{invoice.secondAppointmentEdo}}</td>
+                    <td>{{invoice.secondContainerEdo}}</td>
+                    <td i18n="@@a861eac85c5b898a58ab4f83674a4a40a9c9a375aa36fce9dfd6506ce1604988">history.views.history-truck-list.EDO_LABEL</td>
+                  </tr>
+
+                  <tr *ngIf="invoice.firstAppointmentEro">
+                    <td>{{invoice.firstAppointmentEro}}</td>
+                    <td>{{invoice.firstContainerEro}}</td>
+                    <td i18n="@@3220d5a93f969578f29c3121c91b0b63a911b42884de8c8d19874bd7c0c24c05">history.views.history-truck-list.ERO_LABEL</td>
+                  </tr>
+
+                  <tr *ngIf="invoice.secondAppointmentEro">
+                    <td>{{invoice.secondAppointmentEro}}</td>
+                    <td>{{invoice.secondContainerEro}}</td>
+                    <td i18n="@@3220d5a93f969578f29c3121c91b0b63a911b42884de8c8d19874bd7c0c24c05">history.views.history-truck-list.ERO_LABEL</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </mat-card-content>
+</mat-card>

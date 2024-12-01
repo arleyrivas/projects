@@ -1,0 +1,91 @@
+
+<div class="vehiculo-searcher" *ngIf="origin !== 'history'">
+    <div class="placa-searcher" *ngIf="loadType === 'cs' && showPlate ">
+        <app-search-plate
+        inputPlaceholder="Placa del Vehículo"
+        [hasSearchButton]="false"
+        indication="(Ingresa la placa del vehículo)"
+        (dataStatusChanged)="onDataStatusChanged($event)"
+        [plateInputValue]="placa"
+         ></app-search-plate>
+    </div>
+   
+    <ng-container class="capacity-disponible" *ngIf="loadType === 'cs' && showPlate">
+        <mat-card appearance="outlined" class="capacity">
+          
+           <span class="text-cd">{{ capacity }}</span>
+            <mat-card-actions class="card-actions">
+                <span class="additional-content">(Capacidad)</span>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card appearance="outlined" class="disponibilidad">
+           
+            <span class="text-cd" >{{ disponible }}</span>
+            <mat-card-actions  class="card-actions">
+                <span class="additional-content">(Disponibilidad)</span>
+            </mat-card-actions>
+        </mat-card>
+        
+    </ng-container>
+    
+       
+    
+   
+
+    
+</div>
+<div class="mensaje" *ngIf="!isViewEditAppointment && loadType !== 'cc'">
+    <span class="tecnomecanica" *ngIf="tecnomecanica != '' ">x {{tecnomecanica}}</span>
+    <span class="soat" *ngIf="soat != '' ">x {{soat}}</span>
+</div>
+<app-pin-searcher
+    [hasCleanButton]="true"
+    [inputPlaceholder]="placeHolderPinSearcher"
+    [isPlate]="isPlate"
+    [initialInputValue]="pinNbr"
+    [loadType]="loadType"
+   
+></app-pin-searcher>
+
+
+<ng-container *ngIf="infoPin && dataPin.length > 0">
+    <ng-container class="info-pines">
+            <ng-container *ngFor="let value of dataPin">
+                <ng-container *ngIf="value.data.length > 0 && !value.data[0].invisible && loadType === 'cs'">
+                    
+                    <app-info-pin-appointment  class="item-pin"  [pin]="value.data[0].pinParaEliminar!" [hbl]="value.data[0].hbl!" [loadType]="loadType"
+                        [infoPin]="value.data" [isEditAppointment]="isViewEditAppointment" [isPlateValid]="isPlateValid" [plate]="placa" [origin]="origin">
+                    </app-info-pin-appointment>
+                </ng-container>
+            </ng-container>  
+    </ng-container>
+</ng-container> 
+<ng-container *ngIf="infoPin && dataPinContainerized.length > 0">
+    <ng-container class="info-pines">
+        <ng-container *ngFor="let value of dataPinContainerized;">
+            <ng-container *ngIf="value.data.length >  0 && !value.data[0].invisible && loadType === 'cc'">
+                
+                <app-info-pin-appointment  class="item-pin"  [pin]="value.data[0].pinParaEliminar!"  [loadType]="loadType"
+                     [isEditAppointment]="isViewEditAppointment" [isPlateValid]="isPlateValid" [plate]="placa" [infoPinContanerized]="value.data" [booking]="value.data[0].bookingNbr">
+                </app-info-pin-appointment>
+            </ng-container>
+        </ng-container> 
+    </ng-container>
+     
+</ng-container>
+
+<ng-container *ngIf="dataBookingASC.length > 0  && loadType === 'asc' ">
+    <ng-container class="info-pines">
+        <app-info-pin-appointment  class="item-pin"  [loadType]="loadType" >
+        </app-info-pin-appointment>
+    </ng-container>
+</ng-container>
+
+
+
+
+
+
+
+
+

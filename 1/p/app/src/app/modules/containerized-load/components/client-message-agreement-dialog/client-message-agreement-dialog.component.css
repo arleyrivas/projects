@@ -1,0 +1,17 @@
+.client-message-agreement-dialog__title {
+    background-color: #92b976;
+    color: #ffffff;
+}
+
+.client-message-agreement-dialog__actions {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.client-message-agreement-dialog__action {
+    color: #ffffff !important;
+}
+

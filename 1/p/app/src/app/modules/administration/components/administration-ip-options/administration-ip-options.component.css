@@ -1,0 +1,29 @@
+.static-ip {
+    padding: 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+}
+
+.static-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.submit-button {
+    margin: 0 0.25rem 0 0.25rem;
+    color: #ffffff !important;
+}
+
+.error {
+  color: #e74c3c;
+}

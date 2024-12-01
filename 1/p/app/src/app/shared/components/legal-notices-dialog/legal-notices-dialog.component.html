@@ -1,0 +1,39 @@
+<ng-container *ngIf="userInfo">
+  <ng-container *ngIf="(userInfo | async) as user">
+    <h1 class="legal-notices-dialog" mat-dialog-title>Avisos Legales</h1>
+    <div mat-dialog-content>
+      <form [formGroup]="acceptCheckboxes">
+          <p i18n="@@aa707b10df3120de07d05343b71dbc7a4e4050539ca0a945ae2c58e363e43cea">
+            legal.views.modal.TEXT_1
+          </p>
+          <mat-checkbox class="legal-notices-dialog__accept-checkbox text-white" color="primary" formControlName="accept1">
+            <ng-container i18n="@@ebc94295e02cb01e14000f384f6a174c059c0f68181bec11d3a0b1228457f92e">
+              services.views.modal.confirm.button.ACCEPT
+            </ng-container>
+          </mat-checkbox>
+          <p i18n="@@62d7df76f3c3b0c7622d71d56c1d91e8c547d12448594be404a004b81c8b4664">
+            legal.views.modal.TEXT_2
+          </p>
+          <mat-checkbox class="legal-notices-dialog__accept-checkbox" color="primary" formControlName="accept2">
+            <ng-container i18n="@@ebc94295e02cb01e14000f384f6a174c059c0f68181bec11d3a0b1228457f92e">
+              services.views.modal.confirm.button.ACCEPT
+            </ng-container>
+          </mat-checkbox>
+      </form>
+
+      <p *ngIf="user.passwordExpiring">Su contraseña está próxima a expirar, debe cambiarla lo más pronto posible</p>
+    </div>
+    <div mat-dialog-actions class="legal-notices-dialog__footer">
+      <button class="legal-notices-dialog__accept-button" [disabled]="!valid" mat-button mat-raised-button mat-dialog-close color="primary">
+        <ng-container i18n="@@ebc94295e02cb01e14000f384f6a174c059c0f68181bec11d3a0b1228457f92e">
+          services.views.modal.confirm.button.ACCEPT
+        </ng-container>
+    </button>
+      <button (click)="back()" mat-button mat-dialog-close>
+        <ng-container i18n="@@2e62ee290751f01d9ddafa760514fdd398a3da7ef13e4156cbb04e6fa17812b7">
+          services.views.modal.confirm.button.CANCEL
+        </ng-container>
+      </button>
+    </div>
+  </ng-container>
+</ng-container>

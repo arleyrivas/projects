@@ -1,0 +1,18 @@
+.generate-pini-deactivation-dialog__header {
+    background-color: #66bb6a;
+    color: #ffffff;
+}
+
+.generate-pini-deactivation-dialog__actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.generate-pini-deactivation-dialog__submit {
+    color: #ffffff !important;
+}
+
+.generate-pini-deactivation-dialog__area {
+    width: 100%;
+}

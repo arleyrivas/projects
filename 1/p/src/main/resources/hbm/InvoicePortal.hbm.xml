@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+ 
+    <class name="InvoicePortal" table="invoice" dynamic-update="true">
+        <id name="id" type="long" column="id">
+            <generator class="native" />
+        </id>
+        <property name="status" column="status" type="string" />
+        <property name="referenceCode" column="reference_code" type="string" />
+        <property name="ammount" column="ammount" type="float"/>
+        <property name="date" column="date_created" type="timestamp"/>
+        <property name="paymentMethod" column="payment_method" type="string"/>
+        <property name="approvalNumber" column="approval_number" type="string"/>
+        <property name="bank" column="bank" type="string"/>
+        <property name="creditCard" column="credit_card" type="string"/>
+        <property name="quotas" column="quotas" type="integer"/>
+        <property name="errorCode" column="error_code" type="string"/>
+        <property name="errorMessage" column="error_message" type="string"/>
+        <property name="paymentAttempt" column="payment_attempt" type="int"/>
+        <property name="lastPaymentAttempt" column="last_payment_attempt" type="timestamp"/>
+        <property name="ip" column="ip" type="string"/>
+        <property name="n4FinalNbrs" column="n4_final_nbrs" type="string"/>
+        <property name="companyName" column="company_name" type="string"/>
+        <property name="payuAttended" column="payu_attended" type="string" />
+
+    </class>
+</hibernate-mapping>

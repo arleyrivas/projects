@@ -1,0 +1,69 @@
+.vehiculo-searcher{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    overflow-y: hidden;
+    
+}
+.mensaje{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  color: #a94442;
+}
+
+.vehiculo-searcher .placa-searcher{
+    flex: 3;
+
+}
+
+.capacity{
+  height:  2.5rem;
+  border-radius: 0.7rem;
+  background-color: #D0D0CF;
+  
+}
+.disponibilidad{
+  height:  2.5rem;
+  border-radius: 0.7rem;
+  background-color: #D0D0CF;
+}
+
+.demo-inline-calendar-card {
+    width: 600px ; 
+ }
+
+
+ .card-actions {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  
+}
+
+.additional-content {
+  margin-top: -20px; /* Ajusta el margen superior entre el contenido adicional y las tarjetas */
+}
+
+.text-cd{
+  padding: 2px;
+  margin-top: 10px;
+  margin-left: 5px;
+
+  font-size: 20px;
+}
+
+.info-pines{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.item-pin{
+  padding: 5px;
+}
+
+
+ 
+ 
+  

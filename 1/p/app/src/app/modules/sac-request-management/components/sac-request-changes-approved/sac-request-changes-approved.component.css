@@ -1,0 +1,44 @@
+.container {
+    padding: 0rem;
+}
+
+.title-card {
+    width: max-content;
+    margin-bottom: 2rem;
+    margin: 1rem 0 2rem 2rem;
+}
+
+.card-title {
+    font-family: "Gilroy-ExtraBold" !important;
+    color: #78909c;
+    margin: 0;
+}
+
+.container--request-approved {
+    margin: 3rem !important;
+    max-height:70vh;
+    overflow-y:auto;
+    display: block;    
+}
+
+.mdc-data-table__header-cell {
+  position: sticky;  
+  top: 0;            
+  z-index: 1;        
+}
+
+.container--action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 4rem;
+    padding-bottom: 2rem;
+}
+
+.sac-request__field-button-icon {
+    width: 1.5rem;
+  }
+
+  .selected-row {
+    background-color: #b4ee9f !important;
+  }

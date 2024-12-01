@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+ 
+    <class name="Documentation" table="documentation" dynamic-update="true">
+        <id name="id" type="long" column="id">
+            <generator class="native" />
+        </id>
+        <property name="nbr" column="nbr" type="string" not-null="true" length="20"/>
+		<property name="path" column="path" type="string" not-null="true" length="200"/>
+		<property name="createdAt" column="created_at" type="timestamp" not-null="true"/>
+        <property name="active" column="active" type="boolean" not-null="true" />
+        <property name="locked" column="locked" type="boolean" not-null="true"></property>
+        <property name="lockedDate" column="locked_date" type="timestamp" />
+		<property name="createdBy" column="created_by" type="string" not-null="true"/>
+		<property name="companyId" column="company_id" type="string" />
+		<property name="owner" column="owner" type="string"/>
+		<property name="ownerId" column="owner_id" type="string"/>
+		<property name="role" column="role" type="string"/>
+		<property name="notificador" column="notificador" type="string"/>
+		<many-to-one name="type" column="doc_type_id" class="DocumentationType" not-null="true"  fetch="join"/>   
+		<set name="files" table="documentation_files" cascade="all" inverse="true" lazy="false" fetch="select">
+        	<key>
+            	<column name="documentation_id" not-null="true" />
+        	</key>
+        	<one-to-many class="DocumentationFile" />
+    	</set>
+    	<property name="comments" column="comments" type="text"/>
+    	<property name="observations" column="observations" type="text"/>
+    	<property name="lockedBy" column="locked_by" type="text"/>
+    	<property name="approved" column="approved" type="boolean" not-null="true" />
+    	<property name="typeCompany" column="type_company" type="text"/>
+    	<property name="mail" column="mail" type="text"/>
+    	<property name="contactPerson" column="contact_person" type="text"/>
+    	<property name="phoneNumber" column="phone_number" type="text"/>
+    	<property name="requestTime" column="request_time" type="text"/>
+		<property name="idCustomerRequest" column="id_customer_request" type="long"/>
+    </class>
+</hibernate-mapping>

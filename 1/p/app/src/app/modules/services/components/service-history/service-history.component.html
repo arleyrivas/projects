@@ -1,0 +1,110 @@
+<mat-card>
+    <mat-card-content>
+        <div class="primary-panel">
+            <div class="primary-panel__content">
+               
+                    <div class="title-card">
+                      <h2 class="card-title">
+                        Búsqueda de Ordenes de Servicio
+                      </h2>
+
+                      <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+                    </div>
+
+                    <form [formGroup]="serviceHistoryFormGroup">
+                        <div class="billing__search-item">
+                            <mat-form-field class="billing__field">
+                                <mat-label>Tipo</mat-label>
+
+                                <mat-select formControlName="type">
+                                  <mat-option value="Todos">Todos</mat-option>
+                                  <mat-option *ngFor="let serviceType of serviceTypes" [value]="serviceType.service">{{ serviceType.service }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                          <div class="billing__criteria-field">
+                              <mat-form-field class="billing__criteria-input-field" [ngClass]="{ 'is-invalid': isFieldInvalid('unit') }">
+                                <mat-label>BL, HBL o BOOKING 
+                                    <mat-error *ngIf="isFieldInvalid('unit')" class="service-history-form__form-error">
+                                        <mat-icon>close</mat-icon>
+                                        BL, HBL o BOOKING (Campo Invalido)
+                                    </mat-error>
+                                </mat-label>
+                                <input matInput formControlName="unit" (input)="onInput('unit')">
+                              </mat-form-field>
+                          </div>
+
+                          <div class="billing__criteria-field">
+                            <mat-form-field class="billing__criteria-input-field" [ngClass]="{ 'is-invalid': isFieldInvalid('container') }">
+                               
+                                <mat-label>Contenedor    
+                                    <mat-error *ngIf="isFieldInvalid('container')" class="service-history-form__form-error">
+                                        <mat-icon>close</mat-icon>
+                                        Contenedor (Campo Invalido)
+                                    </mat-error>
+                                </mat-label>
+                                  
+                                
+                                <input matInput formControlName="container" (input)="onInput('container')" maxlength="11">
+                              </mat-form-field>
+                          </div>
+
+                          
+
+                          <div class="billing__search-item">
+                            <mat-form-field class="billing__field">
+                                <mat-label>Estado</mat-label>
+
+                                <mat-select formControlName="state">
+                                    <mat-option value="Todos">Todos</mat-option>
+                                    <mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                          <div class="billing__date-search">
+                            <div class="billing__search-item">
+                                <mat-form-field class="billing__field">
+                                  <mat-label>Desde</mat-label>
+                                    <input
+                                        matInput
+                                        formControlName="from"
+                                        [matDatepicker]="picker1"
+                                    >
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="billing__search-item">
+                                <mat-form-field class="billing__field">
+                                  <mat-label>Hasta</mat-label>
+                                  <input
+                                        matInput
+                                        [matDatepicker]="picker2"
+                                        formControlName="to"
+                                    >
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                          </div>
+                    </form>
+
+                    <div class="billing__search-button-item">
+                        <button
+                        class="billing__field-button"
+                        (click)="submit()"
+                        [disabled]="serviceHistoryFormGroup.invalid"
+                        >
+                            Buscar
+                            
+                        </button>
+                    </div>
+                       
+                   
+                
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

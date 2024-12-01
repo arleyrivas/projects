@@ -1,0 +1,102 @@
+.toolbar {
+    position: fixed; /* Fija el toolbar en la posición especificada */
+    top: 0; /* Ajusta la posición desde la parte superior */
+    left: 0; /* Ajusta la posición desde la parte izquierda */
+    right: 0; /* Ajusta la posición hasta la parte derecha */
+    z-index: 1000; /* Asegura que el toolbar esté por encima del contenido */
+    height: 64px; /* Altura deseada del toolbar */
+    background-color: rgba(0, 0, 0, 0.6); /* Ejemplo de fondo semi-transparente */
+    color: white; /* Color de texto */
+    display: flex; /* Usa flexbox para alinear elementos */
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 0 16px; /* Añade relleno interior */
+  }
+  
+  .spacer {
+    flex: 1; /* Espaciador flexible para alinear a la derecha */
+  }
+  
+  .icon-button {
+    background: none; /* Fondo transparente para el botón */
+    border: none; /* Sin borde para el botón */
+    color: white; /* Color del icono */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    display: flex; /* Usa flexbox para alinear elementos */
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+  
+  .icon-button .material-icons {
+    font-size: 24px; /* Tamaño del icono */
+  }
+  
+  /* Contenedor del sidenav */
+  .sidenav-container {
+    display: flex;
+    height: 100%;
+    flex-direction: row; /* Asegurar que el sidenav y el contenido estén en la misma fila */
+    margin-top: 64px; /* Ajustar el contenido principal para la barra de herramientas */
+  }
+  
+  /* Sidenav */
+  .sidenav {
+    width: 0; /* Comienza colapsado */
+    max-width: 300px;
+    background: transparent; /* Fondo completamente transparente */
+    overflow: auto;
+    height: calc(100% - 64px);
+    transition: width 0.3s; /* Animación de transición */
+    backdrop-filter: blur(10px); /* Opcional: añadir un desenfoque de fondo */
+    position: fixed;
+    top: 64px; /* Asegurar que el sidenav comience desde la parte superior, debajo de la barra de herramientas */
+    right: 0;
+    z-index: 3; /* Asegurar que el sidenav esté sobre el contenido principal */
+  }
+  
+  .sidenav.open {
+    width: 300px; /* Ancho del sidenav cuando está abierto */
+  }
+  
+  /* Encabezado del sidenav */
+  .sidenav-header {
+    padding: 16px;
+    background: transparent; /* Fondo completamente transparente */
+    color: white;
+  }
+  
+  /* Notificaciones */
+  .notifications {
+    padding: 16px;
+  }
+  
+  /* Contenido principal */
+  .main-content {
+    flex: 1;
+    padding: 16px;
+    margin-left: 0;
+    transition: margin-right 0.3s;
+  }
+  
+  .main-content.sidenav-open {
+    margin-right: 300px; /* Ajustar el contenido principal cuando el sidenav está abierto */
+  }
+
+
+  .floating-btn {
+    position: fixed;
+    top: 2px; /* ajusta la distancia desde la parte inferior */
+    right: 2px; /* ajusta la distancia desde la derecha */
+    z-index: 1000; /* asegura que esté por encima de otros elementos */
+    width: 28px; /* ajusta el ancho del botón */
+    height: 28px; /* ajusta la altura del botón */
+    border-radius: 50%;
+    background-color: #66bb6a;
+    padding: 0;
+  }
+
+  .floating-btn .mat-icon {
+    font-size: 19px; /* ajusta el tamaño del ícono */
+    line-height: 1;
+  }
+
+ 
+  

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+ 
+    <class name="DocumentationType" table="documentation_type" dynamic-update="true">
+	   <id name="id" type="long" column="id">
+            <generator class="native" />
+        </id>
+        <property name="type" column="doc_type" type="string" not-null="true" unique="true" length="20"/>
+		<set name="filesName" table="documentation_files_name" cascade="all" inverse="true" lazy="false" fetch="select">
+        	<key>
+            	<column name="type_id" not-null="true" />
+        	</key>
+        	<one-to-many class="DocumentationFileNameForType" />
+    	</set>
+	</class>
+</hibernate-mapping>

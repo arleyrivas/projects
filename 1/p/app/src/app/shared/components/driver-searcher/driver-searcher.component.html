@@ -1,0 +1,20 @@
+<mat-form-field class="driver-searcher">
+    <mat-label>Buscar un conductor</mat-label>
+
+    <input type="text"
+           matInput
+           [formControl]="driverSearcherFormControl"
+           [matAutocomplete]="auto" [value]="data" (input)="onInput($event)">
+           <mat-icon matPrefix svgIcon="customer_searcher"></mat-icon>
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let driver of (sharedStore | async)" [value]="'Nombre: ' + driver.name + ' - Licencia: ' + driver.license + ' - Card ID: ' + driver.cardId"  (onSelectionChange)="onDriverSelected($event, driver)">
+            Nombre: {{ driver.name }} - Licencia: {{ driver.license }} - Card ID: {{ driver.cardId }}
+        </mat-option> 
+    </mat-autocomplete>
+</mat-form-field>
+<div *ngFor="let data of (validationDriver | async)">
+    <mat-error *ngIf="data && data.data != null">{{ data.data }}</mat-error>
+</div>
+<div *ngFor="let data of (validationServiceDriver | async)">
+    <mat-error *ngIf="data">{{ data.data }}</mat-error>
+</div>

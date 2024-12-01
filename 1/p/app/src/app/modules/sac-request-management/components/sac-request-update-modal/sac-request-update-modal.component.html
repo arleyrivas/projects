@@ -1,0 +1,32 @@
+<div class="modal-container">
+
+  <div class="modal-header">
+    ATENCION
+  </div>
+
+  <form [formGroup]="formulario" (ngSubmit)="onAccept()" class="modal-content">
+    <p>Ingrese la justificación general para auditoría de la solicitud:</p>
+    <div class="justification-section">
+      <textarea
+        class="mat-mdc-input-element ng-tns-c112-20 mat-mdc-form-field-textarea-control mat-mdc-form-field-input-control mdc-text-field__input cdk-text-field-autofill-monitored ng-touched ng-dirty ng-invalid"
+        matInput formControlName="justification"></textarea>
+      <mat-error
+        *ngIf="formulario.get('justification')?.invalid && (formulario.get('justification')?.dirty || formulario.get('justification')?.touched)">
+        {{getErrorMessage()}}
+      </mat-error>
+    </div>
+    <div class="bottom-section">
+      <mat-hint class="char-count">{{formulario.get('justification')?.value?.length || 0}}/250</mat-hint>
+      <div *ngIf ="dialogData.showLinkForSendEmail" class="email-section">
+        <p class="email-info">
+          Enviar correo a <a (click)="sendEmail($event)">{{emailToNotification}}</a>
+        </p>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button mat-stroked-button type="button" (click)="onCancel()">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="formulario.invalid">Aceptar</button>
+    </div>
+  </form>
+
+</div>

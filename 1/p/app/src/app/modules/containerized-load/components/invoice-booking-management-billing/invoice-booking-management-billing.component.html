@@ -1,0 +1,105 @@
+<div class="invoice-management-billing">
+  <h3 class="invoice-management-billing__title">
+      Facturación
+  </h3>
+
+  <div class="invoice-management-billing__controls">
+      <form [formGroup]="invoiceManagementBillingFormGroup" class="invoice-management-billing__form-group">
+          <mat-form-field class="example-chip-list" appearance="fill">
+              <mat-label>Correo para envío de factura electrónica</mat-label>
+              <mat-chip-grid #chipGrid [disabled]="true">
+                <mat-chip-row *ngFor="let unit of emails"
+                              [editable]="false">
+                  {{ unit }}
+                </mat-chip-row>
+
+              <input
+                  [matChipInputFor]="chipGrid"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              />
+              </mat-chip-grid>
+            </mat-form-field>
+
+          <mat-form-field>
+              <mat-label>
+                  Nota
+              </mat-label>
+
+              <textarea matInput type="text" formControlName="observations"></textarea>
+          </mat-form-field>
+      </form>
+
+      <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="selected">
+              <th mat-header-cell *matHeaderCellDef>
+                  <div class="centered-cell__all">
+                    <mat-checkbox color="primary" (change)="matCheckboxSelectAllChange($event)"></mat-checkbox>
+                  </div>
+                </th>
+              <td mat-cel *matCellDef="let element">
+                  <div class="centered-cell">
+                    <mat-checkbox color="primary" #containerCheckbox (change)="matCheckboxChange($event, element)"></mat-checkbox>
+                  </div>
+                </td>
+          </ng-container>
+
+          <ng-container matColumnDef="number">
+              <th mat-header-cell *matHeaderCellDef>N°</th>
+              <td mat-cel *matCellDef="let element; let i = index;">{{ i + 1 }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="unitNbr">
+              <th mat-header-cell *matHeaderCellDef>Contenedor</th>
+              <td mat-cel *matCellDef="let element">{{ element.unitNbr }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="twenty">
+              <th mat-header-cell *matHeaderCellDef>Tipo</th>
+              <td mat-cel *matCellDef="let element">{{ element.twenty ? "20''" : "40''" }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="lots">
+              <th mat-header-cell *matHeaderCellDef>No. Lotes</th>
+              <td mat-cel *matCellDef="let element">{{ element.lots }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef>Peso(t)</th>
+              <td mat-cel *matCellDef="let element">{{ element.weight }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+              <td mat-cel *matCellDef="let element">{{ element.quantity }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>
+
+  <div class="invoice-management-billing__actions">
+      <button mat-flat-button (click)="cancel()" class="invoice-management-billing__cancel">Cancelar</button>
+      <button mat-raised-button color="primary" (click)="submit()" class="invoice-management-billing__submit" [disabled]="invoiceManagementBillingFormGroup.invalid || !(selectedContainers.length > 0)">Ver Proforma</button>
+  </div>
+
+  <div class="invoice-management-billing__considerations">
+      <p>
+          Por favor tener en cuenta las siguientes recomendaciones:
+      </p>
+
+      <ol>
+          <li>El Email y/o dominio, que no tenga respuestas automáticas, bandeja de entrada llena.</li>
+          <li>Correo y/o correos escritos correctamente en los insumos originales.</li>
+          <li>ominio del correo debe permitir la recepción de adjuntos en formato .ZIP</li>
+          <li>Se sugiere que se agreguen los dominios (facturactscolombia&#64;cen.biz, facturactscolombia&#64;amazonses.com)como contactos seguros.</li>
+          <li>Correo reportado como SPAM, malicioso y/o con virus.</li>
+      </ol>
+
+      <p>
+          Nota: Nuestro proveedor tecnológico se hace responsable por el envío de las notificaciones hacia los correos relacionados por
+          Sociedad Puerto Industrial Aguadulce S.A. en los insumos originales de los documentos y no por la recepción de estas en la bandeja de entrada de estos. Responsable: Tercero
+          Si los correos configurados no son los correctos por favor pida copia de esta factura al correo billing&#64;puertoaguadulce.com y realice la actualización de los correos a través de servicliente&#64;puertoaguadulce.com
+      </p>
+  </div>
+</div>

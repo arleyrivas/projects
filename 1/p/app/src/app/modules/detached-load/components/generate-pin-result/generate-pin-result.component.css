@@ -1,0 +1,46 @@
+.generate-pin-result__header {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.generate-pin-result__date {
+  color: #92B975;
+  border: #92B975 solid 1px;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-family: "Gilroy-light" !important;
+  font-size: 1.25rem;
+}
+
+.generate-pin-result__title {
+    color: #92B975;
+    font-family: "Gilroy-ExtraBold" !important;
+    font-size: 1.5rem;
+}
+
+.generate-pin-result__content {
+    padding: 2rem;
+    background-color: #ecf0f1;
+}
+
+.generate-pin-result__result-item {
+    margin-bottom: 1rem;
+}
+
+.generate-pin-result__actions {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.generate-pin-result__submit {
+    color: #ffffff;
+    font-family: "Gilroy-light" !important;
+}

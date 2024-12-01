@@ -1,0 +1,325 @@
+<div class="container">
+  <h1 mat-dialog-title class="header">
+    <mat-icon>schedule</mat-icon>
+    <span style="padding: 5px;" class="large-text">Turnos Disponibles</span>
+  </h1>
+  
+  <div class="legend-container" *ngIf="horasDisponibles.length > 0  && loadType === 'cs'">
+      <!-- Leyenda centrada -->
+      <div class="title-icons">
+          <i class="material-icons text-green-500 mb-1">check_circle</i>
+          <span class="media-text">Disponible</span>
+          <i class="material-icons text-red-500 mb-1">cancel</i>
+          <span class="media-text">No Disponible</span>
+          <i class="material-icons text-yellow-500 mb-1">warning</i>
+          <span  class="media-text">Últimas citas</span>
+      </div>
+
+      <div class="availability-text media-text">
+        <span>Retiro: R</span>
+       
+    </div>
+
+     
+
+      <div class="tables-container">
+          <!-- Subtabla 1 -->
+          <div class="table-wrapper">
+              <table class="availability-table">
+                  <thead>
+                      <tr class="hide-bottom-border">
+                          <th class="w-32 whitespace-nowrap"></th>
+                          <th class="text-center-hidden">R</th>
+                          
+                      </tr>
+                      <tr>
+                          <th class="w-32 whitespace-nowrap"></th>
+                          <th class="text-center">R</th>
+                         
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let slot of columna1; let i = index" class="whitespace-nowrap" [class.selected]="isSelected(slot)"  [class.not-available]="slot.icono === 'not_available'">
+                          <td class="whitespace-nowrap hour" [class.not-available]="slot.icono === 'not_available'"
+                               (click)="slot.icono !== 'not_available' && selectSlot(slot)"><span class="large-text">{{ slot.hora }}</span></td>
+                          <td class="text-center">
+                              <ng-container>
+                                  <ng-container *ngIf="slot.icono === 'availability'">
+                                    <i  class="material-icons text-green-500" >check_circle</i>
+                                  </ng-container>
+                                  <ng-container *ngIf="slot.icono === 'not_available'">
+                                    <i  class="material-icons text-red-500">cancel</i>
+                                  </ng-container>
+                                 <ng-container *ngIf="slot.icono === 'warning'">
+                                  <i class="material-icons text-yellow-500">warning</i>
+                                 </ng-container>
+                                  
+                              </ng-container>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+          <!-- Subtabla 2 -->
+         <!--  <div class="table-wrapper">
+            <table class="availability-table">
+              <thead>
+                  <tr class="hide-bottom-border">
+                      <th class="w-32 whitespace-nowrap"></th>
+                      <th class="text-center-hidden">R</th>
+                  </tr>
+                  <tr>
+                      <th class="w-32 whitespace-nowrap"></th>
+                      <th class="text-center">R</th>
+                      
+                  </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let slot of columna2; let i = index" class="whitespace-nowrap" [class.selected]="isSelected(slot)">
+                  <td class="whitespace-nowrap"  [class.not-available]="slot.icono === 'not_available'" 
+                       (click)="slot.icono !== 'not_available' && selectSlot(slot)">{{  slot.hora }}</td>
+                      <td class="text-center">
+                        <ng-container>
+                          <ng-container *ngIf="slot.icono === 'availability'">
+                            <i  class="material-icons text-green-500" >check_circle</i>
+                          </ng-container>
+                          <ng-container *ngIf="slot.icono === 'not_available'">
+                            <i  class="material-icons text-red-500">cancel</i>
+                          </ng-container>
+                         <ng-container *ngIf="slot.icono === 'warning'">
+                          <i class="material-icons text-yellow-500">warning</i>
+                         </ng-container>
+                          
+                      </ng-container>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+          </div> -->
+      </div>
+  </div>
+
+  <div class="legend-container" *ngIf="horasDisponibles.length > 0 && loadType === 'cc'">
+      <div>
+        <span style="color: #7ba052; font-weight: bold; font-size: large;">Contenedores para retiro</span>
+        <br>
+        <ng-container  *ngFor="let item of listUnits">  
+          <ng-container *ngIf="item.type === 'Importación'">
+              <div class="info-retiro-detalle">
+                  <span>{{ item.id }}</span>
+              </div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!isContainersImport">
+          <div class="info-retiro-detalle-ninguno">
+            <span>No hay contenedores seleccionados</span>
+          </div>
+        </ng-container>
+      </div>
+      <div >
+        <span style="color: #7ba052; font-weight: bold; font-size: large;" >Contenedores para ingreso</span>
+        <br>
+        <ng-container  *ngFor="let item of listUnits">  
+          <ng-container *ngIf="item.type === 'Exportación'">
+              <div class="info-retiro-detalle">
+                  <span>{{ item.id }}</span>
+              </div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!isContainersExport">
+          <div class="info-retiro-detalle-ninguno">
+            <span>No hay contenedores seleccionados</span>
+          </div>
+        </ng-container>
+      </div>
+    <!-- Leyenda centrada -->
+    <div class="title-icons">
+        <i class="material-icons text-green-500 mb-1">check_circle</i>
+        <span  class="media-text">Disponible</span>
+        <i class="material-icons text-red-500 mb-1">cancel</i>
+        <span  class="media-text">No Disponible</span>
+        <i class="material-icons text-yellow-500 mb-1">warning</i>
+        <span  class="media-text">Últimas citas</span>
+    </div>
+
+    <div class="availability-text">
+        <span  class="media-text">Retiro: R</span>
+        <span class="ml-4 media-text">Retiro DTA: D</span>
+        <span class="ml-4 media-text">Ingreso Llenos: I</span>
+        <span class="ml-4 media-text">Apto Alimentos: _A</span>
+    </div>
+
+    <div class="tables-container">
+        <!-- Subtabla 1 -->
+        <div class="table-wrapper" *ngIf="columnaCC1.length > 0">
+            <table class="availability-table">
+                <thead>
+                    <tr class="hide-bottom-border">
+                        <th class="w-32 whitespace-nowrap"></th>
+                        <th class="text-center-hidden">R</th>
+                        <th class="text-center-hidden">D</th>
+                        <th class="text-center-hidden">I</th>
+                        <th  colspan="3" *ngIf="lineas.length > 0 && columnaCC1[0].icono4.length > 0">Ingreso de vacíos</th>
+                    </tr>
+                    <tr>
+                        <th class="w-32 whitespace-nowrap"></th>
+                        <th class="text-center">R</th>
+                        <th class="text-center">D</th>
+                        <th class="text-center">I</th>
+                        <ng-container *ngIf="lineas.length > 0 && columnaCC1[0].icono4.length > 0"> 
+                          <th class="text-center" *ngFor="let line of lineas ">{{line}}</th> 
+                        </ng-container>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let slot of columnaCC1; let i = index" class="whitespace-nowrap" [class.selected]="isSelected(slot)" 
+                    [class.not-available]="isSlotNotAvailable(slot)">
+                        <td class="whitespace-nowrap hour" 
+                             (click)="isSlotSelectable(slot) && selectSlot(slot)"><span class="large-text">{{ slot.hora }}</span></td>
+                        <td class="text-center" >
+                            <ng-container *ngIf="slot.icono === 'availability'">
+                              <i  class="material-icons text-green-500">check_circle</i>
+                            </ng-container>
+                            <ng-container *ngIf="slot.icono === 'not_available'">
+                              <i  class="material-icons text-red-500">cancel</i>
+                            </ng-container>
+                            <ng-container *ngIf="slot.icono === 'warning'">
+                              <i  class="material-icons text-yellow-500">warning</i>
+                            </ng-container>
+                        </td>
+                        <td class="text-center" >
+                          <ng-container *ngIf="slot.icono2 === 'availability'">
+                            <i  class="material-icons text-green-500">check_circle</i>
+                          </ng-container>
+                          <ng-container *ngIf="slot.icono2 === 'not_available'">
+                            <i  class="material-icons text-red-500">cancel</i>
+                          </ng-container>
+                          <ng-container *ngIf="slot.icono2 === 'warning'">
+                            <i  class="material-icons text-yellow-500">warning</i>
+                          </ng-container>
+                      </td>
+                      <td class="text-center" >
+                        <ng-container *ngIf="slot.icono3 === 'availability'">
+                          <i  class="material-icons text-green-500">check_circle</i>
+                        </ng-container>
+                        <ng-container *ngIf="slot.icono3 === 'not_available'">
+                          <i  class="material-icons text-red-500">cancel</i>
+                        </ng-container>
+                        <ng-container *ngIf="slot.icono3 === 'warning'">
+                          <i  class="material-icons text-yellow-500">warning</i>
+                        </ng-container>
+                      </td>
+                      <ng-container *ngFor="let icon of slot.icono4">
+                        <td class="text-center" >
+                          <ng-container *ngIf="icon === 'availability'">
+                            <i  class="material-icons text-green-500">check_circle</i>
+                          </ng-container>
+                          <ng-container *ngIf="icon === 'not_available'">
+                            <i  class="material-icons text-red-500">cancel</i>
+                          </ng-container>
+                          <ng-container *ngIf="icon === 'warning'">
+                            <i  class="material-icons text-yellow-500">warning</i>
+                          </ng-container>
+                        </td>
+                      </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Subtabla 2 -->
+       <!--  <div class="table-wrapper" *ngIf="columnaCC2.length > 0">
+          <table class="availability-table">
+            <thead>
+                <tr class="hide-bottom-border">
+                    <th class="w-32 whitespace-nowrap"></th>
+                    <th class="text-center-hidden">R</th>
+                    <th class="text-center-hidden">D</th>
+                    <th class="text-center-hidden">I</th>
+                    <th  colspan="3" *ngIf="lineas.length > 0">Ingreso de vacíos</th>
+                </tr>
+                <tr>
+                    <th class="w-32 whitespace-nowrap"></th>
+                    <th class="text-center">R</th>
+                    <th class="text-center">D</th>
+                    <th class="text-center">I</th>
+                    <ng-container *ngIf="lineas.length > 0"> 
+                      <th class="text-center" *ngFor="let line of lineas">{{line}}</th> 
+                    </ng-container>
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let slot of columnaCC2; let i = index" class="whitespace-nowrap" [class.selected]="isSelected(slot)" 
+              [class.not-available]="slot.icono === 'not_available' && slot.icono2 === 'not_available' && slot.icono3 === 'not_available'">
+                  <td class="whitespace-nowrap" 
+                       (click)="slot.icono !== 'not_available' && selectSlot(slot)">{{  slot.hora }}</td>
+                  <td class="text-center" >
+                      <ng-container *ngIf="slot.icono === 'availability'">
+                        <i  class="material-icons text-green-500">check_circle</i>
+                      </ng-container>
+                      <ng-container *ngIf="slot.icono === 'not_available'">
+                        <i  class="material-icons text-red-500">cancel</i>
+                      </ng-container>
+                      <ng-container *ngIf="slot.icono === 'warning'">
+                        <i  class="material-icons text-yellow-500">warning</i>
+                      </ng-container>
+                  </td>
+                  <td class="text-center" >
+                    <ng-container *ngIf="slot.icono2 === 'availability'">
+                      <i  class="material-icons text-green-500">check_circle</i>
+                    </ng-container>
+                    <ng-container *ngIf="slot.icono2 === 'not_available'">
+                      <i  class="material-icons text-red-500">cancel</i>
+                    </ng-container>
+                    <ng-container *ngIf="slot.icono2 === 'warning'">
+                      <i  class="material-icons text-yellow-500">warning</i>
+                    </ng-container>
+                </td>
+                <td class="text-center" >
+                  <ng-container *ngIf="slot.icono3 === 'availability'">
+                    <i  class="material-icons text-green-500">check_circle</i>
+                  </ng-container>
+                  <ng-container *ngIf="slot.icono3 === 'not_available'">
+                    <i  class="material-icons text-red-500">cancel</i>
+                  </ng-container>
+                  <ng-container *ngIf="slot.icono3 === 'warning'">
+                    <i  class="material-icons text-yellow-500">warning</i>
+                  </ng-container>
+                </td>
+                <ng-container *ngFor="let icon of slot.icono4">
+                  <td class="text-center" >
+                    <ng-container *ngIf="icon === 'availability'">
+                      <i  class="material-icons text-green-500">check_circle</i>
+                    </ng-container>
+                    <ng-container *ngIf="icon === 'not_available'">
+                      <i  class="material-icons text-red-500">cancel</i>
+                    </ng-container>
+                    <ng-container *ngIf="icon === 'warning'">
+                      <i  class="material-icons text-yellow-500">warning</i>
+                    </ng-container>
+                  </td>
+                </ng-container>
+              </tr>
+          </tbody>
+        </table>
+        </div> -->
+    </div>
+  </div>
+  
+</div>
+<mat-divider></mat-divider>
+  <div mat-dialog-actions class="dialog-actions">
+    <div class="actions">
+        <button    mat-flat-button  [mat-dialog-close]="false">
+          <ng-container>
+            Cerrar
+          </ng-container>
+        </button>
+        <button mat-raised-button color="primary"   mat-flat-button (click)="confirmSelection()">
+          <ng-container>
+            Confirmar
+          </ng-container>
+        </button>
+    </div>
+  </div>

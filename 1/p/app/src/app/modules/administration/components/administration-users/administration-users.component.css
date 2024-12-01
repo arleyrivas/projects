@@ -1,0 +1,32 @@
+.administration-users {
+    padding: 1rem;
+}
+
+.show-information {
+    color: #000000;
+    cursor: pointer;
+}
+
+.administration-users__create {
+  color: #ffffff !important;
+  margin-top: 1rem;
+}
+
+.administration-users__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.title {
+  color: #666666;
+  margin: 0;
+  padding: 1rem;
+  padding-left: 0;
+  padding-top: 0;
+}
+
+.queries__filter {
+  width: 100%;
+}

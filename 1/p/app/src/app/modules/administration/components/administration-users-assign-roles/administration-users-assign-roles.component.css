@@ -1,0 +1,25 @@
+.submit-button {
+    color: #ffffff !important;
+    margin-right: 1rem;
+}
+
+.assign-roles__actions {
+    width: 100%;
+    padding: 1rem;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.title {
+  color: #666666;
+  margin: 0;
+  padding: 1rem;
+  padding-left: 0;
+  padding-top: 0;
+}
+
+.queries__filter {
+  width: 100%;
+}

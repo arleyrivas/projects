@@ -1,0 +1,16 @@
+<h1 mat-dialog-title class="generate-pini-deactivation-dialog__header">Alerta</h1>
+
+<div mat-dialog-content class="generate-pini-deactivation-dialog__content">
+  <p class="generate-pini-deactivation-dialog__message">
+    {{ message }}
+  </p>
+
+  <mat-form-field class="generate-pini-deactivation-dialog__area">
+    <textarea matInput type="text" [formControl]="observationFormControl"></textarea>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions class="generate-pini-deactivation-dialog__actions">
+  <button mat-raised-button color="primary" [mat-dialog-close]="observationFormControl.value" [disabled]="observationFormControl.invalid" class="generate-pini-deactivation-dialog__action generate-pini-deactivation-dialog__submit">Aceptar</button>
+  <button mat-raised-button [mat-dialog-close]="null" class="generate-pini-deactivation-dialog__action">Cancelar</button>
+</div>

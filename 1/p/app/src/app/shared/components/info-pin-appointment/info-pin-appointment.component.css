@@ -1,0 +1,191 @@
+.info-pin-appointment-header {
+    width: 100%;
+    background-color: #92B975;
+    
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+  }
+
+.title-info-pin{
+  color: white;
+  font-weight: bold;
+}
+
+.title-usuario-info-pin{
+  color: white;
+  margin-left: 30px;
+}
+.info-pin-appointment-body{
+  width: 100%;
+  padding: 10px; 
+}
+.filtro {
+  width: 100%;
+
+}
+.queries__filter{
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  margin-top: -50px;
+}
+
+.hidden-header {
+  display: none;
+}
+
+.hidden-visible {
+  visibility: hidden;
+}
+
+.load__result {
+  width: 100%;
+  margin-top: 2rem;
+  background-color: #fff;
+  font-family: "Gilroy-light";
+}
+
+.load__result-header {
+  width: max-content;
+  background-color: #92B975;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+}
+
+.load__result-title {
+  font-size: 1.2rem;
+  font-family: "Gilroy-light";
+  margin: 0;
+}
+
+.load__container-list {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0;
+  list-style: none;
+  color: #666;
+}
+
+.load__container-item {
+  width: 100%;
+  background-color: #F9F9F9ff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 0.5rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.load__container-item-title {
+  font-size: 1.2rem;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 0.1rem 0.5rem;
+  background-color: #777;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.load__container-icon {
+  width: 1rem;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.load__container-icon_lock {
+  width: 0.7rem;
+}
+
+.load__container-icon:hover {
+  color: #95a5a6;
+}
+
+.load__actions-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.load__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.darker-background {
+  background-color: #ECECEC !important;
+}
+
+.centered-cell {
+  text-align: center;
+}
+
+.info-pin-appointment-header-asc {
+  width: 100%;
+  background-color: #92B975;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+
+}
+
+.load__container-list {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  color: #666;
+}
+
+.load__container-item {
+  width: 100%;
+  background-color: #F9F9F9ff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 0.5rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.load__container-item-title {
+  font-size: 1.2rem;
+}
+
+.load__container-icon {
+  width: 1rem;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.load__container-icon_lock {
+  width: 0.7rem;
+}
+
+.desassociate_container {
+  width: 1rem;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  cursor: pointer;
+  transition: 0.25s;
+  fill: red;
+}

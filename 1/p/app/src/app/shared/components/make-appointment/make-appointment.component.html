@@ -1,0 +1,361 @@
+<mat-card class="mat-card-make-appointment" *ngIf="showMakeAppointment && type == 'Crear Cita' && loadType === 'cs'">
+    <mat-card-content>
+      <div class="title-card">
+        <h2 class="card-title" style="color: #7ba052;">
+          Crear Cita Para Importación
+        </h2>
+        
+        <svg id="crear_cita_3" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+      </div>
+      <div style="margin-top: 20px;">
+        <span style="color: #7ba052; font-weight: bold; font-size: large;">Lotes para retiro</span>
+        <ng-container  *ngFor="let item of listHbl">
+            <ng-container *ngIf="getHblResult(item) as result">
+            
+                    <ng-container *ngIf="result.totalUnds > 0">
+                        <div class="info-retiro-detalle">
+                            <span>{{ item }} ({{ result.totalUnds }} Unds. - {{ result.totalCarga | decimalDot }} Tons)</span>
+                        </div>
+                    </ng-container>
+            </ng-container>
+        </ng-container>
+    </div>
+    <app-type-transport  (dataTypeTransporte)="handleDataTypeTransporte($event)" [loadType]="loadType"></app-type-transport>
+    <div class="message-error-manifest">
+      <div></div>
+      <div class="message-error-manifest-text"><mat-error *ngIf="showManifestError">{{ showManifestErrorText }}</mat-error></div>
+    </div>
+    
+    <app-driver-searcher [formatSelected]="true" (driverSearch)="onDriverSelected($event)" (cleanDriver)="onCleanDriver()"></app-driver-searcher>
+    <app-calendario-appointment [loadType]="loadType"  [hblList]="listHbl" [placa]="placa" [isHoldConsigneeActive]="isHoldConsigneeActive" (dataToParent)="handleDataFromChild($event)">
+
+    </app-calendario-appointment>
+    
+
+    <div class="boton-crear-cita" *ngIf="showButtonCrearCita && isPermissionCreateAppointmentCS">
+      <button 
+      mat-button class="green-button" 
+      [hourRestriction]="'CS_CIT_CRE'"
+      [hourRestrictionAPIGateway]="userInfo"
+      [hourRestrictionCallback]="createAppointment.bind(this)"
+      >Crear Cita</button>
+    </div>    
+    
+    </mat-card-content>
+  </mat-card>
+<mat-card class="mat-card-make-appointment" *ngIf="showEditAppointment && type == 'Editar Cita' && loadType === 'cs'">
+  <mat-card-content>
+    <div class="title-card">
+      <h2 class="card-title" style="color: #7ba052;">
+        Editar Cita De Importación
+      </h2>
+      
+      <svg id="crear_cita_3" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+    </div>
+    <div class="espaciado-superior">
+      <div class="card-content">
+        <svg class="calendar" id="calendar_appointment_cs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82.04 83.99"><defs><style>.calendar{fill:#424242;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path class="calendar" d="m82.04,10.32c0-1.09-.87-1.98-1.93-1.98h-13.35c-.42-1.77,1.3-8.35-1.93-8.22-11.44.68-12.09-3.24-11.7,8.22h-24.2C28.5,6.58,30.22-.01,26.99.12c-11.44.68-12.09-3.23-11.7,8.22H1.94C.87,8.34,0,9.23,0,10.32v71.69c0,1.09.86,1.98,1.93,1.98h78.17c1.07,0,1.93-.89,1.93-1.98V10.32Zm-25.05-6.24h5.9v12.48h-5.9V4.08Zm-37.83,0h5.9v12.48h-5.9V4.08ZM3.87,12.3h11.41c.42,1.77-1.3,8.35,1.93,8.22,11.44-.68,12.09,3.23,11.7-8.22h24.2c.42,1.77-1.3,8.35,1.93,8.22,11.44-.68,12.09,3.24,11.7-8.22h11.41v12.1H3.87v-12.1Zm74.3,67.72H3.87V28.37h74.3v51.66Z"/><path class="calendar" d="m13.54,72.1h10.19c1.07,0,1.93-.89,1.93-1.98v-10.44c0-1.09-.87-1.98-1.93-1.98h-10.19c-1.07,0-1.93.89-1.93,1.98v10.44c0,1.09.87,1.98,1.93,1.98Zm1.93-10.44h6.33v6.48h-6.33v-6.48Z"/><path class="calendar" d="m35.92,50.7h10.19c1.07,0,1.93-.89,1.93-1.98v-10.44c0-1.09-.87-1.98-1.93-1.98h-10.19c-1.07,0-1.93.89-1.93,1.98v10.44c0,1.09.87,1.98,1.93,1.98Zm1.93-10.44h6.33v6.48h-6.33v-6.48Z"/><path class="calendar" d="m35.92,72.1h10.19c1.07,0,1.93-.89,1.93-1.98v-10.44c0-1.09-.87-1.98-1.93-1.98h-10.19c-1.07,0-1.93.89-1.93,1.98v10.44c0,1.09.87,1.98,1.93,1.98Zm1.93-10.44h6.33v6.48h-6.33v-6.48Z"/><path class="calendar" d="m58.3,50.7h10.19c1.07,0,1.93-.89,1.93-1.98v-10.44c0-1.09-.87-1.98-1.93-1.98h-10.19c-1.07,0-1.93.89-1.93,1.98v10.44c0,1.09.87,1.98,1.93,1.98Zm1.93-10.44h6.33v6.48h-6.33v-6.48Z"/><path class="calendar" d="m58.3,72.1h10.19c1.07,0,1.93-.89,1.93-1.98v-10.44c0-1.09-.87-1.98-1.93-1.98h-10.19c-1.07,0-1.93.89-1.93,1.98v10.44c0,1.09.87,1.98,1.93,1.98Zm1.93-10.44h6.33v6.48h-6.33v-6.48Z"/></g></svg>
+        <span class="textop">Identificador: {{appointmentNbr}}</span><br>
+        <span class="textop" style="margin-left: 28px;"> Día y hora de la cita: {{appointmentDate}}</span>
+
+        
+        <app-type-transport  (dataTypeTransporte)="handleDataTypeTransporte($event)" [initialInputValue]="manifestLists" [loadType]="loadType"></app-type-transport>
+        <div class="message-error-manifest">
+          <div></div>
+          <div class="message-error-manifest-text"><mat-error *ngIf="showManifestError">{{ showManifestErrorText }}</mat-error></div>
+        </div>
+
+
+        <div *ngIf="causals.length > 0">
+          <span class="textop"><B>Motivo de edición:</B></span>
+          <mat-form-field class="causal-searcher__input">
+            <mat-select  placeholder="Selecciona un motivo">
+              <mat-option *ngFor="let causal of causals" [value]="causal.code" (onSelectionChange)="onCausalSelected($event, causal)">
+                {{ causal.description }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+          
+        <app-driver-searcher [formatSelected]="true" (driverSearch)="onDriverSelected($event)" (cleanDriver)="onCleanDriver()" [loadType]="loadType" [type]="type"></app-driver-searcher>
+        
+        <div class="vehiculo-searcher">
+          <div class="placa-searcher" *ngIf="showPlate">
+              <app-search-plate
+              inputPlaceholder="Placa del Vehículo"
+              [hasSearchButton]="false"
+              indication="(Ingresa la placa del vehículo)"
+              (dataStatusChanged)="onDataStatusChanged($event)"
+              [plateInputValue]="placa"
+              ></app-search-plate>
+          </div>
+        
+          <ng-container class="capacity-disponible" *ngIf="loadType === 'cs' && showPlate">
+              <mat-card appearance="outlined" class="capacity">
+                
+                <span class="text-cd">{{ capacity }}</span>
+                  <mat-card-actions class="card-actions">
+                      <span class="additional-content">(Capacidad)</span>
+                  </mat-card-actions>
+              </mat-card>
+              <mat-card appearance="outlined" class="disponibilidad">
+                
+                  <span class="text-cd" >{{ disponible }}</span>
+                  <mat-card-actions  class="card-actions">
+                      <span class="additional-content">(Disponibilidad)</span>
+                  </mat-card-actions>
+              </mat-card>
+              
+          </ng-container>
+          
+            
+          
+        
+
+          
+        </div>
+        <div class="mensaje">
+          <span class="tecnomecanica" *ngIf="tecnomecanica != '' ">x {{tecnomecanica}}</span>
+          <span class="soat" *ngIf="soat != '' ">x {{soat}}</span>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <div class="table-cargo-lots">
+    <table  mat-table #invoicesTable [dataSource]="dataSource" multiTemplateDataRows>
+      <ng-container matColumnDef="numero">
+        <th mat-header-cell *matHeaderCellDef>Nro.</th>
+        <td mat-cell *matCellDef="let element" class="centered-cell">{{ element.numero }}</td>
+      </ng-container>
+      <ng-container matColumnDef="blitem">
+          <th mat-header-cell *matHeaderCellDef>HBL</th>
+          <td mat-cell *matCellDef="let element" class="centered-cell">{{ element.blitem }}</td>
+      </ng-container>
+      <ng-container matColumnDef="cargoWeigth">
+          <th mat-header-cell *matHeaderCellDef>Peso</th>
+          <td mat-cell *matCellDef="let element" class="centered-cell">{{ element.cargoWeigth }}</td>
+      </ng-container>
+      <ng-container matColumnDef="cargoQuantity">
+          <th mat-header-cell *matHeaderCellDef>Unid</th>
+          <td mat-cell *matCellDef="let element" class="centered-cell">{{ element.cargoQuantity }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <mat-card-actions class="button-actions">
+    
+        <button mat-raised-button color="primary" (click)="cancel()" class="generate-pin-display__continue">Cancelar</button>
+      
+        <ng-container  *ngIf="showButtonEditarCita && isPermissionEditAppointmentCS">
+          <button 
+            mat-raised-button color="primary" 
+            [hourRestriction]="'CS_CIT_EDI'"
+            [hourRestrictionAPIGateway]="userInfo"
+            [hourRestrictionCallback]="createAppointment.bind(this)"
+          >Confirmar</button>
+        </ng-container>
+        
+      
+    
+    
+  </mat-card-actions>
+</mat-card>
+<div class="continuar_operacion" *ngIf="showEditAppointment && type == 'Editar Cita' && loadType === 'cs'">
+  <button mat-raised-button color="primary" (click)="continue()" class="generate-pin-display__continue">Continuar Operando</button>
+</div>
+
+<mat-card class="mat-card-make-appointment" *ngIf="showMakeAppointment && type == 'Crear Cita' && loadType === 'cc'">
+  <mat-card-content>
+    <div class="title-card">
+      <h2 class="card-title" style="color: #7ba052;">
+        {{titleContenerized}}
+      </h2>
+      <svg id="crear_cita_3" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+    </div>
+    <div *ngIf="isContainersImport">
+      <span style="color: #7ba052; font-weight: bold; font-size: large;">Contenedores para retiro</span>
+      <ng-container  *ngFor="let item of listContainers">  
+        <ng-container *ngIf="item.type === 'Importación'">
+            <div class="info-retiro-detalle">
+                <span>{{ item.id }}</span>
+            </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div *ngIf="isContainersExport">
+      <span style="color: #7ba052; font-weight: bold; font-size: large;" >Contenedores para ingreso</span>
+      <ng-container  *ngFor="let item of listContainers">  
+        <ng-container *ngIf="item.type === 'Exportación'">
+            <div class="info-retiro-detalle">
+                <span>{{ item.id }}</span>
+            </div>
+        </ng-container>
+      </ng-container>
+    </div>
+   
+    <app-type-transport  (dataTypeTransporte)="handleDataTypeTransporte($event)" [loadType]="loadType" [siteAppointment]="siteAppointment"></app-type-transport>
+    <div class="message-error-manifest">
+      <div></div>
+      <div class="message-error-manifest-text"><mat-error *ngIf="showManifestError">{{ showManifestErrorText }}</mat-error></div>
+    </div>
+    <div class="vehiculo-searcher">
+      <div class="placa-searcher" *ngIf="showPlate">
+          <app-search-plate
+          inputPlaceholder="Placa del Vehículo"
+          [hasSearchButton]="false"
+          indication="(Ingresa la placa del vehículo)"
+          (dataStatusChanged)="onDataStatusChanged($event)"
+          [plateInputValue]="placa"
+          [loadType]="loadType"
+
+          ></app-search-plate>
+      </div>
+     
+    </div>
+    <div class="mensaje">
+      <span class="tecnomecanica" *ngIf="tecnomecanica != '' ">x {{tecnomecanica}}</span>
+      <span class="soat" *ngIf="soat != '' ">x {{soat}}</span>
+    </div>
+    <app-driver-searcher [formatSelected]="true" (driverSearch)="onDriverSelected($event)" (cleanDriver)="onCleanDriver()" (errorDriver)="onErrorDriver($event)"></app-driver-searcher>
+    <app-calendario-appointment [loadType]="loadType"  [hblList]="listHbl" [placa]="placa" [containersList]="containerList" [listUnits]="listContainers"
+      [isContainersImport]="isContainersImport" [isContainersExport]="isContainersExport" [siteAppointment]="siteAppointment" (dataToParent)="handleDataFromChild($event)"></app-calendario-appointment>
+    
+    <!-- <mat-card-actions class="button-actions"> -->
+     <!--  <button mat-raised-button color="primary" (click)="cancel()" class="generate-pin-display__continue">Cancelar</button> -->
+      <div class="boton-crear-cita" *ngIf="showButtonCrearCita && isPermissionCreateAppointmentCC">
+        <button 
+          mat-button class="green-button" 
+          [hourRestriction]="'CC_CIT_CRE'"
+          [hourRestrictionAPIGateway]="userInfo"
+          [hourRestrictionCallback]="createAppointment.bind(this)">
+          Crear Cita
+        </button>
+      </div>   
+    <!-- </mat-card-actions> -->
+     
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="mat-card-make-appointment" *ngIf="showEditAppointment && type == 'Editar Cita' && loadType === 'cc'">
+  <mat-card-content>
+    <div class="title-card">
+      <h2 class="card-title" style="color: #7ba052;">
+        Editar Cita
+      </h2>
+      
+      <svg id="crear_cita_3" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+    </div>
+    <div class="espaciado-superior">
+      <div class="card-content">
+        <svg class="calendar" id="calendar_appointment_cs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82.04 83.99"><defs><style>.calendar{fill:#424242;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path class="calendar" d="m82.04,10.32c0-1.09-.87-1.98-1.93-1.98h-13.35c-.42-1.77,1.3-8.35-1.93-8.22-11.44.68-12.09-3.24-11.7,8.22h-24.2C28.5,6.58,30.22-.01,26.99.12c-11.44.68-12.09-3.23-11.7,8.22H1.94C.87,8.34,0,9.23,0,10.32v71.69c0,1.09.86,1.98,1.93,1.98h78.17c1.07,0,1.93-.89,1.93-1.98V10.32Zm-25.05-6.24h5.9v12.48h-5.9V4.08Zm-37.83,0h5.9v12.48h-5.9V4.08ZM3.87,12.3h11.41c.42,1.77-1.3,8.35,1.93,8.22,11.44-.68,12.09,3.23,11.7-8.22h24.2c.42,1.77-1.3,8.35,1.93,8.22,11.44-.68,12.09,3.24,11.7-8.22h11.41v12.1H3.87v-12.1Zm74.3,67.72H3.87V28.37h74.3v51.66Z"/><path class="calendar" d="m13.54,72.1h10.19c1.07,0,1.93-.89,1.93-1.98v-10.44c0-1.09-.87-1.98-1.93-1.98h-10.19c-1.07,0-1.93.89-1.93,1.98v10.44c0,1.09.87,1.98,1.93,1.98Zm1.93-10.44h6.33v6.48h-6.33v-6.48Z"/><path class="calendar" d="m35.92,50.7h10.19c1.07,0,1.93-.89,1.93-1.98v-10.44c0-1.09-.87-1.98-1.93-1.98h-10.19c-1.07,0-1.93.89-1.93,1.98v10.44c0,1.09.87,1.98,1.93,1.98Zm1.93-10.44h6.33v6.48h-6.33v-6.48Z"/><path class="calendar" d="m35.92,72.1h10.19c1.07,0,1.93-.89,1.93-1.98v-10.44c0-1.09-.87-1.98-1.93-1.98h-10.19c-1.07,0-1.93.89-1.93,1.98v10.44c0,1.09.87,1.98,1.93,1.98Zm1.93-10.44h6.33v6.48h-6.33v-6.48Z"/><path class="calendar" d="m58.3,50.7h10.19c1.07,0,1.93-.89,1.93-1.98v-10.44c0-1.09-.87-1.98-1.93-1.98h-10.19c-1.07,0-1.93.89-1.93,1.98v10.44c0,1.09.87,1.98,1.93,1.98Zm1.93-10.44h6.33v6.48h-6.33v-6.48Z"/><path class="calendar" d="m58.3,72.1h10.19c1.07,0,1.93-.89,1.93-1.98v-10.44c0-1.09-.87-1.98-1.93-1.98h-10.19c-1.07,0-1.93.89-1.93,1.98v10.44c0,1.09.87,1.98,1.93,1.98Zm1.93-10.44h6.33v6.48h-6.33v-6.48Z"/></g></svg>
+        <span class="textop">Identificador: {{appointmentNbr}}</span><br>
+        <span class="textop" style="margin-left: 28px;"> Día y hora de la cita: {{appointmentDate}}</span><br>
+        <span class="textop" style="margin-left: 28px; margin-top: 20px;"> Presentarse en: {{siteAppointment}}</span>
+
+
+        <app-type-transport  (dataTypeTransporte)="handleDataTypeTransporte($event)" [initialInputValue]="manifestLists" [loadType]="loadType"></app-type-transport>
+        <div class="message-error-manifest">
+          <div></div>
+          <div class="message-error-manifest-text"><mat-error *ngIf="showManifestError">{{ showManifestErrorText }}</mat-error></div>
+        </div>
+
+
+        <div *ngIf="causals.length > 0">
+          <span class="textop"><B>Motivo de edición:</B></span>
+          <mat-form-field class="causal-searcher__input">
+            <mat-select  placeholder="Selecciona un motivo">
+              <mat-option *ngFor="let causal of causals" [value]="causal.code" (onSelectionChange)="onCausalSelected($event, causal)">
+                {{ causal.description }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+        <app-driver-searcher [formatSelected]="true" (driverSearch)="onDriverSelected($event)" (cleanDriver)="onCleanDriver()" [loadType]="loadType" [type]="type"></app-driver-searcher>
+        
+        <div class="vehiculo-searcher">
+          <div class="placa-searcher" *ngIf="showPlate">
+              <app-search-plate
+              inputPlaceholder="Placa del Vehículo"
+              [hasSearchButton]="false"
+              indication="(Ingresa la placa del vehículo)"
+              (dataStatusChanged)="onDataStatusChanged($event)"
+              [plateInputValue]="placa"
+              ></app-search-plate>
+          </div>
+
+      
+        </div>
+        <div class="mensaje">
+          <span class="tecnomecanica" *ngIf="tecnomecanica != '' ">x {{tecnomecanica}}</span>
+          <span class="soat" *ngIf="soat != '' ">x {{soat}}</span>
+        </div>
+
+
+      </div>
+    </div>
+  </mat-card-content>
+  <div class="table-cargo-lots">
+    <table  mat-table #invoicesTable [dataSource]="dataSourceCC" multiTemplateDataRows>
+      <ng-container matColumnDef="numberFile">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let element" class="centered-cell">{{ element.numberFile }}</td>
+      </ng-container>
+      <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef>Número</th>
+          <td mat-cell *matCellDef="let element" class="centered-cell">{{ element.number }}</td>
+      </ng-container>
+      <ng-container matColumnDef="container">
+          <th mat-header-cell *matHeaderCellDef>Contenedor</th>
+          <td mat-cell *matCellDef="let element" class="centered-cell">{{ element.container }}</td>
+      </ng-container>
+      <ng-container matColumnDef="size">
+          <th mat-header-cell *matHeaderCellDef>Tamaño</th>
+          <td mat-cell *matCellDef="let element" class="centered-cell">
+            <span class="badge">{{ element.size }}"</span>
+          </td>
+      </ng-container>
+      <ng-container matColumnDef="transation">
+        <th mat-header-cell *matHeaderCellDef>Transacción</th>
+        <td mat-cell *matCellDef="let element" class="centered-cell">{{ element.transation }}</td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Acción</th>
+        <td mat-cell *matCellDef="let element" class="centered-cell">
+          <div
+              *ngIf="element.number && element.transation === 'EXPORT' && isPermissionDeleteAppointmentCC"
+              (click)="desassociateContainer(element)">
+              <svg class="desassociate_container" xmlns="http://www.w3.org/2000/svg" id="delete_unit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.99 26.54"><defs><style>.delete_unit-1{fill:#c0392b;stroke-width:0px;}</style></defs><g id="delete_unit_1-2"><path class="delete_unit-1" d="M16.18,26.54H7.37c-1.67,0-3.11-1.32-3.34-3.06L1.63,5.94c-.02-.14.02-.28.12-.39.09-.11.23-.17.37-.17h18.91c.14,0,.27.06.37.16s.14.24.12.38l-1.98,17.47c-.2,1.79-1.65,3.15-3.35,3.15ZM2.68,6.36l2.32,16.99c.17,1.26,1.19,2.21,2.37,2.21h8.82c1.21,0,2.23-.98,2.37-2.27l1.92-16.92H2.68Z"/><path class="delete_unit-1" d="M22.5,6.36H.49c-.27,0-.49-.22-.49-.49v-3.24c0-.27.22-.49.49-.49h22c.27,0,.49.22.49.49v3.24c0,.27-.22.49-.49.49ZM.99,5.38h21.01v-2.25H.99v2.25Z"/><path class="delete_unit-1" d="M14.17,3.13h-5.35c-.27,0-.49-.22-.49-.49V.49c0-.27.22-.49.49-.49h5.35c.27,0,.49.22.49.49v2.14c0,.27-.22.49-.49.49ZM9.31,2.14h4.36V.99h-4.36v1.15Z"/><rect class="delete_unit-1" x="7.35" y="21.3" width=".99" height="2.2" transform="translate(-2.68 1.13) rotate(-7.03)"/><rect class="delete_unit-1" x="6.43" y="8.58" width=".99" height="12.77" transform="translate(-1.78 .96) rotate(-7.03)"/><rect class="delete_unit-1" x="14.05" y="21.9" width="2.2" height=".99" transform="translate(-8.92 34.72) rotate(-83.04)"/><rect class="delete_unit-1" x="9.67" y="14.48" width="12.77" height=".99" transform="translate(-.75 29.09) rotate(-83.04)"/><rect class="delete_unit-1" x="11.04" y="8.63" width=".99" height="11.18" transform="translate(-.1 .08) rotate(-.39)"/><rect class="delete_unit-1" x="11.08" y="19.82" width=".99" height="3.67"/></g></svg>
+          </div>
+
+        </td>
+      </ng-container>
+      
+     
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <mat-card-actions class="button-actions">
+    
+        <button mat-raised-button color="primary" (click)="cancel()" class="generate-pin-display__continue">Cancelar</button>
+      
+        <ng-container  *ngIf="showButtonEditarCita && isPermissionEditAppointmentCC">
+          <button 
+            mat-raised-button color="primary" 
+            [hourRestriction]="'CC_CIT_EDI'"
+            [hourRestrictionAPIGateway]="userInfo"
+            [hourRestrictionCallback]="createAppointment.bind(this)"
+          >Confirmar</button>
+        </ng-container>
+    
+  </mat-card-actions>
+</mat-card>
+
+<div class="continuar_operacion" *ngIf="showEditAppointment && type == 'Editar Cita' && loadType === 'cc'">
+  <button mat-raised-button color="primary" (click)="continue()" class="generate-pin-display__continue">Continuar Operando</button>
+</div>

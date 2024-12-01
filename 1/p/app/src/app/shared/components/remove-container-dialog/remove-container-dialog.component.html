@@ -1,0 +1,30 @@
+<h2 mat-dialog-title class="confirm-appointment-message-dialog__title">Alerta</h2>
+
+<mat-dialog-content>
+  <p>
+    <ng-container i18n="@@56a1f6e921cde24fb4931a712c7a91c3e9d0831a112jE5b2acc6d2c38b6749Ym47">
+        modules.shared.alert.desassociate.container
+    </ng-container> {{unitNbr}}
+    <ng-container i18n="@@56a1f6e921cde24fb4931a712c7a91c3e9d0831a112jE5b2acc6d2c38b6749Ym48">
+        modules.shared.alert.desassociate.container.booking
+    </ng-container>
+    {{booking}}   ?
+  </p>
+  
+
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <div class="confirm-appointment-message-dialog__actions">
+    <button    mat-flat-button color="primary" [mat-dialog-close]="false" >
+      Cerrar
+    </button>
+    <button 
+    mat-raised-button 
+    color="primary" 
+    class="confirm-appointment-message-dialog__action" 
+    (click)="submit()">Aceptar</button>
+    
+  </div>
+</div>
+

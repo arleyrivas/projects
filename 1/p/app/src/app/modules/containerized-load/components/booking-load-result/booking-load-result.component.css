@@ -1,0 +1,104 @@
+.load__result {
+    width: 100%;
+    margin-top: 2rem;
+    background-color: #fff;
+    font-family: "Gilroy-light";
+  }
+  
+  .load__result-header {
+    width: max-content;
+    background-color: #92B975;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+  }
+  
+  .load__result-title {
+    font-size: 1.2rem;
+    font-family: "Gilroy-light";
+    margin: 0;
+  }
+  
+  .load__container-list {
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    padding: 0;
+    list-style: none;
+    color: #666;
+  }
+  
+  .load__container-item {
+    width: 100%;
+    background-color: #F9F9F9ff;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 0.5rem;
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+  
+  .load__container-item-title {
+    font-size: 1.2rem;
+  }
+  
+  .badge {
+    font-size: 12px;
+    padding: 0.1rem 0.5rem;
+    background-color: #777;
+    color: #fff;
+    border-radius: 10px;
+  }
+  
+  .load__container-icon {
+    width: 1rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+  
+  .load__container-icon_lock {
+    width: 0.7rem;
+  }
+  
+  .load__actions-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  
+  .load__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  ::ng-deep .mdc-data-table__row {
+    height: 40px !important;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  .booking-load-result .mat-mdc-header-cell {
+    font-size: 0.8rem;
+    font-family: "Gilroy-Light";
+    background-color: #f9f9f9;
+    color: #6e6e6e !important;
+  }
+
+  .booking-load-result .mat-mdc-header-cell:first-child {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+
+  .booking-load-result .mat-mdc-header-cell:last-child {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }

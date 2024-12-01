@@ -1,0 +1,128 @@
+<div class="lock">
+    <h1 class="title">{{ routeData.title }}</h1>
+
+    <div class="lock__observations">
+        <div class="lock__observations-title" i18n="@@8cd8605c84931231e37368bc3a845ce1d77f2cfd3847168739d78a43df16d37b">
+          documental.views.agent.OBSERVATIONS
+        </div>
+        <textarea
+            [formControl]="observationFormControl"
+            class="lock__observations-field"
+        ></textarea>
+        <p
+            *ngIf="observationFormControl.touched && observationFormControl.invalid"
+            class="lock__observations-error"
+        >
+        <ng-container i18n="@@b9f89149b919f2ae58d34078de4601997c4ec132a1cb1db44501e9db4b13306e">
+          error.REQUIRED
+        </ng-container>
+        </p>
+    </div>
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="selected">
+            <th mat-header-cell *matHeaderCellDef>
+                <div class="checkbox-cell">
+                    <mat-checkbox (change)="checkboxSelectAll($event)" color="primary"></mat-checkbox>
+                </div>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <div class="checkbox-cell">
+                    <mat-checkbox
+                        (change)="checkboxSelectOne($event, element)"
+                        [checked]="element.selected"
+                        color="primary"
+                    ></mat-checkbox>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>
+              <ng-container i18n="@@c5586e9aaa3e48785e67b742f871e19de7d8315ad67a82477b0fc0df04f3c4d5">
+                breakbulk.views.actions.import.CARGO_LOTS_NBR
+              </ng-container>
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nbr">
+            <th mat-header-cell *matHeaderCellDef>
+                {{ routeData.detached ? 'HBL' : 'Contenedor' }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ routeData.detached ? element.hbl : element.unitNbr }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="plate">
+            <th mat-header-cell *matHeaderCellDef>
+              <ng-container i18n="@@752bea1bb2032e61641c322eb6a1e670c73727b62a134a931e8576af8a97ad48">
+                breakbulk.views.actions.import.TRUCK
+              </ng-container>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.truck_license_nbr }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="driver">
+            <th mat-header-cell *matHeaderCellDef>
+              <ng-container i18n="@@337b603405a6f0b45b2ee122a6aa42ede4078f2160515b92351a2f24ba41551e">
+                breakbulk.views.actions.import.DRIVER
+              </ng-container>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ routeData.detached ? element.driver_name : element.driverName }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>
+              <ng-container i18n="@@c6682d3261e13ff160ad304f16f97613e28efc06050ab94554e3f160bf4ab7a0">
+                breakbulk.views.actions.import.DATE_TVA
+              </ng-container>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.requested_time }}
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div class="lock__actions">
+        <a class="lock__action lock__cancel" (click)="back()" i18n="@@0cd61a36d5089e959effa286dc8e2093f45f2bb841fc83e018f931b37da54d22">
+          break-bulk.views.manage-booking.manage-booking-actions-create-item.CANCEL
+        </a>
+
+        <button
+            *ngIf="!routeData.detached"
+            class="lock__action lock__accept"
+            mat-raised-button color="primary"
+            [appDoubleFactorAuthentication]="routeData.lock ? 'CC_CTA_BLOQ' : 'CC_CTA_DESBL'"
+            [appDoubleFactorAPIGateway]="userInfo"
+            [doubleFactorDestination]="'destination'"
+            [doubleFactorCallback]="submit.bind(this)"
+            [doubleFactorIncorrectCallback]="back.bind(this)"
+            [disabled]="(observationFormControl.invalid || !selectedItems.length)"
+        >
+            <mat-icon>{{ routeData.actionIcon }}</mat-icon>
+            {{ routeData.action }}
+        </button>
+
+        <button
+            *ngIf="routeData.detached"
+            class="lock__action lock__accept"
+            mat-raised-button color="primary"
+            [appDoubleFactorAuthentication]="routeData.lock ? 'CS_CTA_BLOQ' : 'CS_CTA_DESBL'"
+            [appDoubleFactorAPIGateway]="userInfo"
+            [doubleFactorCallback]="submit.bind(this)"
+            [doubleFactorIncorrectCallback]="back.bind(this)"
+            [disabled]="observationFormControl.invalid || canSubmit"
+        >
+            <mat-icon>{{ routeData.actionIcon }}</mat-icon>
+            {{ routeData.action }}
+        </button>
+    </div>
+</div>

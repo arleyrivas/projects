@@ -1,0 +1,10 @@
+<ng-container *ngIf="invoices.length">
+    <div class="card-header">
+      <span class="text-titulo">Facturas de la Unidad: {{ invoiceBL }}</span>
+    </div>
+    <ng-container *ngFor="let invoice of invoices">
+  
+      <app-invoice-item class="invoice-item" [invoice]="invoice" [user]="user.userName"></app-invoice-item>
+    </ng-container>
+</ng-container>
+

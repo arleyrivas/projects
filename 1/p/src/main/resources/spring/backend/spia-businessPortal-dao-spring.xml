@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!-- 	<bean id="userDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl"> -->
+<!--         <property name="sessionFactory" ref="sessionFactory"/> -->
+<!--         <property name="type" value="com.spia.businessportal.common.entities.User"/> -->
+<!--     </bean> -->
+    <bean id="pinDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.Pin"/>
+    </bean>
+     <bean id="notificationDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.FailedNotification"/>
+    </bean>
+    <bean id="truckingCompanyDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.TruckingCompany"/>
+    </bean>
+    <bean id="truckVisitDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.TruckVisit"/>
+    </bean>
+    <bean id="customerRequestNVDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.CustomerRequestNV"/>
+    </bean>
+    <bean id="customerDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.CustomerNV"/>
+    </bean>
+    <bean id="truckVisitAppointmentBreakBulkDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.TruckVisitAppointmentBreakBulk"/>
+    </bean>    
+    <bean id="invoicePortalDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.InvoicePortal"/>
+    </bean>
+    <bean id="pinContainerizedDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.PinContainerized"/>
+    </bean>
+    <bean id="documentalDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.Documentation"/>
+    </bean>
+    <bean id="customerRequestDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.CustomerRequest"/>
+    </bean>   
+    <bean id="customerDataDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.CustomerData"/>
+    </bean> 
+    <bean id="documentationSpecificFileDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.DocumentationSpecificFile"/>
+    </bean>
+    <bean id="documentationTypeDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.DocumentationType"/>
+    </bean>
+    <bean id="documentationFileStateDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.DocumentationFileState"/>
+    </bean>
+    
+     <bean id="notificationApiDAO" class="ar.com.fluxit.framework.dao.generic.impl.GenericHibernateDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="type" value="com.spia.businessportal.common.entities.Notification"/>
+    </bean>
+    
+</beans>

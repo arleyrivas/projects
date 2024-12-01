@@ -1,0 +1,28 @@
+.generate-pin__unit {
+  display: grid;
+  grid-template-columns: auto auto auto 1fr;
+  column-gap: 1rem;
+}
+
+.generate-pin__checkbox,
+.generate-pin__unit-nbr,
+.generate-pin__unit-size,
+.generate-pin__multiple {
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  font-family: "Gilroy-Light";
+  font-size: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.generate-pin__unit-size-text {
+  color: #ffffff;
+  background-color: #636e72;
+  padding: 0.15rem;
+  border-radius: 0.5rem;
+  font-family: "Gilroy-ExtraBold" !important;
+}

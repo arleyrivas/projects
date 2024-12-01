@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receipt" pageWidth="595" pageHeight="790" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="b2bd47da-13f2-4514-ae31-88910c5946ae">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="530"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#00008B">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFBFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="finalNbrsDataset" uuid="c9a59417-a887-41b2-9831-99f9c53cff64">
+		<field name="finalNbr" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="customerDataset" uuid="68bbc87a-e68e-4747-b0d3-430f1165d567">
+		<field name="customer" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="ammountDataset" uuid="f8add24e-9882-482b-bbbf-81c0f0ae98d5">
+		<field name="ammount" class="java.lang.Double">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SPIA_LOGO" class="java.lang.String"/>
+	<parameter name="MEMBRETE" class="java.lang.String"/>
+	<parameter name="SUPERPUERTOS" class="java.lang.String"/>
+	<field name="transactionId" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="referenceCode" class="java.lang.String"/>
+	<field name="payDescription" class="java.lang.String"/>
+	<field name="totalAmmount" class="java.lang.Double"/>
+	<field name="currency" class="java.lang.String"/>
+	<field name="payDate" class="java.util.Date"/>
+	<field name="paymentMethod" class="java.lang.String"/>
+	<field name="creditNumber" class="java.lang.String"/>
+	<field name="finalNbrs" class="java.util.Collection"/>
+	<field name="customers" class="java.util.Collection"/>
+	<field name="ammounts" class="java.util.Collection"/>
+	<background>
+		<band height="770" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image>
+				<reportElement x="-20" y="0" width="595" height="770" uuid="a30fec0b-0bcf-44b0-9403-a30d46daa6a2"/>
+				<imageExpression><![CDATA[$P{SPIA_LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="92" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="12" y="0" width="531" height="54" forecolor="#000000" uuid="e1e2c9f5-96be-4fdb-a4dc-302d8388bb8e"/>
+				<textElement markup="html">
+					<font fontName="Arial" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Apreciado Cliente:</b><br><br>" + "La transacción No." + $F{transactionId} + " realizada en el sitio web de <b>SOCIEDAD PUERTO INDUSTRIAL AGUADULCE S.A.</b> fue aprobada."]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="441" splitType="Stretch">
+			<rectangle>
+				<reportElement x="143" y="10" width="272" height="213" forecolor="#000000" uuid="490d9a3a-94ce-4dc1-ae35-910176599258"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="147" y="14" width="264" height="20" forecolor="#000000" uuid="b48bbbab-f394-4859-aa4e-cb5ecb89d4c7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="190" y="19" width="171" height="20" forecolor="#000000" uuid="10a997ca-194f-4211-902f-2e24b49cbd71"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[DATOS DE LA TRANSACCIÓN]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="147" y="38" width="120" height="20" forecolor="#000000" backcolor="#000000" uuid="d0738d64-6ea5-4b5a-8426-8c86c6dfc6c7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="149" y="43" width="120" height="20" forecolor="#F5F5F5" backcolor="#FFFFFF" uuid="068dcead-db05-4c35-beb9-b37bc9e996fe"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Número de Transacción:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="147" y="61" width="120" height="20" forecolor="#000000" backcolor="#000000" uuid="77860345-da65-4307-a1e0-aff917eb175e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="150" y="66" width="100" height="20" forecolor="#F5F5F5" backcolor="#FFFFFF" uuid="63e02743-e1c4-4eb9-ae62-754ef0c1142d"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Estado:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="147" y="84" width="120" height="20" forecolor="#000000" backcolor="#000000" uuid="5b1a4f79-1404-4a92-8056-1b11825e73a1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="150" y="89" width="100" height="20" forecolor="#F5F5F5" backcolor="#FFFFFF" uuid="e0dc8eea-5473-46aa-a6d0-9b97f70b17b0"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Referencia:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="147" y="107" width="120" height="20" forecolor="#000000" backcolor="#000000" uuid="91ff1d11-43fb-4993-9543-0b8a34607f9b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="150" y="112" width="120" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c2c92d27-e14b-4b84-be37-69f6f904a1ca"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Descripción del pago: ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="147" y="130" width="120" height="20" forecolor="#000000" backcolor="#000000" uuid="73b97bed-e90e-4b66-a9e9-c3e333531e94"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="151" y="135" width="100" height="20" forecolor="#F5F5F5" backcolor="#FFFFFF" uuid="f6678eba-eb3c-4208-b3d9-6ed847a19aa9"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Valor:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="147" y="153" width="120" height="20" forecolor="#000000" backcolor="#000000" uuid="4df266f5-836e-444f-a0ae-c2ffaab665f3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="150" y="158" width="100" height="20" forecolor="#F5F5F5" backcolor="#FFFFFF" uuid="0c3aba33-7872-401d-9125-fca1d0156632"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Moneda:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="147" y="176" width="120" height="20" forecolor="#000000" backcolor="#000000" uuid="51991004-4ba0-4e7d-889a-05c0c38b95ec"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="151" y="181" width="100" height="20" forecolor="#F5F5F5" backcolor="#FFFFFF" uuid="63a5ce95-bdc8-4611-9826-de57e792770e"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="147" y="199" width="120" height="20" forecolor="#000000" backcolor="#000000" uuid="5b72a0b4-a6b2-43c9-91b1-5649d7aa6b89"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="152" y="204" width="100" height="20" forecolor="#F5F5F5" backcolor="#FFFFFF" uuid="bb50b51f-905f-4be7-a404-15396e79c076"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Medio de pago:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="271" y="38" width="140" height="20" forecolor="#000000" uuid="c8dbc38a-d230-4373-80c2-e6f20008730f"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="277" y="42" width="132" height="20" forecolor="#000000" uuid="7269716c-603f-4cf8-a474-b31aa95f88ae"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transactionId}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="271" y="61" width="140" height="20" forecolor="#000000" uuid="faa5f30c-8994-474c-abd9-2c5ec8880b4a"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="277" y="65" width="132" height="20" forecolor="#000000" uuid="0b5f7ca3-c418-46a0-bd93-83bebc6f894e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="271" y="84" width="140" height="20" forecolor="#000000" uuid="ecb4461f-8b6b-4ea7-90c6-834853bc7767"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="278" y="89" width="131" height="20" forecolor="#000000" uuid="7fdc1d2b-2777-4f1d-8eb2-e0b9a3e24a73"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referenceCode}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="271" y="107" width="140" height="20" forecolor="#000000" uuid="9342b91a-0479-434a-8446-3a955fdd4cca"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="277" y="112" width="132" height="20" forecolor="#000000" uuid="b7daa697-5e9d-479a-b5fd-a431ccd9bb25"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{payDescription}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="271" y="130" width="140" height="20" forecolor="#000000" uuid="c53de2a9-5c85-400a-a982-a41967043ffa"/>
+			</rectangle>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="278" y="134" width="131" height="20" forecolor="#000000" uuid="47b83b3f-a245-4f71-b413-213acdc6b45b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalAmmount}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="271" y="153" width="140" height="20" forecolor="#000000" uuid="4f33a151-66b6-4305-8aa8-40340ad78602"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="277" y="158" width="132" height="20" forecolor="#000000" uuid="cc7eb22b-b435-467d-8642-efe71bfae48c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{currency}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="271" y="176" width="140" height="20" forecolor="#000000" uuid="fd8c13db-5e0a-478e-887c-04eb0829b2f3"/>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="277" y="182" width="132" height="20" forecolor="#000000" uuid="6b5c206e-08ba-4c36-a7eb-2fe511d04aaf"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{payDate}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="271" y="199" width="140" height="20" forecolor="#000000" uuid="f5423707-d414-4992-8fa7-fd327070fe9a"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="277" y="204" width="80" height="20" forecolor="#000000" uuid="def1ae72-857d-42ff-8a42-a414f3d774dd"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paymentMethod}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="204" width="49" height="20" forecolor="#000000" uuid="edb025cc-5883-45c9-9203-65f21ffca491"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{creditNumber}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Opaque" x="93" y="280" width="122" height="20" forecolor="#000000" backcolor="#000000" uuid="fe8c25b8-a02f-4427-9e76-611f3978abea"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="100" y="281" width="111" height="19" forecolor="#F5F5F5" backcolor="#FFFFFF" uuid="27f62ff7-dd24-41b6-9a1f-eace071be0bb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Número de Factura]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Opaque" x="217" y="280" width="122" height="20" forecolor="#000000" backcolor="#000000" uuid="7066f69a-7592-4eb2-a4be-47c1ce014f60"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="226" y="281" width="106" height="19" forecolor="#F5F5F5" backcolor="#FFFFFF" uuid="7fa38e60-9bbf-4299-bdc9-87062037adf9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Opaque" x="341" y="280" width="122" height="20" forecolor="#000000" backcolor="#000000" uuid="ee521e9b-8f51-4742-b8fb-694389d3d4b0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="354" y="281" width="95" height="19" forecolor="#F5F5F5" backcolor="#FFFFFF" uuid="1e4cbc87-8686-44e9-8964-8ba042f3e4d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Valor Factura]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="93" y="301" width="122" height="22" uuid="73811cb1-a8d2-4e93-a54e-6c19ee64c400"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="finalNbrsDataset" uuid="03dd6fee-1343-462d-9bc6-47c36ef94608">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{finalNbrs})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="22" width="122">
+						<textField isBlankWhenNull="true">
+							<reportElement x="0" y="1" width="122" height="20" forecolor="#000000" uuid="1aa1556b-d994-4e84-8535-a9f8b9068709"/>
+							<box>
+								<pen lineWidth="1.0" lineColor="#000000"/>
+								<topPen lineWidth="1.0" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Arial" size="9"/>
+								<paragraph rightIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{finalNbr}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="217" y="301" width="122" height="22" uuid="fa2c065c-eb28-4744-a97b-7ee45d63dd0d"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="customerDataset" uuid="721ac216-1881-40aa-a04a-30b9679ee410">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{customers})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="22" width="122">
+						<textField isBlankWhenNull="true">
+							<reportElement x="0" y="1" width="122" height="20" forecolor="#000000" uuid="80f6de66-d26d-4eef-aabe-9fad0814e817"/>
+							<box>
+								<pen lineWidth="1.0" lineColor="#000000"/>
+								<topPen lineWidth="1.0" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Arial" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{customer}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="341" y="301" width="122" height="22" uuid="3a748294-5bab-482e-bf10-81f9efbfae94"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ammountDataset" uuid="aaeb112b-b51a-4649-9a07-e73c5bedb390">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{ammounts})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="22" width="122">
+						<textField pattern="###0.00" isBlankWhenNull="true">
+							<reportElement x="0" y="1" width="122" height="20" forecolor="#000000" uuid="f0301296-ebad-4343-9514-7f09ec776c63"/>
+							<box>
+								<pen lineWidth="1.0" lineColor="#000000"/>
+								<topPen lineWidth="1.0" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Arial" size="9"/>
+								<paragraph rightIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ammount}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<rectangle>
+				<reportElement mode="Transparent" x="93" y="257" width="370" height="20" forecolor="#000000" uuid="06a8bbec-de43-489a-9391-1bc34ee4e229"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="190" y="258" width="184" height="18" forecolor="#000000" uuid="8a0349ce-2033-47b0-932e-59477827991b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[DETALLE DE LAS FACTURAS]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

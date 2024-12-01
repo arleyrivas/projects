@@ -1,0 +1,292 @@
+.info-retiro-detalle{
+    background-color: #7ba052;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+::ng-deep .mat-mdc-card .mdc-card .mat-card-make-appointment .ng-star-inserted{
+    width: 100%;
+  }
+
+.title-card {
+    width: max-content;
+    }
+    
+.card-title {
+    font-family: "Gilroy-ExtraBold" !important;
+    color: #78909c;
+    margin: 0;
+}
+
+.green-button {
+  font-weight: bold;
+  background-color: rgb(142, 171, 73);
+  color: white;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 8px 16px;
+  border: transparent;
+  font-size: 15px;
+}
+
+.boton-crear-cita{
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+::ng-deep mat-mdc-row{
+  background-color: #ECECEC !important;
+}
+
+.espaciado-superior{
+  margin-top: 20px;
+}
+
+.calendar {
+  width: 1.98rem;
+  color: #636e72 !important;
+  
+}
+
+.textop{
+  font-size: 22px;
+  padding: 1rem;
+}
+
+.vehiculo-searcher{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  overflow-y: hidden;
+  
+}
+.mensaje{
+display: flex;
+flex-direction: column;
+padding: 5px;
+color: #a94442;
+margin-bottom: 10px;
+}
+
+.vehiculo-searcher .placa-searcher{
+  flex: 3;
+
+}
+
+.capacity{
+height:  2.5rem;
+border-radius: 0.7rem;
+background-color: #D0D0CF;
+
+}
+.disponibilidad{
+height:  2.5rem;
+border-radius: 0.7rem;
+background-color: #D0D0CF;
+}
+
+.demo-inline-calendar-card {
+  width: 600px ; 
+}
+
+
+.card-actions {
+display: flex;
+justify-content: center; /* Centra los elementos horizontalmente */
+
+}
+
+.additional-content {
+margin-top: -20px; /* Ajusta el margen superior entre el contenido adicional y las tarjetas */
+}
+
+.text-cd{
+padding: 2px;
+margin-top: 10px;
+margin-left: 5px;
+
+font-size: 20px;
+}
+
+.button-actions{
+  display: flex;
+  justify-content: space-between;
+}
+
+.continuar_operacion{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.causal-searcher__input {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.info-pin-appointment-header {
+  width: 100%;
+  background-color: #92B975;
+  
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.title-info-pin{
+color: white;
+font-weight: bold;
+}
+
+.title-usuario-info-pin{
+color: white;
+margin-left: 30px;
+}
+.info-pin-appointment-body{
+width: 100%;
+padding: 10px; 
+}
+.filtro {
+width: 100%;
+
+}
+.queries__filter{
+width: 100%;
+}
+
+table {
+width: 100%;
+margin-top: -50px;
+}
+
+.hidden-header {
+display: none;
+}
+
+.load__result {
+width: 100%;
+margin-top: 2rem;
+background-color: #fff;
+font-family: "Gilroy-light";
+}
+
+.load__result-header {
+width: max-content;
+background-color: #92B975;
+color: #fff;
+border-radius: 0.5rem;
+padding: 0.5rem 1.5rem;
+}
+
+.load__result-title {
+font-size: 1.2rem;
+font-family: "Gilroy-light";
+margin: 0;
+}
+
+.load__container-list {
+width: 100%;
+margin-top: 0.5rem;
+padding: 0;
+list-style: none;
+color: #666;
+}
+
+.load__container-item {
+width: 100%;
+background-color: #F9F9F9ff;
+border-radius: 0.5rem;
+padding: 0.5rem 1.5rem;
+margin-bottom: 0.5rem;
+
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: 1fr;
+}
+
+.load__container-item-title {
+font-size: 1.2rem;
+}
+
+.badge {
+font-size: 12px;
+padding: 0.1rem 0.5rem;
+background-color: #777;
+color: #fff;
+border-radius: 10px;
+}
+
+.load__container-icon {
+width: 1rem;
+margin-left: 0.1rem;
+margin-right: 0.1rem;
+cursor: pointer;
+transition: 0.25s;
+}
+
+.load__container-icon_lock {
+width: 0.7rem;
+}
+
+.load__container-icon:hover {
+color: #95a5a6;
+}
+
+.load__actions-wrapper {
+display: flex;
+justify-content: flex-end;
+align-items: center;
+}
+
+.load__body {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+}
+
+.darker-background {
+background-color: #ECECEC !important;
+}
+
+.table-cargo-lots{
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.centered-cell {
+  text-align: center;
+}
+
+.message-error-manifest{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.message-error-manifest-text{
+  display: flex;
+    width: 70%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.desassociate_container {
+  width: 1rem;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  cursor: pointer;
+  transition: 0.25s;
+  fill: red;
+}

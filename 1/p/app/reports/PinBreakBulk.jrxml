@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pin" pageWidth="595" pageHeight="790" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="c10a8d19-afba-444c-bdc6-69ff58587e44">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="372"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<subDataset name="CommodityDataSet" uuid="b7b487be-d37e-490c-8aef-56aa784ed74c">
+		<field name="commodity" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="QuantityDataSet" uuid="64a7bcaf-6ac7-4f35-a95e-776549b5c68c">
+		<field name="quantity" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="WeightDataSet" uuid="06cd97a1-896b-4c22-9291-99723fe28693">
+		<queryString language="SQL">
+			<![CDATA[]]>
+		</queryString>
+		<field name="weight" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SPIA_LOGO" class="java.lang.String"/>
+	<parameter name="SUPERPUERTOS" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="blNbr" class="java.lang.String"/>
+	<field name="agentName" class="java.lang.String"/>
+	<field name="truckingCompanyName" class="java.lang.String"/>
+	<field name="pinNbr" class="java.lang.String"/>
+	<field name="commodity" class="java.util.Collection"/>
+	<field name="quantity" class="java.util.Collection"/>
+	<field name="weight" class="java.util.Collection"/>
+	<group name="nro de pin" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{pinNbr}]]></groupExpression>
+		<groupHeader>
+			<band height="117">
+				<textField isBlankWhenNull="true">
+					<reportElement x="120" y="36" width="248" height="20" forecolor="#000000" uuid="a7bf1bc8-d47e-447a-948a-c3be867e7a35"/>
+					<textElement>
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pinNbr}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="120" y="76" width="248" height="20" forecolor="#000000" uuid="8ff5f220-5875-4881-9c0c-eaa4500fb271"/>
+					<textElement>
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{blNbr}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="77" width="144" height="20" forecolor="#000000" uuid="bd8ef29c-eff2-4ae2-a5aa-6d584f18c5df"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[HBL:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="56" width="144" height="20" forecolor="#000000" uuid="39757efd-8600-4d76-9e6b-930d8b1739cb"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Empresa de Transporte:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="120" y="56" width="248" height="20" forecolor="#000000" uuid="bf55d5b5-ef0c-4883-a4f2-23fd8ed28888"/>
+					<textElement>
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{truckingCompanyName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="35" width="144" height="20" forecolor="#000000" uuid="308e998f-74c0-4eb5-890d-c33fd6bf3bff"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Pin:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="97" width="144" height="20" forecolor="#000000" uuid="8c47aec6-be4a-46af-ad60-568ae8a0aecd"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Agente:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="120" y="97" width="248" height="20" forecolor="#000000" uuid="40748a9a-f711-4134-927f-3b486bb7bf49"/>
+					<textElement>
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{agentName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="219">
+				<rectangle>
+					<reportElement x="296" y="39" width="125" height="20" forecolor="#000000" backcolor="#000000" uuid="80d1c626-fdcb-4635-8bc1-cbf7187db200">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+				</rectangle>
+				<rectangle>
+					<reportElement x="171" y="39" width="125" height="20" backcolor="#000000" uuid="fdc520dd-4d56-41f4-80af-3af0a5571881">
+						<property name="local_mesure_unitheight" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+				</rectangle>
+				<rectangle>
+					<reportElement x="120" y="19" width="301" height="20" forecolor="#000000" uuid="48eb1c4f-99b4-40e2-836c-0208d23d3a57"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="177" y="19" width="182" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="54075749-0ca1-4b84-9840-aeadc773ce0a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[DESCRIPCIÓN DE LA CARGA]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="120" y="39" width="51" height="20" forecolor="#000000" backcolor="#000000" uuid="f14812a5-25cf-46aa-abd3-6299dc1608e5">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="120" y="38" width="50" height="20" forecolor="#F5F5F5" uuid="19ca0390-66c6-4026-9bb3-75726af08e45"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Item]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="171" y="39" width="125" height="20" forecolor="#F5F5F5" uuid="a7261977-d6b2-42d4-aa95-54ba98e2676b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Unidades]]></text>
+				</staticText>
+				<componentElement>
+					<reportElement x="120" y="59" width="51" height="20" uuid="70b318f7-05d2-4e67-bf5f-ff8fd1eb857f">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+						<datasetRun subDataset="CommodityDataSet" uuid="352d13da-7cfc-4db9-9359-f2ec8e162be1">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{commodity})]]></dataSourceExpression>
+						</datasetRun>
+						<jr:listContents height="20" width="51">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="51" height="20" forecolor="#000000" uuid="e95e3009-5940-46e7-9fe7-21771e8b458b"/>
+								<box>
+									<pen lineWidth="1.0" lineColor="#000000"/>
+									<topPen lineWidth="1.0" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{commodity}]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+				<componentElement>
+					<reportElement x="171" y="59" width="125" height="20" uuid="530af90c-b961-4354-b5f3-2aaca5b8b8b7">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+						<datasetRun subDataset="QuantityDataSet" uuid="6f884488-1d58-4cb0-a797-8688e9693bb5">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{quantity})]]></dataSourceExpression>
+						</datasetRun>
+						<jr:listContents height="20" width="125">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="125" height="20" forecolor="#000000" uuid="a81fe184-075a-42ac-901c-dd7a64408d8a"/>
+								<box>
+									<pen lineWidth="1.0" lineColor="#000000"/>
+									<topPen lineWidth="1.0" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+				<staticText>
+					<reportElement x="296" y="39" width="125" height="20" forecolor="#F5F5F5" uuid="246feb9a-a3d8-41af-a75d-5e883ec9b589"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Peso (t)]]></text>
+				</staticText>
+				<componentElement>
+					<reportElement x="296" y="59" width="125" height="20" uuid="8b05a867-14bd-4167-bbb6-2c5564acce9d">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="local_mesure_unitheight" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="WeightDataSet" uuid="06e24566-7d06-4805-a566-15ecab44aca6">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{weight})]]></dataSourceExpression>
+						</datasetRun>
+						<jr:listContents height="20" width="125">
+							<textField>
+								<reportElement x="0" y="0" width="125" height="20" uuid="07d99750-4212-4c7b-b5f6-5aa234ed6e48"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{weight}]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="770">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image>
+				<reportElement key="image-1" stretchType="RelativeToBandHeight" x="-20" y="0" width="595" height="770" uuid="4ce90496-7aeb-4f0b-875f-e6f077d767fb">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<imageExpression><![CDATA[$P{SPIA_LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="154" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="107" width="269" height="27" forecolor="#000000" uuid="9ea6404a-aafd-401b-92a2-66e99457e88d"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Arial" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DATOS DE PIN CARGA SUELTA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="144" width="420" height="1" forecolor="#000000" uuid="f3bdf18c-92b6-402b-902f-d29a11b04ad6"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+</jasperReport>

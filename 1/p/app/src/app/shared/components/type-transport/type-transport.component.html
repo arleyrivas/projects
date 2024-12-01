@@ -1,0 +1,28 @@
+<div class="type-transport">
+    <div>
+        <mat-checkbox #checkbox color="primary" class="generate-pin__checkbox" (change)="matChecboxTransportePrivado($event, checkbox)"></mat-checkbox>
+        <span class="transporte-privado-span">Transporte privado</span>
+    </div>
+    
+    <!-- <input type="text"
+        matInput
+        [formControl]="typeTransportFormControl"
+        [value]="data" (input)="onInput($event)"
+        class="type-transport__input"
+        [hidden]="transportePrivado"
+        placeholder=" Ingrese el manifiesto de la carga"
+    > -->
+    <div class="documental-search" *ngIf="!transportePrivado">
+        <p class="search__description">{{ indication }}</p>
+        <div class="input-simulator">
+            <span *ngFor="let value of values; let i = index"> {{ value }} <a class="span-delete" (click)="removeValue(i)">x</a></span>
+            <input #inputValue id="inputValue" type="text"  (keyup)="checkEnter($event, inputValue)" (blur)="onBlur($event, inputValue)" [placeholder]="inputPlaceholder" [class.invalido]="isInvalid">
+            
+        </div>
+    </div>
+    
+    
+    
+    
+
+</div>

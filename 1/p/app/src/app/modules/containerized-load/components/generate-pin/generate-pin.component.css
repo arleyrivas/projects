@@ -1,0 +1,81 @@
+.generate-pin {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    row-gap: 1rem;
+}
+
+.generate-pin__caption {
+    width: 25rem;
+    color: #636e72;
+    font-family: "Gilroy-Light";
+    font-size: 1.5rem;
+    line-height: 1.25;
+}
+
+.generate-pin__caption-bold {
+    font-family: "Gilroy-ExtraBold" !important;
+}
+
+.generate-pin__all-units {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    column-gap: 1rem;
+}
+
+.generate-pin__unit {
+    display: grid;
+    grid-template-columns: auto auto auto 1fr;
+    column-gap: 1rem;
+}
+
+.generate-pin__checkbox,
+.generate-pin__unit-nbr,
+.generate-pin__unit-size,
+.generate-pin__multiple {
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    font-family: "Gilroy-Light";
+    font-size: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generate-pin__unit-size-text {
+    color: #ffffff;
+    background-color: #636e72;
+    padding: 0.15rem;
+    border-radius: 0.5rem;
+    font-family: "Gilroy-ExtraBold" !important;
+}
+
+.generate-pin__actions {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.generate-pin__cancel {
+    margin-right: 1rem;
+    font-family: "Gilroy-Light";
+}
+
+.generate-pin__submit {
+    color: #ffffff !important;
+    font-family: "Gilroy-Light";
+}
+
+.title-card {
+    width: max-content;
+}
+
+.card-title {
+    font-family: "Gilroy-ExtraBold" !important;
+    color: #636e72;
+    margin: 0;
+}

@@ -1,0 +1,35 @@
+<mat-card>
+    <mat-card-content>
+        <div class="service-orders-resume">
+            <div class="service-orders-resume__icon"></div>
+
+            <div class="service-orders-resume__information">
+                <h3 class="service-orders-resume__title">Resumen solicitud de servicio(s):</h3>
+
+                <table [dataSource]="dataSource" mat-table class="service-orders-resume__table">
+                    <ng-container matColumnDef="unit">
+                        <th mat-header-cell *matHeaderCellDef>CONTENEDOR/HBL</th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="service-orders-resume__table-item">{{ element.unit }}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="serviceOrder">
+                        <th mat-header-cell *matHeaderCellDef>ORDEN DE SERVICIO/ERROR</th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="service-orders-resume__table-item">{{ element.serviceOrder }}</span>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<div class="service-orders-resume__actions">
+    <button mat-raised-button color="primary" class="service-orders-resume__action" (click)="print()" [disabled]="!(orderCreated.length > 0)">Imprimir</button>
+    <button mat-raised-button color="primary" class="service-orders-resume__action" (click)="continue()">Contiuar Operando</button>
+</div>

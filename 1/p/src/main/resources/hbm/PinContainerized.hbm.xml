@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+ 
+	<class name="PinContainerized" table="pin_containerized" dynamic-update="true">
+        <id name="id" type="long" column="id">
+            <generator class="native" />
+        </id>
+        
+        <property name="unitNbr" column="unit_nbr" type="string" not-null="false" length="11"/>
+        <property name="isoType" column="iso_type" type="string" not-null="false" length="4"/>
+        <property name="active" column="is_active" type="boolean" not-null="true" />
+        <property name="deleted" column="is_deleted" type="boolean" not-null="true"  />
+        <property name="twenty" column="is_twenty" type="boolean" not-null="true" />
+        <many-to-one name="pin" column="pin_id" class="Pin" not-null="true"  fetch="join"/>
+        <property name="observation" column="observation" type="string" />
+        <property name="truckingCompanyLDAP" column="trucking_company_ldap" type="string" not-null="false" length="20"/>
+        <property name="truckingCompanyNameLDAP" column="trucking_company_name_ldap" type="string" not-null="false" length="50"/>
+        <property name="cargoQuantity" column="cargo_quantity" type="long" not-null="false"/>
+        <property name="cargoWeigth" column="cargo_weigth" type="double" not-null="false"/>
+        <property name="destination" column="destination" type="string" not-null="false" length="11"/>
+        <property name="TruckVisitAppointmetId" column="truck_visit_appointmentbbk_id" type="long" not-null="false"/>
+        <property name="typePin" column="type_pin" type="long" not-null="false"/>
+    </class>
+</hibernate-mapping>

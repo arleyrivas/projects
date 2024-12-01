@@ -1,0 +1,95 @@
+.sac-request-management {
+    height: 100vh;
+    padding-left: 1rem;
+    display: grid;
+    grid-template-columns: 0.5fr 1.4fr;
+    grid-template-rows: 1fr;
+  }
+  
+  .sac-request-management__tab-icon {
+  width: 1.3rem;
+  }
+  
+  .sac-request-management__tab-icon path {
+  width: 1.5rem;
+  fill: rgba(0, 0, 0, 0.6);
+  }
+  
+  .title {
+    padding-top: 1rem;
+    color: #78909c;
+  }
+  
+  .header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  }
+  
+  .icon-title {
+  width: 1.5rem;
+  }
+  
+  .title-card {
+  width: max-content;
+  }
+  
+  .card-title {
+  font-family: "Gilroy-ExtraBold" !important;
+  color: #78909c;
+  margin: 0;
+  }
+  
+  .main-panel, .secondary-panel {
+  overflow-y: scroll;
+  overflow-x: hidden !important;
+  }
+  
+  .secondary-panel {
+  padding: 1rem;
+  }
+  
+  .secondary-panel__actions {
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  }
+  
+  .not-found {
+    color: #78909c;
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  button {
+    color: #ffffff;
+  }
+  
+  
+  ::ng-deep .mdc-tab__text-label {
+  flex-direction: column !important;
+  }
+  
+  ::ng-deep .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .sac-request-management__tab-icon path, 
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .sac-request-management__tab-icon path {
+  fill: #66bb6a;
+  }
+
+
+
+
+
+  /* NEW TAB  */
+  .sac-request-management.tab-one-layout .main-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .sac-request-management.tab-two-layout .full-screen-panel {
+    width: 100%;
+    height: 100vh;
+    /* Estilos específicos para la pantalla completa en el segundo tab */
+  }
+  

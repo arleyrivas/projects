@@ -1,0 +1,102 @@
+<div class="administration-actions-hours">
+    <mat-card>
+      <mat-card-content>
+        <h1 class="title">
+          Restricciones Acción : : {{ description }}</h1>
+        <table class="table">
+          <tbody align="center">
+            <tr>
+              <td scope="row">
+                  <mat-checkbox #weekTag [checked]="!!mondayFriday" (change)="changeFormState($event.checked, weekFormGroup)" color="primary"></mat-checkbox>
+              </td>
+              <td i18n="@@afa5a7e94493a3ad27f0d1923c3b443438e311e1a0cdf055322e80eeab1e551b">
+                config.views.config-restrictions.MONDAY_TO_FRIDAY
+              </td>
+              <td>
+                  <form [formGroup]="weekFormGroup">
+                      <mat-form-field class="number-input">
+                          <input matInput min="0" max="23" type="number" formControlName="from">
+                      </mat-form-field>
+
+                      <span class="hour-divider">-</span>
+
+                      <mat-form-field class="number-input">
+                          <input matInput min="0" max="23" type="number" formControlName="to">
+                      </mat-form-field>
+                  </form>
+              </td>
+            </tr>
+            <tr>
+              <td scope="row">
+                  <mat-checkbox #saturdayTag [checked]="!!saturday" (change)="changeFormState($event.checked, saturdayFormGroup)" color="primary"></mat-checkbox>
+              </td>
+              <td i18n="@@b88f2d3afbea466cbdb91028e9ca7dd7c4bbfb7a639804b5df29d25ef4da4840">
+                config.views.config-restrictions.SATURDAYS
+              </td>
+              <td>
+                  <form [formGroup]="saturdayFormGroup">
+                      <mat-form-field class="number-input">
+                          <input matInput min="0" max="23" type="number" formControlName="from">
+                      </mat-form-field>
+
+                      <span class="hour-divider">-</span>
+
+                      <mat-form-field class="number-input">
+                          <input matInput min="0" max="23" type="number" formControlName="to">
+                      </mat-form-field>
+                  </form>
+              </td>
+            </tr>
+            <tr>
+              <td scope="row">
+                  <mat-checkbox #sundayTag [checked]="!!sunday" (change)="changeFormState($event.checked, sundayFormGroup)" color="primary"></mat-checkbox>
+              </td>
+              <td i18n="@@b6c7b4091e27ee7c10d0cdbbf6c8f2d1cff621fd2d2321b2dd89ba520d19d7a8">
+                config.views.config-restrictions.SUNDAYS
+              </td>
+              <td>
+                  <form [formGroup]="sundayFormGroup">
+                      <mat-form-field class="number-input">
+                          <input matInput min="0" max="23" type="number" formControlName="from">
+                      </mat-form-field>
+
+                      <span class="hour-divider">-</span>
+
+                      <mat-form-field class="number-input">
+                          <input matInput min="0" max="23" type="number" formControlName="to">
+                      </mat-form-field>
+                  </form>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+
+      <div class="actions">
+        <span *ngIf="weekFormGroup.errors || saturdayFormGroup.errors || sundayFormGroup.errors" class="error-message">
+          Configuración errada, horario inicial es mayor al horario final
+        </span>
+
+        <button
+          mat-raised-button
+          color="primary"
+          [appDoubleFactorAuthentication]="'ADMIN_ACTIONS'"
+          [appDoubleFactorAPIGateway]="userInfo"
+          [doubleFactorDestination]="'destination'"
+          [doubleFactorCallback]="submit.bind(this, weekTag, saturdayTag, sundayTag)"
+          [doubleFactorIncorrectCallback]="cancel.bind(this)"
+          class="submit-button"
+          [disabled]="weekFormGroup.invalid || saturdayFormGroup.invalid || sundayFormGroup.invalid"
+        >
+        <ng-container i18n="@@ebc94295e02cb01e14000f384f6a174c059c0f68181bec11d3a0b1228457f92e">
+          services.views.modal.confirm.button.ACCEPT
+        </ng-container>
+        </button>
+        <button mat-flat-button (click)="cancel()">
+          <ng-container i18n="@@c1c9c168b17220c3bd35feec14abe106f2915d8c0a0d75264c91c8b63584171e">
+            config.views.config-restrictions.CANCEL
+          </ng-container>
+        </button>
+    </div>
+      </mat-card-content>
+    </mat-card>
+</div>

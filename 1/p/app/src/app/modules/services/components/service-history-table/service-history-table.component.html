@@ -1,0 +1,99 @@
+<ng-scrollbar (reachedBottom)="loadMore($event)">
+    <div class="history-cross">
+        <div class="history-cross__title">
+          <h1 class="history-cross__title-text">Historial de Ordenes de Servicio</h1>
+        </div>
+        
+        <ng-container>
+          <mat-form-field class="queries__filter">
+            <mat-label>Filtro</mat-label>
+            <mat-icon matPrefix class="queries__filter-icon">search</mat-icon>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese valor para filtrar" #input>
+          </mat-form-field>
+  
+          <table mat-table #invoicesTable [dataSource]="dataSource" multiTemplateDataRows matSort *ngIf="existData">
+            <ng-container matColumnDef="bl_hbl_booking">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>BL/HBL/BOOKING</th>
+              <td mat-cell *matCellDef="let element">{{ element.bl_hbl_booking }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="id_cliente">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>NIT Cliente</th>
+              <td mat-cell *matCellDef="let element">{{ element.id_cliente }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="nombre_cliente">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Cliente</th>
+              <td mat-cell *matCellDef="let element" >{{ element.nombre_cliente }}
+
+                
+              </td>
+             
+            </ng-container>
+            <ng-container matColumnDef="nombre_cliente_dos">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+              <td mat-cell *matCellDef="let element">
+
+                <div class="" *ngIf="existData"  >
+                  <mat-icon (click)="toggleRow(element)">{{element.icono_expand}}</mat-icon>
+                 
+                </div>
+              </td>
+             
+            </ng-container>
+  
+            
+  
+            <ng-container matColumnDef="expandedDetail">
+              <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length" class="" >
+                <div class="example-element-detail">
+                  <div class="table-border-rounded">
+                    <table class="history-cross__sub-table">
+                      <thead>
+                        <tr>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Contenedor/HBL</th>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Servicio</th>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Fecha Solicitud</th>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Fecha Servicio</th>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Lugar</th>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Estado</th>
+                        </tr>
+                      </thead>
+  
+                      <tbody>
+                        <tr class="credits" *ngFor="let element of element.serviceOrderInfo">
+                          <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ element.contenedor_hbl }}</td>
+                          <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ element.tipo }}</td>
+                          <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ standardDateFormat(element.f_solicitud) }}</td>
+                          <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ standardDateFormat(element.f_servicio) }}</td>
+                          <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ element.lugar }}</td>
+                          <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ element.estado }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="row.selected"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: ['expandedDetail']"
+              class="example-detail-row"
+              [@detailExpand]="row.selected ? 'expanded' : 'collapsed'"
+              style="overflow: hidden"
+            ></tr>
+            
+  
+            
+          </table>
+        </ng-container>
+        <ng-container *ngIf="!existData">
+          <p class="not-found">No se encontraron ordenes de servicio para los criterios ingresados</p>
+        </ng-container>
+       
+    </div>
+
+</ng-scrollbar>

@@ -1,0 +1,150 @@
+.menu-sidebar {
+  width: 15rem;
+  height: 100vh;
+  background-color: #ffffff;
+  overflow: hidden;
+  font-family: "Gilroy-Light";
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-sidebar__impersonated {
+  color: var(--primary-color);
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.menu-sidebar__header {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-sidebar__logo {
+  width: 80%;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.menu-sidebar__options {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+
+  align-self: flex-start;
+}
+
+.menu-sidebar__option {
+  width: 100%;
+  cursor: pointer;
+  color: #666666;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: 1rem;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu-sidebar__option:hover {
+  background-color: rgba(123, 160, 82, 0.1) !important;
+  border-radius: 1rem;
+}
+
+.menu-sidebar__icon {
+  margin-right: 1rem;
+}
+
+.menu-sidebar__icon {
+  margin-right: 1rem;
+}
+
+.menu-sidebar__icon_svg {
+  width: 1.5rem;
+}
+
+.menu-sidebar__icon_svg path {
+  stroke-width: 1px !important;
+}
+
+.sidebar__divider {
+  width: 3rem;
+  padding: 1rem 0 1rem 0;
+}
+
+.menu-sidebar__footer {
+  width: 100%;
+  padding-left: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.menu-sidebar__user,
+.menu-sidebar__logout {
+  color: #666666;
+}
+
+.menu-sidebar__user {
+  margin: 0;
+  margin-bottom: 0.25rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.menu-sidebar__company {
+  font-size: 0.6rem;
+}
+
+.menu-sidebar__username {
+  padding: 0.25rem;
+  font-size: 1rem;
+  background-color: rgba(123, 160, 82, 0.1) !important;
+  border-radius: 0.5rem;
+  font-family: "Gilroy-ExtraBold";
+}
+
+.menu-sidebar__logout {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-sidebar__logout-icon {
+  font-size: 1.5rem;
+  margin-right: .5rem;
+}
+
+.menu-sidebar__anchor {
+  color: var(--primary-color);
+  cursor: pointer;
+  background-color: rgba(123, 160, 82, 0.1) !important;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  font-family: "Gilroy-ExtraBold";
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-sidebar__anchor-impersonated {
+  list-style: none;
+  color: var(--primary-color);
+}

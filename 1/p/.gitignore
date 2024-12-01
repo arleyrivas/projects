@@ -1,0 +1,17 @@
+target/**
+node_modules/**
+node_modules
+bower_components/**
+src/main/webapp/WEB-INF/**
+/target/
+.project
+.angular
+.angular/**
+app/app
+app/app/**
+app/proxy.conf.json
+.classpath
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.m2e.core.prefs
+.metadata

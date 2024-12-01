@@ -1,0 +1,70 @@
+<h1 mat-dialog-title>
+    <div class="credit-notes__header">
+      <svg class="credit-notes-check-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360.76 360.76"><defs><style>.cls-1{fill:transparent;}.cls-1,.cls-2{stroke-width:0px;}.cls-2{fill:#fff;}</style></defs><g id="Capa_1-2"><rect class="cls-1" x="0" width="360.76" height="360.76" rx="4.49" ry="4.49"/><path class="cls-2" d="m296.58,93.79c-11.53-12.5-21.99-20.94-34.49-9.43l-127.81,117.83-32.27-36.9c-11.2-12.79-22.5-5.52-35.31,5.67-12.81,11.19-22.28,22.08-11.07,34.89l33.33,38.12,27.2,31.11c7.33,8.38,20.12,9.07,28.3,1.52l30.39-28.01,129-118.93c12.52-11.53,4.27-23.37-7.27-35.88Z"/></g></svg>
+    <span class="credit-notes__title-text">Confirmación</span>
+    </div>
+  </h1>
+
+  <div mat-dialog-content>
+    <p class="credit-notes__paragraph">Por favor, verifique los datos ingresados antes de aceptar, la creación del HBL no podra ser modificada y los cambios tendran un costo extra generados por el terminal</p>
+    <div class="credit-notes__selected-lists">
+      <ul class="credit-notes__selected-list">
+        <li class="credit-notes__selected-list-item" *ngIf="dialogData.hbl">
+            <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+            <div class="credit-notes__selected-list-text">
+            <p class="credit-notes__selected-list-title">HBL: <br></p>
+            <span>{{ dialogData.hbl }}</span>
+            </div>
+        </li>
+
+        <li class="credit-notes__selected-list-item" *ngIf="dialogData.packageType">
+        <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+        <div class="credit-notes__selected-list-text">
+            <p class="credit-notes__selected-list-title">TIPO DE EMPAQUE: <br></p>
+            <span>{{ dialogData.packageTypeName }}</span>
+        </div>
+        </li>
+
+        <li class="credit-notes__selected-list-item" *ngIf="dialogData.weight">
+        <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+        <div class="credit-notes__selected-list-text">
+            <p class="credit-notes__selected-list-title">PESO: <br></p>
+            <span>{{ dialogData.weight }}</span>
+        </div>
+        </li>
+    </ul>
+
+    <ul class="credit-notes__selected-list">
+        <li class="credit-notes__selected-list-item" *ngIf="dialogData.customer">
+        <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+        <div class="credit-notes__selected-list-text">
+            <p class="credit-notes__selected-list-title">CLIENTE: <br></p>
+            <span class="credit-notes__invoices-nbr">{{ dialogData.customerName }}</span>
+        </div>
+        </li>
+
+        <li class="credit-notes__selected-list-item" *ngIf="dialogData.quantity">
+        <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+        <div class="credit-notes__selected-list-text">
+            <p class="credit-notes__selected-list-title">CANTIDAD: <br></p>
+            <span>{{ dialogData.quantity }}</span>
+        </div>
+        </li>
+
+        <li class="credit-notes__selected-list-item" *ngIf="dialogData.containers">
+        <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+        <div class="credit-notes__selected-list-text">
+            <p class="credit-notes__selected-list-title">CONTENEDORES: <br></p>
+            <span class="credit-notes__invoices-nbr">{{ dialogData.containers }}</span>
+        </div>
+        </li>
+    </ul>
+</div>
+</div>
+
+<div mat-dialog-actions>
+    <div class="credit-notes__footer">
+        <button mat-flat-button (click)="cancel()" class="services-confirm__cancel-button">Cancelar</button>
+        <button mat-flat-button color="primary" (click)="submit()" [disabled]="!user" class="credit-notes__dialog-accept-button">Aceptar</button>
+    </div>
+</div>

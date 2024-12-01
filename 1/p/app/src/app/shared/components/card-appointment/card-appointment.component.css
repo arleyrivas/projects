@@ -1,0 +1,287 @@
+
+.card {
+  width: 475px;
+  margin: 20px;
+  border: none;
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  color: #666666;
+}
+.card2{
+  margin-left: 2.5%;
+  width: 95%;
+  margin-top: 15px;
+
+}
+.main-panel {
+  height: 100vh;
+  overflow-y: scroll;
+  width: 100%;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  font-size: 16px;
+  background-color: transparent;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-header button {
+  color: #666666;
+  background-color: #E5E5E5;
+  border: none;
+  border-radius: 50px;
+  width: 100px;
+  font-size: 16px;
+}
+
+.card-content {
+  margin-left: 60px;
+  font-size: 14px;
+  height: 80px;
+}
+
+.table {
+  border-spacing: 0;
+  width: 90%;
+  margin-left: 5%;
+  border: none;
+  font-size: 12px;
+}
+
+.row {
+  background-color: #E5E5E5;
+  border-bottom: 1px solid transparent;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666666;
+}
+
+
+
+.box {
+  flex: 1;
+  padding: 10px;
+}
+.box2 {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+}
+.box3 {
+  flex: 1;
+  padding: 10px;
+  text-align: right;
+}
+
+.card-footer {
+  display: flex;
+ 
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  /*border: 1px solid #000000;*/
+}
+
+.card-footer__item{
+  display: flex; 
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.green-button {
+  font-weight: bold;
+  background-color: rgb(92, 117, 59);
+  color: white;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 8px 16px;
+  border: transparent;
+  font-size: 15px;
+}
+
+.superior-button{
+  font-size: 10px;
+  height: 20px;
+  width: 120px !important;
+}
+
+.header{
+  background-color: #E5E5E5;
+  border-bottom: 1px solid transparent;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.icon-button {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  width: 100px;
+  padding: 5px;
+}
+
+.icon-button-superior {
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  width: 150px;
+  padding: 5px;
+}
+
+.icon-small {
+  height: 15px;
+  width: 20px;
+  font-size: 15px;
+  border-right: 1.8px solid #000;
+  margin-right: 5px;
+}
+
+.icon-dollar{
+  font-size: 50px;
+  margin-top: 25px;
+  width: 50px;
+  height: 50px;
+}
+.span-icon{
+  position: absolute;
+  margin-top: -20px;
+}
+.text-fecha{
+  font-size: 12px;
+}
+
+.text-titulo{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.divisores{
+  font-size: 12px;
+  height: 30px !important;
+}
+.mat-lista{
+  /*background: #92b975;
+  color: #fff;*/
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.mat-list-item.divisores {
+  white-space: normal; /* Permite que el texto se ajuste automáticamente */
+  overflow: visible; /* Puede ser útil para evitar que el texto se corte */
+}
+.dimension-tabla{
+  width: 400px !important;
+  color: #666666;
+
+}
+.mdc-data-table__header-cell{
+  color: #666666 !important;
+}
+.div-datos{
+  color: #666666 !important;
+  font-size: 14px;
+}
+.mat-divider {
+  width: 400px !important;
+}
+
+.textop{
+  margin-left: 15px;
+}
+
+.delete_appointment_nbr {
+  padding: 0.5rem;
+  border: #c0392b solid 1px;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.delete_appointment_nbr_item_delete {
+  width: 1.98rem;
+  color: #636e72 !important;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.edit_appointment_nbr_item_edit {
+  width: 1.98rem;
+  color: #636e72 !important;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.espaciado{
+  margin-top: 10px;
+}
+
+
+.appointment_creation__action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.continuar_operacion{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.appointment-canceled{
+  color: #c0392b !important;
+}
+.row-cc {
+  /*background-color: #E5E5E5;*/
+  border-bottom: 1px solid transparent;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  /*color: #666666;*/
+}
+
+.row-cc-head {
+  /*background-color: #E5E5E5;*/
+  border-bottom: 1px solid #E5E5E5 !important;
+  margin-bottom: 5px;
+  border-radius: 1px;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  /*color: #666666;*/
+}
+
+.badge-new{
+  font-size: 12px;
+    padding: 0.1rem 0.5rem;
+    background-color: #777;
+    color: #fff;
+    border-radius: 10px;
+}

@@ -1,0 +1,94 @@
+<h1 mat-dialog-title class="header">
+  <ng-container i18n="@@8eeab0cd6112986464324cf9cdb072350b0eecae7fef2b671949d435b8045864">
+    history.views.modalTotalPayment.SELECT_INVOICES
+  </ng-container>
+</h1>
+<div mat-dialog-content>
+    <div class="content">
+        <table mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="invoice">
+                <th mat-header-cell *matHeaderCellDef>
+                  <ng-container i18n="@@ac99f28d8fb2513f331f33bd2af001cddf8744c443f25cea684eaf2d1826d1a1">
+                    history.views.modalTotalPayment.NUMBER_TH
+                  </ng-container>
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.finalNumber }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="account">
+                <th mat-header-cell *matHeaderCellDef>
+                  <ng-container i18n="@@960ba100edb65c9f57b6e4aa379d44a8257200e7c9c67b1eaa272c2606042067">
+                    history.views.modalTotalPayment.COSTO
+                  </ng-container>
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.totalTotal | number }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="credit">
+                <th mat-header-cell *matHeaderCellDef>
+                  <ng-container i18n="@@562801e13ef8f77874cad3a5d79e1c7aa594c098551a45d80b5a0f5d88f422b7">
+                    history.views.modalTotalPayment.CREDITO
+                  </ng-container>
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.credits | number }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef>
+                  <ng-container i18n="@@3e3646a6ad58dd41322e6beff84c28e1e5163f906bf602ff8edbf3c41211e60f">
+                    history.views.modalTotalPayment.AMOUNT_TH
+                  </ng-container>
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.totalTotal | number }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns; sticky: true"></tr>
+        </table>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+  <div class="actions">
+    <div class="total">
+      <span i18n="@@a75be0e042d82ff8f7e3a5e0c2687649e7b69dd0b8f68852b28df6f486afe0e2">
+        history.views.modalTotalPayment.TOTAL
+      </span>
+      {{ total | number }}
+    </div>
+
+    <div>
+      <button mat-button mat-dialog-close>
+        <ng-container i18n="@@90c047bce8296845fe4633cbd49e8ac5065d2744780feb19a1a2af1211549f4d">
+          history.views.modalTotalPayment.CANCEL
+        </ng-container>
+      </button>
+      <button mat-raised-button color="primary" (click)="pay()" class="pay-button">
+        <ng-container i18n="@@998a52552f3d17d735136d4fab10643211540a090968ad545aa89f9a3b514988">
+          history.views.modalTotalPayment.PAY
+        </ng-container>
+      </button>
+    </div>
+
+    <ng-container *ngIf="payuRequest">
+      <form method="post" id="payuForm" method="POST" #ngPayuForm>
+        <input name="merchantId"    type="hidden"  [value]="payuRequest.merchantId">
+        <input name="accountId"     type="hidden"  [value]="payuRequest.accountId" >
+        <input name="description"   type="hidden"  [value]="payuRequest.description">
+        <input name="referenceCode" type="hidden"  [value]="payuRequest.referenceCode">
+        <input name="amount"        type="hidden"  [value]="payuRequest.amount">
+        <input name="tax"           type="hidden"  [value]="payuRequest.tax">
+        <input name="taxReturnBase" type="hidden"  [value]="payuRequest.taxReturnBase">
+        <input name="currency"      type="hidden"  [value]="payuRequest.currency">
+        <input name="signature"     type="hidden"  [value]="payuRequest.signature">
+        <input name="algorithmSignature"     type="hidden"  value="SHA256">
+        <input name="test"          type="hidden"  [value]="payuRequest.test">
+        <input name="buyerEmail"    type="hidden"  [value]="payuRequest.buyerEmail">
+        <input name="responseUrl"   type="hidden"  [value]="payuRequest.responseUrl">
+        <input name="confirmationUrl"    type="hidden"  [value]="payuRequest.confirmationUrl">
+        <input type="hidden" name="_token" id="csrf-token" [value]="csrf" />
+      </form>
+    </ng-container>
+  </div>
+</div>

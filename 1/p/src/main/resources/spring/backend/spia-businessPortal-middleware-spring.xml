@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+                 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+	<bean id="environmentVariablesConfiguration"
+		class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+		<property name="algorithm">
+			<value>#{systemProperties['jasypt.algorithm']}</value>
+		</property>
+		<property name="password">
+			<value>#{systemProperties['jasypt.password']}</value>
+		</property>
+		<property name="poolSize">
+			<value>1</value>
+		</property>
+		<property name="saltGenerator">
+			<bean class="org.jasypt.salt.RandomSaltGenerator" />
+		</property>
+		<property name="keyObtentionIterations">
+			<value>1000</value>
+		</property>
+		<property name="stringOutputType">
+			<value>base64</value>
+		</property>
+		<property name="providerName">
+			<value>SunJCE</value>
+		</property>
+	</bean>
+
+	<bean id="configurationEncryptor"
+		class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+		<property name="config"
+			ref="environmentVariablesConfiguration" />
+	</bean>
+
+	<bean id="propertyConfigurer"
+		class="org.jasypt.spring3.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg ref="configurationEncryptor" />
+		<property name="locations">
+			<list>
+				<value>${security.properties}
+				</value>
+				<value>classpath:/application.properties
+				</value>
+			</list>
+		</property>
+		<property name="order" value="1" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+
+	<bean id="serviceMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.GenericMdwBOImpl"
+		primary="true">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="unitFacilityVisitMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.UnitFacilityVisitMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="edoMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.EdoMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="invoiceMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.InvoiceMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="bookingBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.BookingBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+	</bean>
+
+	<bean id="truckVisitAppointmentMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.TruckVisitAppointmentMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="chargeableUnitEventsMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.ChargeableUnitEventsMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="DriverMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.DriverMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="eroMdwBo" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.EroMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="hazardMdwBo" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.HazardMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="notificationMdwBo" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.NotificationMdwBOImpl">
+		<property name="middlewareUrl"
+			value="${notification-api.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="holdPermissionMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.HoldPermissionMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="customerMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.CustomerMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="billOfLadingMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.BillOfLadingMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="customerContractMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.CustomerContractMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="shipperMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.ShipperMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="restTemplate" depends-on="propertyConfigurer"
+		class="org.springframework.web.client.RestTemplate">
+		<property name="interceptors">
+			<list>
+				<bean
+					class="com.spia.businessportal.backend.security.AuthorizationHttpRequestInterceptor">
+					<property name="username" value="${spia-mdw.username}" />
+					<property name="password" value="${spia-mdw.password}" />
+				</bean>
+				<bean id="auditRestTemplateInterceptor"
+					class="com.spia.businessportal.common.audit.AuditRestTemplateInterceptor">
+					<property name="sessionFactory" ref="sessionFactory" />
+					<property name="userBO" ref="userBO" />
+				</bean>
+			</list>
+		</property>
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="notificationRestTemplate"
+		class="org.springframework.web.client.RestTemplate">
+		<property name="interceptors">
+			<list>
+				<bean
+					class="com.spia.businessportal.backend.security.AuthorizationHttpRequestInterceptor">
+					<property name="username"
+						value="${notification-api.username}" />
+					<property name="password"
+						value="${notification-api.password}" />
+				</bean>
+			</list>
+		</property>
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="serviceOrderMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.ServiceOrderMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="creditNoteMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.CreditNoteMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="updateDataMdwBO" scope="prototype"
+		class="com.spia.businessportal.backend.bo.impl.UpdateDataMdwBOImpl">
+		<property name="middlewareUrl" value="${spia-mdw.url}" />
+		<property name="path" value="default" />
+		<property name="clazz">
+			<null />
+		</property>
+		<property name="arrayClazz">
+			<null />
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,86 @@
+
+  <div class="content">
+    <div class="title-card">
+      <h2 class="card-title">Reporte de cambios a realizar en SAP</h2>
+      <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+    </div>
+    <div class="container--request-approved">
+
+      <table mat-table #table [dataSource]="dataSource" matSort>
+
+
+            <ng-container matColumnDef="requestNumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Solicitud
+                </th>
+                <td mat-cell *matCellDef="let element" >{{ element.requestNumber }}</td>>
+            </ng-container>
+
+            <ng-container matColumnDef="requestDateTime">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Fecha Hora Solicitud
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.requestDateTime }}</td>>
+            </ng-container>
+
+            <ng-container matColumnDef="nit">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  NIT
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.nit }}</td>>
+            </ng-container>
+
+            <ng-container matColumnDef="updatedCompany">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nombre
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.updatedCompany }}</td>>
+            </ng-container>
+
+            <ng-container matColumnDef="fieldChanges">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Campo a Modificar
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.fieldChanges }}</td>>
+            </ng-container>
+
+            <ng-container matColumnDef="newValue">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Valor a Aplicar
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.newValue }}</td>>
+            </ng-container>
+
+            <ng-container matColumnDef="sacAnalyst">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Analista SAC
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.sacAnalyst }}</td>>
+            </ng-container>
+
+            <ng-container matColumnDef="lastUpdateTime">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Fecha Hora Aprobación
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.lastUpdateTime }}</td>>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"
+                          (click)="selectRow(row)"
+                          [class.selected-row]="selectedRow === row">
+            </tr>
+
+      </table>
+    </div>
+
+    <div class="container--action">
+      <button (click)="exportAsExcel()" mat-raised-button color="primary"> 
+      Descargar
+     <svg class="sac-request__field-button-icon" id="Capa_2"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.45 28.46"><defs><style>.import{fill:#f5f5f5;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path class="import" d="M0,21.24v6.23c0,.54.44.99.99.99h24.48c.54,0,.99-.44.99-.99v-6.23c0-.54-.44-.99-.99-.99h-2.41c-.54,0-.99.44-.99.99v2.83H4.38v-2.83c0-.54-.44-.99-.99-.99H.99c-.54,0-.99.44-.99.99ZM1.19,21.45h2v3.22c0,.33.27.6.6.6h18.88c.33,0,.6-.27.6-.6v-3.22h2v5.82H1.19v-5.82Z"/><path class="import" d="M9.44,4.16h7.56c.58,0,1.05-.47,1.05-1.05V1.05c0-.58-.47-1.05-1.05-1.05h-7.56c-.58,0-1.05.47-1.05,1.05v2.05c0,.58.47,1.05,1.05,1.05ZM9.58,1.19h7.28v1.77h-7.28v-1.77Z"/><path class="import" d="M8.33,9.81h-3.86c-.64,0-1.19.31-1.41.78-.17.38-.11.8.17,1.12l4.38,5.13h0l4.38,5.13c.28.33.73.52,1.24.52h0c.51,0,.96-.19,1.24-.52l8.75-10.26c.28-.33.34-.75.17-1.12-.22-.47-.77-.78-1.41-.78h-3.99v-3.64c0-.54-.44-.99-.99-.99h-7.68c-.54,0-.99.44-.99.99v3.64ZM8.93,11.01c.33,0,.6-.27.6-.6v-4.03h7.27v4.03c0,.33.27.6.6.6h4.59c.1,0,.19.02.24.04l-8.66,10.15s-.16.1-.33.1h0c-.17,0-.3-.06-.33-.1l-4.38-5.13h0l-4.29-5.03c.06-.02.14-.04.24-.04h4.46Z"/></g></svg>
+
+    </button>
+    </div>
+  </div>
+
+

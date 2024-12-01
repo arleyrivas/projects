@@ -1,0 +1,129 @@
+.generate-pin-display-item {
+    padding: 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    row-gap: 1rem;
+}
+
+.generate-pin-display-item__header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.generate-pin-display-item__truck {
+    width: 2.5rem;
+}
+
+.generate-pin-display-item__pin-title {
+    margin-left: 0.5rem !important;
+}
+
+.generate-pin-display-item__pin-title,
+.generate-pin-display-item__pin {
+    width: max-content;
+    margin-left: 0.15rem;
+    background-color: #92B975;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+    color: #ffffff;
+    font-family: "Gilroy-ExtraBold" !important;
+    font-size: 1.5rem;
+}
+
+.generate-pin-display-item__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.generate-pin-display-item__delete {
+    width: 1.25rem;
+    color: #636e72 !important;
+    cursor: pointer;
+}
+
+.generate-pin-display-item__delete_all {
+    padding: 0.5rem;
+    border: #c0392b solid 1px;
+    border-radius: 0.25rem;
+}
+
+.generate-pin-display-item__print {
+    color: #ffffff !important;
+    font-family: "Gilroy-ExtraBold" !important;
+}
+
+
+::ng-deep .generate-pin-display-item__table .mat-mdc-table .mat-mdc-header-cell {
+  color: #666666;
+  border: #666666 solid 0.1rem !important;
+  border-left: 0 !important;
+  border-top: 0 !important;
+}
+
+::ng-deep .generate-pin-display-item__table .mat-mdc-table .mat-mdc-header-cell:last-child {
+  border-right: 0 !important;
+}
+
+::ng-deep .generate-pin-display-item__table .mdc-tab__text-label {
+  flex-direction: column !important;
+}
+
+::ng-deep .generate-pin-display-item__table .mdc-data-table__row {
+  background-color: transparent !important;
+  border: 0.1rem solid #666666 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+}
+
+::ng-deep .generate-pin-display-item__table .mdc-data-table__cell {
+  border: 0.1rem solid #666666 !important;
+  border-left: 0 !important;
+  border-bottom: 0 !important;
+}
+
+::ng-deep .generate-pin-display-item__table .mdc-data-table__cell:last-child {
+  border: 0.1rem solid #666666 !important;
+  border-right: 0 !important;
+}
+
+::ng-deep .generate-pin-display-item__table .mdc-data-table__row:hover {
+  background-color: transparent !important;
+}
+
+::ng-deep .generate-pin-display-item__table .mdc-data-table__row td {
+  color: #666666 !important;
+}
+
+::ng-deep .generate-pin-display-item__table .mdc-data-table__row td:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+::ng-deep .generate-pin-display-item__table .mdc-data-table__row td:last-child {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border-bottom: none !important;
+}
+
+::ng-deep .generate-pin-display-item__table .mdc-data-table__row:last-child {
+  border-bottom: none !important;
+}
+
+::ng-deep .generate-pin-display-item__row th {
+  color: #666666 !important;
+  border-left: 0.1rem solid;
+  border-color: #666666;
+}
+
+::ng-deep .generate-pin-display-item__row th:first-child {
+  border-left: none !important;
+}
+
+.subrayado {
+  text-decoration: line-through;
+}

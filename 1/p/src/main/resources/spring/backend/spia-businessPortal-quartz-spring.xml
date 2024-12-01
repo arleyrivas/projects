@@ -1,0 +1,76 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+
+	<bean name="processDocumentationQueueJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.spia.businessportal.backend.batch.DocumentationProcessQueueJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="documentalService" value-ref="documentalService" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Cron Trigger para revisar los documentos lockeados, corre una vez cada 20 minutos -->
+	<bean id="documentationCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="processDocumentationQueueJob" />
+		<property name="cronExpression" value="0 0/20 * * * ?" />
+	</bean>
+	
+	<bean name="processPinQueueJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.spia.businessportal.backend.batch.PinProcessQueueJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="pinService" value-ref="pinService" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Cron Trigger para desactivar los pines activos con mas de un mes de creados, corre todos los dias a las 22hs -->
+	<bean id="pinCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="processPinQueueJob" />
+		<property name="cronExpression" value="0 0 22 * * ?" />
+	</bean>
+	
+
+	
+	<!-- END Jobs declaration -->
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="documentationCronTrigger" />
+				<ref bean="pinCronTrigger" />
+				<ref bean="notificationsCronTrigger" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="1" />
+		<property name="maxPoolSize" value="1" />
+		<property name="WaitForTasksToCompleteOnShutdown" value="true" />
+	</bean>
+	
+	<bean name="processNotificationQueueJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.spia.businessportal.backend.batch.NotificationApiProcessQueueJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="notificationApiService" value-ref="notificationApiService" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Cron Trigger to erase active notifications more than a month old, runs every day at 22hs -->
+	<bean id="notificationsCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="processNotificationQueueJob" />
+		<property name="cronExpression" value="0 0 21 * * ?" />
+	</bean>
+
+</beans>

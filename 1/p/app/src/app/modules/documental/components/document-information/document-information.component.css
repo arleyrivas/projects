@@ -1,0 +1,111 @@
+.title {
+  padding-left: 1rem;
+  padding-top: 1rem;
+  color: #92b976;
+  font-weight: 400;
+  font-family: "Gilroy-ExtraBold" !important;
+}
+
+.content {
+  padding-top: 0;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto auto;
+  row-gap: 1rem;
+}
+
+th {
+  color: #777777;
+  font-family: "Gilroy-ExtraBold";
+}
+
+.deleted-file {
+  text-decoration: line-through;
+  cursor: pointer;
+}
+
+.informatiom-item {
+  color: #777777;
+  font-family: "Gilroy-ExtraBold" !important;
+}
+
+.table {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.capa-2 {
+  width: 1rem;
+}
+
+.state-icons {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.state-checkboxes {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.approved {
+  fill: #92b976;
+}
+
+.rejected {
+  fill: #ff3838;
+}
+
+.approved__svg {
+  width: 1.5rem;
+}
+
+.rejected__svg {
+  width: 1.5rem;
+}
+
+.user,
+.BL {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.information {
+  padding: 1rem;
+  background-color: #ffffff;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tab-group {
+  background-color: #ffffff;
+}
+
+.actions {
+  padding: 1rem;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.notify-button {
+  margin-left: 1rem;
+  color: #ffffff !important;
+}
+
+.fileName {
+  text-decoration: underline;
+  cursor: pointer;
+}

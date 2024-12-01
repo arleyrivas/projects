@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-content>
+    <div class="generate-pin-display">
+      <div class="generate-pin-display__header">
+          <span class="generate-pin-display__title">
+              Se generó el PIN para el HBL:
+          </span>
+
+          <ng-container *ngIf="pins.nbr">
+            <span class="generate-pin-display__unit">
+              {{ pins.nbr }}
+            </span>
+          </ng-container>
+      </div>
+
+      <div class="generate-pin-display__content">
+          <app-generate-pin-display-item [pin]="pins" [lastSearch]="lastSearch"></app-generate-pin-display-item>
+      </div>
+
+      <div class="generate-pin-display__actions">
+          <button mat-raised-button color="primary" (click)="continue()" class="generate-pin-display__continue">Continuar Operando</button>
+      </div>
+  </div>
+
+  </mat-card-content>
+</mat-card>

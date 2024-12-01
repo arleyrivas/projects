@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+    <class name="Container" table="container" dynamic-update="true">
+        <id name="id" column="id">
+            <generator class="increment" />
+        </id>
+        
+        <property name="nbr" column="nbr" type="string" not-null="true" length="11"/>
+		<property name="bl" column="bl" type="string" not-null="true" length="50"/>
+		<property name="vessel" column="vessel" type="string" not-null="true" length="50"/>
+		<property name="category" column="category" type="string" not-null="true" length="50"/>
+		<property name="isoGroup" column="isoGroup" type="string" not-null="true" length="50"/>
+		<property name="shipper" column="shipper" type="string" not-null="true" length="50"/>
+		<property name="grossWeight" column="grossWeight" type="double" not-null="true"/>
+		<property name="height" column="height" type="double" not-null="true" length="50"/>
+		<property name="length" column="length" type="double" not-null="true" length="50"/>
+		<property name="customer" column="customer" type="string" not-null="true" length="50"/>
+		<property name="Reefer" column="Reefer" type="boolean" not-null="true" length="50"/>
+		<property name="Oog" column="Oog" type="boolean" not-null="true" length="50"/>        
+        
+    </class>
+</hibernate-mapping>

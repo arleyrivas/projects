@@ -1,0 +1,211 @@
+
+  .modal-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .modal-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1rem;
+    justify-content: center; 
+    display: flex;
+  } 
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 16px;
+  }
+  
+
+  .justification-section {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+  }
+  
+
+  .justification-section p {
+    margin-bottom: 8px;
+  }
+  
+  .justification-section textarea {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    box-sizing: border-box; 
+    border: 1px solid #4CAF50; 
+    padding: 8px;
+    overflow: hidden; 
+    resize: none; 
+  }
+  
+  .full-width {
+    width: 100% !important;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-form-field {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  textarea {
+    flex-grow: 1;
+    resize: none;
+    overflow-y: auto;
+  }
+  
+  textarea {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box; 
+    resize: none; 
+    overflow-y: auto; 
+  }
+
+  ::nn .mdc-notched-outline .ng-tns-c112-20 .mdc-notched-outline--notched .mdc-notched-outline--no-label .ng-star-inserted > textarea {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    resize: none; 
+    overflow-y: auto; 
+  }
+  
+  .bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+  
+  .char-count {
+    margin-right: 16px;
+  }
+  
+  .email-section {
+    flex-shrink: 0;
+  }
+  
+  .email-info {
+    margin: 0;
+    font-size: 0.9em;
+  }
+  
+  .email-info a {
+    color: #1976D2;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .email-info a:hover {
+    text-decoration: none;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+  
+  .modal-actions button {
+    margin-left: 8px;
+  }
+  
+  @media (max-height: 400px) {
+    .modal-header {
+      padding: 8px;
+    }
+  
+    .modal-content {
+      padding: 8px;
+    }
+  
+    .justification-section p {
+      margin-bottom: 4px;
+    }
+  
+    .bottom-section {
+      margin-top: 4px;
+    }
+  
+    .modal-actions {
+      margin-top: 8px;
+    }
+  } 
+
+
+  .mat-mdc-form-field-flex {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .mat-mdc-form-field-infix {
+    flex-grow: 1;
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field-textarea-control {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    resize: none; 
+    overflow-y: auto; 
+  }
+  
+
+  .mat-mdc-form-field-flex {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%; 
+  }
+  
+  .mat-mdc-form-field-infix {
+    flex-grow: 1;
+    width: 100%; 
+    display: flex;
+    align-items: stretch;
+  }
+  
+  .mat-mdc-form-field-textarea-control {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    resize: none; 
+    overflow-y: auto; 
+  }
+  
+  ::ng-deep .custom-form-field .mat-mdc-form-field-infix {
+    flex-grow: 1;
+    display: flex;
+    align-items: stretch;
+  }
+  
+  ::ng-deep .custom-form-field .mat-mdc-form-field-textarea-control {
+    width: 100%;
+    height: 100%;
+    resize: none;
+  }

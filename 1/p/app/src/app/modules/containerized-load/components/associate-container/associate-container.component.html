@@ -1,0 +1,209 @@
+<div class="associate-container" *ngIf="isViewComponent">
+    <h3 class="associate-container__title">
+        <span i18n="@@eb25635b4841c0e1a407920f012e19977d22c286578a560357acfba8cd13b637">
+            sidebar.TRUCK_EXPORT
+        </span>
+    </h3>
+
+    <app-agent-searcher
+     [isAssociateContainer]="true"
+     [data]="nitAgent + '/' + agent"
+     [controlDisabled]="!!agent"
+     [searcher]="!agent"
+     (agentControl)="onAgentControlChange($event)"
+    ></app-agent-searcher>
+
+    <ng-container *ngIf="currentUser">
+        <ng-container *ngIf="currentUser.empresa">
+          <app-customer-searcher
+            class="service-orders-create__customer-searcher"
+            [controlDisabled]="!!customer || !nitAgent"
+            [searcher]="!customer"
+            [agent]="nitAgent"
+            [data]="nit + '/' + customer"
+            [isAssociateContainer]="true"
+            (customerControl)="onCustomerControlChange($event)"
+          >
+          </app-customer-searcher>
+        </ng-container>
+    </ng-container>
+
+    <app-containers-searcher
+     [isAssociateContainer]="true"
+     [controlDisabled]="!nitCustomer"
+     (containerSearch)="onContainerSearch($event)">
+    </app-containers-searcher>
+    <mat-error *ngIf="showContainerError">{{ showContainerErrorText }}</mat-error>
+    
+
+    <form [formGroup]="associateFormGroup" class="associate-searcher" >
+      <ng-container>
+                                    
+        <mat-form-field class="" *ngIf="showTypeDocument && !showContainerError">
+            <mat-label>Seleccione un tipo de Documento</mat-label>
+            <mat-select formControlName="typeDocument">
+                <mat-option value="0">
+                    <ng-container i18n="@@56a1f6e921cde24fb4931a712c7a91c3e9d0831a112jE5b2acc6d2c38b6749Ym33">
+                      modules.containerized.load.associate.containerbooking.type.document.duta
+                    </ng-container>
+                </mat-option>
+                <mat-option value="1">
+                    <ng-container i18n="@@56a1f6e921cde24fb4931a712c7a91c3e9d0831a112jE5b2acc6d2c38b6749Ym34">
+                      modules.containerized.load.associate.containerbooking.type.document.transit
+                    </ng-container>
+                </mat-option>
+                <mat-option value="2">
+                  <ng-container i18n="@@56a1f6e921cde24fb4931a712c7a91c3e9d0831a112jE5b2acc6d2c38b6749Ym35">
+                    modules.containerized.load.associate.containerbooking.type.document.dian
+                  </ng-container>
+              </mat-option>
+              <mat-option value="3">
+                <ng-container i18n="@@56a1f6e921cde24fb4931a712c7a91c3e9d0831a112jE5b2acc6d2c38b6749Ym36">
+                  modules.containerized.load.associate.containerbooking.type.document.plani
+                </ng-container>
+              </mat-option>
+              <mat-option value="4">
+                <ng-container i18n="@@56a1f6e921cde24fb4931a712c7a91c3e9d0831a112jE5b2acc6d2c38b6749Ym37">
+                  modules.containerized.load.associate.containerbooking.type.document.mov
+                </ng-container>
+              </mat-option>
+              <mat-option value="5">
+                <ng-container i18n="@@56a1f6e921cde24fb4931a712c7a91c3e9d0831a112jE5b2acc6d2c38b6749Ym38">
+                  modules.containerized.load.associate.containerbooking.type.document.man
+                </ng-container>
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="" *ngIf="showFormNumber && !showContainerError">
+          <mat-label>Número de formulario</mat-label>
+          <input matInput formControlName="formNumber" maxlength="14" type="number" (input)="onNumberInput($event)">
+        </mat-form-field>
+
+        <div class="type-equipment-container" *ngIf="!showContainerError">
+          <mat-form-field class="" *ngIf="showTypeEquipment">
+            <mat-label>Tipo de equipo</mat-label>
+            <input matInput formControlName="typeEquipment" maxlength="4" (input)="onInputChange($event)"  [ngClass]="{'is-invalid': associateFormGroup.get('typeEquipment')?.errors?.['invalid']}">
+          </mat-form-field>
+          
+  
+          <mat-checkbox class="checkbox-right" formControlName="checkboxAcceptTypeEquipment" *ngIf="showTypeEquipment">
+            De Acuerdo
+          </mat-checkbox>
+        </div>
+        <ng-container *ngIf="!equipmetTypeValid">
+          <mat-error *ngFor="let error of equipmentTypeErrorText">{{ error }}</mat-error>
+        </ng-container>
+        
+
+        <mat-form-field class="" *ngIf="validateEquipmentsTypeIso && !showContainerError">
+          <mat-label>Seleccione un item</mat-label>
+          <mat-select formControlName="itemIso">
+            <mat-option *ngFor="let item of filterHazardList" value="{{item.reference}}">
+              <ng-container>
+                {{item.description}} 
+              </ng-container>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field class="" *ngIf="showFormWeight && !showContainerError">
+          <mat-label>Peso</mat-label>
+          <input matInput formControlName="weight"  type="number" [min]="minWeight">
+        </mat-form-field>
+        <mat-error *ngIf="associateFormGroup.get('weight')?.hasError('min') && !associateFormGroup.get('weight')?.hasError('required')">
+          {{errorWeight}}
+        </mat-error>
+
+        <div class="type-equipment-container-two" *ngIf="!showContainerError">
+          <mat-checkbox class="checkbox-left" formControlName="checkBoxTemperature" *ngIf="showFormWeight">
+          </mat-checkbox>
+
+          <mat-form-field class="" *ngIf="showFormWeight">
+            <mat-label>Refrigerado (Temp º C)</mat-label>
+            <input matInput formControlName="temperature"  type="number">
+          </mat-form-field>
+  
+          <mat-checkbox class="checkbox-right" formControlName="checkBoxAcceptTemperature" *ngIf="showFormWeight">
+            De Acuerdo
+          </mat-checkbox>
+        </div>
+        
+        <div class="type-equipment-container-two" *ngIf="!showContainerError">
+          <mat-checkbox class="checkbox-left" formControlName="checkBoxImo" *ngIf="showFormWeight">
+          </mat-checkbox>
+          <mat-form-field class="" *ngIf="showFormWeight">
+            <mat-label>IMO (Código)</mat-label>
+            <input matInput formControlName="imo"  type="text">
+          </mat-form-field>
+          <mat-checkbox class="checkbox-right" formControlName="checkBoxAcceptImo" *ngIf="showFormWeight">
+            De Acuerdo
+          </mat-checkbox>
+        </div>
+
+
+        <mat-checkbox class="checkbox-overdimension" formControlName="checkBoxOverdimension" *ngIf="showFormWeight && !showContainerError">
+          Sobredimensionado (Dimensiones (cm))
+        </mat-checkbox>
+
+        <div class="type-equipment-container-three" *ngIf="!showContainerError">
+          <mat-form-field class="form-field" *ngIf="showFormWeight">
+            <mat-label>Ancho izquierda</mat-label>
+            <input matInput formControlName="overdimensionLeft"  type="text">
+          </mat-form-field>
+  
+          <mat-form-field class="form-field" *ngIf="showFormWeight">
+            <mat-label>Ancho derecha</mat-label>
+            <input matInput formControlName="overdimensionRight"  type="text">
+          </mat-form-field>
+
+          <mat-checkbox class="checkbox-right-overdimension" formControlName="checkBoxAcceptOverdimension" *ngIf="showFormWeight">
+            De Acuerdo
+          </mat-checkbox>
+        </div>
+       
+        <div class="type-equipment-container-four" *ngIf="!showContainerError">
+          <mat-form-field class="form-field" *ngIf="showFormWeight">
+            <mat-label>Largo frente</mat-label>
+            <input matInput formControlName="overdimensionFront"  type="text">
+          </mat-form-field>
+  
+          <mat-form-field class="form-field" *ngIf="showFormWeight">
+            <mat-label>Largo atrás</mat-label>
+            <input matInput formControlName="overdimensionBack"  type="text">
+          </mat-form-field>
+
+          <mat-checkbox class="hidden-checkbox checkbox-right-overdimension" formControlName="checkBoxAcceptOverdimensionTwo">
+            De Acuerdo
+          </mat-checkbox>
+        </div>
+        
+
+        <mat-form-field class="" *ngIf="showFormWeight && !showContainerError">
+          <mat-label>Altura</mat-label>
+          <input matInput formControlName="overdimensionTop"  type="text">
+        </mat-form-field>
+
+
+       
+    
+
+
+        
+    </ng-container>
+  </form>
+
+  
+  <div class="button-associate-container">
+    <button mat-raised-button  (click)="cancel()" >Cancelar</button>
+    <button  
+      mat-raised-button color="primary" class="generate-pin-display__continue" [disabled]="!enableButtonMake || !isPermission" (click)="submit()">
+      Crear
+    </button>
+  </div>   
+
+    
+</div>
+
+

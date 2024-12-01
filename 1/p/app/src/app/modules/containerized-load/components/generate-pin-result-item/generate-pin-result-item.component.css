@@ -1,0 +1,36 @@
+.generate-pin-result__item {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.generate-pin-result__header {
+    width: max-content;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px #636e72 solid;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.generate-pin-result__truck {
+    width: 4rem;
+    margin-right: 1rem;
+}
+
+.generate-pin-result__pin {
+    font-size: 2.5rem;
+    font-family: "Gilroy-light" !important;
+}
+
+.generate-pin__unit-size-text {
+    color: #ffffff;
+    background-color: #636e72;
+    padding: 0.15rem;
+    border-radius: 0.5rem;
+    font-family: "Gilroy-ExtraBold" !important;
+}
+

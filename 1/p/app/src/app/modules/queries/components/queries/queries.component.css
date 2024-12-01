@@ -1,0 +1,199 @@
+.queries {
+  padding: 0 1rem;
+}
+
+.title {
+  padding-top: 1rem;
+  color: #78909c;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  gap: 0.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.title-header {
+  font-size: 1.2rem;
+  font-family: "Gilroy-Light";
+  margin: 0;
+  padding-left: 1rem;
+  color: #78909c;
+  font-weight: 300;
+}
+
+.icon-title {
+  width: 1.5rem;
+}
+
+.title-card {
+  width: max-content;
+}
+
+.card-title {
+  font-family: "Gilroy-ExtraBold" !important;
+  color: #78909c;
+  margin: 0;
+}
+
+.queries__field {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.queries__report {
+  background-color: red;
+}
+
+.queries__field-title {
+  font-weight: 500;
+}
+
+.queries__form {
+  width: 80%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.queries__field-form {
+  width: 100%;
+}
+
+.queries__field-button {
+  margin-left: 0.2rem;
+  color: #ffffff;
+}
+
+.queries__parameter-field {
+  width: 20rem;
+}
+
+.queries__filter {
+  width: 100%;
+}
+
+.queries__filter-icon {
+  color: #92B975;
+}
+
+table {
+  width: 100%;
+  height: min-content;
+}
+
+::ng-deep .mdc-tab__text-label {
+  flex-direction: column !important;
+}
+
+::ng-deep .mdc-tab__text-label {
+  flex-direction: column !important;
+}
+
+::ng-deep .mdc-data-table__header-cell {
+  text-align: center !important;
+  font-family: "Gilroy-ExtraBold";
+  color: #66bb6a;
+  font-size: 1rem;
+}
+
+::ng-deep .mdc-data-table__row {
+  background-color: rgba(223, 230, 233, 0.1) !important;
+  border: transparent solid !important;
+  border-bottom: 0.25rem transparent solid !important;
+}
+
+::ng-deep .mdc-data-table__row:hover {
+  background-color: rgba(123, 160, 82, 0.1) !important;
+}
+
+::ng-deep .mdc-data-table__row td {
+  font-family: "Gilroy-Light";
+  color: #666666 !important;
+}
+
+::ng-deep .mdc-data-table__row td:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+::ng-deep .mdc-data-table__row td:last-child {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+::ng-deep .error-snackbar .mdc-snackbar__surface {
+  color: #721c24 !important;
+  background-color: #f8d7da !important;
+  border-color: #f5c6cb !important;
+}
+
+::ng-deep .error-snackbar .mdc-snackbar__surface .mdc-button__label {
+  color: #721c24 !important;
+}
+
+::ng-deep .error-snackbar .mdc-snackbar__surface .mat-mdc-snack-bar-label {
+  color: #721c24 !important;
+}
+
+
+::ng-deep .success-snackbar .mdc-snackbar__surface {
+  color: #155724 !important;
+  background-color: #d4edda !important;
+  border-color: #c3e6cb !important;
+}
+
+::ng-deep .success-snackbar .mdc-snackbar__surface .mdc-button__label {
+  color: #155724 !important;
+}
+
+::ng-deep .success-snackbar .mdc-snackbar__surface .mat-mdc-snack-bar-label {
+  color: #155724 !important;
+}
+
+::ng-deep .warning-snackbar .mdc-snackbar__surface {
+  color: #856404 !important;
+  background-color: #fff3cd !important;
+  border-color: #ffeeba !important;
+}
+
+::ng-deep .warning-snackbar .mdc-snackbar__surface .mdc-button__label {
+  color: #856404 !important;
+}
+
+::ng-deep .warning-snackbar .mdc-snackbar__surface .mat-mdc-snack-bar-label {
+  color: #856404 !important;
+}
+
+::ng-deep .mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+  color: transparent !important;
+  --mat-mdc-button-persistent-ripple-color: currentColor !important;
+}
+
+::ng-deep .mdc-data-table__row.td-green {
+  background-color: #c3dab2 !important;
+}
+
+::ng-deep .mdc-data-table__row.td-red {
+	background-color: #e6b5b5  !important;
+}
+
+::ng-deep .mdc-data-table__row.td-yellow {
+	background-color: #f7fba7 !important;
+}

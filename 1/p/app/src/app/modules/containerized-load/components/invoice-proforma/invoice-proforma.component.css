@@ -1,0 +1,87 @@
+.invoice-proforma {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto 1fr auto;
+    row-gap: 1rem;
+}
+
+.invoice-amount {
+  width: 100%;
+  text-align: right;
+
+  display: block;
+}
+
+.invoice-proforma__title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-family: "Gilroy-Light";
+    color: #636e72;
+}
+
+.invoice-proforma__estimated-date {
+    font-size: 1.5rem;
+    font-family: "Gilroy-Light";
+    color: #636e72;
+}
+
+.invoice-proforma__consignee {
+    font-size: 1rem;
+    font-family: "Gilroy-Light";
+    color: #636e72;
+}
+
+.invoice-proforma__total {
+    width: 100%;
+    padding: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoice-proforma__total-title {
+    font-size: 1rem;
+    font-family: "Gilroy-Light";
+    color: #636e72;
+}
+
+.invoice-proforma__total-value {
+    font-size: 1rem;
+    font-family: "Gilroy-Light";
+    color: #636e72;
+}
+
+.invoice-proforma__actions {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.invoice-proforma__submit {
+    color: #ffffff !important;
+    margin-left: 1rem;
+}
+
+.icon-dollar {
+  color: #636e72;
+  margin-right: 2rem;
+  font-size: 70px;
+  width: 50px;
+  height: 60px;
+}
+
+.invoice-proforma__header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.invoice-proforma__header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

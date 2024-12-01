@@ -1,0 +1,41 @@
+.generate-pin-display {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    row-gap: 1rem;
+}
+
+.generate-pin-display__header {
+    margin-bottom: 1rem;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.generate-pin-display__title {
+    margin-bottom: 0.6rem;
+    color: #92B975;
+}
+
+.generate-pin-display__unit {
+    color: #636e72;
+}
+
+.generate-pin-display__unit,
+.generate-pin-display__title {
+    font-family: "Gilroy-ExtraBold" !important;
+    font-size: 1.5rem;
+}
+
+.generate-pin-display__actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.generate-pin-display__continue {
+    color: #ffffff !important;
+    font-family: "Gilroy-light" !important;
+}

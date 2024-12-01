@@ -1,0 +1,76 @@
+<div class="" >
+    <mat-card>
+        <mat-card-content>
+            <div class="title-card">
+                <h2 class="card-title">Solicitudes Creadas</h2>
+                <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+            </div>
+            <ng-container class="myForm">
+                <form [formGroup]="myForm" autocomplete="off">
+
+                    <ng-container>
+                        <mat-form-field class="">
+                            <mat-label>Tipo solicitud:</mat-label>
+                            <mat-select id="requestType" formControlName="requestType">
+                                <mat-option *ngFor="let type of requestTypes" [value]="type.value">{{ type.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ng-container>
+
+                    <ng-container>
+                        <mat-form-field class="">
+                            <mat-label>Estado solicitud</mat-label>
+                            <mat-select id="requestStatus" formControlName="requestStatus">
+                                <mat-option *ngFor="let status of requestStatus" [value]="status.value">{{ status.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ng-container>
+
+                    <ng-container>
+                        <mat-form-field class="">
+                            <mat-label>Fecha inicial</mat-label>
+                            <input
+                                matInput
+                                formControlName="startDate"
+                                [matDatepicker]="picker1"
+                                placeholder="Seleccione la fecha inicial"
+                                >
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                    </ng-container>
+
+                    <ng-container>
+                        <mat-form-field class="">
+                            <mat-label>Fecha final</mat-label>
+                            <input
+                                matInput
+                                formControlName="endDate"
+                                [matDatepicker]="picker2"
+                                placeholder="Seleccione la fecha final"
+                                
+                                >
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                    </ng-container>
+
+                    <ng-container>
+                        <li class="sac-request__search-item sac-request__search-item_search-button">
+                            <button
+                                class="sac-request__field-button"
+                                (click)="onSubmit()"
+                            >
+                            Buscar
+                            <svg class="sac-request__field-button-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.15 68.15"><defs><style>.claseunicalupa{fill:transparent;}.cls-2{fill:none;fill-rule:evenodd;stroke:#f9f9f9;stroke-miterlimit:10;stroke-width:2px;}</style></defs><g id="Capa_1-2"><rect class="claseunicalupa" width="68.15" height="68.15" rx="4.87" ry="4.87"/><path class="cls-2" d="m43.28,25.86c0,10.57-8.6,19.17-19.17,19.17S4.95,36.43,4.95,25.86,13.55,6.69,24.11,6.69s19.17,8.6,19.17,19.17h0Zm15.63,34.79c-1.07,1.07-2.8,1.07-3.87,0l-15.54-15.55c1.43-1.14,2.73-2.44,3.87-3.87l15.55,15.55c1.07,1.06,1.07,2.8,0,3.87Z"/></g></svg>
+
+                            </button>
+                        </li>
+                    </ng-container>
+
+                </form>
+            </ng-container>
+        </mat-card-content>
+    </mat-card>
+
+</div>

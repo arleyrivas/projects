@@ -1,0 +1,204 @@
+<div class="wrapper">
+  <mat-card>
+    <mat-card-content>
+        <div class="header">
+            <svg class="icon-title" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.84 70.61"><defs><style>.claseunounica{fill:none;stroke:#231f20;stroke-linecap:round;stroke-linejoin:round;stroke-width:.5px;}</style></defs><g id="Capa_1-2"><rect class="claseunounica" x=".25" y=".25" width="64.34" height="70.11"/><rect class="claseunounica" x="6.43" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="20.7" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="5.63" y="8.26" width="53.58" height="14.31"/><rect class="claseunounica" x="34.98" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="49.25" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="6.43" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="20.7" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="34.98" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="49.25" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="6.43" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="20.7" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="34.98" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="49.25" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="9.24" y="11.23" width="4.49" height="8.68"/><rect class="claseunounica" x="17.62" y="11.23" width="4.49" height="8.68"/><rect class="claseunounica" x="26" y="11.23" width="4.49" height="8.68"/><rect class="claseunounica" x="34.37" y="11.23" width="4.49" height="8.68"/><polyline class="claseunounica" points="42.75 16.02 47.24 11.23 47.24 19.9"/><polyline class="claseunounica" points="51.13 16.02 55.61 11.23 55.61 19.9"/></g></svg>
+            <h2 class="title">Facturas</h2>
+         </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="billing">
+    <mat-card>
+      <mat-card-content>
+        <div class="primary-panel">
+          <div class="primary-panel__content">
+              <ul class="billing__search">
+                <div class="title-card">
+                  <h2 class="card-title">Búsqueda de facturas</h2>
+                  <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+                </div>
+
+                <div class="billing__criteria-field">
+                  <ng-container *ngIf="currentUser">
+                    <ng-container *ngIf="currentUser.empresa">
+                      <app-customer-searcher
+                        class="billing__customer-searcher"
+                        [controlDisabled]="!isAgent"
+                        [searcher]="isAgent"
+                        [requireValidator]="false"
+                        [data]="currentUser.empresa.id + '/' + currentUser.userName"
+                        (customerSearch)="customerSearch($event)"
+                      >
+                      </app-customer-searcher>
+                    </ng-container>
+                  </ng-container>
+                </div>
+
+                <div class="billing__criteria-field">
+                  <mat-form-field class="billing__criteria-input-field" >
+                    <mat-label>Factura</mat-label>
+                    <input matInput [formControl]="invoiceControl">
+                  </mat-form-field>
+                </div>
+
+                <div class="billing__criteria-field">
+                  <mat-form-field class="billing__criteria-input-field" >
+                    <mat-label>Contenedor</mat-label>
+                    <input matInput [formControl]="containerControl">
+                  </mat-form-field>
+                </div>
+                  <div class="billing__date-search">
+                      <form [formGroup]="dateFormGroup">
+                          <li class="billing__search-item">
+                              <mat-form-field class="billing__field">
+                                <mat-label>Desde</mat-label>
+                                <input
+                                    matInput
+                                    formControlName="from"
+                                    [matDatepicker]="picker1"
+                                    placeholder="Elige una fecha"
+                                    (dateChange)="datePickerChange($event)"
+                                  >
+                                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker1></mat-datepicker>
+                              </mat-form-field>
+                          </li>
+
+                          <li class="billing__search-item">
+                              <mat-form-field class="billing__field">
+                                <mat-label>Hasta</mat-label>
+                                <input matInput formControlName="to" [matDatepicker]="picker2" placeholder="Elige una fecha" [readonly]="true">
+                                  <mat-datepicker-toggle matSuffix [for]="picker2" [disabled]="true"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker2></mat-datepicker>
+                              </mat-form-field>
+                          </li>
+                      </form>
+                  </div>
+
+                  <li class="billing__search-item">
+                      <mat-form-field class="billing__field">
+                          <mat-label>Estado</mat-label>
+                          <mat-select [formControl]="stateControl">
+                              <mat-option value="ALL">
+                                <ng-container i18n="@@e408cfaa7ac65f2410dce4e1a8fee00bc138d2028ec182f0f9c4f266b9066a59">
+                                  history.views.history-search-bills.ALL_OPTION
+                                </ng-container>
+                              </mat-option>
+                              <mat-option value="1">
+                                <ng-container i18n="@@6a513e29e056e00226708a2cc6afa3a3f94ea56f0332f21259e98100f1955880">
+                                  history.views.history-search-bills.PAYED_OPTION
+                                </ng-container>
+                              </mat-option>
+                              <mat-option value="0">
+                                <ng-container i18n="@@d174c213cf10f476304b623a17fda282038bf727ae81b99655a1fd5166630358">
+                                  history.views.history-search-bills.PAY_PENDING_OPTION
+                                </ng-container>
+                              </mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                  </li>
+
+                  <li class="billing__search-item billing__search-item_search-button">
+                      <button
+                          class="billing__field-button"
+                          (click)="search()"
+                          [disabled]="containerControl.invalid || invoiceControl.invalid"
+                      >
+                      Buscar
+                      <svg class="billing__field-button-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.15 68.15"><defs><style>.claseunicalupa{fill:transparent;}.cls-2{fill:none;fill-rule:evenodd;stroke:#f9f9f9;stroke-miterlimit:10;stroke-width:2px;}</style></defs><g id="Capa_1-2"><rect class="claseunicalupa" width="68.15" height="68.15" rx="4.87" ry="4.87"/><path class="cls-2" d="m43.28,25.86c0,10.57-8.6,19.17-19.17,19.17S4.95,36.43,4.95,25.86,13.55,6.69,24.11,6.69s19.17,8.6,19.17,19.17h0Zm15.63,34.79c-1.07,1.07-2.8,1.07-3.87,0l-15.54-15.55c1.43-1.14,2.73-2.44,3.87-3.87l15.55,15.55c1.07,1.06,1.07,2.8,0,3.87Z"/></g></svg>
+                    </button>
+                  </li>
+              </ul>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+      <ng-container *ngIf="(billingStore$ | async) as billingStore">
+        <ng-container *ngIf="billingStore">
+          <div class="secondary-panel">
+            <mat-form-field class="queries__filter">
+              <mat-label>Filtro</mat-label>
+              <mat-icon matPrefix class="queries__filter-icon">search</mat-icon>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese valor para filtrar" #input>
+            </mat-form-field>
+
+            <ng-scrollbar class="manage-document" (reachedBottom)="next()">
+              <table mat-table #table [dataSource]="dataSource" *ngIf="billingStore.result" matSort>
+                <ng-container matColumnDef="selected">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <div class="checkbox-cell">
+                            <mat-checkbox (change)="checkboxSelectAll($event)" color="primary"></mat-checkbox>
+                        </div>
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="checkbox-cell" *ngIf="element.statusPay != '1'">
+                            <mat-checkbox (change)="checkboxSelectOne($event, element)" [checked]="element.selected" color="primary"></mat-checkbox>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="finalNumber">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      <ng-container i18n="@@7694ddf3ab44b446604c18c30a0e539b4ce15f26f32bc5c0a4b46d81307090bd">
+                        history.views.history-bills-list-preview.NUMBER_TH
+                      </ng-container>
+                    </th>
+                    <td mat-cell *matCellDef="let element">{{ element.finalNumber }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Cliente
+                    </th>
+                    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="totalTotal">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Monto
+                    </th>
+                    <td mat-cell *matCellDef="let element">{{ element.totalTotal | number }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="statusPay">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Estado
+                    </th>
+                    <td mat-cell *matCellDef="let element">{{ element.statusPay | state }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="pay">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <div class="billing__payment">
+                            <button *permissions="[privileges.FAC_PAG]" mat-raised-button color="primary" class="billing__payment-button" (click)="pay()">
+                                Factura a Pagar
+                            </button>
+                        </div>
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="billing__payment">
+                            <svg *permissions="[privileges.FAC_IMP]" (click)="getInvoicePDF(element.finalNumber)" class="billing__payment-button_unique" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.23 359.02"><defs><style>.cls-1{fill:#92b976;stroke-width:0px; cursor: pointer;}</style></defs><g id="Capa_1-2"><path class="cls-1" d="m259.84,164.55H24.38c-13.47,0-24.38,10.92-24.38,24.38v136.36c0,13.47,10.92,24.38,24.38,24.38h41.06v-37.4h153.33v37.4h41.06c13.47,0,24.38-10.92,24.38-24.38v-136.36c0-13.47-10.92-24.38-24.38-24.38Z"/><rect class="cls-1" x="80.56" y="334.72" width="123.1" height="24.31"/><path class="cls-1" d="m57.34,153.33h-22.44v-18.7c0-12.39,10.05-22.44,22.44-22.44h0v41.14Z"/><path class="cls-1" d="m249.32,153.33h-22.44v-41.14h0c12.39,0,22.44,10.05,22.44,22.44v18.7Z"/><path class="cls-1" d="m200.78,0h-117.34c-7.19,0-13.01,5.83-13.01,13.01v140.32h143.36V13.01c0-7.19-5.83-13.01-13.01-13.01Zm-4.6,133.57h-108.14c-2.86,0-5.17-2.32-5.17-5.17s2.32-5.17,5.17-5.17h108.14c2.86,0,5.17,2.32,5.17,5.17s-2.32,5.17-5.17,5.17Zm0-26.18h-108.14c-2.86,0-5.17-2.32-5.17-5.17s2.32-5.17,5.17-5.17h108.14c2.86,0,5.17,2.32,5.17,5.17s-2.32,5.17-5.17,5.17Zm0-26.18h-108.14c-2.86,0-5.17-2.32-5.17-5.17s2.32-5.17,5.17-5.17h108.14c2.86,0,5.17,2.32,5.17,5.17s-2.32,5.17-5.17,5.17Zm0-26.18h-108.14c-2.86,0-5.17-2.32-5.17-5.17s2.32-5.17,5.17-5.17h108.14c2.86,0,5.17,2.32,5.17,5.17s-2.32,5.17-5.17,5.17Zm0-26.18h-108.14c-2.86,0-5.17-2.32-5.17-5.17s2.32-5.17,5.17-5.17h108.14c2.86,0,5.17,2.32,5.17,5.17s-2.32,5.17-5.17,5.17Z"/></g></svg>
+
+                            <ng-container *permissions="[privileges.FAC_COM]">
+                              <svg *ngIf="element.statusPay == '1'"  (click)="printInvoicePDF(element.reference_code)" class="billing__payment-button_unique" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.36 354.48"><defs><style>.cls-1{fill:#92b976;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path class="cls-1" d="m265.43,72.69h-50.51c-9.52,0-17.25-7.74-17.25-17.26V4.93c0-2.72,2.21-4.93,4.93-4.93s4.93,2.21,4.93,4.93v50.5c0,4.08,3.32,7.4,7.4,7.4h50.51c2.72,0,4.93,2.21,4.93,4.93s-2.21,4.93-4.93,4.93Z"/><path class="cls-1" d="m220.19,55.71h43.42L214.31,6.41v43.42c0,3.24,2.64,5.88,5.88,5.88Z"/><path class="cls-1" d="m220.19,69.61c-10.91,0-19.78-8.87-19.78-19.77V1.64H12.33C5.52,1.64,0,7.16,0,13.97v328.18c0,6.81,5.52,12.33,12.33,12.33h244.06c6.81,0,12.33-5.52,12.33-12.33V69.61h-48.52ZM32.04,47.01h145.46c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21Zm204.63,245.69H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Zm0-39.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Zm0-39.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Zm0-39.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Zm0-39.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Zm0-39.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Z"/></g></svg>
+                              <svg *ngIf="element.statusPay != '1'" class="billing__payment-button_unique" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.36 354.48"><defs><style>.claseunicaunicaunica{fill:#bdc3c7;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path class="claseunicaunicaunica" d="m265.43,72.69h-50.51c-9.52,0-17.25-7.74-17.25-17.26V4.93c0-2.72,2.21-4.93,4.93-4.93s4.93,2.21,4.93,4.93v50.5c0,4.08,3.32,7.4,7.4,7.4h50.51c2.72,0,4.93,2.21,4.93,4.93s-2.21,4.93-4.93,4.93Z"/><path class="claseunicaunicaunica" d="m220.19,55.71h43.42L214.31,6.41v43.42c0,3.24,2.64,5.88,5.88,5.88Z"/><path class="claseunicaunicaunica" d="m220.19,69.61c-10.91,0-19.78-8.87-19.78-19.77V1.64H12.33C5.52,1.64,0,7.16,0,13.97v328.18c0,6.81,5.52,12.33,12.33,12.33h244.06c6.81,0,12.33-5.52,12.33-12.33V69.61h-48.52ZM32.04,47.01h145.46c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21Zm204.63,245.69H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Zm0-39.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Zm0-39.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Zm0-39.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Zm0-39.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Zm0-39.21H32.04c-2.88,0-5.21-2.33-5.21-5.21s2.33-5.21,5.21-5.21h204.63c2.88,0,5.21,2.33,5.21,5.21s-2.33,5.21-5.21,5.21Z"/></g></svg>
+                            </ng-container>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="finalizedDate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Creado</th>
+                    <td mat-cell *matCellDef="let element">{{ element.finalizedDate }}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+            </ng-scrollbar>
+          </div>
+        </ng-container>
+      </ng-container>
+  </div>
+</div>

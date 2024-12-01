@@ -1,0 +1,55 @@
+.invoice-management-billing {
+  padding: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto;
+  row-gap: 1rem;
+}
+
+.invoice-management-billing__title {
+  font-size: 1.5rem;
+  color: #78909c;
+}
+
+.invoice-management-billing__submit {
+  color: #ffffff !important;
+}
+
+.invoice-management-billing__form-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto;
+}
+
+.invoice-management-billing__actions {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.invoice-management-billing__submit {
+  margin-left: 1rem;
+}
+
+.invoice-management-billing__considerations {
+  font-family: "Gilroy-Light";
+  color: #636e72;
+}
+
+.centered-cell {
+width: 100%;
+padding-left: 0.8rem;
+
+display: block;
+}
+
+.centered-cell__all {
+width: 100%;
+
+display: flex;
+}

@@ -1,0 +1,219 @@
+.shifts-available__header {
+    width: 100%;
+    background-color: #92B975;
+    color: #ffffff;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shifts-available__title {
+    color: #ffffff;
+}
+
+.shifts-available__close-icon {
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.shifts-available__states {
+    width: 100%;
+}
+
+.shifts-available__states-list {
+    margin: 0;
+    list-style: none;
+    font-size: 1.01rem;
+    font-weight: lighter;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.shifts-available__states-icons {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.shifts-available__states-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shifts-available__states-item {
+    margin-right: 1rem;
+}
+
+.shifts-available__states-item:last-child {
+    margin: 0;
+}
+
+.shifts-available__states-available {
+    color: #2ecc71;
+}
+
+.shifts-available__states-not-available {
+    color: #e74c3c;
+}
+
+.shifts-available__states-warning {
+    color: #f1c40f;
+}
+
+.shifts-available__states-item_bold {
+    font-size: 0.90rem;
+    font-weight: 500;
+}
+
+.shifts-available__pickup {
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.shifts-available__in {
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+    padding-top: 0;
+}
+
+.shifts-available__pickup-header {
+    font-size: 1.1rem;
+    font-weight: lighter;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.shifts-available__pickup-background {
+    width: max-content;
+    color: #ffffff;
+    background-color: #92B975;
+    border-radius: 0.7rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 0.7rem;
+}
+
+.shifts-available__pickup-background_disabled {
+    background-color: #95a5a6;
+}
+
+.shifts-available__container-icon {
+    color: #92B975;
+}
+
+.shifts-available__subtitle {
+    padding-left: 1rem;
+    margin: 0;
+    font-size: 1.1rem;
+    color: #92B975;
+}
+
+.shifts-available__content {
+    height: 30rem;
+    border-top: #bdc3c7 solid 1px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.shifts-available__schedule {
+    border: #92B975 solid 1px;
+    border-radius: 0.4rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.shifts-available__schedule-header {
+    cursor: pointer;
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+    border-bottom: #92B975 solid 1px;
+
+    grid-column: 1 / -1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shifts-available__schedule-header_active {
+    background-color: #92B975 !important;
+    color: #ffffff;
+}
+
+.shifts-available__schedule-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.shifts-available__schedule-item-middle {
+    border-left: #92B975 solid 1px;
+    border-right: #92B975 solid 1px;
+}
+
+
+.shifts-available__schedule-footer {
+    border-top: #92B975 1px solid;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    grid-column: 1 / -1;
+}
+
+.shifts-available__empty-income {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.shifts-available__empty-income-icon {
+    color: #2ecc71;
+}
+
+.shifts-available__empty-income-title {
+    margin: 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.shifts-available__bottom {
+    border-top: #bdc3c7 solid 1px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.shifts-available__close {
+    border: 0;
+    outline: 0;
+    margin-right: 1rem;
+    color: #95a5a6;
+    background-color: unset;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.shifts-available__confirm {
+    border: 0;
+    outline: 0;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.1rem;
+    background-color: #92B975;
+    border-bottom: #157641 solid 2px;
+    cursor: pointer;
+}

@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-content>
+    <div class="generate-pin-display">
+      <div class="generate-pin-display__header">
+          <span class="generate-pin-display__title">
+              Se generó el PIN para el BL:
+          </span>
+
+          <span class="generate-pin-display__unit">
+              {{ blNumber }}
+          </span>
+      </div>
+
+      <ng-container *ngIf="pins.length">
+        <div class="generate-pin-display__content">
+          <app-generate-pin-display-item *ngFor="let pin of pins" [pin]="pin" [lastSearch]="lastSearch"></app-generate-pin-display-item>
+        </div>
+      </ng-container>
+
+      <div class="generate-pin-display__actions">
+          <button mat-raised-button color="primary" (click)="continue()" class="generate-pin-display__continue">Continuar Operando</button>
+      </div>
+  </div>
+  </mat-card-content>
+</mat-card>

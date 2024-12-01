@@ -1,0 +1,106 @@
+<div class="shifts-available__header">
+    <h1 mat-dialog-title class="shifts-available__title">Turnos Disponibles</h1>
+    <mat-icon mat-dialog-close class="shifts-available__close-icon">close</mat-icon>
+</div>
+
+<div class="shifts-available__states shifts-available__states-icons">
+    <ul class="shifts-available__states-list">
+        <li class="shifts-available__states-item">
+            <ng-container i18n="@@0627b548c5af1c48797194edcccf22ef23b6abc95d1119f04ed8fd8b65b47bdb">
+              breakbulk.views.create.pin.AVAILABLE
+            </ng-container>
+            <mat-icon class="shifts-available__states-available">check</mat-icon>
+        </li>
+        <li class="shifts-available__states-item">
+            <ng-container i18n="@@8c620716c0cd382b3bb316f1eeea142bb2ae6c598c20a5fba269eca2849418d4">
+              truck.views.truck-appointment.NOT_AVAILABLE
+            </ng-container>
+            <mat-icon class="shifts-available__states-not-available">close</mat-icon>
+        </li>
+        <li class="shifts-available__states-item">
+            <ng-container i18n="@@366abd4a40397ba8c8569e7119a3a9dd489f354a70d5c31b4d21077a5657535c">
+              truck.views.truck-appointment.LAST_APPOINTMENTS
+            </ng-container>
+            <mat-icon class="shifts-available__states-warning">warning</mat-icon>
+        </li>
+    </ul>
+</div>
+
+<div class="shifts-available__states">
+    <ul class="shifts-available__states-list">
+        <li class="shifts-available__states-item">
+            <span class="shifts-available__states-item_bold">Retiro: &nbsp;</span> R.
+        </li>
+        <li class="shifts-available__states-item">
+            <span class="shifts-available__states-item_bold">Retiro DTA: &nbsp;</span> D.
+        </li>
+        <li class="shifts-available__states-item">
+            <span class="shifts-available__states-item_bold">Ingresos Llenos: &nbsp;</span> I.
+        </li>
+        <li class="shifts-available__states-item">
+            <span class="shifts-available__states-item_bold">Apto Alimentos: &nbsp;</span> _A.
+        </li>
+    </ul>
+</div>
+
+<div class="shifts-available__pickup">
+    <div class="shifts-available__pickup-header">
+        <mat-icon class="shifts-available__container-icon">keyboard_arrow_up</mat-icon>
+        <span i18n="@@1760d35bd049d4198eb4c0e6320a194228d78d8fbff44f18b443c42db6182c21">
+          truck.views.truck-appointment.CONTAINERS_FOR_RETIREMENT
+        </span>
+    </div>
+    <div class="shifts-available__pickup-background">
+        <span>BOGTA821005</span>
+    </div>
+</div>
+
+<div class="shifts-available__pickup shifts-available__in">
+    <div class="shifts-available__pickup-header">
+        <mat-icon class="shifts-available__container-icon">keyboard_arrow_down</mat-icon>
+        <span>Contenedores para Ingreso</span>
+    </div>
+    <div class="shifts-available__pickup-background shifts-available__pickup-background_disabled">
+        <span>No hay contenedores seleccionados</span>
+    </div>
+</div>
+
+<h2 class="shifts-available__subtitle">Disponibilidad</h2>
+
+<div mat-dialog-content class="shifts-available__content">
+    <div class="shifts-available__schedule" *ngFor="let schedule of schedules">
+        <div
+            class="shifts-available__schedule-header"
+            (click)="select(schedule)"
+            [class.shifts-available__schedule-header_active]="schedule.selected">
+            {{ schedule.time }}
+        </div>
+        <div class="shifts-available__schedule-item">
+            R.
+            <mat-icon class="shifts-available__states-available">check</mat-icon>
+        </div>
+        <div class="shifts-available__schedule-item shifts-available__schedule-item-middle">
+            D.
+            <mat-icon class="shifts-available__states-available">check</mat-icon>
+        </div>
+        <div class="shifts-available__schedule-item">
+            I.
+            <mat-icon class="shifts-available__states-available">check</mat-icon>
+        </div>
+        <div class="shifts-available__schedule-footer" *ngIf="data.emptyIncome">
+            <div class="shifts-available__empty-income shifts-available__emptyIncome-1">
+                <p class="shifts-available__empty-income-title">MSC.</p>
+                <mat-icon class="shifts-available__empty-income-icon">check</mat-icon>
+            </div>
+            <div class="shifts-available__empty-income shifts-available__emptyIncome-2">
+                <p class="shifts-available__empty-income-title">CMA.</p>
+                <mat-icon class="shifts-available__empty-income-icon">check</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div mat-dialog-actions class="shifts-available__bottom">
+    <button mat-dialog-close class="shifts-available__close">Cerrar</button>
+    <button class="shifts-available__confirm">Confirmar</button>
+</div>

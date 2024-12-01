@@ -1,0 +1,10 @@
+<div class="documental-comment">
+    <mat-checkbox color="primary" [(ngModel)]="disabled" (change)="checkboxChange($event)">
+      <ng-container i18n="@@de85a0bc3087d608d3d265daa1b9cc7a7d24c5cb7bda974b2531952fd3d7cefb">
+        documental.documentalController.NOT_APPROVE
+      </ng-container>
+    </mat-checkbox>
+    <mat-form-field class="comments">
+        <textarea matInput maxlength="2000" placeholder="Comentarios" [formControl]="comment"></textarea>
+    </mat-form-field>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+ 
+    <class name="DocumentationFileState" table="documentation_file_state" dynamic-update="true">
+        <id name="id" type="long" column="id">
+            <generator class="native" />
+        </id>
+        <property name="state" column="state" type="string" not-null="true" length="20"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,85 @@
+.drag-and-drop {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+.drag-and-drop p {
+  font-size: 16px;
+}
+
+.drag-and-drop.active {
+  background-color: #f0f0f0;
+}
+
+.mat-form-field {
+  width: 100%; /* Esto hará que el MatSelect tome todo el ancho del contenedor */
+}
+
+.alerta {
+  background-color: #f44336; /* Color de fondo rojo */
+  color: white; /* Color del texto blanco */
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+.exitoso {
+  background-color: #9fcf9f; /* Color de fondo rojo */
+  color: white; /* Color del texto blanco */
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+.oculto {
+  display: none;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+.buttoon {
+  color: #9fcf9f;
+}
+
+.mat-icon-button {
+  color: #9fcf9f;
+}
+
+.upload-container {
+  margin-bottom: 5px; /* Espacio en la parte inferior */
+  margin-top: 5px;
+  /* También puedes usar margin-top y margin-left según sea necesario */
+}
+
+.upload-container__submit{
+    color: #ffffff !important;
+}
+
+::ng-deep .mat-mdc-option.optionSelect--obligatory .mdc-list-item__primary-text {
+  color: rgb(175, 15, 15) !important;
+}

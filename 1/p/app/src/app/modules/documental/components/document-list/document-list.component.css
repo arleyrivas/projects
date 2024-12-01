@@ -1,0 +1,99 @@
+.document-list {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.document_item {
+  width: 100%;
+  height: 5rem;
+  padding: 0.7rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  background-color: #eeeeee;
+  border-radius: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-item {
+  width: 1rem;
+}
+
+.document_information {
+    padding-left: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.document__left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.document_icon {
+    color: #78909c;
+}
+
+.document_information {
+    color: #78909c;
+}
+
+.document_code {
+    font-family: "Gilroy-ExtraBold" !important;
+    font-size: 12px;
+    font-weight: thin;
+    margin: 0;
+}
+
+.document_name {
+    font-size: 12px;
+    font-weight: thin;
+}
+
+.document_state {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+    color: #92b976;
+}
+
+.document-rejected {
+  color: #ff3838 !important;
+}
+
+.document_date-text {
+  margin: 0;
+  color: #78909c;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.document_number {
+  font-size: 12px;
+  text-align: left;
+  margin: 0;
+}
+
+.document_selected {
+    background-color: #eeeeee;
+}
+
+.not-found {
+    color: #78909c;
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 1rem;
+}

@@ -1,0 +1,27 @@
+
+   
+    <form [formGroup]="containersFormGroup" class="container-searcher" [attr.disabled]="controlDisabled ? true : null">
+        <ng-container>
+            <mat-form-field class="" >
+                <mat-icon matPrefix svgIcon="container_searcher"></mat-icon>
+                <mat-label>Buscar Contenedor</mat-label>
+                <input matInput formControlName="container" maxlength="11" (input)="onInputChange($event)">
+            </mat-form-field>
+            <mat-error class="business-managemen-form__form-error" *ngIf="container?.invalid && (container?.dirty || container?.touched)">
+                <mat-icon>close</mat-icon>
+                <div *ngIf="container?.errors?.['required']">
+                  <span i18n="@@56a1f6e921cde24fb4931a712c7a91c3e9d0831a112jE5b2acc6d2c38b6749Ym28">
+                    modules.share.containers.search.invalid.required
+                  </span><br>
+                </div>
+                <div *ngIf="container?.errors?.['alphaNumeric']">
+                    <span i18n="@@56a1f6e921cde24fb4931a712c7a91c3e9d0831a112jE5b2acc6d2c38b6749Ym29">
+                        modules.share.containers.search.invalid.alphaNumeric
+                    </span>
+                </div>
+            </mat-error>
+            <mat-error *ngIf="isExistUnitNbr"><span>{{showContainerErrorText}}</span></mat-error>
+            <mat-error *ngIf="showContainerError">{{ showContainerErrorText }}</mat-error>
+        </ng-container>
+    </form>
+

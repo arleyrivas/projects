@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	
+	<!-- expose specific properties to application -->
+	<bean id="ftpProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="ftp.root">${ftp.root}</prop>
+				<prop key="ftp.impo">${ftp.impo}</prop>
+				<prop key="ftp.expo">${ftp.expo}</prop>
+				<prop key="ftp.carga_suelta">${ftp.carga_suelta}</prop>
+				<prop key="ftp.carga_contenerizada">${ftp.carga_contenerizada}</prop>
+				<prop key="ftp.servicio_carga">${ftp.servicio_carga}</prop>
+				<prop key="ftp.url">${documentos.ftp.url}</prop>
+				<prop key="ftp.port">${documentos.ftp.port}</prop>
+				<prop key="ftp.user">${documentos.ftp.user}</prop>
+				<prop key="ftp.pass">${documentos.ftp.pass}</prop>
+				<prop key="shared.folder">${documentos.shared.folder}</prop>
+				<prop key="maxFileSize">${documentos.maxFilesize}</prop>
+				<prop key="fileNameSize">${documentos.fileNameSize}</prop>
+				<prop key="acceptedFileTypes">${documentos.acceptedFileTypes}</prop>
+				<prop key="ftp.service_order">${ftp.service_order}</prop>
+				<prop key="ftp.request_management">${ftp.request_management}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- expose specific properties to application -->
+	<bean id="invoice"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="fn.preffix">${invoice.fn.preffix}</prop>
+				<prop key="fo.preffix">${invoice.fo.preffix}</prop>
+				<prop key="forma.pago.1">${reporte.invoice.forma_pago_1}</prop>
+				<prop key="forma.pago.2">${reporte.invoice.forma_pago_2}</prop>
+			</props>
+		</property>
+	</bean>
+	
+		<!-- expose specific properties to application -->
+	<bean id="holds"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="pago.port">${pago.port}</prop>
+			</props>
+		</property>
+	</bean>
+	
+		<!-- expose specific properties to application -->
+	<bean id="barCodeProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="appid1">${barcode.appid1}</prop>
+				<prop key="appid2">${barcode.appid2}</prop>
+				<prop key="appid3">${barcode.appid3}</prop>
+				<prop key="appid4">${barcode.appid4}</prop>
+				<prop key="ean13">${barcode.ean13}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- expose specific properties to application -->
+	<bean id="showCaptchaAttempts"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="recaptcha.show-captcha-attempts">${recaptcha.show-captcha-attempts}</prop>
+				<prop key="recaptcha.site-key">${recaptcha.site-key}</prop>
+				<prop key="recaptcha.secret-key">${recaptcha.secret-key}</prop>
+				<prop key="recaptcha.show-recovery-captcha-attempts">${recaptcha.show-recovery-captcha-attempts}</prop>
+				<prop key="recaptcha.url">${recaptcha.url}</prop>
+				<prop key="cookie.httpOnly">${cookie.httpOnly}</prop>
+				<prop key="cookie.secure">${cookie.secure}</prop>
+			</props>
+		</property>
+	</bean>
+		
+	<!-- expose specific properties to application -->
+	<bean id="payu"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="api-key">${payu.api-key}</prop>
+				<prop key="api-login">${payu.api-login}</prop>
+				<prop key="response-url">${payu.response-new-url}</prop>
+				<prop key="confirmation-url">${payu.confirmation-new-url}</prop>
+				<prop key="reference-code-suffix">${payu.reference-code-suffix}</prop>
+				<prop key="payu.gateway.url">${payu.gateway.url}</prop>
+				<prop key="portal-receipt-pdf">${payu.portal-receipt-pdf}</prop>
+				<prop key="merchant-id">${payu.merchant-id}</prop>
+				<prop key="account-id">${payu.account-id}</prop>
+				<prop key="test">${payu.test}</prop>
+				<prop key="tax">${payu.tax}</prop>
+				<prop key="taxReturnBase">${payu.taxReturnBase}</prop>
+				<prop key="collectingbankprefix">${payu.collectingbankprefix}</prop>
+				<prop key="description">${payu.description}</prop>
+				<prop key="cuentaContableId">${payu.cuenta_contable_id}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="userDocumentalProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="mail.userDocumental">${mail.userDocumental}</prop>
+			</props>
+		</property>
+	</bean>
+	
+			<!-- expose specific properties to application -->
+	<bean id="jwt"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="jwt.secret">${jwt.secret}</prop>
+				<prop key="jwt.expirationTime">${jwt.expirationTime}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- expose specific properties to application -->
+	<bean id="esb"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="esb.password.key">${esb.password.key}</prop>
+				<prop key="esb.password.initialVector">${esb.password.initialVector}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="bookingVacios"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="agente">${booking.vacios.agente}</prop>
+				<prop key="cliente">${booking.vacios.cliente}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="edi"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="bookingNbr">${edi.bookingNbr}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="soHistory"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="service.order.history.results">${service.order.history.results}</prop>
+			</props>
+		</property>
+	</bean>
+<!-- 	<bean id="creditNotes" -->
+<!-- 		class="org.springframework.beans.factory.config.PropertiesFactoryBean"> -->
+<!-- 		<property name="singleton" value="true" /> -->
+<!-- 		<property name="properties"> -->
+<!-- 			<props> -->
+<!-- 				<prop key="credit.note.search.error">${credit.note.search.error}</prop> -->
+<!-- 			</props> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+	<bean id="documentalTime"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="documental.time">${documental.time}</prop>
+				<prop key="documental.time.unlocked">${documental.time.unlocked}</prop>
+			</props>
+		</property>
+	</bean>					   
+	<bean id="documentationSecurity"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="documentation.activar.seguridad">${documentation.activar.seguridad}</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="documentationReefer"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="documentation.activar.temperatura">${documentation.activar.temperatura}</prop>
+			</props>
+		</property>
+	</bean>
+		<bean id="selectUnitSecurity"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="tva.activar.seguridad">${tva.activar.seguridad}</prop>
+			</props>
+		</property>
+	</bean>	
+	<bean id="selectUnitReefer"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="tva.activar.temperatura">${tva.activar.temperatura}</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="templates"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="diffCreatePreadvise">${template.diff.create.preadvise}</prop>
+				<prop key="docApproved">${template.doc.approved}</prop>
+				<prop key="docNotApproved">${template.doc.not.approved}</prop>
+				<prop key="changePassword">${template.change.password}</prop>
+				<prop key="changePasswordAdmin">${template.change.password.admin}</prop>
+				<prop key="desactivatePinBreakBulk">${template.desactivate.pin.breakbulk}</prop>
+				<prop key="desactivatePin">${template.desactivate.pin}</prop>
+				<prop key="createPinBreakBulk">${template.create.pin.breakbulk}</prop>
+				<prop key="createPin">${template.create.pin}</prop>
+				<prop key="createAppointment">${template.create.appointment}</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="defaultLobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true"/>
+	
+		
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="lobHandler" ref="defaultLobHandler"/>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath*:hbm/*.hbm.xml</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="javax.persistence.validation.mode">NONE</prop>
+<!-- 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop> -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.jdbc.use_get_generated_keys">true</prop>
+				<prop key="hibernate.id.new_generator_mappings">false</prop>
+				<prop key="hibernate.connection.isolation">2</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+	<!-- <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+		/> -->
+	<!-- <property name="url" value="jdbc:sqlserver://192.168.150.56:1433;DatabaseName=spia_portal" 
+		/> -->
+	<!-- <property name="username" value="sa" /> -->
+	<!-- <property name="password" value="sa" /> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+	<!-- <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+		/> -->
+	<!-- <property name="url" value="jdbc:sqlserver://192.168.35.134:1433;DatabaseName=spia_portal" 
+		/> -->
+	<!-- <property name="username" value="fluxit-db" /> -->
+	<!-- <property name="password" value="Soporte02" /> -->
+	<!-- </bean> -->
+
+<!-- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/spia_portal" /> -->
+<!-- 		<property name="username" value="root" /> -->
+<!-- 		<property name="password" value="" /> -->
+<!-- 	</bean> -->
+
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:jboss/datasources/businessPortalDS" />
+	</bean>
+
+	<!-- Interceptor para auditoría -->
+	<bean id="auditLogInterceptor"
+		class="com.spia.businessportal.common.audit.AuditLogInterceptor">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="securityEsbBO" ref="securityEsbBO" />
+	</bean>
+
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="entityInterceptor" ref="auditLogInterceptor" />
+	</bean>
+
+	<!-- ******************** TX CONFIGURATION ****************************** -->
+	<!-- Pointcuts y advice para transacciones en services -->
+	<aop:config proxy-target-class="false">
+		<aop:pointcut id="servicePointCut" expression="bean(*BO) || bean(*.tx.bo)" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointCut" />
+	</aop:config>
+	<!-- Definicion del aspecto de tx para Services -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="*"
+				rollback-for="java.lang.RuntimeException, ar.com.fluxit.framework.common.exception.BusinessException" />
+		</tx:attributes>
+	</tx:advice>
+	
+	
+	<bean id="notificationStates"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="isCreatePinNotificationEnabled">${notification.api.enable.createPin}</prop>
+				<prop key="isCreateAppointmentEnabled">${notification.api.enable.createAppointment}</prop>
+				<prop key="isDesactivatePinEnabled">${notification.api.enable.desactivatePin}</prop>
+				<prop key="isDesactivateContainerPin">${notification.api.enable.desactivateContainerPin}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="hoursBeforeForBbkAppointment"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="singleton" value="true" />
+		<property name="properties">
+			<props>
+				<prop key="hoursBeforeForAppointment">${bbk.appointment.hours.before}</prop>
+				<prop key="hoursBeforeForAppointmentByConsignee">${consignee.appointment.hours.before}</prop>
+				<!--<prop key="application.test.properties">${application.test.properties}</prop>-->
+			</props>
+		</property>
+	</bean>
+</beans>
+

@@ -1,0 +1,114 @@
+.associate-container {
+    padding: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    row-gap: 1rem;
+}
+
+.associate-container__title {
+    font-size: 1.5rem;
+    color: #78909c;
+}
+
+.associate-container__submit {
+    color: #ffffff !important;
+}
+
+.message-error-container{
+    display: flex;
+    justify-content: left;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+.message-error-container-text{
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.associate-searcher {
+    display: grid;
+    grid-template-rows: auto auto min-content 1fr;
+}
+
+.type-equipment-container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.type-equipment-container mat-form-field {
+    flex: 0 1 85%;
+  }
+
+  .type-equipment-container-two{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.type-equipment-container-two mat-form-field {
+    flex: 0 1 80%;
+  }
+
+  .checkbox-overdimension{
+    margin-top: 10px;
+  }
+
+.type-equipment-container-three{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.type-equipment-container-three mat-form-field {
+    flex: 1;
+    margin-right: 10px
+}
+
+.type-equipment-container-four{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.type-equipment-container-four mat-form-field {
+    flex: 1;
+    margin-right: 10px
+}
+
+.form-field:last-of-type {
+    margin-right: 0; /* No agrega margen al último mat-form-field */
+  }
+
+.checkbox-right-overdimension{
+    flex: 0 0 14%; /* El checkbox ocupa el 20% del contenedor */
+    margin-left: auto;
+}
+
+.hidden-checkbox{
+  opacity: 0; 
+  visibility: visible;
+}
+
+.button-associate-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    gap: 0.5rem;
+}
+
+.is-invalid{
+    border: 1px solid red;
+}
+

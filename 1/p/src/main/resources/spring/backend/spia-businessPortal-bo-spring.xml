@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<bean id="userBO"
+		class="com.spia.businessportal.backend.bo.impl.UserBOJAASImpl">
+		<!-- <property name="dao" ref="userDAO" /> -->
+		<!-- <property name="passwordEncoder" ref="passwordEncoder" />
+		<property name="saltSource" ref="saltSource" /> -->
+	</bean>
+	<bean id="pinBO"
+		class="com.spia.businessportal.backend.bo.impl.PinBOImpl">
+		<property name="dao" ref="pinDAO" />
+		<!-- <property name="userBO" ref="userBO" /> -->
+		<property name="truckingCompanyBO" ref="truckingCompanyBO" />
+	</bean>
+	<bean id="notificationBO"
+		class="com.spia.businessportal.backend.bo.impl.NotificationBOImpl">
+		<property name="dao" ref="notificationDAO" />
+	</bean>
+	<bean id="notificationApiBO"
+		class="com.spia.businessportal.backend.bo.impl.NotificationApiBOImpl">
+		<property name="dao" ref="notificationApiDAO" />
+	</bean>
+	<bean id="documentalBO"
+		class="com.spia.businessportal.backend.bo.impl.DocumentalBOImpl">
+		<property name="dao" ref="documentalDAO" />
+	</bean>
+	<bean id="customerRequestBO"
+		class="com.spia.businessportal.backend.bo.impl.CustomerRequestBOImpl">
+		<property name="dao" ref="customerRequestDAO" />
+	</bean>
+	<bean id="customerDataBO"
+		class="com.spia.businessportal.backend.bo.impl.CustomerDataBOImpl">
+		<property name="dao" ref="customerDataDAO" />
+	</bean>
+	<bean id="truckingCompanyBO"
+		class="ar.com.fluxit.framework.business.generic.impl.GenericServiceImpl">
+		<property name="dao" ref="truckingCompanyDAO" />
+	</bean>
+
+	<bean id="truckVisitBO"
+		class="ar.com.fluxit.framework.business.generic.impl.GenericServiceImpl">
+		<property name="dao" ref="truckVisitDAO" />
+	</bean>
+	<bean id="customerRequestNVBO"
+		  class="ar.com.fluxit.framework.business.generic.impl.GenericServiceImpl">
+		<property name="dao" ref="customerRequestNVDAO" />
+	</bean>
+
+	<bean id="customerBO"
+		  class="ar.com.fluxit.framework.business.generic.impl.GenericServiceImpl">
+		<property name="dao" ref="customerDAO" />
+	</bean>
+
+	<bean id="truckVisitAppointmentBreakBulkBO"
+		class="ar.com.fluxit.framework.business.generic.impl.GenericServiceImpl">
+		<property name="dao" ref="truckVisitAppointmentBreakBulkDAO" />
+	</bean>
+	<bean id="pinContainerizedBO"
+		class="ar.com.fluxit.framework.business.generic.impl.GenericServiceImpl">
+		<property name="dao" ref="pinContainerizedDAO" />
+	</bean>
+	<bean id="invoicePortalBO"
+		class="ar.com.fluxit.framework.business.generic.impl.GenericServiceImpl">
+		<property name="dao" ref="invoicePortalDAO" />
+	</bean>
+	<bean id="documentationSpecificFileBO"
+		class="ar.com.fluxit.framework.business.generic.impl.GenericServiceImpl">
+		<property name="dao" ref="documentationSpecificFileDAO" />
+	</bean>
+	<bean id="documentationTypeBO"
+		class="ar.com.fluxit.framework.business.generic.impl.GenericServiceImpl">
+		<property name="dao" ref="documentationTypeDAO" />
+	</bean>
+	<bean id="documentationFileStateBO"
+		class="ar.com.fluxit.framework.business.generic.impl.GenericServiceImpl">
+		<property name="dao" ref="documentationFileStateDAO" />
+	</bean>
+
+	<bean id="JMSQueueServiceImpl"
+		class="com.spia.businessportal.backend.bo.impl.JMSQueueServiceImpl">
+	</bean>
+
+	<!-- <bean id="documentalService" class="com.spia.businessportal.backend.bo.impl.DocumentalServiceImpl"> -->
+	<!-- <property name="documentalBO" ref="documentalBO" /> -->
+	<!-- </bean> -->
+
+	<bean id="servicesExtBO" class="com.spia.businessportal.backend.bo.impl.ServicesExtBOImpl">
+		<property name="urlExternalDocTransp" value="${esb.external.url}/${esb.external.url.DocTransp}" />
+	</bean>
+
+	<bean id="querysBO"
+		class="com.spia.businessportal.backend.bo.impl.QuerysBOImpl">
+		<property name="urlQuerys" value="${esb.service.querys}" />
+	</bean>
+
+	<bean id="financialBO"
+		class="com.spia.businessportal.backend.bo.impl.FinancialBOImpl">
+		<property name="urlFinancial"
+			value="${esb.service.financial}" />
+	</bean>
+
+	<bean id="documentalService"
+		class="com.spia.businessportal.service.impl.DocumentalServiceImpl">
+	</bean>
+
+	<bean id="historyService"
+		class="com.spia.businessportal.service.impl.HistoryServiceImpl">
+	</bean>
+
+	<bean id="driverService"
+		class="com.spia.businessportal.service.impl.DriverServiceImpl">
+	</bean>
+
+	<bean id="truckService"
+		class="com.spia.businessportal.service.impl.TruckServiceImpl">
+	</bean>
+
+	<bean id="invoiceService"
+		class="com.spia.businessportal.service.impl.InvoiceServiceImpl">
+	</bean>
+
+	<bean id="financialService"
+		class="com.spia.businessportal.service.impl.FinancialServiceImpl">
+	</bean>
+
+	<bean id="notificationPriviService"
+		class="com.spia.businessportal.service.impl.NotificationServiceImpl">
+	</bean>
+
+	<bean id="invoiceByReferenceCodeService"
+		class="com.spia.businessportal.service.impl.InvoiceByReferenceCodeServiceImpl">
+	</bean>
+
+	<bean id="pingServiceImpl"
+		class="com.spia.businessportal.service.impl.PingServiceImpl">
+		<property name="pingBO" ref="pingBO" />
+	</bean>
+
+	<bean id="pinService"
+		class="com.spia.businessportal.service.impl.PinServiceImpl">
+		<property name="pinBO" ref="pinBO" />
+	</bean>
+
+	<bean id="edoService"
+		class="com.spia.businessportal.service.impl.EdoServiceImpl">
+	</bean>
+
+	<bean id="eroService"
+		class="com.spia.businessportal.service.impl.EroServiceImpl">
+	</bean>
+
+	<bean id="bookingService"
+		class="com.spia.businessportal.service.impl.BookingServiceImpl">
+	</bean>
+
+	<bean id="validateHoursService"
+		class="com.spia.businessportal.service.impl.ValidateHoursServiceImpl">
+	</bean>
+
+	<bean id="truckVisitAppointmentService"
+		class="com.spia.businessportal.service.impl.TruckVisitAppointmentServiceImpl">
+	</bean>
+
+	<bean id="breakBulkService"
+		class="com.spia.businessportal.service.impl.BreakBulkServiceImpl">
+	</bean>
+
+	<bean id="hBLService"
+		class="com.spia.businessportal.service.impl.HBLServiceImpl">
+	</bean>
+
+	<bean id="servicesService"
+		class="com.spia.businessportal.service.impl.ServicesServiceImpl">
+	</bean>
+
+	<bean id="agentService"
+		class="com.spia.businessportal.service.impl.AgentServiceImpl">
+	</bean>
+
+	<bean id="shipperService"
+		class="com.spia.businessportal.service.impl.ShipperServiceImpl">
+	</bean>
+
+	<bean id="customerService"
+		class="com.spia.businessportal.service.impl.CustomerServiceImpl">
+	</bean>
+
+	<bean id="truckingCompanyService"
+		class="com.spia.businessportal.service.impl.TruckingCompanyServiceImpl">
+	</bean>
+
+	<bean id="billOfLadingService"
+		class="com.spia.businessportal.service.impl.BillOfLadingServiceImpl">
+	</bean>
+
+	<bean id="containerService"
+		class="com.spia.businessportal.service.impl.ContainerServiceImpl">
+	</bean>
+	<bean id="creditNotesService"
+		class="com.spia.businessportal.service.impl.CreditNotesServiceImpl">
+	</bean>
+	<bean id="historyCrossService"
+		class="com.spia.businessportal.service.impl.HistoryCrossServiceImpl">
+	</bean>
+
+	<bean id="notificationApiService"
+		class="com.spia.businessportal.service.impl.NotificationApiServiceImpl">
+		<property name="notificationApiBO" ref="notificationApiBO" />
+	</bean>
+	
+	<bean id="unitFacilityVisitService" class="com.spia.businessportal.service.impl.UnitFacilityVisitServiceImpl">
+		<property name="urlServicio" value="${spia.route.get-transfer-form.url}" />
+	</bean>
+	
+	<bean id="manifestService" class="com.spia.businessportal.service.impl.ManifestServiceImpl">
+		<property name="urlServicio" value="${spia.route.validate-manifest.url}" />
+	</bean>
+	
+	<bean id="requestManagementService" class="com.spia.businessportal.service.impl.RequestManagementServiceImpl">
+		<property name="notificationEmails" value="${spia.notification.mails.sac}" />
+	</bean>
+
+	<bean id="updateDataService" class="com.spia.businessportal.service.impl.UpdateDataServiceImpl">
+		<!-- <property name="notificationEmails" value="${spia.notification.mails.sac}" /> -->
+	</bean>
+	
+	<bean id="notificationService" class="com.spia.businessportal.service.impl.NotificationServiceImpl">
+		<property name="urlService" value="${spia.route.send.email}" />
+	</bean>
+	<bean id="BusinessManagementService"
+		  class="com.spia.businessportal.service.impl.BusinessManagementServiceImpl">
+	</bean>
+
+</beans>

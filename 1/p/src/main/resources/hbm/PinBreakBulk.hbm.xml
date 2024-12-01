@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+ 
+    <class name="PinBreakBulk" table="pin_break_bulk" dynamic-update="true">
+        <id name="id" type="long" column="id">
+            <generator class="native" />
+        </id>
+        <many-to-one name="pin" column="pin_id" class="Pin" not-null="true"  fetch="join"/>
+        <property name="truckingCompanyLDAP" column="trucking_company_ldap" type="string" not-null="false" length="20"/>
+		<property name="quantity" column="quantity" type="long" not-null="true"/>     
+		<property name="commodity" column="commodity" type="string" />
+		<property name="category" column="category" type="string" not-null="false"/>
+		<property name="active" column="active" type="boolean" not-null="true"/>
+		<property name="observation" column="observation" type="string" />
+			        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,108 @@
+/* ***********************************
+ * Definición de fonts
+ * ***********************************/
+@font-face {
+    font-family: 'Armata';
+    src: url(../fonts/Armata-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url(../fonts/NotoSans-Regular.ttf);
+}
+
+body{
+	background: #f4f6f5;
+}
+.informationBody{
+	text-align: center;
+	width: 360px;
+	margin: 0 auto;
+}
+.informationBody > * {
+	box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.08) ;
+}
+.informationBody * {
+	background: #fff !important;
+
+}
+.informationBody .information{
+	background-color: #fff;
+	text-align: left;
+	margin-top: 20px;
+}
+.informationBody .title{
+	background: #fff url(../img/LogoPuertoAguadulceColor.jpg) no-repeat 50% 50% !important;
+  	padding-top: 80px;
+}
+.informationBody .headerTitle{
+	color:#adb3b8;
+	font-family: 'Armata', serif;
+	font-size: 24px;
+}
+.informationBody .subheaderTitle{
+	color:#adb3b8;
+	font-family: 'Armata', serif;
+    font-size: 18px;
+}
+.informationBody .headerLogo{
+	margin-top: 15px;
+	margin-bottom: 5px;
+    width: 128px;
+}
+.informationBody .passwdRecovery a{
+	font-size: 12px;
+	color: #9ec6e3;
+	text-decoration: underline;
+	float: right;
+	line-height: 1.5em;
+	vertical-align: bottom;
+}
+.informationBody input[type=checkbox]{
+	border-radius: 0;
+	border: 1px solid;
+	background: transparent !important;
+	color: #fafbfa !important;
+	height: 16px;
+	width: 17px;
+}
+
+.informationBody hr{
+	width: 100%;
+	margin: 25px 0 19px 0 !important;
+}
+.informationBody .btn{
+	/*background: #428bca !important;*/
+	color:#fff;
+	width: 100%;
+	margin-bottom: 20px;
+}
+.informationBody label{
+	margin-bottom: 0.5em;
+	font-family: 'Noto Sans', serif;
+	font-size: 14px;
+	color: #7d7d7d;
+	font-weight: normal;
+}
+
+hr{
+	border-color: #c2c8cc;
+	margin-left: -10px;
+	margin-right: -10px;
+	margin-top: 10px; 
+}
+.btn-primary{
+	color: #ffffff !important;
+    background-color: #92B975 !important;
+    border-color: #157641 !important;
+	border-radius: 2px;
+	border: none;
+	font-family: 'Noto Sans';
+	font-size: 14px;
+	font-weight: normal;
+	box-shadow: 0 2px 0 0 #157641;
+}
+.alert{padding:10px;}
+.alert-danger, .alert-danger .glyphicon{
+	background: #ffb3b3 !important;
+}

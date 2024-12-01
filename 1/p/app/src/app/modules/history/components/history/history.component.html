@@ -1,0 +1,249 @@
+<div class="wrapper-history" *permissions="[privileges.HIS_PIN]">
+    <mat-card>
+        <mat-card-content>
+            <div class="header-history">
+                <svg id="history_pin" class="history_pin_tab-icono"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.38 70.61"><defs><style>.history_pin_tab-icono{fill:none;stroke:#231f20;stroke-linecap:round;stroke-linejoin:round;stroke-width:.5px;}</style></defs><g id="Capa_1-2"><circle class="history_pin_tab-icono" cx="37.29" cy="44.53" r="14.02"/><circle class="history_pin_tab-icono" cx="37.29" cy="44.53" r="10.33"/><polyline class="history_pin_tab-icono" points="45.71 55.95 50.21 60.45 53.21 57.45 48.71 52.95"/><rect class="history_pin_tab-icono" x="52.8" y="57.08" width="6.83" height="12.73" transform="translate(-28.4 58.33) rotate(-45)"/><line class="history_pin_tab-icono" x1="53.6" y1="65.67" x2="58.23" y2="61.03"/><line class="history_pin_tab-icono" x1="51.45" y1="63.51" x2="56.08" y2="58.88"/><polygon class="history_pin_tab-icono" points="40.21 13.87 40.21 .25 54.14 13.87 40.21 13.87"/><path class="history_pin_tab-icono" d="m52.84,52.5c.72,0,1.3-.57,1.3-1.27V13.87L40.21.25h-23.97c-.72,0-1.3.57-1.3,1.27v49.72c0,.7.58,1.27,1.3,1.27h6.29"/><path class="history_pin_tab-icono" d="m14.95,5.15h-3.6c-.72,0-1.3.57-1.3,1.27v49.72c0,.7.58,1.27,1.3,1.27h14.27"/><path class="history_pin_tab-icono" d="m10.05,10.05h-3.6c-.72,0-1.3.57-1.3,1.27v49.72c0,.7.58,1.27,1.3,1.27h36.6c.72,0,1.3-.57,1.3-1.27v-.88"/><path class="history_pin_tab-icono" d="m5.15,14.95H1.55c-.72,0-1.3.57-1.3,1.27v49.72c0,.7.58,1.27,1.3,1.27h36.6c.72,0,1.3-.57,1.3-1.27v-3.63"/><line class="history_pin_tab-icono" x1="21.06" y1="43.69" x2="20.5" y2="43.69"/><line class="history_pin_tab-icono" x1="21.8" y1="37.92" x2="20.5" y2="37.92"/><line class="history_pin_tab-icono" x1="26.35" y1="32.15" x2="20.5" y2="32.15"/><line class="history_pin_tab-icono" x1="48.58" y1="32.15" x2="47.87" y2="32.15"/><line class="history_pin_tab-icono" x1="48.58" y1="26.38" x2="20.5" y2="26.38"/><line class="history_pin_tab-icono" x1="48.58" y1="20.61" x2="20.5" y2="20.61"/><line class="history_pin_tab-icono" x1="36.94" y1="14.84" x2="20.5" y2="14.84"/><line class="history_pin_tab-icono" x1="36.29" y1="9.07" x2="20.5" y2="9.07"/></g></svg>
+                                
+                <h2 class="title-history">Historial</h2>
+             </div>
+        </mat-card-content>
+      </mat-card>
+    <div class="transaction-history" >
+        <mat-card>
+            <mat-card-content>
+                <div class="main-panel">
+                    <ul class="history-search">
+                        <div class="title-card">
+                            <h2 class="card-title">Historial de Transacciones</h2>
+                            <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+                          </div>
+                        <ng-container>
+                            <form [formGroup]="historyPinsFormGroup" class="history-form">
+                                <ng-container>
+                                    <app-customer-searcher
+                                        class=""
+                                        [data]="customerNit"
+                                        [formatSelected]="true"
+                                        [requireValidator]="false"
+                                        (customerSelected)="onCustomerSelected($event)"
+                                        (cleanCustomer)="clean($event)"
+                                    >
+                                    </app-customer-searcher>
+                                </ng-container>
+                                <ng-container>
+                                    <app-truck-searcher  class=""
+                                    [data]="truckerNit" [consigneeId]="customerId ?? ''" (truckSearch)="multipleTruckSearch($event)" [formatSelected]="true" (cleanTrucker)="cleanTrucker($event)" (truckSearch)="onTruckSelectd($event)"></app-truck-searcher>
+                                </ng-container>
+                                
+                                <ng-container>
+                                    <mat-form-field class="" >
+                                        <mat-label>Buscar Historial Por BL, HBL o BOOKING</mat-label>
+                                        <input matInput formControlName="blHbl">
+                                    </mat-form-field>
+                                </ng-container>
+                                <ng-container>
+                                    
+                                    <mat-form-field class="">
+                                        <mat-label>Tipo de carga*</mat-label>
+                                        <mat-select formControlName="loadType">
+                                            <mat-option value="ALL">
+                                                <ng-container i18n="@@e408cfaa7ac65f2410dce4e1a8fee00bc138d2028ec182f0f9c4f266b9066a58">
+                                                    history.views.history-pin.ALL_OPTION
+                                                </ng-container>
+                                            </mat-option>
+                                            <mat-option value="1">
+                                                <ng-container i18n="@@6a513e29e056e00226708a2cc6afa3a3f94ea56f0332f21259e98100f1955887">
+                                                    history.views.history-pin.detached_load
+                                                </ng-container>
+                                            </mat-option>
+                                            <mat-option value="0">
+                                                <ng-container i18n="@@d174c213cf10f476304b623a17fda282038bf727ae81b99655a1fd5166630356">
+                                                    history.views.history-pin.containerized_load
+                                                </ng-container>
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    
+                                </ng-container>
+                                <ng-container>
+                                    
+                                    <mat-form-field class="">
+                                        <mat-label>Estado*</mat-label>
+                                        <mat-select formControlName="stady">
+                                            <mat-option value="ALL">
+                                                <ng-container i18n="@@e408cfaa7ac65f2410dce4e1a8fee00bc138d2028ec182f0f9c4f266b9066a58">
+                                                    history.views.history-pin.ALL_OPTION
+                                                </ng-container>
+                                            </mat-option>
+                                            <mat-option value="1">
+                                                <ng-container i18n="@@6a513e29e056e00226708a2cc6afa3a3f94ea56f0332f21259e98100f1955883" >
+                                                    history.views.history-pin.assets
+                                                </ng-container>
+                                            </mat-option>
+                                            <mat-option value="0">
+                                                <ng-container  i18n="@@d174c213cf10f476304b623a17fda282038bf727ae81b99655a1fd5166630352">
+                                                    history.views.history-pin.inactive
+                                                </ng-container>
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    
+                                </ng-container>
+                                <ng-container>
+                                    <mat-form-field class="">
+                                        <mat-label>Desde</mat-label>
+                                        <input
+                                            matInput
+                                            formControlName="from"
+                                            [matDatepicker]="picker1"
+                                            placeholder="Elige una fecha"
+                                            (dateChange)="datePickerChange($event)"
+                                            >
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>
+                                </ng-container>
+                                <ng-container>
+                                    <mat-form-field class="">
+                                        <mat-label>Hasta</mat-label>
+                                        <input matInput formControlName="to" [matDatepicker]="picker2" placeholder="Elige una fecha" [readonly]="true"  (dateChange)="toDatePickerChange($event)">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                                </ng-container>
+                                <ng-container>
+                                    <li class="history__search-item history__search-item_search-button">
+                                        <button
+                                            class="history__field-button"
+                                            [hourRestriction]="'HIS_PIN'"
+                                            [hourRestrictionAPIGateway]="userInfo"
+                                            [hourRestrictionCallback]="configure.bind(this)"
+                                            
+                                            (click)="search()"
+                                            
+                                        >
+                                        Buscar
+                                        </button>
+                                    </li>
+                                </ng-container>
+                            </form>
+                        </ng-container>
+                    </ul>
+                   
+                </div>
+            </mat-card-content>
+        </mat-card>
+    <div class="secondary-panel">
+        <router-outlet></router-outlet>
+    </div>
+    </div>
+</div>
+<div class="wrapper-history" *permissions="[privileges.HIS_CIT]">
+    <mat-card>
+        <mat-card-content>
+            <div class="header-history">
+                <svg id="history_pin" class="history_pin_tab-icono"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.38 70.61"><defs><style>.history_pin_tab-icono{fill:none;stroke:#231f20;stroke-linecap:round;stroke-linejoin:round;stroke-width:.5px;}</style></defs><g id="Capa_1-2"><circle class="history_pin_tab-icono" cx="37.29" cy="44.53" r="14.02"/><circle class="history_pin_tab-icono" cx="37.29" cy="44.53" r="10.33"/><polyline class="history_pin_tab-icono" points="45.71 55.95 50.21 60.45 53.21 57.45 48.71 52.95"/><rect class="history_pin_tab-icono" x="52.8" y="57.08" width="6.83" height="12.73" transform="translate(-28.4 58.33) rotate(-45)"/><line class="history_pin_tab-icono" x1="53.6" y1="65.67" x2="58.23" y2="61.03"/><line class="history_pin_tab-icono" x1="51.45" y1="63.51" x2="56.08" y2="58.88"/><polygon class="history_pin_tab-icono" points="40.21 13.87 40.21 .25 54.14 13.87 40.21 13.87"/><path class="history_pin_tab-icono" d="m52.84,52.5c.72,0,1.3-.57,1.3-1.27V13.87L40.21.25h-23.97c-.72,0-1.3.57-1.3,1.27v49.72c0,.7.58,1.27,1.3,1.27h6.29"/><path class="history_pin_tab-icono" d="m14.95,5.15h-3.6c-.72,0-1.3.57-1.3,1.27v49.72c0,.7.58,1.27,1.3,1.27h14.27"/><path class="history_pin_tab-icono" d="m10.05,10.05h-3.6c-.72,0-1.3.57-1.3,1.27v49.72c0,.7.58,1.27,1.3,1.27h36.6c.72,0,1.3-.57,1.3-1.27v-.88"/><path class="history_pin_tab-icono" d="m5.15,14.95H1.55c-.72,0-1.3.57-1.3,1.27v49.72c0,.7.58,1.27,1.3,1.27h36.6c.72,0,1.3-.57,1.3-1.27v-3.63"/><line class="history_pin_tab-icono" x1="21.06" y1="43.69" x2="20.5" y2="43.69"/><line class="history_pin_tab-icono" x1="21.8" y1="37.92" x2="20.5" y2="37.92"/><line class="history_pin_tab-icono" x1="26.35" y1="32.15" x2="20.5" y2="32.15"/><line class="history_pin_tab-icono" x1="48.58" y1="32.15" x2="47.87" y2="32.15"/><line class="history_pin_tab-icono" x1="48.58" y1="26.38" x2="20.5" y2="26.38"/><line class="history_pin_tab-icono" x1="48.58" y1="20.61" x2="20.5" y2="20.61"/><line class="history_pin_tab-icono" x1="36.94" y1="14.84" x2="20.5" y2="14.84"/><line class="history_pin_tab-icono" x1="36.29" y1="9.07" x2="20.5" y2="9.07"/></g></svg>
+                                
+                <h2 class="title-history">Historial</h2>
+             </div>
+        </mat-card-content>
+      </mat-card>
+    <div class="transaction-history" >
+        <mat-card>
+            <mat-card-content>
+                <div class="main-panel">
+                    <ul class="history-search">
+                        <div class="title-card">
+                            <h2 class="card-title">Historial de Transacciones</h2>
+                            <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+                          </div>
+                        <ng-container>
+                            <form [formGroup]="historyAppointmentsFormGroup" class="history-form">
+                                <ng-container>
+                                    <mat-form-field class="">
+                                        <mat-label>Tipo de carga*</mat-label>
+                                        <mat-select formControlName="loadType">
+                                            <mat-option value="ALL">
+                                                <ng-container i18n="@@e408cfaa7ac65f2410dce4e1a8fee00bc138d2028ec182f0f9c4f266b9066a58">
+                                                    history.views.history-pin.ALL_OPTION
+                                                </ng-container>
+                                            </mat-option>
+                                            <mat-option value="1">
+                                                <ng-container i18n="@@6a513e29e056e00226708a2cc6afa3a3f94ea56f0332f21259e98100f1955887">
+                                                    history.views.history-pin.detached_load
+                                                </ng-container>
+                                            </mat-option>
+                                            <mat-option value="0">
+                                                <ng-container i18n="@@d174c213cf10f476304b623a17fda282038bf727ae81b99655a1fd5166630356">
+                                                    history.views.history-pin.containerized_load
+                                                </ng-container>
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    
+                                </ng-container>
+                                <ng-container>
+                                    <mat-form-field class="">
+                                        <mat-label>Desde</mat-label>
+                                        <input
+                                            matInput
+                                            formControlName="from"
+                                            [matDatepicker]="picker1"
+                                            placeholder="Elige una fecha"
+                                            (dateChange)="datePickerChange($event, true)"
+                                            >
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>
+                                </ng-container>
+                                <ng-container>
+                                    <mat-form-field class="">
+                                        <mat-label>Hasta</mat-label>
+                                        <input matInput formControlName="to" [matDatepicker]="picker2" placeholder="Elige una fecha" [readonly]="true"  (dateChange)="toDatePickerChange($event, true)">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                                </ng-container>
+                                <ng-container>
+                                    <mat-form-field class="" >
+                                        <mat-label>Buscar Por Número De Cita</mat-label>
+                                        <input matInput formControlName="appointmentNbr">
+                                    </mat-form-field>
+                                </ng-container>
+                                <ng-container>
+                                    <mat-form-field class="" >
+                                        <mat-label>Buscar Por Placa</mat-label>
+                                        <input matInput formControlName="plate">
+                                    </mat-form-field>
+                                    
+                                </ng-container>
+                                <ng-container>
+                                    <li class="history__search-item history__search-item_search-button">
+                                        <button
+                                            class="history__field-button"
+                                            [hourRestriction]="'HIS_CIT'"
+                                            [hourRestrictionAPIGateway]="userInfo"
+                                            [hourRestrictionCallback]="configure.bind(this, true)"
+                                            (click)="searchAppointments()"
+                                            [disabled]="historyAppointmentsFormGroup.invalid"
+                                            
+                                        >
+                                        Buscar
+                                        
+                                        </button>
+                                    </li>
+                                </ng-container>
+                            </form>
+                        </ng-container>
+                    </ul>
+                   
+                </div>
+            </mat-card-content>
+        </mat-card>
+    <div class="secondary-panel">
+        <router-outlet></router-outlet>
+    </div>
+    </div>
+</div>
+
+

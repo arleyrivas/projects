@@ -1,0 +1,41 @@
+<div class="documents-load">
+
+  <h3 class="documents-load__title">
+    {{title}}
+  </h3>
+
+  <ng-container *ngIf="currentUser && !documentationContainer">
+    <ng-container *ngIf="currentUser.empresa">
+      <app-customer-searcher
+        class="service-orders-create__customer-searcher"
+        [controlDisabled]="!!consignee"
+        [searcher]="!consignee"
+        [agent]="currentUser.empresa.id"
+        [data]="nitConsignee + '/' + consignee"
+        (customerSearch)="searchCustomer($event)">
+      </app-customer-searcher>
+    </ng-container>
+    <div [class]="alert.clase" *ngIf="alert.showAlert">
+      <span>{{alert.message}}</span>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="currentUser && !documentationContainer">
+    <ng-container *ngIf="currentUser.empresa">
+      <app-agent-searcher
+          class="service-orders-create__customer-searcher"
+          [controlDisabled]="!!agent"
+          [searcher]="!agent"
+          [agent]="currentUser.empresa.id"
+          [data]="nitAgent + '/' + agent"
+          (agentSearch)="searchAgent($event)">
+      </app-agent-searcher>
+    </ng-container>
+  </ng-container>
+ 
+  <app-upload-file   #hijo
+    [module]="routeData.documentation_module" 
+    [formValid]="consigneeValid.bind(this)"
+    [nbr]="nbr">
+  </app-upload-file>
+</div>

@@ -1,0 +1,119 @@
+<ng-container *ngIf="user">
+      <div class="administration-profile-phone">
+      <h1 class="title" *ngIf="user">
+        Mi Perfil {{ user.userName }}
+      </h1>
+
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="profileForm" class="user-form-form">
+            <mat-form-field>
+                <mat-label>
+                  <ng-container i18n="@@22e9cce7b669515bb28be70f7a5005753d230672468adda491300e39b6dfb014">
+                    config.views.config-users.navbar.CREATE_NAME_USER_MESSAGE
+                  </ng-container>
+                </mat-label>
+                <input matInput type="text" formControlName="username" [readonly]="true">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>
+                  <ng-container i18n="@@cd2c25001897a13e3b2c1f4c6e7cd60c38aeb9439a1c5131ab06c613e9b05040">
+                    config.views.config-users.navbar.CREATE_ID_MESSAGE
+                  </ng-container>
+                </mat-label>
+                <input matInput type="text" formControlName="identification" [readonly]="true">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>
+                  <ng-container i18n="@@fb0753b6e84fcc877ef5528598c9225426314844c7314a95e9224320a3fe5726">
+                    config.views.config-users.navbar.CREATE_NAME_MESSAGE
+                  </ng-container>
+                </mat-label>
+                <input matInput type="text" formControlName="name" [readonly]="true">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>
+                  <ng-container i18n="@@d48921b9793740d9e653591761d4eb41e813f28283e937144751ea2510073827">
+                    config.views.config-users.navbar.CREATE_LAST_NAME_MESSAGE
+                  </ng-container>
+                </mat-label>
+                <input matInput type="text" formControlName="lastName" [readonly]="true">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>
+                  <ng-container i18n="@@67b2d2fca87d290f283ea26317366092de5d6923a123c2c48f4e5117b86d9796">
+                    config.views.config-users.navbar.CREATE_MAIL_MESSAGE
+                  </ng-container>
+                </mat-label>
+                <input matInput type="text" formControlName="email" [readonly]="true">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>
+                  <ng-container i18n="@@5b6f13abc3fa41590845f0892acf7ce19153f8ebb63d241034a7f816c2cbb802">
+                    config.views.config-users.navbar.CREATE_COMPANY_MESSAGE
+                  </ng-container>
+                </mat-label>
+                <input matInput type="text" formControlName="enterprise" [readonly]="true">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>
+                  <ng-container i18n="@@be9ebb72babaa74b4eb37a3ec266a54e0ea92680f5b34a5102299c07a1b8ad2d">
+                    config.views.config-users.navbar.CREATE_POSITION_MESSAGE
+                  </ng-container>
+                </mat-label>
+                <input matInput type="text" formControlName="charge" [readonly]="true">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>
+                  <ng-container i18n="@@2d28ba41a63e2fa716cce9b1381d37f78a9d5f88557d30038276bcc9efe1745a">
+                    config.views.config-users.navbar.CREATE_CELPHONE_MESSAGE
+                  </ng-container>
+                </mat-label>
+                <input matInput type="text" formControlName="phone" [readonly]="true">
+            </mat-form-field>
+            <div class="user-form-notification">
+              <ng-container *ngIf="user">
+                <mat-form-field>
+                    <mat-label>Celular segunda clave</mat-label>
+
+                    <input matInput type="text" formControlName="notificationPhone" [readonly]="true">
+                      <mat-icon matSuffix class="user-form-notification-icon" *ngIf="user.shadowFlag === '1'">lock</mat-icon>
+                    </mat-form-field>
+
+                    <button
+                    mat-flat-button
+                    color="primary"
+                    (click)="updateNotificationPhoneState('true')"
+                    class="submit-button"
+                    *ngIf="user.shadowFlag === '0'"
+                    >
+                  <ng-container i18n="@@2452a1703f387dd4c465accfa95396d1f2c4b5604a2d199c37e776ae73723e4d">
+                    config.views.config-users-mobile.LOCK
+                  </ng-container>
+                  </button>
+                </ng-container>
+              </div>
+
+              <mat-checkbox [checked]="('true' === this.user.info ? this.user.info : false)" color="primary" [disableRipple]="true" (click)="$event.preventDefault()">
+                Desea que el usuario reciba correos de notificación de transacciones?
+              </mat-checkbox>
+        </form>
+
+        <div class="user-form-actions">
+            <button mat-flat-button (click)="cancel()">
+              <ng-container i18n="@@c1c9c168b17220c3bd35feec14abe106f2915d8c0a0d75264c91c8b63584171e">
+                config.views.config-restrictions.CANCEL
+              </ng-container>
+            </button>
+        </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+</ng-container>

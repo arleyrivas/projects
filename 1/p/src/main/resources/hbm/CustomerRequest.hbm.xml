@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+<!--
+    <class name="CustomerRequest" table="customer_request" dynamic-update="true">
+        <id name="id" type="long" column="id">
+            <generator class="native" />
+        </id>
+		<property name="idCustomer" column="id_customer" type="long"/>
+		<property name="idCustomerCreate" column="id_customer_create" type="long"/>
+		<property name="createUser" column="create_user" type="string" length="30"/>
+		<property name="approvalUser" column="approval_user" type="string" length="30"/>
+		<property name="mail" column="mail" type="text"/>
+		<property name="contactUser" column="contact_user" type="text"/>
+		<property name="phone" column="phone" type="text"/>
+		<property name="state" column="state" type="string" length="10"/>
+		<property name="createdAt" column="created_at" type="timestamp"/>
+        <property name="approvedAt" column="approved_at" type="timestamp"/>
+        <property name="finalizedAt" column="finalized_at" type="timestamp"/>
+    </class>
+    -->
+</hibernate-mapping>

@@ -1,0 +1,217 @@
+
+.card {
+  width: 475px;
+  margin: 20px;
+  border: none;
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  color: #666666;
+}
+.card2{
+  margin-left: 2.5%;
+  width: 95%;
+  margin-top: 15px;
+
+}
+.main-panel {
+  height: 100vh;
+  overflow-y: scroll;
+  width: 100%;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  font-size: 16px;
+  background-color: transparent;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-header button {
+  color: #666666;
+  background-color: #E5E5E5;
+  border: none;
+  border-radius: 50px;
+  width: 100px;
+  font-size: 16px;
+}
+
+.card-content {
+  margin-left: 60px;
+  font-size: 14px;
+  height: 80px;
+}
+
+.table {
+  border-spacing: 0;
+  width: 90%;
+  /*margin-left: 5%;*/
+  border: none;
+  font-size: 12px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.row {
+  background-color: #E5E5E5;
+  border-bottom: 1px solid transparent;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+
+
+.box {
+  flex: 1;
+  padding: 10px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  /*border: 1px solid #000000;*/
+}
+
+.green-button {
+  font-weight: bold;
+  background-color: rgb(92, 117, 59);
+  color: white;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 8px 16px;
+  border: transparent;
+  font-size: 15px;
+}
+
+.superior-button{
+  font-size: 10px;
+  height: 20px;
+  width: 120px !important;
+}
+
+.header{
+  background-color: #E5E5E5;
+  border-bottom: 1px solid transparent;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.icon-button {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  width: 100px;
+  padding: 5px;
+}
+
+.icon-button-superior {
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  width: 150px;
+  padding: 5px;
+}
+
+.icon-small {
+  height: 15px;
+  width: 20px;
+  font-size: 15px;
+  border-right: 1.8px solid #000;
+  margin-right: 5px;
+}
+
+.icon-dollar{
+  font-size: 50px;
+  margin-top: 25px;
+  width: 50px;
+  height: 50px;
+}
+.span-icon{
+  position: absolute;
+  margin-top: -20px;
+}
+.text-fecha{
+  font-size: 12px;
+}
+
+.text-titulo{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.divisores{
+  font-size: 12px;
+  height: 30px !important;
+}
+.mat-lista{
+  border: 1px;
+}
+.mat-list-item.divisores {
+  white-space: normal; /* Permite que el texto se ajuste automáticamente */
+  overflow: visible; /* Puede ser útil para evitar que el texto se corte */
+}
+.dimension-tabla{
+  width: 400px !important;
+  color: #666666;
+
+}
+.mdc-data-table__header-cell{
+  color: #666666 !important;
+}
+.div-datos{
+  color: #666666 !important;
+  font-size: 14px;
+}
+.mat-divider {
+  width: 400px !important;
+}
+
+.textop{
+  margin-left: 15px;
+}
+
+.tc{
+  background: #e5e5e5 !important;
+  color: #666 !important;
+}
+
+.border-l{
+  border-top-left-radius: 30px !important;
+  border-bottom-left-radius: 30px !important;
+}
+.border-r{
+  border-top-right-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+
+.box-s-none{
+  box-shadow: none !important;
+}
+.box-s-none tr{
+  height: 35px !important;
+}
+.badge-new{
+  background-color: #777;
+  color: #fff;
+  border-radius: 10px;
+}

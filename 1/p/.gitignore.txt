@@ -1,0 +1,98 @@
+Aquí tienes un archivo `.gitignore` genérico que cubre una amplia gama de tecnologías comunes. Asegúrate de personalizarlo según tus necesidades específicas:
+
+```plaintext
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos generados por editores
+*.log
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# Archivos y carpetas generados por IDEs
+.idea/
+.vscode/
+*.code-workspace
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Java
+target/
+bin/
+*.class
+*.jar
+*.war
+*.ear
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Logs
+logs/
+*.log
+
+# Entornos virtuales de Python
+venv/
+.env/
+*.env
+
+# Archivos de configuración de sistema
+*.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Dependencias del front-end
+dist/
+coverage/
+
+# Angular
+.angular/
+out-tsc/
+dist/
+build/
+
+# Spring Boot
+target/
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Archivos de configuración de Docker
+docker-compose.override.yml
+docker-compose.local.yml
+
+# Archivos de configuración de contenedores
+.env.docker
+
+# Compilación de proyectos .NET
+bin/
+obj/
+
+# IDE JetBrains
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Visual Studio Code
+.vscode/
+
+# Bibli

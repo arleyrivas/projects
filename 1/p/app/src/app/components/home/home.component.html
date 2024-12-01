@@ -1,0 +1,20 @@
+<mat-drawer-container hasBackdrop="false">
+    <mat-drawer class="home__drawer" #drawer mode="over" position="end">
+        <div class="home__drawer-container">
+            <div class="home__drawer-toggle" (click)="drawer.toggle()">
+                <mat-icon class="home__drawer-toggle-icon">keyboard_arrow_left</mat-icon>
+            </div>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="home">
+            <app-menu-sidebar></app-menu-sidebar>
+            <div class="home__content">
+                <!-- <button class="home__drawer-open" mat-button mat-flat-button (click)="drawer.toggle()" color="primary">
+                    <mat-icon class="home__drawer-open-icon">room_service</mat-icon>
+                </button> -->
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

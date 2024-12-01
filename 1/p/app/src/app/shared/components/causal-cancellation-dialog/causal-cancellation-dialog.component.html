@@ -1,0 +1,47 @@
+<h1 mat-dialog-title class="header">
+    
+    <span style="padding: 5px;">Alerta</span>
+</h1>
+<div mat-dialog-content *ngIf="causals.length > 0">
+    <span><B>Motivo de edición de cita:</B></span>
+   <!--  <mat-form-field class="causal-searcher__input">
+        
+      
+        <input matInput [formControl]="causalSearcherFormControl"  type="text" class="causal-searcher__input" [value]="data">
+      
+      
+        <mat-option *ngFor="let causal of causals" [value]="causal.code" (onSelectionChange)="onCausalSelected($event, causal)">
+            {{ causal.description }}
+        </mat-option>
+      
+    </mat-form-field> -->
+    <mat-form-field class="causal-searcher__input">
+      <mat-select [(value)]="data" placeholder="Selecciona un motivo">
+        <mat-option *ngFor="let causal of causals" [value]="causal.code" (onSelectionChange)="onCausalSelected($event, causal)">
+          {{ causal.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span><B>La cita se cancelará, quiere continuar?</B></span>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions>
+    <div class="actions">
+        <button    mat-flat-button  [mat-dialog-close]="false">
+          <ng-container>
+            Cancelar
+          </ng-container>
+        </button>
+        <button mat-raised-button color="primary"   mat-flat-button 
+          [hourRestriction]=privilege
+          [hourRestrictionAPIGateway]="userInfo"
+          [hourRestrictionCallback]="confirmSelection.bind(this)"
+        >
+          <ng-container>
+            Ok
+          </ng-container>
+        </button>
+    </div>
+</div>
+
+

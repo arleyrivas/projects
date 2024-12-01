@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+
+	<class name="DocumentationSpecificFile" table="files" dynamic-update="true">
+		<id name="id" type="long" column="id">
+			<generator class="native" />
+		</id>
+		<property name="fileName" column="name" type="string" not-null="true" length="100" />
+		<property name="createdAt" column="created_at" type="timestamp" not-null="true" />
+		<property name="createdBy" column="created_by" type="string" not-null="true" length="20" />
+		<property name="companyId" column="company_id" type="string" length="20" />
+		<property name="updateAt" column="update_at" type="timestamp" />
+		<property name="updateBy" column="update_by" type="string" length="20" />
+		<property name="approved" column="approved" type="boolean" not-null="true" />
+		<property name="approvedAt" column="approved_at" type="timestamp" />
+		<property name="approvedBy" column="approved_by" type="string" length="20" />
+		<property name="rejected" column="rejected" type="boolean" not-null="true" />
+		<property name="rejectedAt" column="rejected_at" type="timestamp" />
+		<property name="rejectedBy" column="rejected_by" type="string" length="20" />
+		<property name="rejectReason" column="reject_reason" type="string" length="200" />
+		<property name="companyName" column="company_name" type="string" length="200" />
+		<property name="path" column="path" type="string" length="500" />
+		<property name="deleted" column="deleted" type="boolean"  />
+		<many-to-one name="documentationFile" column="documentation_file_id" class="DocumentationFile" not-null="true" fetch="join" />
+	</class>
+</hibernate-mapping>

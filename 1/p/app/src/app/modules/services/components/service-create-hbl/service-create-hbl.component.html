@@ -1,0 +1,68 @@
+  <div class="title-card">
+    <h2 class="card-title">
+      Crear HBL
+    </h2>
+
+    <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+  </div>
+
+                    <app-search
+                        inputPlaceholder="BL Master/BL Directo"
+                        indication="Ingresa el BL Master / BL Directo para realizar el proceso"
+                        [hasCleanButton]="true"
+                        (submitSearch)="search($event)"
+                        (cleanEmmiter)="clean()"
+                    ></app-search>
+
+                    <ng-container *ngIf="serviceCreateHBL">
+                      <div class="load__result">
+                        <div class="load__body">
+                          <ul class="load__container-list">
+                            <li class="load__container-item">
+                              <span class="load__container-item-title">Vessel Visit: </span>
+                              <span>{{ serviceCreateHBL.vesselVisit }}</span>
+                            </li>
+
+                            <li class="load__container-item">
+                              <span class="load__container-item-title">Line Operator: </span>
+                              <span>{{ serviceCreateHBL.lineOperator }}</span>
+                            </li>
+
+                            <li class="load__container-item">
+                              <span class="load__container-item-title">Contenedores Activos: </span>
+                              <span>{{ serviceCreateHBL.cantActive }}</span>
+                            </li>
+
+                            <li class="load__container-item">
+                                <span class="load__container-item-title">Contenedores Inactivos: </span>
+                                <span>{{ serviceCreateHBL.cantInactive }}</span>
+                              </li>
+                          </ul>
+                        </div>
+
+                        <mat-table [dataSource]="dataSource" *ngIf="serviceCreateHBL.hbls.length" matSort>
+                          <ng-container matColumnDef="nbr">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>BL Hijo</mat-header-cell>
+                            <mat-cell *matCellDef="let element">{{ element.nbr }}</mat-cell>
+                          </ng-container>
+
+                          <ng-container matColumnDef="cantidad">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</mat-header-cell>
+                            <mat-cell *matCellDef="let element">{{ element.cantidad }}</mat-cell>
+                          </ng-container>
+
+                          <ng-container matColumnDef="peso">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Peso(KG)</mat-header-cell>
+                            <mat-cell *matCellDef="let element">{{ element.peso }}</mat-cell>
+                          </ng-container>
+
+                          <ng-container matColumnDef="estado">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+                            <mat-cell *matCellDef="let element">{{ element.estado }}</mat-cell>
+                          </ng-container>
+
+                          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                      </div>
+                    </ng-container>

@@ -1,0 +1,122 @@
+.demo-inline-calendar-card {
+    width: 100%;
+    height: auto; 
+    overflow: auto;
+ }
+
+::ng-deep #mat-calendar-appointment .mat-calendar {
+    display: block; /* O usa 'flex' si es necesario */
+    width: 100%; /* O usa 'auto' si prefieres */
+    max-width: 100%; /* Asegura que no exceda el contenedor padre */
+    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el tamaño del elemento */
+}
+
+::ng-deep #mat-calendar-appointment .mat-calendar-body-selected {
+    background-color: #8EAB49; /* Cambia este color por el que desees */
+    color: white; /* Cambia este color por el que desees */
+    border-radius: 0 !important;
+  }
+
+  ::ng-deep #mat-calendar-appointment .mat-calendar-body-today {
+    background-color: #8EAB49; /* Cambia este color por el que desees */
+    color: white; /* Cambia este color por el que desees */
+    border-radius: 0 !important;
+  }
+
+  ::ng-deep #mat-calendar-appointment .mat-calendar-body-cell-hover {
+    background-color: #8EAB49; /* Cambia este color por el que desees */
+    color: white; /* Cambia este color por el que desees */
+    border-radius: 0 !important;
+  }
+  
+  ::ng-deep  #mat-calendar-appointment .mat-calendar-body-cell-content {
+    border: 1px solid #87A349; 
+    border-radius: 8px !important; 
+     box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end !important; 
+    align-items: flex-end !important; 
+    padding: 8px !important;
+    
+   
+  } 
+  ::ng-deep #mat-calendar-appointment .mat-calendar-body-cell-container {
+    
+    
+     
+    padding: 50px !important; /* Ajusta el espacio alrededor del contenido */
+    
+   
+  }
+
+  .today-date {
+    background-color: #ffffcc; /* Color de fondo para la fecha de hoy */
+  }
+
+  ::ng-deep #mat-calendar-appointment .mat-calendar-body-cell {
+    width: 100% !important;
+    height: 100% !important;  
+  } 
+  
+  
+  ::ng-deep #mat-calendar-appointment .mat-calendar-table-header tr  th span {
+    background-color: #f0f0f0; /* Set background color */
+    color: #333; /* Set text color */
+    font-weight: bold; /* Make text bold */
+    text-align: center; /* Center text */
+    padding: 10px 10px  ;
+    border-bottom: 1px solid #ddd; /* Add bottom border */
+    border-radius: 8px;
+    display: inline-block;
+    width: 100% !important;
+    
+    
+    
+  }
+
+  ::ng-deep  #mat-calendar-appointment .mat-calendar-body-cell-content::after {
+   
+   position: absolute;
+    bottom: 33px; 
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px; 
+    color:#ECECEC;  
+  }
+
+
+  ::ng-deep #mat-calendar-appointment .mat-calendar-table-header th{
+    padding: 0.1rem !important;
+  }
+
+  ::ng-deep #mat-calendar-appointment .mat-calendar-table {
+    border-collapse: collapse !important; 
+}
+
+::ng-deep #mat-calendar-appointment .mat-calendar-table {
+  border-collapse: collapse !important; /* Elimina los espacios entre las celdas */
+}
+
+::ng-deep #mat-calendar-appointment .mat-calendar-body-selected {
+  background-color: #8EAB49 !important; /* Color de fondo para el día seleccionado */
+}
+
+::ng-deep  #mat-calendar-appointment .mat-calendar-body-selected span{
+  background-color: #8EAB49 !important; /* Color de fondo para el día seleccionado */
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #f0f0f0;
+}
+
+
+
+
+
+  

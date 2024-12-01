@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+	<deployment>
+		<dependencies>
+			<module name="com.spia.configuration" />
+			<module name="org.jboss.as.jmx" />
+			<module name="org.slf4j" />
+			<module name="org.apache.commons.collections" />
+			<module name="org.apache.cxf" export="true">
+				<imports>
+					<include path="META-INF**" />
+					<include path="META-INF/cxf**" />
+				</imports>
+				<exports>
+					<include path="META-INF" />
+					<include path="META-INF/cxf" />
+				</exports>
+			</module>
+			<module name="org.apache.cxf.impl" export="true">
+				<imports>
+					<include path="META-INF**" />
+					<include path="META-INF/cxf**" />
+				</imports>
+				<exports>
+					<include path="META-INF" />
+					<include path="META-INF/cxf" />
+				</exports>
+			</module>
+
+			<module name="org.springframework.spring" export="true">
+				<imports>
+					<include path="META-INF**" />
+				</imports>
+				<exports>
+					<include path="META-INF" />
+				</exports>
+			</module>
+			<module name="javax.xml.ws.api" export="true" />
+			<module name="javax.jws.api" export="true" />
+		</dependencies>
+		<exclusions>
+			<module name="org.javassist" />
+			<module name="org.codehaus.jackson" />
+			<module name="javax.ws.rs.api" />
+		</exclusions>
+		<local-last value="true" />
+		<exclude-subsystems>
+			<subsystem name="jaxrs" />
+<!-- 			<subsystem name="webservices" /> -->
+		</exclude-subsystems>
+	</deployment>
+</jboss-deployment-structure>

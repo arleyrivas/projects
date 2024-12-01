@@ -1,0 +1,24 @@
+<div class="documental-search">
+    <div class="input-form">
+        <div class="input-simulator">
+            <span *ngFor="let value of values; let i = index" [class.tachado]="value.startsWith('tachado:')"> {{value.replace('tachado:', '')}} <a class="span-delete" (click)="removeValue(i)">x</a></span>
+            <input #inputValue id="inputValue" type="text"  (keyup)="checkComma($event, inputValue)" (blur)="onBlur($event, inputValue)" [placeholder]="inputPlaceholder" [disabled]="isInputDisabled">
+        </div>
+        <button (click)="clean()" *ngIf="hasCleanButton" class="search-field__action search-field__delete-button">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button (click)="submit()" *ngIf="false" [disabled]="pinSearcherControl.invalid" class="search-field__action search-field__search-button">
+            <mat-icon>search</mat-icon>
+        </button>
+        
+    </div>
+    
+    
+    <p class="search__description">{{ indication }}</p>
+    
+
+     
+    
+</div>
+
+

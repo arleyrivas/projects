@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+ 
+    <class name="TruckVisitAppointmentBreakBulk" table="truck_visit_appointment_breakbulk" dynamic-update="true">
+        <id name="id" type="long" column="id">
+            <generator class="native" />
+        </id>
+        <property name="truckVisitAppointmentNbr" column="truck_visit_appointment_nbr" not-null="true" type="string" />
+        <property name="pin" column="pin_id" type="string" /> 
+        <property name="state" column="state" type="string"/>
+        <property name="truck" column="truck" type="string"/>
+        <property name="companyIdLdap" column="company_id_ldap" type="string"/>
+        <property name="appointmentDate" column="appointment_date" not-null="true" type="timestamp"/>
+        <property name="createdByLdap" column="created_by_ldap" type="string"/>
+        <property name="license" column="license" type="string"/>
+        <property name="manifestNbr" column="manifest_nbr" type="string"/>
+    </class>
+</hibernate-mapping>

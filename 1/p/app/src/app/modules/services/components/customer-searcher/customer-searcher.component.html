@@ -1,0 +1,14 @@
+<mat-form-field class="customer-searcher__input">
+  <mat-label>Cliente (Importador/Exportador)</mat-label>
+
+  <input matInput [formControl]="customerSearcherFormControl" [matAutocomplete]="companyAutocomplete" type="text" class="customer-searcher__input" [value]="data"
+  (input)="onInput($event)">
+
+  <mat-icon matPrefix svgIcon="customer_searcher"></mat-icon>
+
+  <mat-autocomplete #companyAutocomplete="matAutocomplete">
+      <mat-option *ngFor="let customer of (sharedStore | async)" [value]="customer.agentId + '/' + customer.agentName" (onSelectionChange)="onCustomerSelected($event, customer)">
+          {{ customer.agentName }}
+      </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

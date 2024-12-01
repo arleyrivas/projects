@@ -1,0 +1,162 @@
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.header {
+  background-color: #6ab04c; /* Verde */
+  color: white;
+  padding: 16px;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+}
+
+.legend-container {
+  background-color: #f5f5f5; /* Gris claro */
+  padding: 16px;
+  border-radius: 0 0 8px 8px;
+  max-height: calc(80vh - 100px); /* Limitar el máximo alto al 80% de la pantalla */
+  overflow-y: auto; /* Activar el scroll si es necesario */
+}
+
+.tables-container {
+  display: flex; /* Usar flexbox para disposición en fila */
+  justify-content: space-between; /* Espaciado entre tablas */
+}
+
+.table-wrapper {
+  flex: 1; /* Cada tabla ocupará el mismo ancho */
+  margin-right: 16px; /* Margen derecho entre las tablas */
+}
+
+.table-wrapper:last-child {
+  margin-right: 0; /* Eliminar margen en la última tabla */
+}
+
+.availability-table {
+  width: 100%; /* Ancho total de la tabla */
+  background-color: white; /* Fondo blanco para la tabla */
+  border-collapse: collapse; /* Colapsar bordes */
+}
+
+.availability-table th, .availability-table td {
+  border-bottom: 1px solid #ccc; /* Borde inferior gris claro */
+  padding: 8px; /* Espaciado en celdas */
+  text-align: center; /* Centrar texto */
+}
+.availability-text{
+  font-weight: bold;
+}
+
+.title-icons, .availability-text {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px; /* Espaciado entre leyendas */
+  gap: 0.5rem;
+}
+
+.title-icons span, .availability-text span {
+  margin-left: 8px; /* Espaciado entre elementos */
+}
+
+
+.text-green-500 {
+  color: #38a169; /* Color verde */
+}
+
+.text-red-500 {
+  color: #e53e3e; /* Color rojo */
+}
+
+.text-yellow-500 {
+  color: #d69e2e; /* Color amarillo */
+}
+
+table {
+  border-collapse: collapse; /* Elimina el espaciado entre las celdas */
+}
+
+th, td {
+  padding: 8px; /* Ajusta el padding para que sea más pequeño */
+  border-bottom: 1px solid #d1d5db; /* Color de borde inferior para las filas */
+}
+
+th.text-center-hidden {
+  visibility: hidden; /* Oculta el texto pero mantiene el espacio */
+}
+
+.hide-bottom-border th {
+  border-bottom: none; /* Elimina el borde inferior de las celdas en esta fila */
+}
+
+.hide-bottom-border {
+  border-bottom: none; /* Elimina el borde inferior de toda la fila */
+}
+
+
+.actions {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.whitespace-nowrap {
+  cursor: pointer;
+}
+
+.hour:hover {
+  background-color: rgba(100, 159, 51, 0.5);
+}
+
+.whitespace-nowrap.selected {
+  background-color:  rgba(100, 159, 51, 0.5);
+  /* Opcional, para cambiar el color del texto también */
+}
+
+
+.whitespace-nowrap.not-available {
+  cursor: not-allowed; /* Cambia el cursor para indicar que no es seleccionable */
+}
+
+.mat-dialog-content {
+  max-height: 80vh; /* Limitar el máximo alto al 80% de la pantalla */
+  overflow-y: auto; /* Activar el scroll si es necesario */
+}
+.large-text {
+  font-size: 1.2em; /* Ajusta el tamaño según tus necesidades */
+  font-weight: bold; /* Para mantener el texto en negrita */
+}
+
+.info-retiro-detalle {
+  display: inline-block;
+  margin-right: 10px; /* Espacio entre los elementos */
+}
+
+.info-retiro-detalle::after {
+  content: '|';
+  margin-left: 10px; /* Espacio después del separador */
+}
+
+.info-retiro-detalle:last-child::after {
+  content: ''; /* No mostrar el separador después del último elemento */
+}
+
+.dialog-actions {
+  position: sticky;
+  bottom: 0;
+  background-color: white; /* Fondo para que los botones no se sobrepongan al contenido */
+  padding: 8px; /* Ajusta el espacio alrededor de los botones */
+  z-index: 10;
+}
+
+.media-text{
+  font-size: 18px;
+}
+
+
+
+
+

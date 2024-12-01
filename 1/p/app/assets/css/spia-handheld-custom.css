@@ -1,0 +1,156 @@
+span, div, a, td{
+	font-size : 0.8em !important;
+}
+
+.noPadding{
+	padding:0 !important;
+}
+.paddingTop{
+	padding:7px 0 0 0 !important;
+}
+#handheldLogout{
+/* 	margin: -0.7em 0.5em 0em 0em;  */
+/* 	padding: 0.5em 0 ;  */
+	line-height: 0em;
+}
+
+#handheldLogout .icon{
+	height:2em;
+	width:2em;
+	
+}
+
+.linkBack .icon{
+	height:1.3em;
+	width:1.3em;
+}
+.handheld thead tr {
+	background: #2a4e33;
+	height: 2em;
+	font-size: 1.5em;
+	color:white;
+	width:100%;
+}
+.handheld .head-white-table tr {
+	background: #FFFFFF;
+/*  	height: 100px;  */
+ 	font-size: 1.5em; 
+	color:#2a4e33;
+	width:100%;
+	border: none;
+}		
+.handheld .texto{
+	font-size: 1.1em;
+}
+.handheld table{
+	padding:0.5em;
+	width:100%;
+	border-collapse: collapse;
+}
+.handheld .body-table{
+	background-color : #F2F2F2;
+}
+.handheld tr{
+	width:100%;
+	font-size: 1em;
+	height:2em;
+	color:#808080;
+	background:#ffffff;
+	border:1px solid gray;
+}
+.handheld .body-table tr{
+	width:100%;
+	font-size: 20px;
+	height:1.125em;
+	color:#808080;
+	background:#f2f2f2;
+	border:1px solid gray;
+}
+.handheld td{
+	width:100%;
+	padding: 0 1em;
+}
+.handHeldLink{
+	text-decoration:none;  
+}
+.handHeldMain{
+	font-size: 1.2em;
+	color:#2a4e33;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+.handHeldText{
+	font-size: 1em;
+	color:#808080;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+.handheld tr .sealCell{
+	border-right: none;
+	border-left: none;
+	width: 50%;
+}
+.cellNoPaddingLeft{
+	padding-left : 0.1em !important;
+}
+.handheld .body-table tr .sealCell a{
+	color: white;
+	padding: 0px;	
+	text-decoration : none;
+	display: block;
+	text-align : center;
+	cursor : pointer;
+}
+.sealDiv{
+	width: 100%;
+	height: 100%;
+	color: white;
+	text-align : center;
+	padding:0px !important;
+} 
+.allow{
+	background: #2a4e33;
+}
+.deny{
+	background: #CE3000;
+}
+.texto-result{
+	font-size: 1.5em;
+	color:#2a4e33;
+	text-align : center;
+}
+.head-white-table .linkBack{
+	color: #2a4e33;
+    text-decoration: none;
+}
+.linkBack{
+	color: #ffffff;
+    text-decoration: none;
+}
+.sealDiv input{
+ 	width:100%; 
+ 	height: 100% !important; 
+	border: none;
+/* 	font-size: 0.6em; */
+ 	padding-top: 8px;
+ 	font-size:1.2em;
+ 	color:white;
+}
+.allow input{
+	background: #2a4e33;
+}
+.deny input{
+	background: #CE3000;
+}
+.no-border-table{
+	border: none;
+}
+form .no-border-table{
+	border: none;
+}
+.input-size{
+	height: 1.8em;
+	width: 8em;
+	font-size: 1em;
+	margin-top: 0.9em;
+}

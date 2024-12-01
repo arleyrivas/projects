@@ -1,0 +1,28 @@
+<h1 mat-dialog-title class="header">
+    <div class="header__title">
+        <mat-icon>delete</mat-icon>
+        <span i18n="@@86301872b40e188d1d9368d193393b614a5e22eaff3092c28e929cb8de96143b">
+          services.views.modal.confirm.label.TITLE
+        </span>
+    </div>
+</h1>
+<div mat-dialog-content>
+  <p i18n="@@bf79964af13a6a9b990031340c468e9c414d363732fbbe3f074a03df50058967">
+    config.views.config-ip-restriction.delete.MODAL_CONFIRM
+  </p>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions>
+    <div class="actions">
+        <button mat-raised-button color="primary" class="accept-button" [mat-dialog-close]="true">
+          <ng-container i18n="@@ebc94295e02cb01e14000f384f6a174c059c0f68181bec11d3a0b1228457f92e">
+            services.views.modal.confirm.button.ACCEPT
+          </ng-container>
+        </button>
+        <button mat-flat-button [mat-dialog-close]="false">
+          <ng-container i18n="@@2e62ee290751f01d9ddafa760514fdd398a3da7ef13e4156cbb04e6fa17812b7">
+            services.views.modal.confirm.button.CANCEL
+          </ng-container>
+        </button>
+    </div>
+</div>

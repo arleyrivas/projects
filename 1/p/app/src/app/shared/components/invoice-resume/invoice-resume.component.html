@@ -1,0 +1,65 @@
+<ng-container *ngIf="invoiceProforma">
+  <div class="containerized-load">
+      <div class="main-panel">
+        <ng-container *ngIf="invoiceProforma">
+          <mat-card class="card" >
+              <span class="span-icon">
+                <mat-icon class="icon-dollar">attach_money</mat-icon>
+              </span>
+
+              <div class="card-content">
+                Número de factura:
+                <br />
+
+                <ng-container *ngIf="invoiceProforma.finalNumber">
+                  {{ invoiceProforma.finalNumber }}
+                </ng-container>
+
+                <ng-container *ngIf="invoice && !invoiceProforma.finalNumber">
+                  {{ invoice }}
+                </ng-container>
+                <br />
+                <span class="text-fecha">Fecha estimada de retiro {{ formatearFecha(invoiceProforma.paidThruDay) }}</span>
+              </div>
+
+              <ng-container *ngIf="selectedCustomer">
+                <p class="invoice-proforma__consignee">
+                  Cliente: <span class="invoice-proforma__consignee-value">{{ selectedCustomer }}</span>
+                </p>
+              </ng-container>
+
+              <div class="table">
+                <div class="row">
+                  <div class="box">Contenedor / HBL</div>
+                  <div class="box">Descripción</div>
+                  <div class="box2">Cantidad</div>
+                  <div class="box3">$COP</div>
+                </div>
+
+                <div class="row" *ngFor="let fac of accumulatedDataSource">
+                  <ng-container *ngIf="fac">
+                    <div class="box">{{ fac.container }}</div>
+                    <div class="box">{{ fac.description }}</div>
+                    <div class="box2">{{ fac.quantity }}</div>
+                    <div class="box3">{{ fac.amount | number }}</div>
+                  </ng-container>
+                </div>
+
+                <div class="row">
+                  <div class="box">Total:</div>
+                  <div class="box"></div>
+                  <div class="box3">{{ invoiceProforma.totalTotal | number:'1.2-2' }}</div>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <button mat-button class="green-button"  *permissions="[privileges.CC_IMP_FAC_PAG]" (click)="pay([invoiceProforma], invoice)">Pagar</button>
+                <button mat-button class="green-button icon-button" *permissions="[privileges.FAC_IMP]" (click)="print(invoiceProforma.finalNumber)">
+                  <mat-icon>print</mat-icon>
+                  Imprimir
+                </button>
+              </div>
+          </mat-card>
+        </ng-container>
+      </div>
+  </div>

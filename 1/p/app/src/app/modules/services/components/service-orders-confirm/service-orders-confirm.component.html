@@ -1,0 +1,115 @@
+<h1 mat-dialog-title>
+    <div class="credit-notes__header">
+      <svg class="credit-notes-check-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360.76 360.76"><defs><style>.cls-1{fill:transparent;}.cls-1,.cls-2{stroke-width:0px;}.cls-2{fill:#fff;}</style></defs><g id="Capa_1-2"><rect class="cls-1" x="0" width="360.76" height="360.76" rx="4.49" ry="4.49"/><path class="cls-2" d="m296.58,93.79c-11.53-12.5-21.99-20.94-34.49-9.43l-127.81,117.83-32.27-36.9c-11.2-12.79-22.5-5.52-35.31,5.67-12.81,11.19-22.28,22.08-11.07,34.89l33.33,38.12,27.2,31.11c7.33,8.38,20.12,9.07,28.3,1.52l30.39-28.01,129-118.93c12.52-11.53,4.27-23.37-7.27-35.88Z"/></g></svg>
+    <span class="credit-notes__title-text">Confirmación</span>
+    </div>
+  </h1>
+
+  <div mat-dialog-content>
+    <p class="credit-notes__paragraph">{{ user.nombres }} de la Empresa {{ user.empresa?.companyName }}, por favor verifique los datos ingresados el {{ currentDate.toLocaleDateString() }} antes de aceptar.  La creación de la Orden de Servicio no podrá ser modificada y los cambios tendrán un costo extra generado por el terminal.</p>
+    <div class="credit-notes__selected-lists">
+      <ul class="credit-notes__selected-list">
+        <ng-container *ngIf="dialogData.criteria">
+            <li class="credit-notes__selected-list-item">
+                <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+
+                <div class="credit-notes__selected-list-text">
+                    <p class="credit-notes__selected-list-title">BL, HBL o Booking: <br></p>
+                    <span>{{ dialogData.criteria }}</span>
+                </div>
+            </li>
+        </ng-container>
+
+        <ng-container *ngIf="dialogData.customerName">
+            <li class="credit-notes__selected-list-item">
+                <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+
+                <div class="credit-notes__selected-list-text">
+                    <p class="credit-notes__selected-list-title">CLIENTE: <br></p>
+                    <span>{{ dialogData.customerName }}</span>
+                </div>
+            </li>
+        </ng-container>
+
+        <ng-container *ngIf="dialogData.serviceType">
+            <li class="credit-notes__selected-list-item">
+                <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+                <div class="credit-notes__selected-list-text">
+                    <p class="credit-notes__selected-list-title">SERVICIO: <br></p>
+                    <span>{{ dialogData.serviceType }}</span>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+
+    <ul class="credit-notes__selected-list">
+        <ng-container *ngIf="dialogData.autorityType">
+            <li class="credit-notes__selected-list-item">
+                <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+
+                <div class="credit-notes__selected-list-text">
+                    <p class="credit-notes__selected-list-title">AUTORIDAD: <br></p>
+                    <span class="credit-notes__invoices-nbr">{{ dialogData.autorityType }}</span>
+                </div>
+            </li>
+        </ng-container>
+
+        <ng-container *ngIf="dialogData.inspectionType">
+            <li class="credit-notes__selected-list-item">
+                <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+
+                <div class="credit-notes__selected-list-text">
+                    <p class="credit-notes__selected-list-title">TIPO DE INSPECCIÓN: <br></p>
+                    <span>{{ dialogData.inspectionType }}</span>
+                </div>
+            </li>
+        </ng-container>
+
+        <ng-container *ngIf="dialogData.requires_crew">
+            <li class="credit-notes__selected-list-item">
+                <svg class="credit-notes__arrow-icon" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.31 402.33"><defs><style>.cls-1{fill:#92b975;stroke-width:0px;}</style></defs><g id="Capa_1-2"><polygon class="cls-1" points="120.51 0 0 0 163.81 201.17 0 402.33 120.51 402.33 284.31 201.17 120.51 0"/></g></svg>
+
+                <div class="credit-notes__selected-list-text">
+                    <p class="credit-notes__selected-list-title">REQUIERE CUADRILLA: <br></p>
+                    <span>{{ dialogData.requires_crew }}</span>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+    </div>
+
+    <div class="credit-notes__selected-list-text service-order-confirm__selected-list-text">
+        <p class="credit-notes__selected-list-title">CONTENEDORES: <br></p>
+        <span class="service-order-confirm__field">{{ dialogData.container }}</span>
+    </div>
+
+    <ng-container *ngIf="dialogData.crew">
+        <div class="credit-notes__selected-list-text service-order-confirm__selected-list-text">
+            <p class="credit-notes__selected-list-title">USUARIOS AUTORIZADOS PARA INGRESO: <br></p>
+            <span class="service-order-confirm__field">{{ dialogData.crew }}</span>
+        </div>
+    </ng-container>
+
+    <div class="credit-notes__selected-list-text service-order-confirm__selected-list-text">
+        <p class="credit-notes__selected-list-title">OBSERVACIONES: <br></p>
+
+        <mat-form-field class="service-order-confirm__textarea">
+            <textarea matInput [value]="dialogData.observation" [disabled]="true"></textarea>
+        </mat-form-field>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <div class="credit-notes__footer">
+        <button mat-flat-button (click)="cancel()" class="services-confirm__cancel-button">Cancelar</button>
+        <button
+          mat-flat-button
+          color="primary"
+          class="credit-notes__dialog-accept-button"
+          [appDoubleFactorAuthentication]="'ORD_SERV_BUS_SOL'"
+          [appDoubleFactorAPIGateway]="user"
+          [doubleFactorCallback]="submit.bind(this)"
+          [doubleFactorIncorrectCallback]="cancel.bind(this)"
+        >Aceptar</button>
+    </div>
+</div>

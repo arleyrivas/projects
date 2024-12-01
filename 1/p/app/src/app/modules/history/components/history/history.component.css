@@ -1,0 +1,193 @@
+.wrapper-history {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 0.5rem;
+}
+
+.header-history {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.title-history {
+  font-size: 1.2rem;
+  font-family: "Gilroy-Light";
+  margin: 0;
+  padding-left: 1rem;
+  color: #78909c;
+  font-weight: 300;
+}
+
+.history {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.welcome__user {
+  font-size: 1.875rem;
+  color: var(--primary-color);
+}
+
+.transaction-history {
+display: grid;
+height: 100vh;
+
+grid-template-columns: 0.7fr 1fr;
+grid-template-rows: 1fr;
+
+
+
+
+}
+
+
+.other-component{
+padding: 1rem;
+display: grid;
+}
+
+.history-form {
+
+
+display: grid;
+
+grid-template-rows: 1fr 1fr auto 1fr;
+
+}
+
+.history__search-item {
+font-weight: 300;
+
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.history__search-item_search-button {
+width: 100%;
+
+display: flex;
+justify-content: flex-end;
+align-items: center;
+}
+
+.history__search-button-item {
+width: 100%;
+font-weight: 300;
+
+display: flex;
+justify-content: flex-end;
+align-items: center;
+}
+
+.history__field-button {
+width: 7rem;
+height: 2rem;
+border: none;
+outline: none;
+cursor: pointer;
+border-radius: 0.5rem;
+margin-left: 0.2rem;
+background-color: #92B975;
+color: #ffffff;
+transition: background-color 0.2s;
+font-size: 1rem;
+
+display: flex;
+justify-content: space-around;
+align-items: center;
+}
+
+.history__field-button:disabled {
+background-color: #999;
+}
+
+.history__field-button-icon {
+width: 2rem;
+}
+
+
+
+.main-panel{
+height: 100%;
+
+}
+
+.history-search{
+  list-style: none;
+  margin: 0;
+}
+
+.secondary-panel {
+flex: 1;
+padding-left: 1rem;
+padding-right: 1rem;
+
+}
+
+.history_line{
+  width: 35rem;
+  margin-top: 1rem;
+
+}
+
+.title-card {
+  width: max-content;
+}
+
+.card-title {
+  font-family: "Gilroy-ExtraBold" !important;
+  color: #78909c;
+  margin: 0;
+}
+
+
+
+.icon-title {
+width: 1.5rem;
+}
+
+.history_pin_tab-icono {
+  width: 1.5rem;
+}
+
+.history-icon{
+  padding-top: 0.5rem;
+}
+
+.history_pin_tab-icono path {
+  width: 1.5rem;
+  
+}
+
+
+::ng-deep .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .history_pin_tab-icono path, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .history_pin_tab-icono path {
+  fill: none;
+  stroke: #231f20!important;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+::ng-deep .error-snackbar .mdc-snackbar__surface {
+  color: #721c24 !important;
+  background-color: #f8d7da !important;
+  border-color: #f5c6cb !important;
+}

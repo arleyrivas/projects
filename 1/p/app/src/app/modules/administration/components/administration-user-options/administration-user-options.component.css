@@ -1,0 +1,15 @@
+.create-user {
+    height: 100%;
+}
+
+.adminsitration__user-options-icon {
+  width: 1rem;
+}
+
+.adminsitration__user-options-icon path {
+  fill: rgba(0, 0, 0, 0.6);
+}
+
+::ng-deep .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .adminsitration__user-options-icon path, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .adminsitration__user-options-icon path {
+  fill: #66bb6a;
+}

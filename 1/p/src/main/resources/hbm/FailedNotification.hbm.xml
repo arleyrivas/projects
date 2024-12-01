@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+ 
+    <class name="FailedNotification" table="failedNotification" dynamic-update="true">
+        <id name="id" type="long" column="id">
+            <generator class="native" />
+        </id>
+        
+        <property name="date" column="date" type="timestamp" not-null="true"/>
+        <property name="title" column="title" type="string" not-null="true" length="200"/>
+        <property name="content" column="content" type="string" not-null="true" length="200"/>
+        <property name="data" column="data" type="string" not-null="true" length="200"/>
+        <property name="watched" column="watched" type="boolean" not-null="true" />
+        <property name="type" column="type" type="string" />
+        <property name="user" column="userName" type="string" not-null="true" length="30"/>
+        <property name="deleted" column="deleted" type="boolean" not-null="true" />
+        
+
+    </class>
+</hibernate-mapping>

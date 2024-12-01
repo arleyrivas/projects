@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+	package="com.spia.businessportal.common.entities">
+
+	<class name="DocumentationFile" table="documentation_file"
+		dynamic-update="true">
+		<id name="id" type="long" column="id">
+			<generator class="native" />
+		</id>
+		<many-to-one name="documentation"
+			column="documentation_id" class="Documentation" not-null="true"
+			fetch="join" />
+		<many-to-one name="state" column="state_id"
+			class="DocumentationFileState" not-null="true" fetch="join" />
+		<set name="files" table="files" cascade="all" inverse="true"
+			lazy="false" fetch="select"   >
+			<key>
+				<column name="documentation_file_id" not-null="true" />
+			</key>
+			<one-to-many class="DocumentationSpecificFile" />
+<!-- 			<filter name="deleted" condition=":deleted = deleted" /> -->
+		</set>
+		<many-to-one name="fileName" column="file_name_id"
+			class="DocumentationFileNameForType" not-null="true" fetch="join" />
+	</class>
+<!-- 	<filter-def name="deleted"> -->
+<!-- 		<filter-param name="deleted" type="boolean" /> -->
+<!-- 	</filter-def> -->
+</hibernate-mapping>

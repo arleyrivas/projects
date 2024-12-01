@@ -1,0 +1,9 @@
+<div class="welcome">
+  <div class="welcome__text">
+      <span *ngIf="(user | async)?.nombres as name" class="welcome__user">
+        <ng-container i18n="@@e32dba89291714f194a05f511ec11b97b96df29be0251ed6291c0f9fff5b57bd">layout.WELCOME_TITLE</ng-container>, {{ name }}</span>
+      <span class="welcome__onboarding" i18n="@@8ebee4cbfacfb465453eaba95ff8c1288119cc682254e37c8abd7c6a95a0fc9e">layout.WELCOME_MSG</span>
+  </div>
+
+  <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+</div>

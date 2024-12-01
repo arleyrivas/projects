@@ -1,0 +1,11 @@
+<div class="generate-pin__unit">
+  <mat-checkbox #checkbox color="primary" class="generate-pin__checkbox" (change)="matChecboxUnitChange($event, checkbox)" [disabled]="!truckValid"></mat-checkbox>
+
+  <span class="generate-pin__unit-nbr">{{ unit.unitNbr }}</span>
+
+  <div class="generate-pin__unit-size">
+      <span class="generate-pin__unit-size-text">{{ unit.BlData.twenty ? '20' : '40' }}''</span>
+  </div>
+
+  <app-truck-searcher [consigneeId]="customerId" (truckSearch)="addTruckToContainer($event)" (truckControl)="addTruckControl($event)"></app-truck-searcher>
+</div>

@@ -1,0 +1,18 @@
+<div class="documental-search">
+    <div class="input-form">
+        <input [formControl]="searchPlateControl" class="search-field" type="text" [placeholder]="inputPlaceholder" minlength="6" maxlength="6"><br>
+        
+        <button (click)="clean()" *ngIf="hasCleanButton" class="search-field__action search-field__delete-button">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button (click)="submit()" *ngIf="hasSearchButton" [disabled]="searchPlateControl.invalid" class="search-field__action search-field__search-button">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+    <span *ngIf="!obtuvoDatos" class="span-error">
+        X No se encontraron resultados para la placa
+    </span>
+    <p class="search__description">{{ indication }}</p>
+    
+</div>
+

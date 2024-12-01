@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+ 
+    <class name="TruckVisit" table="truck_visit_appointment" dynamic-update="true" >
+        <id name="id" type="long" column="id" >
+            <generator class="native" />
+        </id>
+        <property name="truckVisitNbr" column="truck_visit_nbr" not-null="true" type="string" />
+        
+        <property name="firstAppointmentImport" column="first_app_import" type="string" />
+        <property name="firstContainerImport" column="first_container_import" type="string" />
+        <property name="firstContainerImportTwenty" column="first_container_import_twenty" type="boolean"/>
+        <property name="firstAppointmentImportOrder" column="first_app_import_order" type="string"/>
+        <property name="firstTransTypeImport" column="first_trans_type_import" type="string"/>
+
+        <property name="secondAppointmentImport" column="second_app_import" type="string" />
+        <property name="secondContainerImport" column="second_container_import" type="string" />
+        <property name="secondContainerImportTwenty" column="second_container_import_twenty" type="boolean"/>
+        <property name="secondAppointmentImportOrder" column="second_app_import_order" type="string"/>
+        <property name="secondTransTypeImport" column="second_trans_type_import" type="string"/>
+        
+        <property name="firstAppointmentExport" column="first_app_export" type="string" />
+        <property name="firstContainerExport" column="first_container_export" type="string" />
+        <property name="firstContainerExportTwenty" column="first_container_export_twenty" type="boolean"/>
+        <property name="firstAppointmentExportOrder" column="first_app_export_order" type="string"/>
+        
+        <property name="secondAppointmentExport" column="second_app_export" type="string" />
+        <property name="secondContainerExport" column="second_container_export" type="string" />
+        <property name="secondContainerExportTwenty" column="second_container_export_twenty" type="boolean"/>
+        <property name="secondAppointmentExportOrder" column="second_app_export_order" type="string"/>
+        
+        <property name="firstAppointmentEdo" column="first_appointment_edo" type="string" />
+		<property name="firstContainerEdo" column="first_container_edo" type="string" />
+		<property name="firstContainerEdoTwenty" column="first_container_edo_twenty" type="boolean"/>
+		
+		<property name="secondAppointmentEdo" column="second_appointment_edo" type="string" />
+		<property name="secondContainerEdo" column="second_container_edo" type="string" />
+		<property name="secondContainerEdoTwenty" column="second_container_edo_twenty" type="boolean"/>
+		
+		<property name="firstAppointmentEro" column="first_appointment_ero" type="string" />
+		<property name="firstContainerEro" column="first_container_ero" type="string" />
+		<property name="firstContainerEroTwenty" column="first_container_ero_twenty" type="boolean"/>
+		
+		<property name="secondAppointmentEro" column="second_appointment_ero" type="string" />
+		<property name="secondContainerEro" column="second_container_ero" type="string" />
+		<property name="secondContainerEroTwenty" column="second_container_ero_twenty" type="boolean"/>
+		
+		<property name="firstEdoNbr" column="first_edo_nbr" type="string" />
+		<property name="firstEroNbr" column="first_ero_nbr" type="string" />
+		<property name="secondEdoNbr" column="second_edo_nbr" type="string" />
+		<property name="secondEroNbr" column="second_ero_nbr" type="string" />
+
+		<property name="canceled" column="is_canceled" type="boolean" not-null="true" />
+        
+		<property name="pinNbr" column="pin_nbr" type="string" />        
+        <property name="appointmentDate" column="appointment_date" not-null="true" type="timestamp"/>
+        <many-to-one name="driver" column="driver_card_id" class="com.spia.services.entities.Driver" cascade="all" fetch="join"/>
+        <property name="truck" column="truck" type="string"/>
+		 <property name="createdByLDAP" column="created_by_ldap" type="string" not-null="false" length="20"/>
+		 <property name="companyIdLdap" column="company_id_ldap" type="string"/>
+	   
+	    <set name="truckVisitAppointmentBreakBulk" table="truck_visit_appointment_breakbulk" cascade="all" lazy="false" fetch="select">
+        	<key>
+            	<column name="truck_visit_id" not-null="true" />
+        	</key>
+        	<one-to-many class="TruckVisitAppointmentBreakBulk" />
+    	</set>
+		
+    </class>
+</hibernate-mapping>

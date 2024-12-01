@@ -1,0 +1,33 @@
+.documents-load {
+    padding: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    row-gap: 1rem;
+}
+
+
+.documents-load__title{
+    font-size: 1.5rem;
+    color: #78909c;
+}
+
+.alerta {
+    color: #f44336;
+    padding: 1rem;
+    margin-bottom: 0rem;
+    border-radius: 0.2rem;
+    padding-top: -2rem;
+    margin-top:  -2rem;
+  }
+
+  .exitoso {
+    background-color: #9fcf9f; 
+    color: white; 
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.2rem;
+  }

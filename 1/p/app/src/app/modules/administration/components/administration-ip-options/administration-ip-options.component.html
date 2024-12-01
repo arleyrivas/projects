@@ -1,0 +1,88 @@
+<div class="administration-ip-options">
+    <mat-tab-group>
+        <mat-tab label="IP Estatica">
+            <mat-card>
+              <mat-card-content>
+                <div class="static-ip">
+                  <form [formGroup]="staticFormGroup" class="static-form">
+                      <mat-form-field>
+                          <mat-label>
+                            <ng-container i18n="@@e6eeaf21e9d10e3e6899a89904b45745fd5c1b35ce70c0801c472d822911ed5d">
+                              config.views.config-ip-restriction.table.DESCRIPTION
+                            </ng-container>
+                          </mat-label>
+                          <input formControlName="description" matInput type="text">
+                      </mat-form-field>
+
+                      <mat-form-field>
+                          <mat-label>
+                            <ng-container i18n="@@8e8d6f2a821ea1535d3d3643a8116d53d895ef9f1c547366b27b0bd26099d0ef">
+                              config.views.config-ip-restriction.actions.STATIC_IP
+                            </ng-container>
+                          </mat-label>
+                          <input placeholder="___.___.___.___" formControlName="ip" matInput type="text">
+                      </mat-form-field>
+                  </form>
+
+                  <div class="actions">
+                      <button mat-flat-button color="primary" class="submit-button" (click)="staticSubmit()" [disabled]="staticFormGroup.invalid">
+                        <ng-container i18n="@@ebc94295e02cb01e14000f384f6a174c059c0f68181bec11d3a0b1228457f92e">
+                          services.views.modal.confirm.button.ACCEPT
+                        </ng-container>
+                      </button>
+                      <button mat-flat-button (click)="cancel()">
+                        <ng-container i18n="@@c1c9c168b17220c3bd35feec14abe106f2915d8c0a0d75264c91c8b63584171e">
+                          config.views.config-restrictions.CANCEL
+                        </ng-container>
+                      </button>
+                  </div>
+              </div>
+              </mat-card-content>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="IP Rango">
+            <mat-card>
+              <mat-card-content>
+                <div class="static-ip">
+                  <form class="static-ip" [formGroup]="rangeFormGroup">
+                    <mat-form-field>
+                      <mat-label>Descripción</mat-label>
+                      <input matInput type="text" formControlName="description">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>IP Inicio</mat-label>
+                        <input placeholder="___.___.___.___" matInput type="text" formControlName="ipFrom">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>IP Final</mat-label>
+                        <input placeholder="___.___.___.___" matInput type="text" formControlName="ipTo">
+                    </mat-form-field>
+
+                    <p class="error" *ngIf="rangeFormGroup.invalid">{{ rangeFormGroup.getError("initialValueGreaterThanDestination") }}</p>
+
+                    <div class="actions">
+                        <button
+                          mat-flat-button color="primary"
+                          class="submit-button"
+                          (click)="rangeSubmit()"
+                          [disabled]="rangeFormGroup.invalid"
+                        >
+                        <ng-container i18n="@@ebc94295e02cb01e14000f384f6a174c059c0f68181bec11d3a0b1228457f92e">
+                          services.views.modal.confirm.button.ACCEPT
+                        </ng-container>
+                      </button>
+                        <button mat-flat-button (click)="cancel()">
+                          <ng-container i18n="@@c1c9c168b17220c3bd35feec14abe106f2915d8c0a0d75264c91c8b63584171e">
+                            config.views.config-restrictions.CANCEL
+                          </ng-container>
+                        </button>
+                    </div>
+                  </form>
+              </div>
+              </mat-card-content>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</div>

@@ -1,0 +1,24 @@
+.header {
+    background-color: #66bb6a;
+    color: #ffffff;
+}
+
+.content {
+    height: 15rem;
+}
+
+.pay-button {
+    color: #ffffff !important;
+}
+
+.actions {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total {
+  padding-left: 1rem;
+}

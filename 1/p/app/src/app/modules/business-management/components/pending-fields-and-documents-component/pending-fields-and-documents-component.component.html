@@ -1,0 +1,45 @@
+<div class="modal-container">
+    <h2 mat-dialog-title class="title">Atención</h2>
+    <mat-dialog-content class="mat-typography">
+      <p class="description">Por favor complete los siguientes campos y/o cargue los documentos requeridos para generar su solicitud:</p>
+      
+      <mat-card *ngIf="invalidFields.length > 0">
+        <mat-card-header>
+          <mat-card-title>Campos Inválidos</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item *ngFor="let field of invalidFields">
+                <div>
+                    <div mat-line>
+                        <mat-icon mat-list-icon color="warn">error_outline</mat-icon>
+                        <span class="value--field">{{field}}</span>
+                    </div>
+                </div>
+                </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card *ngIf="missingRequiredDocuments.length > 0">
+        <mat-card-header>
+          <mat-card-title>Documentos Faltantes por Cargar</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item *ngFor="let doc of missingRequiredDocuments">
+                <div class="">
+                    <div mat-line><mat-icon mat-list-icon color="warn">description</mat-icon>
+                         <span>{{doc}}</span>
+                    </div>
+                </div>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="customer-message-agreement-dialog__actions">
+        <button mat-raised-button color="primary" mat-dialog-close class="customer-message-agreement-dialog__action" >Aceptar</button>
+      </mat-dialog-actions>  
+</div>

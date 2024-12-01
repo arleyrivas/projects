@@ -1,0 +1,147 @@
+<div class="wrapper">
+  <mat-card>
+    <mat-card-content>
+        <div class="header">
+            <svg class="icon-title" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.84 70.61"><defs><style>.claseunounica{fill:none;stroke:#231f20;stroke-linecap:round;stroke-linejoin:round;stroke-width:.5px;}</style></defs><g id="Capa_1-2"><rect class="claseunounica" x=".25" y=".25" width="64.34" height="70.11"/><rect class="claseunounica" x="6.43" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="20.7" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="5.63" y="8.26" width="53.58" height="14.31"/><rect class="claseunounica" x="34.98" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="49.25" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="6.43" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="20.7" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="34.98" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="49.25" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="6.43" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="20.7" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="34.98" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="49.25" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="9.24" y="11.23" width="4.49" height="8.68"/><rect class="claseunounica" x="17.62" y="11.23" width="4.49" height="8.68"/><rect class="claseunounica" x="26" y="11.23" width="4.49" height="8.68"/><rect class="claseunounica" x="34.37" y="11.23" width="4.49" height="8.68"/><polyline class="claseunounica" points="42.75 16.02 47.24 11.23 47.24 19.9"/><polyline class="claseunounica" points="51.13 16.02 55.61 11.23 55.61 19.9"/></g></svg>
+            <h2 class="title-header">Historial de cruces</h2>
+         </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="history-cross">
+    <div class="history-cross__searcher">
+      <ng-container *ngIf="userInfo">
+        <ng-container *ngIf="userInfo.empresa">
+          <app-customer-searcher
+            class="history-cross__customer-searcher"
+            [controlDisabled]="!isAgent"
+            [searcher]="isAgent"
+            [data]="userInfo.empresa.id + '/' + userInfo.userName"
+            (customerSearch)="customerSearch($event)"
+          >
+          </app-customer-searcher>
+
+          <button mat-mini-fab color="primary" (click)="selectCustomer()" [disabled]="!isAgent" class="history-cross__search-button">
+            <mat-icon>search</mat-icon>
+          </button>
+        </ng-container>
+      </ng-container>
+    </div>
+
+        <mat-form-field class="queries__filter">
+          <mat-label>Filtro</mat-label>
+          <mat-icon matPrefix class="queries__filter-icon">search</mat-icon>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese valor para filtrar" #input>
+        </mat-form-field>
+
+        <ng-scrollbar class="manage-document" (reachedBottom)="loadMore()">
+          <table mat-table #invoicesTable [dataSource]="dataSource" multiTemplateDataRows matSort>
+            <ng-container matColumnDef="transNbr">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Tran</th>
+              <td mat-cell *matCellDef="let element">{{ element.transNbr }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="finalNbr">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>N°Fact</th>
+              <td mat-cell *matCellDef="let element">{{ element.finalNbr }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="tranDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+              <td mat-cell *matCellDef="let element">{{ element.tranDate }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Monto</th>
+              <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="balance">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Saldo</th>
+              <td mat-cell *matCellDef="let element">{{ element.balance }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="agentShip">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Agencia</th>
+              <td mat-cell *matCellDef="let element">{{ element.agentShip }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Estado">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let element">
+                <div class="history-cross__table-actions">
+                  <ng-container *ngIf="element.status === 'ERROR'">
+                    <svg class="history-cross__icon-x" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72.98 69.05"><defs><style>.equis{fill:#ff3838;}</style></defs><g id="Capa_1-2"><path class="equis" d="m68.89,4.5c-3.49-3.78-6.65-6.33-10.43-2.85L1.93,53.76c-3.78,3.49-1.42,6.82,2.06,10.6h0c3.49,3.78,6.78,6.59,10.57,3.1L71.08,15.35c3.78-3.49,1.29-7.07-2.2-10.85Z"/><path class="equis" d="m4.09,4.5C7.58.72,10.74-1.83,14.52,1.65l56.53,52.11c3.78,3.49,1.42,6.82-2.06,10.6h0c-3.49,3.78-6.78,6.59-10.57,3.1L1.89,15.35c-3.78-3.49-1.29-7.07,2.2-10.85Z"/></g></svg>
+                  </ng-container>
+
+                  <ng-container *ngIf="element.status === 'PROCESO'">
+                    <svg class="history-cross__icon-x" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 413.24 413.24"><defs><style>.prosoeaaa1{fill:#777677;stroke-width:0px;}</style></defs><g id="Capa_1-2"><path class="prosoeaaa1" d="m380.58,143.21l-90.83-11.53c-6.62-.84-9.47-8.86-4.86-13.69l18.28-19.15c-26.66-18.06-60.17-28.85-96.55-28.85-71.89,0-130.18,61.04-130.3,136.4l-76.32-.06C.16,92.34,92.6,0,206.62,0c53.68,0,102.57,20.47,139.31,54.03l14.03-14.7c4.61-4.83,12.75-2.36,13.9,4.21l15.78,90.2c.94,5.4-3.61,10.16-9.05,9.47Z"/><path class="prosoeaaa1" d="m32.65,270.03l90.83,11.53c6.62.84,9.47,8.86,4.86,13.69l-18.28,19.15c26.66,18.06,60.17,28.85,96.55,28.85,71.89,0,130.18-61.04,130.3-136.4l76.32.06c-.16,113.97-92.6,206.32-206.62,206.32-53.68,0-102.57-20.47-139.31-54.03l-14.03,14.7c-4.61,4.83-12.75,2.36-13.9-4.21l-15.78-90.2c-.94-5.4,3.61-10.16,9.05-9.47Z"/></g></svg>
+                  </ng-container>
+
+                  <ng-container *ngIf="element.status === 'PROCESADO'">
+                    <svg class="history-cross__icon-check" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.64 61.51"><defs><style>.cheki{fill:#92b976;}</style></defs><g id="Capa_1-2"><path class="cheki" d="m74.54,4.51c-3.5-3.79-6.66-6.35-10.45-2.86L25.34,37.37l-9.78-11.18c-3.39-3.88-6.82-1.67-10.7,1.72-3.88,3.39-6.75,6.69-3.36,10.58l10.1,11.55,8.24,9.43c2.22,2.54,6.1,2.75,8.58.46l9.21-8.49L76.74,15.38c3.79-3.5,1.29-7.08-2.2-10.87Z"/></g></svg>
+                  </ng-container>
+
+                  <mat-icon *ngIf="!element.selected">keyboard_arrow_down</mat-icon>
+                  <mat-icon *ngIf="element.selected">keyboard_arrow_up</mat-icon>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="expandedDetail">
+              <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="example-element-detail" [@detailExpand]="element.selected ? 'expanded' : 'collapsed'">
+                  <div class="table-border-rounded">
+                    <table class="history-cross__sub-table">
+                      <thead>
+                        <tr>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">N°Nota</th>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Valor Pago</th>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Saldo Actual NC</th>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Estado</th>
+                        </tr>
+
+                        <tr>
+                          <th>
+                            <hr>
+                          </th>
+                          <th>
+                            <hr>
+                          </th>
+                          <th>
+                            <hr>
+                          </th>
+                          <th>
+                            <hr>
+                          </th>
+                        </tr>
+
+                        <tr>
+                          <th class="history-cross__table-space_min"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="credits" *ngFor="let creditElement of element.credits">
+                          <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ creditElement.finalNbr }}</td>
+                          <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ creditElement.amount }}</td>
+                          <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ creditElement.balance }}</td>
+                          <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ creditElement.status }}</td>
+                        </tr>
+
+                        <tr>
+                          <th class="history-cross__table-space_min"></th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="row.selected" (click)="toggleRow(row)"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+          </table>
+        </ng-scrollbar>
+  </div>
+</div>

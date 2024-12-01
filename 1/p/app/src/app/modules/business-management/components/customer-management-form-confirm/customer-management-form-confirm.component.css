@@ -1,0 +1,66 @@
+  h2 {
+    padding: 1rem;
+    margin: 0;
+    background-color: #92b976 !important;
+  
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+h3 {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.customer-managemen__header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.customer-managemen-check-icon {
+    width: 3rem;
+  }
+
+.customer-managemen__title-text {
+font-size: 2rem;
+color: #ffffff;
+}
+
+.customer-managemen__paragraph {
+width: auto;
+padding: 1.5rem;
+
+font-size: 1rem;
+font-weight: 300;
+line-height: normal;
+}
+
+
+.customer-managemen__selected-lists {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; 
+  }
+  
+  .customer-managemen__selected-list-item {
+    display: flex;
+    align-items: center;
+    width: 50%; /* Ajustar el ancho para tener dos elementos por fila */
+    box-sizing: border-box; /* Incluir padding y borde en el cálculo del ancho total */
+    padding: 0.5rem;
+  }
+  
+  .customer-managemen__selected-list-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .customer-managemen__arrow-icon {
+    width: 1rem;
+    margin-right: 1rem;
+  }
+  
+  

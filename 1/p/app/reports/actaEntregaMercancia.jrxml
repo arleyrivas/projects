@@ -1,0 +1,1617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="actaEntregaMercancia" pageWidth="1670" pageHeight="1000" orientation="Landscape" columnWidth="1630" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+	<property name="ireport.zoom" value="0.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LOGO_AGUADULCE" class="java.awt.Image"/>
+	<parameter name="PLACA" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select distinct
+T1.Orden as Tabla1, c1.Id as cl1Id, c1.quantity as cl1Quantity, c1.weight_total_kg as cl1WeightTotal,
+(select top 1 crg_lots.created from crg_lots where crg_lots.blitem_ib_gkey = T1.blItem and crg_lots.quantity > 0 and crg_lots.weight_total_kg > 0 order by crg_lots.created asc ) AS clMin1,
+(select top 1 crg_lots.created from crg_lots where crg_lots.blitem_ib_gkey = T1.blItem and crg_lots.quantity > 0 and crg_lots.weight_total_kg > 0 order by crg_lots.created desc ) AS clMax1,
+T2.Orden as Tabla2, c2.Id as cl2Id, c2.quantity as cl2Quantity, c2.weight_total_kg as cl2WeightTotal,
+(select top 1 crg_lots.created from crg_lots where crg_lots.blitem_ib_gkey = T2.blItem and crg_lots.quantity > 0 and crg_lots.weight_total_kg > 0 order by crg_lots.created asc ) AS clMin2,
+(select top 1 crg_lots.created from crg_lots where crg_lots.blitem_ib_gkey = T2.blItem and crg_lots.quantity > 0 and crg_lots.weight_total_kg > 0 order by crg_lots.created desc )  AS clMax2,
+T3.Orden as Tabla3, c3.Id as cl3Id, c3.quantity as cl3Quantity, c3.weight_total_kg as cl3WeightTotal,
+(select top 1 crg_lots.created from crg_lots where crg_lots.blitem_ib_gkey = T3.blItem and crg_lots.quantity > 0 and crg_lots.weight_total_kg > 0 order by crg_lots.created asc ) AS clMin3,
+(select top 1 crg_lots.created from crg_lots where crg_lots.blitem_ib_gkey = T3.blItem and crg_lots.quantity > 0 and crg_lots.weight_total_kg > 0 order by crg_lots.created desc )  AS clMax3,
+T4.Orden as Tabla4, c4.Id as cl4Id, c4.quantity as cl4Quantity, c4.weight_total_kg as cl4WeightTotal,
+(select top 1 crg_lots.created from crg_lots where crg_lots.blitem_ib_gkey = T4.blItem and crg_lots.quantity > 0 and crg_lots.weight_total_kg > 0 order by crg_lots.created asc ) AS clMin4,
+(select top 1 crg_lots.created from crg_lots where crg_lots.blitem_ib_gkey = T4.blItem and crg_lots.quantity > 0 and crg_lots.weight_total_kg > 0 order by crg_lots.created desc ) AS clMax4,
+bl1.nbr as blItem1, bl1.weight_total_kg as blItem1WeightTotal, bl1.quantity as blItem1Quantity,
+bl2.nbr as blItem2, bl2.weight_total_kg as blItem2WeightTotal, bl2.quantity as blItem2Quantity,
+bl3.nbr as blItem3, bl3.weight_total_kg as blItem3WeightTotal, bl3.quantity as blItem3Quantity,
+bl4.nbr as blItem4, bl4.weight_total_kg as blItem4WeightTotal, bl4.quantity as blItem4Quantity,
+(select  top 1 ref_bizunit_scoped.name
+from crg_bl_item inner join crg_bills_of_lading on crg_bills_of_lading.gkey = crg_bl_item.bl_gkey and crg_bl_item.bl_gkey= crg_bills_of_lading.gkey and crg_bl_item.gkey = T1.blItem
+LEFT join ref_bizunit_scoped on crg_bills_of_lading.consignee_gkey = ref_bizunit_scoped.gkey
+) AS consignee,--consignee
+road_truck_transactions.created AS fecha, --fecha
+road_truck_visit_details.driver_name AS driverName, --conductor
+road_truck_visit_details.driver_license_nbr AS driverLicense, --cédula
+ref_bizunit_scoped.name AS company, --compañía
+$P{PLACA} as placa
+--cl1
+from crg_lots, (SELECT ROW_NUMBER() OVER (ORDER BY crg_bl_item.gkey) AS Orden, crg_bl_item.gkey as blItem
+					FROM crg_lots inner join crg_bl_item ON crg_lots.blitem_ib_gkey = crg_bl_item.gkey
+					LEFT JOIN inv_unit ON inv_unit.goods = crg_lots.goods_gkey
+					LEFT JOIN inv_unit_fcy_visit ON inv_unit_fcy_visit.unit_gkey =  inv_unit.gkey
+					WHERE crg_lots.pos_name like 'T-'+ $P{PLACA} AND inv_unit_fcy_visit.visit_state like '%ACTIVE%' AND inv_unit_fcy_visit.transit_state like '%load%'
+					GROUP BY crg_bl_item.gkey) as T1
+	left join
+	(SELECT ROW_NUMBER() OVER (ORDER BY crg_bl_item.gkey) AS Orden, crg_bl_item.gkey as blItem
+					FROM crg_lots inner join crg_bl_item ON crg_lots.blitem_ib_gkey = crg_bl_item.gkey
+					LEFT JOIN inv_unit ON inv_unit.goods = crg_lots.goods_gkey
+					LEFT JOIN inv_unit_fcy_visit ON inv_unit_fcy_visit.unit_gkey =  inv_unit.gkey
+					WHERE crg_lots.pos_name like 'T-'+ $P{PLACA} AND inv_unit_fcy_visit.visit_state like '%ACTIVE%' AND inv_unit_fcy_visit.transit_state like '%load%'
+					GROUP BY crg_bl_item.gkey) as T2
+	on T1.Orden = 1 and T2.Orden = 2
+	left join
+	(SELECT ROW_NUMBER() OVER (ORDER BY crg_bl_item.gkey) AS Orden, crg_bl_item.gkey as blItem
+					FROM crg_lots inner join crg_bl_item ON crg_lots.blitem_ib_gkey = crg_bl_item.gkey
+					LEFT JOIN inv_unit ON inv_unit.goods = crg_lots.goods_gkey
+					LEFT JOIN inv_unit_fcy_visit ON inv_unit_fcy_visit.unit_gkey =  inv_unit.gkey
+					WHERE crg_lots.pos_name like 'T-'+ $P{PLACA} AND inv_unit_fcy_visit.visit_state like '%ACTIVE%' AND inv_unit_fcy_visit.transit_state like '%load%'
+					GROUP BY crg_bl_item.gkey) as T3
+	on T3.Orden = 3
+	left join
+	(SELECT ROW_NUMBER() OVER (ORDER BY crg_bl_item.gkey) AS Orden, crg_bl_item.gkey as blItem
+					FROM crg_lots inner join crg_bl_item ON crg_lots.blitem_ib_gkey = crg_bl_item.gkey
+					LEFT JOIN inv_unit ON inv_unit.goods = crg_lots.goods_gkey
+					LEFT JOIN inv_unit_fcy_visit ON inv_unit_fcy_visit.unit_gkey =  inv_unit.gkey
+					WHERE crg_lots.pos_name like 'T-'+ $P{PLACA} AND inv_unit_fcy_visit.visit_state like '%ACTIVE%' AND inv_unit_fcy_visit.transit_state like '%load%'
+					GROUP BY crg_bl_item.gkey) as T4
+	on T4.Orden = 4
+	left join crg_lots c1 on c1.blitem_ib_gkey = T1.blItem and c1.quantity > 0 and c1.weight_total_kg > 0
+	left join crg_lots c2 on c2.blitem_ib_gkey = T2.blItem and c2.quantity > 0 and c2.weight_total_kg > 0
+	left join crg_lots c3 on c3.blitem_ib_gkey = T3.blItem and c3.quantity > 0 and c3.weight_total_kg > 0
+	left join crg_lots c4 on c4.blitem_ib_gkey = T4.blItem and c4.quantity > 0 and c4.weight_total_kg > 0
+	left join crg_bl_item as bl1 on bl1.gkey = T1.blItem
+	left join crg_bl_item as bl2 on bl2.gkey = T2.blItem
+	left join crg_bl_item as bl3 on bl2.gkey = T3.blItem
+	left join crg_bl_item as bl4 on bl4.gkey = T4.blItem
+LEFT JOIN road_truck_transactions ON road_truck_transactions.bl_item_gkey = T1.blItem
+LEFT JOIN road_truck_visit_details ON road_truck_visit_details.tvdtls_gkey = road_truck_transactions.truck_visit_gkey
+LEFT JOIN road_trucking_companies ON road_trucking_companies.trkc_id = road_truck_visit_details.trkco_gkey
+LEFT JOIN ref_bizunit_scoped ON ref_bizunit_scoped.gkey = road_truck_visit_details.trkco_gkey
+where T1.Orden = 1 or (T2.Orden = 2 or T2.Orden = '') or (T3.Orden = 3 or T3.Orden = '') or (T4.Orden = 4 or T4.Orden = '')]]>
+	</queryString>
+	<field name="Tabla1" class="java.lang.Long"/>
+	<field name="cl1Id" class="java.lang.String"/>
+	<field name="cl1Quantity" class="java.lang.Double"/>
+	<field name="cl1WeightTotal" class="java.lang.Double"/>
+	<field name="clMin1" class="java.sql.Timestamp"/>
+	<field name="clMax1" class="java.sql.Timestamp"/>
+	<field name="Tabla2" class="java.lang.Long"/>
+	<field name="cl2Id" class="java.lang.String"/>
+	<field name="cl2Quantity" class="java.lang.Double"/>
+	<field name="cl2WeightTotal" class="java.lang.Double"/>
+	<field name="clMin2" class="java.sql.Timestamp"/>
+	<field name="clMax2" class="java.sql.Timestamp"/>
+	<field name="Tabla3" class="java.lang.Long"/>
+	<field name="cl3Id" class="java.lang.String"/>
+	<field name="cl3Quantity" class="java.lang.Double"/>
+	<field name="cl3WeightTotal" class="java.lang.Double"/>
+	<field name="clMin3" class="java.sql.Timestamp"/>
+	<field name="clMax3" class="java.sql.Timestamp"/>
+	<field name="Tabla4" class="java.lang.Long"/>
+	<field name="cl4Id" class="java.lang.String"/>
+	<field name="cl4Quantity" class="java.lang.Double"/>
+	<field name="cl4WeightTotal" class="java.lang.Double"/>
+	<field name="clMin4" class="java.sql.Timestamp"/>
+	<field name="clMax4" class="java.sql.Timestamp"/>
+	<field name="blItem1" class="java.lang.String"/>
+	<field name="blItem1WeightTotal" class="java.lang.Double"/>
+	<field name="blItem1Quantity" class="java.lang.Double"/>
+	<field name="blItem2" class="java.lang.String"/>
+	<field name="blItem2WeightTotal" class="java.lang.Double"/>
+	<field name="blItem2Quantity" class="java.lang.Double"/>
+	<field name="blItem3" class="java.lang.String"/>
+	<field name="blItem3WeightTotal" class="java.lang.Double"/>
+	<field name="blItem3Quantity" class="java.lang.Double"/>
+	<field name="blItem4" class="java.lang.String"/>
+	<field name="blItem4WeightTotal" class="java.lang.Double"/>
+	<field name="blItem4Quantity" class="java.lang.Double"/>
+	<field name="consignee" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Timestamp"/>
+	<field name="driverName" class="java.lang.String"/>
+	<field name="driverLicense" class="java.lang.String"/>
+	<field name="company" class="java.lang.String"/>
+	<field name="placa" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="196">
+			<image>
+				<reportElement x="1" y="0" width="300" height="78"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{LOGO_AGUADULCE}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="301" y="26" width="1029" height="52"/>
+				<box leftPadding="0">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMATO PARA ACTA DE ENTREGA DE MERCANCÍA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="0" width="1029" height="26"/>
+				<box leftPadding="0">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEMA INTEGRADO DE GESTIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1430" y="0" width="200" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="false"/>
+				</textElement>
+				<text><![CDATA[OP-P-008-F03]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1330" y="52" width="100" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1330" y="0" width="100" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="300" y="78" width="1330" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1330" y="26" width="100" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Versión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1430" y="26" width="200" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="false"/>
+				</textElement>
+				<text><![CDATA[3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1330" y="78" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Número Cita]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="78" width="300" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="98" width="100" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consignatario]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="101" y="98" width="409" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{consignee}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="510" y="98" width="100" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="true">
+				<reportElement x="610" y="98" width="409" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="124" width="199" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conductor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="124" width="210" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="124" width="200" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Placa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="610" y="124" width="409" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="150" width="199" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{driverName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="200" y="150" width="210" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{driverLicense}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="410" y="150" width="200" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{placa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="610" y="150" width="409" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{company}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1230" y="124" width="200" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[HORA INICIO CARGUE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1430" y="124" width="200" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[HORA FINAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1430" y="52" width="199" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="1464" y="52" width="166" height="26"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="1" y="176" width="1629" height="20"/>
+			</rectangle>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement x="1230" y="150" width="200" height="26"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Arial"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{clMin4} != null &&  $F{clMin4}.getTime() <= $F{clMin3}.getTime() &&  $F{clMin4}.getTime() <= $F{clMin2}.getTime() && $F{clMin4}.getTime() <= $F{clMin1}.getTime()? $F{clMin4} :
+( $F{clMin3} != null &&  $F{clMin3}.getTime() <= $F{clMin2}.getTime() && $F{clMin3}.getTime() <= $F{clMin1}.getTime()? $F{clMin3} :
+( $F{clMin2} != null &&  $F{clMin2}.getTime() <= $F{clMin1}.getTime() ? $F{clMin2} : $F{clMin1} )))]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement x="1430" y="150" width="200" height="26"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Arial"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{clMax4} != null &&  $F{clMax4}.getTime() >= $F{clMax3}.getTime() && $F{clMax4}.getTime() >= $F{clMax2}.getTime() && $F{clMax4}.getTime() >= $F{clMax1}.getTime()? $F{clMax4} :
+( $F{clMax3} != null &&  $F{clMax3}.getTime() >= $F{clMax2}.getTime() && $F{clMax3}.getTime() >= $F{clMax1}.getTime()? $F{clMax3} :
+( $F{clMax2} != null &&  $F{clMax2}.getTime() >= $F{clMax1}.getTime() ? $F{clMax2} : $F{clMax1} )))]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="116">
+			<rectangle>
+				<reportElement x="1329" y="68" width="301" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1329" y="44" width="301" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1329" y="20" width="301" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="918" y="68" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="918" y="44" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="918" y="20" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="509" y="68" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="509" y="44" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="0" width="1629" height="20" backcolor="#89AD89"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="686" y="1" width="261" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORMACIÓN DE MERCANCÍA ENTREGADA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="101" y="68" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="101" y="44" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="101" y="20" width="300" height="24"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="101" y="68" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="101" y="44" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{clMax1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="101" y="20" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{clMin1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="44" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Final Cargue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="20" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Inicio Cargue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="92" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="92" width="199" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de Pallets]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="92" width="101" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="44" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Final Cargue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="68" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="20" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Inicio Cargue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="92" width="199" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de Pallets]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="708" y="92" width="101" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="608" y="92" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="509" y="44" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{clMax2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="509" y="68" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem2}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="509" y="20" width="300" height="24"/>
+			</rectangle>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="509" y="20" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{clMin2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="818" y="20" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Inicio Cargue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="818" y="68" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="818" y="44" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Final Cargue]]></text>
+			</staticText>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="918" y="20" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{clMin3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="918" y="68" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="918" y="44" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{clMax3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1117" y="92" width="101" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1017" y="92" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="818" y="92" width="199" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de Pallets]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1230" y="92" width="199" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de Pallets]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1230" y="68" width="99" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1529" y="92" width="101" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1429" y="92" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1230" y="44" width="99" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Final Cargue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1230" y="20" width="99" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Inicio Cargue]]></text>
+			</staticText>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="1329" y="44" width="301" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{clMax4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="1329" y="68" width="301" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="1329" y="20" width="301" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{clMin4}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="68" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="409" y="0" width="199" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="608" y="0" width="100" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="708" y="0" width="101" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1230" y="0" width="199" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="818" y="0" width="199" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1429" y="0" width="100" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1017" y="0" width="100" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1529" y="0" width="101" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1117" y="0" width="101" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="300" y="0" width="101" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="200" y="0" width="100" height="22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1" y="0" width="199" height="22"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1" y="0" width="199" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl1Id}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="200" y="0" width="100" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl1Quantity}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="300" y="0" width="101" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl1WeightTotal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="818" y="0" width="199" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl3Id}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1017" y="0" width="100" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl3Quantity}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1117" y="0" width="101" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl3WeightTotal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1529" y="0" width="101" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl4WeightTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1429" y="0" width="100" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl4Quantity}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1230" y="0" width="199" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl4Id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="409" y="0" width="199" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl2Id}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="608" y="0" width="100" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl2Quantity}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="708" y="0" width="101" height="22" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl2WeightTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="48" splitType="Immediate">
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="101" y="0" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1330" y="0" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="918" y="0" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="509" y="0" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="101" y="24" width="300" height="24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1330" y="24" width="300" height="24"/>
+			</rectangle>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="101" y="0" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem1Quantity}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1" y="0" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD TOTAL]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="918" y="24" width="300" height="24"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="101" y="24" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem1WeightTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="1330" y="0" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem4Quantity}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1230" y="0" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD TOTAL]]></text>
+			</staticText>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="918" y="0" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem3Quantity}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="409" y="24" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PESO TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1230" y="24" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PESO TOTAL]]></text>
+			</staticText>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="509" y="0" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem2Quantity}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="509" y="24" width="300" height="24"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="1330" y="24" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem4WeightTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="918" y="24" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem3WeightTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="818" y="24" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PESO TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="818" y="0" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="409" y="0" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD TOTAL]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="509" y="24" width="300" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{blItem2WeightTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1" y="24" width="100" height="24"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PESO TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<lastPageFooter>
+		<band height="284">
+			<rectangle>
+				<reportElement x="1" y="21" width="1630" height="93"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="192" width="1630" height="90"/>
+			</rectangle>
+			<line>
+				<reportElement x="124" y="250" width="300" height="1"/>
+			</line>
+			<line>
+				<reportElement x="646" y="250" width="300" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1175" y="250" width="300" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="197" y="251" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conductor / DRIVER NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="676" y="250" width="260" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empresa de Transporte / TRUCKING COMPANY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1254" y="250" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Representante / Aguadulce]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="687" y="94" width="241" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Señale con una X la calificación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="114" width="1630" height="78"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="3" spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[OBSERVACIONES:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="1" width="1630" height="20" backcolor="#89AD89"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="686" y="1" width="261" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EVALUACIÓN DEL SERVICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="51" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[EXCELENTE]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="611" y="56" width="15" height="10" forecolor="#3366FF"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="511" y="51" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[BUENO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1071" y="56" width="15" height="10" forecolor="#3366FF"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="971" y="51" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[REGULAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1411" y="51" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[MALO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1511" y="56" width="15" height="10" forecolor="#3366FF"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="202" y="56" width="15" height="10" forecolor="#3366FF"/>
+			</rectangle>
+		</band>
+	</lastPageFooter>
+</jasperReport>

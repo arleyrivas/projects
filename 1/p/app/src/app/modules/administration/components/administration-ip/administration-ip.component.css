@@ -1,0 +1,23 @@
+.administration-ip {
+    padding: 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+}
+
+.delete-button {
+    color: #ffffff !important;
+}
+
+.actions {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.queries__filter {
+  width: 100%;
+}

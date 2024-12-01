@@ -1,0 +1,57 @@
+<div class="administration-users">
+  <h1 class="title">
+    Usuarios
+  </h1>
+  <mat-form-field class="queries__filter">
+    <mat-label>Filtro</mat-label>
+    <mat-icon matPrefix class="queries__filter-icon">search</mat-icon>
+    <input matInput (keyup)="submit($event)" placeholder="Ingrese valor para filtrar" #input>
+  </mat-form-field>
+
+        <div class="administration-users__content">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="userId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Usuario
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.userId }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  <ng-container i18n="@@6a1e051473d4d73262283b1c07e6501e4fa896242120275adf7cf5d1013bff9f">
+                    config.views.config-users.NAME
+                  </ng-container>
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="information">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                  <a class="show-information" *ngIf="element.userId" [routerLink]="['/', 'administracion', 'user', route]" (click)="selectUser(element)">
+                      Configurar
+                  </a>
+                  <a class="show-information" *ngIf="element.userName" [routerLink]="['/', 'administracion', 'user', route]">
+                    Configurar
+                  </a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <button
+            [hourRestriction]="'ADM_GU_CU'"
+            [hourRestrictionAPIGateway]="userInfo"
+            [hourRestrictionCallback]="createUser.bind(this)"
+            *permissions="[privileges.ADM_GU_CU]"
+            mat-raised-button
+            color="primary"
+            class="administration-users__create"
+          >Crear Usuario</button>
+        </div>
+</div>

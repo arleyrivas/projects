@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pin" pageWidth="595" pageHeight="790" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="ef645106-c582-4fa1-9648-0bdf04632ca5">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="307"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="columHeader" mode="Opaque" forecolor="#FFFFFF" backcolor="#000000" markup="styled"/>
+	<style name="table" mode="Opaque" forecolor="#FFFFFF" backcolor="#CBCBCB" markup="styled"/>
+	<subDataset name="ContenedoresDataSet" uuid="b718d65e-8406-40d5-8f3f-a8c49711160f">
+		<field name="contenedor" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="ModalidadesDataSet" uuid="9f389566-2be7-4039-816e-c796955887f9">
+		<field name="modalidad" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="IngresosSalidasDataSet" uuid="bb87826e-4b37-419c-8cec-565640c65419">
+		<field name="ingresoSalida" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="PesosDataSet" uuid="82659fe5-bdb5-4bdb-b332-115797340a00">
+		<field name="peso" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SPIA_LOGO" class="java.lang.String"/>
+	<parameter name="SUPERPUERTOS" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="truckingCompanyName" class="java.lang.String"/>
+	<field name="conductor" class="java.lang.String"/>
+	<field name="truckVisitNbr" class="java.lang.String"/>
+	<field name="truckVisitFechaYHora" class="java.lang.String"/>
+	<field name="conductorId" class="java.lang.String"/>
+	<field name="conductorLicencia" class="java.lang.String"/>
+	<field name="placa" class="java.lang.String"/>
+	<field name="truckingCompanyId" class="java.lang.String"/>
+	<field name="contenedores" class="java.util.Collection"/>
+	<field name="modalidades" class="java.util.Collection"/>
+	<field name="ingresosSalidas" class="java.util.Collection"/>
+	<field name="pesos" class="java.util.Collection"/>
+	<field name="location" class="java.lang.String"/>
+	<group name="truckVisitData">
+		<groupExpression><![CDATA[$F{truckVisitNbr}]]></groupExpression>
+	</group>
+	<group name="truckingCompanyData">
+		<groupExpression><![CDATA[$F{truckVisitNbr}]]></groupExpression>
+	</group>
+	<background>
+		<band height="770">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image>
+				<reportElement x="-20" y="0" width="595" height="770" uuid="54a78dcb-158b-45d1-a0d2-97ac586b1de2"/>
+				<imageExpression><![CDATA[$P{SPIA_LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="293">
+			<staticText>
+				<reportElement x="14" y="121" width="140" height="20" forecolor="#000000" uuid="186b70b7-1d22-4150-a157-46e3f7ca77eb"/>
+				<textElement markup="styled">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[VISITA NÚMERO:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="154" y="121" width="300" height="20" forecolor="#000000" uuid="e7d56db2-ed56-461a-8aa0-44c8c79d4df9"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{truckVisitNbr}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="141" width="140" height="20" forecolor="#000000" uuid="bd07382f-ccf7-47cd-bb12-dfb27c83d67a"/>
+				<textElement markup="styled">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[FECHA Y HORA:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="154" y="141" width="300" height="20" forecolor="#000000" uuid="2fbd61bf-efac-49d9-ac07-95a5392b50fe"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{truckVisitFechaYHora}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="174" width="140" height="15" forecolor="#000000" uuid="837b4773-0c4a-4e61-ae43-b1f0f8fc8951"/>
+				<textElement markup="styled">
+					<font fontName="Arial" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[<style isBold="true">Empresa de Transporte:</style>]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="220" y="174" width="279" height="15" forecolor="#000000" uuid="eee79d8f-859f-4779-8568-38d3a7821e67"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{truckingCompanyId} + " - " +$F{truckingCompanyName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="189" width="140" height="15" forecolor="#000000" uuid="37fa4bd5-419a-413f-9f26-c91c2958dd47"/>
+				<textElement markup="styled">
+					<font fontName="Arial" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[<style isBold="true">Nombre del conductor:</style>]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="220" y="189" width="150" height="15" forecolor="#000000" uuid="ec8b06e3-768c-4d8f-90ae-f750d4782c54"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conductor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="204" width="240" height="15" forecolor="#000000" uuid="4facd5fd-2823-4d4b-aea2-66245595fee4"/>
+				<textElement markup="styled">
+					<font fontName="Arial" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[<style isBold="true">Numero de Identificación del Conductor:</style>]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="220" y="204" width="40" height="15" forecolor="#000000" uuid="3f888ac5-441f-4385-95aa-3bc019a32bd2"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conductorId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="219" width="200" height="15" forecolor="#000000" uuid="30e68784-b89f-4a84-8650-02b7f07a69fa"/>
+				<textElement markup="styled">
+					<font fontName="Arial" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[<style isBold="true">Número de Licencia del Conductor:</style>]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="220" y="219" width="80" height="15" forecolor="#000000" uuid="6a7dff85-1b06-4bac-9e11-79b01a998573"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conductorLicencia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="234" width="200" height="15" forecolor="#000000" uuid="4d8dcad4-4cbe-484b-89ab-7053848385d4"/>
+				<textElement markup="styled">
+					<font fontName="Arial" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[<style isBold="true">Número de placa del camión:</style>]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="220" y="234" width="80" height="15" forecolor="#000000" uuid="94c7dcf8-f011-40df-b882-049190f68ecb"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="74" y="273" width="406" height="20" forecolor="#000000" uuid="a3981942-cbed-418a-88f2-87c391cdbe74"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION DE LA CARGA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="154" y="90" width="340" height="40" forecolor="#000000" uuid="fb332809-87ab-435b-b037-158cab9a0308"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{location}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="90" width="120" height="20" forecolor="#000000" uuid="cb5740a1-9715-4c02-b182-3347d962a96e"/>
+				<textElement markup="styled">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[PRESENTARSE EN:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="42">
+			<staticText>
+				<reportElement style="columHeader" x="74" y="0" width="100" height="20" forecolor="#F5F5F5" backcolor="#000000" uuid="63817f7a-e862-423f-baac-16c09926fb69"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Contenedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="columHeader" x="176" y="0" width="100" height="20" forecolor="#F5F5F5" backcolor="#000000" uuid="5dcb80d3-2b76-42f2-af7e-d323aa967822"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Modalidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="columHeader" x="278" y="0" width="100" height="20" forecolor="#F5F5F5" backcolor="#000000" uuid="ee791c4a-02fb-4752-aa6b-366c7fb54ce7"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Ingreso/Salida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="columHeader" x="380" y="0" width="100" height="20" forecolor="#F5F5F5" backcolor="#000000" uuid="61550357-74f0-4588-8289-1f1eed37be21"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Peso Total (kg)]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement style="table" x="74" y="22" width="100" height="20" backcolor="#FFFFFF" uuid="19264cac-68a9-4496-bd78-b0e9684d3962"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ContenedoresDataSet" uuid="8b485d6a-6000-43a9-b996-d1a25c4656f0">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{contenedores})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="100">
+						<textField>
+							<reportElement x="0" y="0" width="100" height="20" forecolor="#000000" uuid="cf19cd86-7bfa-4857-a8b1-0aaaf4aec6b8"/>
+							<box leftPadding="10">
+								<pen lineWidth="1.0" lineColor="#000000"/>
+								<topPen lineWidth="1.0" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Arial" isBold="false" isPdfEmbedded="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{contenedor}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement style="table" x="176" y="22" width="100" height="20" backcolor="#FFFFFF" uuid="4aaedf59-186e-4606-b4e5-97bf02138724"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ModalidadesDataSet" uuid="cd661175-2a54-4984-84c6-59f6727c330b">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{modalidades})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="100">
+						<textField>
+							<reportElement x="0" y="0" width="100" height="20" forecolor="#000000" uuid="7e73224e-8b39-43cf-bcc4-59a6213399bf"/>
+							<box leftPadding="10">
+								<pen lineWidth="1.0" lineColor="#000000"/>
+								<topPen lineWidth="1.0" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Arial" isPdfEmbedded="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{modalidad}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement style="table" x="278" y="22" width="100" height="20" backcolor="#FFFFFF" uuid="dfd8cd17-bb91-4d04-a696-641befede5b4"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="IngresosSalidasDataSet" uuid="28dcdb46-da9c-4db2-900f-d51a34d58f3e">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{ingresosSalidas})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="100">
+						<textField>
+							<reportElement x="0" y="0" width="100" height="20" forecolor="#000000" uuid="72803cff-9701-4cdf-b6f0-58a7e4f8f608"/>
+							<box leftPadding="10">
+								<pen lineWidth="1.0" lineColor="#000000"/>
+								<topPen lineWidth="1.0" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Arial" isPdfEmbedded="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ingresoSalida}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement style="table" x="380" y="22" width="100" height="20" backcolor="#FFFFFF" uuid="f265adcc-8355-4590-b7cc-83d4cd919db1"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="PesosDataSet" uuid="76b9c523-f9dd-4537-ba18-350b246b0725">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{pesos})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="100">
+						<textField>
+							<reportElement x="0" y="0" width="100" height="20" forecolor="#000000" uuid="95d6bc03-d6b9-4fa2-928b-827d377434dc"/>
+							<box leftPadding="10">
+								<pen lineWidth="1.0" lineColor="#000000"/>
+								<topPen lineWidth="1.0" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Bottom" markup="styled">
+								<font fontName="Arial" isPdfEmbedded="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{peso}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="71" splitType="Stretch"/>
+	</detail>
+</jasperReport>

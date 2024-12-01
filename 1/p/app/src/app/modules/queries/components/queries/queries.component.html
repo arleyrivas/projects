@@ -1,0 +1,102 @@
+<ng-container *ngIf="(queriesStore$ | async) as queriesStore">
+  <ng-container *ngIf="queriesStore">
+    <div class="wrapper">
+      <mat-card>
+        <mat-card-content>
+            <div class="header">
+                <svg class="icon-title" id="Capa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.84 70.61"><defs><style>.claseunounica{fill:none;stroke:#231f20;stroke-linecap:round;stroke-linejoin:round;stroke-width:.5px;}</style></defs><g id="Capa_1-2"><rect class="claseunounica" x=".25" y=".25" width="64.34" height="70.11"/><rect class="claseunounica" x="6.43" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="20.7" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="5.63" y="8.26" width="53.58" height="14.31"/><rect class="claseunounica" x="34.98" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="49.25" y="29.19" width="8.93" height="8.93"/><rect class="claseunounica" x="6.43" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="20.7" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="34.98" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="49.25" y="42.47" width="8.93" height="8.93"/><rect class="claseunounica" x="6.43" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="20.7" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="34.98" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="49.25" y="55.75" width="8.93" height="8.93"/><rect class="claseunounica" x="9.24" y="11.23" width="4.49" height="8.68"/><rect class="claseunounica" x="17.62" y="11.23" width="4.49" height="8.68"/><rect class="claseunounica" x="26" y="11.23" width="4.49" height="8.68"/><rect class="claseunounica" x="34.37" y="11.23" width="4.49" height="8.68"/><polyline class="claseunounica" points="42.75 16.02 47.24 11.23 47.24 19.9"/><polyline class="claseunounica" points="51.13 16.02 55.61 11.23 55.61 19.9"/></g></svg>
+                <h2 class="title-header">Consultas</h2>
+             </div>
+        </mat-card-content>
+      </mat-card>
+
+          <div class="queries">
+            <div class="queries__field">
+              <div class="title-card">
+                <h2 class="card-title" i18n="@@2819faa3e4bb44d00ee833f727b88ae615643503d3c9fe9ab953f4bb57b11197">querys.title.consultas</h2>
+                <svg id="Capa_2" class="welcome__line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.36 1.91"><defs><style>.cls-1{fill:#c5c6c8;}.cls-2{fill:#7ba052;}.cls-3{fill:#4b8051;}</style></defs><g id="Capa_1-2"><rect class="cls-2" width="31.37" height="1.91"/><rect class="cls-3" x="26.13" width="28.61" height="1.91"/><rect class="cls-1" x="54.74" width="28.61" height="1.91"/></g></svg>
+              </div>
+
+              <div class="queries__form">
+                  <mat-form-field class="queries__field-form" appearance="fill">
+                      <mat-label i18n="@@6a8b996cd348882df7b3408c82de35356936fbc34ebc7971ed825b02897b8d25">querys.title.select</mat-label>
+                      <mat-select [formControl]="selectQueries" (selectionChange)="selectChange()">
+                        <ng-container *ngFor="let query of queriesStore.queries" >
+                          <mat-option
+                            [value]="query"
+                            *permissions="[query.privilege]"
+                          >{{ query.name }}
+                        </mat-option>
+                        </ng-container>
+                      </mat-select>
+                  </mat-form-field>
+
+                    <button mat-raised-button color="primary" class="queries__field-button" (click)="submit()">
+                      Buscar
+                  </button>
+              </div>
+
+              <ng-container *ngIf="selectedOption && selectedOption.parameters">
+                <form [formGroup]="parametersForm">
+                <ng-container formArrayName="parameters" *ngFor="let parameter of parameters.controls; let i = index">
+                    <mat-form-field class="queries__parameter-field">
+                      <mat-label>{{ selectedOption.parameters[i].title }}</mat-label>
+                      <input matInput [formControlName]="i" type="text">
+                    </mat-form-field>
+                  </ng-container>
+                </form>
+              </ng-container>
+
+              <ng-container *ngIf="dataSource.data.length">
+                <mat-form-field class="queries__filter">
+                  <mat-label>Filtro</mat-label>
+                  <mat-icon matPrefix class="queries__filter-icon">search</mat-icon>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese valor para filtrar" #input>
+                </mat-form-field>
+              </ng-container>
+            </div>
+          </div>
+
+
+        
+          <ng-container *ngIf="dataSource.data.length">
+            <table mat-table [dataSource]="dataSource" matSort>
+              <ng-container *ngFor="let column of displayedColumns; let i = index">
+                  <ng-container [matColumnDef]="column">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column | columnName }}</th>
+                      <td mat-cell *matCellDef="let element">
+                        <ng-container *ngIf="column === 'reporte' ; else elseBlock">
+                          <button mat-mini-fab color="primary" (click)="downloadPDF(element[column])">
+                            <mat-icon>arrow_downward</mat-icon>
+                          </button>
+                        </ng-container>
+
+                        <ng-template #elseBlock>{{ element[column] }}</ng-template>
+                      </td>
+                  </ng-container>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+              <ng-container *ngIf="isSpecialQuery">
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns;"   [ngClass]="{
+                    'td-green': row.status === 'Verde',
+                    'td-red': row.status === 'Rojo',
+                    'td-yellow': row.status === 'Amarillo'
+                  }"
+                  class="example-element-row"
+              ></tr>
+              </ng-container>
+              <ng-container *ngIf="!isSpecialQuery">
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns;"   
+                  class="example-element-row"
+              ></tr>
+              </ng-container>
+              
+            </table>
+          </ng-container>
+    </div>
+  </ng-container>
+</ng-container>

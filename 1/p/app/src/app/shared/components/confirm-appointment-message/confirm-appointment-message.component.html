@@ -1,0 +1,43 @@
+<h2 mat-dialog-title class="confirm-appointment-message-dialog__title">Alerta</h2>
+
+<mat-dialog-content>
+  <p>
+    “La empresa de transporte que solicita esta cita da fe que la información suministrada del conductor y su 
+    vehículo es verdadera y autoriza a Sociedad Puerto Industrial Aguadulce S.A. para que verifique los datos y la
+     documentación entregada. La empresa solicitante se hace responsable por todas las actuaciones de la persona y por los 
+     daños y perjuicios que cause en las instalaciones de Sociedad Puerto Industrial Aguadulce S.A. De igual manera, 
+     tiene la obligación de entregar vigente el pago de seguridad social y licencias de conducción de sus conductores, 
+     al igual que el seguro obligatorio para accidentes de tránsito (SOAT), revisión técnico mecánica y mantenimiento no 
+     mayor a un mes de los vehículos que requieran ingresar al terminal. El conductor se compromete a cumplir las normas 
+     establecidas por Sociedad Puerto Industrial Aguadulce S.A., de conformidad con la ley y los procedimientos operacionales, 
+     de seguridad física, seguridad y salud en el trabajo, y medio ambiente.
+La empresa contratante certifica que aplica procedimientos internos de seguridad con sus empleados y los subcontratistas que utilice 
+para ejecutar trabajos en el terminal marítimo de la Sociedad Puerto Industrial Aguadulce que implican pruebas de confiabilidad
+ periódicas como parte de sus políticas internas.”
+  </p>
+  <p>
+    <mat-checkbox 
+                    [checked]="checked"
+                    (change)="onCheck($event)">
+                    </mat-checkbox> Aceptar
+  </p>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <div class="confirm-appointment-message-dialog__actions">
+    <button    mat-flat-button color="primary" [mat-dialog-close]="false" >
+      Cerrar
+    </button>
+    <button 
+    mat-raised-button 
+    color="primary" 
+    class="confirm-appointment-message-dialog__action" 
+    [disabled]="!checked"
+    [appDoubleFactorAuthentication]="privilege"
+    [appDoubleFactorAPIGateway]="userInfo"
+    [doubleFactorCallback]="submit.bind(this)"
+    [doubleFactorIncorrectCallback]="cancel.bind(this)">Aceptar</button>
+    
+  </div>
+</div>
+

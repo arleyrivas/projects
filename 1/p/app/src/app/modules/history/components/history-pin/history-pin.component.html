@@ -1,0 +1,118 @@
+<div class="history-pins" *ngIf="existData && !detailPin">
+    <mat-form-field class="queries__filter">
+      <mat-label>Filtro</mat-label>
+      <mat-icon matPrefix class="queries__filter-icon">search</mat-icon>
+      <input matInput (keyup)="submit($event)" placeholder="Ingrese valor para filtrar" #input>
+    </mat-form-field>
+    
+   
+    <ng-scrollbar class="manage-history"  (reachedBottom)="onScroll()">
+      <table mat-table #invoicesTable [dataSource]="dataSource" multiTemplateDataRows matSort>
+        <ng-container matColumnDef="carga">
+            <th mat-header-cell *matHeaderCellDef>Carga</th>
+            <td mat-cell *matCellDef="let element" >
+              <mat-icon [innerHTML]="getLoadIcon(element.frghtKind, element.activeCount)"></mat-icon>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="pinNbr">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Pin</th>
+            <td mat-cell *matCellDef="let element" (click)="nextStory(element)">{{ element.pinNbr }}</td>
+        </ng-container>
+        <ng-container matColumnDef="blNbr">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Bl/Hbl</th>
+            <td mat-cell *matCellDef="let element" (click)="nextStory(element)">{{ element.blNbr }}</td>
+        </ng-container>
+        <ng-container matColumnDef="truckingCompanyNameLDAP">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Empresa</th>
+            <td mat-cell *matCellDef="let element" (click)="nextStory(element)">{{ element.truckingCompanyNameLDAP }}</td>
+        </ng-container>
+        <ng-container matColumnDef="createdByLDAP">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Creado Por</th>
+            <td mat-cell *matCellDef="let element" (click)="nextStory(element)">{{ element.createdByLDAP }}</td>
+        </ng-container>
+        <ng-container matColumnDef="formattedDate">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Fecha</th>
+            <td mat-cell *matCellDef="let element" (click)="nextStory(element)">{{ element.formattedDate }}</td>
+        </ng-container>
+        <ng-container matColumnDef="activeCount">
+            <th mat-header-cell *matHeaderCellDef>Contenedores</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="history-cross__table-actions">
+                <div [matBadge]="element.activeCount" matBadgeOverlap="false" class="demo-section"   [ngClass]="{'active-count-zero': element.activeCount === '0'}"></div>
+                <ng-container >
+                  <mat-icon *ngIf="!element.selected && element.activeCount !== '0'"  (click)="toggleRow(element)" >keyboard_arrow_down</mat-icon>
+                  <mat-icon *ngIf="element.selected && element.activeCount !== '0'"  (click)="toggleRow(element)">keyboard_arrow_up</mat-icon>
+                  <mat-icon *ngIf="element.activeCount === '0'" style="visibility: hidden;">keyboard_arrow_up</mat-icon>
+                </ng-container>
+                
+              </div>
+              
+            </td>
+
+        </ng-container>
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="example-element-detail" [@detailExpand]="element.selected ? 'expanded' : 'collapsed'">
+                  <div class="table-border-rounded">
+                    <table class="history-cross__sub-table">
+                      <thead>
+                        <tr>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Contenedor</th>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Tamaño</th>
+                          <th class="history-cross__table-header-item history-cross__table-body-item__darken">Tipo</th>
+                        </tr>
+
+                        <tr>
+                          <th>
+                            <hr>
+                          </th>
+                          <th>
+                            <hr>
+                          </th>
+                          <th>
+                            <hr>
+                          </th>
+                          <th>
+                            <hr>
+                          </th>
+                        </tr>
+
+                        <tr>
+                          <th class="history-cross__table-space_min"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="credits" *ngFor="let pinContainerizedElement of element.pinContainerized">
+                            <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ pinContainerizedElement.unitNbr }}</td>
+                            <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ getTamano(pinContainerizedElement.twenty, element.frghtKind) }}</td>
+                            <td class="history-cross__table-body-item history-cross__table-body-item__darken history-cross__table-body-outlined">{{ getTipo(element)}}</td>
+                        </tr>
+  
+                        <tr>
+                        <th class="history-cross__table-space_min"></th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="row.selected"  [ngClass]="{'active-count-zero': row.activeCount === '0'}"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+      
+      </table>
+    </ng-scrollbar>
+
+    
+
+   
+    
+    
+</div>
+<div class="display-pin" [ngStyle]="{ display: detailPin ? 'block' : 'none' }">
+  <ng-container #dynamicContainer></ng-container>
+</div>
+

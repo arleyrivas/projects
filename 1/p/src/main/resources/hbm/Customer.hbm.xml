@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.spia.businessportal.common.entities">
+
+        <class name="CustomerNV" table="customer" dynamic-update="true">
+                <id name="id" type="long" column="gkey">
+                    <generator class="native" />
+                </id>
+                <property name="nit"                        column="id"               type="string" length="30"/>
+                <property name="treatment"                  column="treatment"        type="string" length="10"/>
+                <property name="personType"                 column="type"             type="string" length="1"/>
+                <property name="initials"                   column="initials"         type="string" length="15"/>
+                <property name="districtCode"               column="section"          type="string" length="30"/>
+                <property name="representativeEmail"        column="mail"             type="string" length="60"/>
+                <property name="operationalContactName"     column="contact1_name"    type="string" length="70"/>
+                <property name="operationalContactMobile"   column="contact1_tel"     type="string" length="20"/>
+                <property name="operationalContactEmail"    column="contact1_mail"    type="string" length="60"/>
+                <property name="treasuryContactName"        column="contact2_name"    type="string" length="70"/>
+                <property name="treasuryContactMobile"      column="contact2_tel"     type="string" length="20"/>
+                <property name="secondaryTreasuryEmail"     column="contact2_mail"    type="string" length="60"/>
+                <property name="requestNumber"              column="id_request_saved" type="string" length="30"/>
+                <property name="lastSapUpdate"              column="last_update_sap"  type="timestamp"/>
+                <property name="lastCompletedUpdateDate"    column="lastCompletedUpdateDate"  type="date"/>
+        </class>
+
+</hibernate-mapping>
+

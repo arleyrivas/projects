@@ -1,0 +1,14 @@
+
+<mat-card class="demo-inline-calendar-card">
+    <div *ngIf="specialDays.length > 0" appCustomDay [selectedDate]="selectedDate" (dateCleared)="onDateCleared()" [monthCalendar]="monthCalendar" [hourSelected]="hourSelected" [specialDay]="specialDays">
+        <mat-calendar [(selected)]="selectedDate"    [minDate]="minDate" [maxDate]="maxDate"   (selectedChange)="onDateSelected($event)"  (click)="onCalendarClick($event)" panelClass="custom-header" id="mat-calendar-appointment">
+            
+        </mat-calendar>
+    
+    </div>
+
+    
+    
+</mat-card>
+
+
