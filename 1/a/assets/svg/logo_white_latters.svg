@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 157.81 135.41">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-2 {
+        letter-spacing: .29em;
+      }
+
+      /* Cambia todos los colores a blanco para el logo */
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10 {
+        fill: #FFFFFF;
+      }
+
+      .cls-8, .cls-4 {
+        clip-rule: evenodd;
+      }
+
+      .cls-9, .cls-5 {
+        fill-rule: evenodd;
+      }
+
+      .cls-6 {
+        font-family: Ubuntu-Bold, Ubuntu;
+        font-size: 23.05px;
+        font-weight: 700;
+      }
+
+      .cls-7 {
+        font-family: Ubuntu-Light, Ubuntu;
+        font-size: 18.3px;
+        font-weight: 300;
+      }
+
+      .cls-11 {
+        letter-spacing: .32em;
+      }
+
+      .cls-12 {
+        letter-spacing: .28em;
+      }
+
+      .cls-14 {
+        letter-spacing: .3em;
+      }
+
+      .cls-15 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-16 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-17 {
+        letter-spacing: .25em;
+      }
+
+      .cls-18 {
+        letter-spacing: .3em;
+      }
+
+      .cls-20 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-21 {
+        letter-spacing: -.05em;
+      }
+    </style>
+    <clipPath id="clippath">
+      <polygon class="cls-8" points="78.9 0 105.01 0 105.01 26.11 92.16 26.11 92.16 12.85 78.9 12.85 78.9 0"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <path class="cls-4" d="M79.8,43.66c-5.1,5.1-13.36,5.1-18.45,0-5.1-5.1-5.1-13.36,0-18.45s13.36-5.1,18.45,0c5.1,5.1,5.1,13.36,0,18.45"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <path class="cls-4" d="M85.84,49.69c-8.43,8.43-22.09,8.43-30.52,0-8.43-8.43-8.43-22.09,0-30.52,4.07-4.07,9.5-6.32,15.26-6.32V0c-8.81,0-17.62,3.36-24.35,10.08-13.45,13.45-13.45,35.25,0,48.69l24.35,24.35,24.35-24.35c6.72-6.72,10.08-15.54,10.08-24.35h-12.85c0,5.75-2.25,11.19-6.32,15.26"/>
+    </clipPath>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g>
+      <text class="cls-7" transform="translate(9.24 131.83)"><tspan class="cls-2" x="0" y="0">C</tspan><tspan class="cls-14" x="16.47" y="0">ON</tspan><tspan class="cls-12" x="54.58" y="0">E</tspan><tspan class="cls-11" x="69.91" y="0">C</tspan><tspan class="cls-17" x="86.85" y="0">T</tspan><tspan class="cls-18" x="101.41" y="0">A</tspan></text>
+      <text class="cls-6" transform="translate(0 113.08)"><tspan class="cls-21" x="0" y="0">A</tspan><tspan class="cls-15" x="15.47" y="0">G</tspan><tspan class="cls-20" x="31.07" y="0">U</tspan><tspan class="cls-1" x="46.33" y="0">ADU</tspan><tspan class="cls-16" x="94.51" y="0">L</tspan><tspan class="cls-1" x="106.46" y="0">CE</tspan></text>
+      <g>
+        <g>
+          <polygon class="cls-9" points="78.9 0 105.01 0 105.01 26.11 92.16 26.11 92.16 12.85 78.9 12.85 78.9 0"/>
+          <g class="cls-22">
+            <rect class="cls-10" x="78.9" width="26.11" height="26.11"/>
+          </g>
+        </g>
+        <g>
+          <path class="cls-5" d="M79.8,43.66c-5.1,5.1-13.36,5.1-18.45,0-5.1-5.1-5.1-13.36,0-18.45s13.36-5.1,18.45,0c5.1,5.1,5.1,13.36,0,18.45"/>
+          <g class="cls-13">
+            <rect class="cls-3" x="56.26" y="20.11" width="28.64" height="28.64"/>
+          </g>
+        </g>
+        <g>
+          <path class="cls-5" d="M85.84,49.69c-8.43,8.43-22.09,8.43-30.52,0-8.43-8.43-8.43-22.09,0-30.52,4.07-4.07,9.5-6.32,15.26-6.32V0c-8.81,0-17.62,3.36-24.35,10.08-13.45,13.45-13.45,35.25,0,48.69l24.35,24.35,24.35-24.35c6.72-6.72,10.08-15.54,10.08-24.35h-12.85c0,5.75-2.25,11.19-6.32,15.26"/>
+          <g class="cls-19">
+            <rect class="cls-3" x="32.78" width="72.23" height="83.13"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
